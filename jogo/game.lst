@@ -1,0 +1,283 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.0.4 #11952 (MINGW64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module game
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _puts
+                                     13 	.globl _sprintf
+                                     14 	.globl _set_sprite_data
+                                     15 	.globl _joypad
+                                     16 	.globl _delay
+                                     17 	.globl _sorriso
+                                     18 ;--------------------------------------------------------
+                                     19 ; special function registers
+                                     20 ;--------------------------------------------------------
+                                     21 ;--------------------------------------------------------
+                                     22 ; ram data
+                                     23 ;--------------------------------------------------------
+                                     24 	.area _DATA
+      000000                         25 _sorriso::
+      000000                         26 	.ds 32
+                                     27 ;--------------------------------------------------------
+                                     28 ; absolute external ram data
+                                     29 ;--------------------------------------------------------
+                                     30 	.area _DABS (ABS)
+                                     31 ;--------------------------------------------------------
+                                     32 ; global & static initialisations
+                                     33 ;--------------------------------------------------------
+                                     34 	.area _HOME
+                                     35 	.area _GSINIT
+                                     36 	.area _GSFINAL
+                                     37 	.area _GSINIT
+                                     38 ;sorriso.c:26: unsigned char sorriso[] =
+      000000 21r00r00                39 	ld	hl, #_sorriso
+      000003 36 7E                   40 	ld	(hl), #0x7e
+      000005 21r01r00                41 	ld	hl, #(_sorriso + 0x0001)
+      000008 36 7E                   42 	ld	(hl), #0x7e
+      00000A 21r02r00                43 	ld	hl, #(_sorriso + 0x0002)
+      00000D 36 FF                   44 	ld	(hl), #0xff
+      00000F 21r03r00                45 	ld	hl, #(_sorriso + 0x0003)
+      000012 36 81                   46 	ld	(hl), #0x81
+      000014 21r04r00                47 	ld	hl, #(_sorriso + 0x0004)
+      000017 36 FF                   48 	ld	(hl), #0xff
+      000019 21r05r00                49 	ld	hl, #(_sorriso + 0x0005)
+      00001C 36 A5                   50 	ld	(hl), #0xa5
+      00001E 21r06r00                51 	ld	hl, #(_sorriso + 0x0006)
+      000021 36 FF                   52 	ld	(hl), #0xff
+      000023 21r07r00                53 	ld	hl, #(_sorriso + 0x0007)
+      000026 36 81                   54 	ld	(hl), #0x81
+      000028 21r08r00                55 	ld	hl, #(_sorriso + 0x0008)
+      00002B 36 FF                   56 	ld	(hl), #0xff
+      00002D 21r09r00                57 	ld	hl, #(_sorriso + 0x0009)
+      000030 36 81                   58 	ld	(hl), #0x81
+      000032 21r0Ar00                59 	ld	hl, #(_sorriso + 0x000a)
+      000035 36 FF                   60 	ld	(hl), #0xff
+      000037 21r0Br00                61 	ld	hl, #(_sorriso + 0x000b)
+      00003A 36 BD                   62 	ld	(hl), #0xbd
+      00003C 21r0Cr00                63 	ld	hl, #(_sorriso + 0x000c)
+      00003F 36 FF                   64 	ld	(hl), #0xff
+      000041 21r0Dr00                65 	ld	hl, #(_sorriso + 0x000d)
+      000044 36 81                   66 	ld	(hl), #0x81
+      000046 21r0Er00                67 	ld	hl, #(_sorriso + 0x000e)
+      000049 36 7E                   68 	ld	(hl), #0x7e
+      00004B 21r0Fr00                69 	ld	hl, #(_sorriso + 0x000f)
+      00004E 36 7E                   70 	ld	(hl), #0x7e
+      000050 21r10r00                71 	ld	hl, #(_sorriso + 0x0010)
+      000053 36 7E                   72 	ld	(hl), #0x7e
+      000055 21r11r00                73 	ld	hl, #(_sorriso + 0x0011)
+      000058 36 7E                   74 	ld	(hl), #0x7e
+      00005A 21r12r00                75 	ld	hl, #(_sorriso + 0x0012)
+      00005D 36 FF                   76 	ld	(hl), #0xff
+      00005F 21r13r00                77 	ld	hl, #(_sorriso + 0x0013)
+      000062 36 81                   78 	ld	(hl), #0x81
+      000064 21r14r00                79 	ld	hl, #(_sorriso + 0x0014)
+      000067 36 FF                   80 	ld	(hl), #0xff
+      000069 21r15r00                81 	ld	hl, #(_sorriso + 0x0015)
+      00006C 36 A5                   82 	ld	(hl), #0xa5
+      00006E 21r16r00                83 	ld	hl, #(_sorriso + 0x0016)
+      000071 36 FF                   84 	ld	(hl), #0xff
+      000073 21r17r00                85 	ld	hl, #(_sorriso + 0x0017)
+      000076 36 81                   86 	ld	(hl), #0x81
+      000078 21r18r00                87 	ld	hl, #(_sorriso + 0x0018)
+      00007B 36 FF                   88 	ld	(hl), #0xff
+      00007D 21r19r00                89 	ld	hl, #(_sorriso + 0x0019)
+      000080 36 A5                   90 	ld	(hl), #0xa5
+      000082 21r1Ar00                91 	ld	hl, #(_sorriso + 0x001a)
+      000085 36 FF                   92 	ld	(hl), #0xff
+      000087 21r1Br00                93 	ld	hl, #(_sorriso + 0x001b)
+      00008A 36 99                   94 	ld	(hl), #0x99
+      00008C 21r1Cr00                95 	ld	hl, #(_sorriso + 0x001c)
+      00008F 36 FF                   96 	ld	(hl), #0xff
+      000091 21r1Dr00                97 	ld	hl, #(_sorriso + 0x001d)
+      000094 36 81                   98 	ld	(hl), #0x81
+      000096 21r1Er00                99 	ld	hl, #(_sorriso + 0x001e)
+      000099 36 7E                  100 	ld	(hl), #0x7e
+      00009B 21r1Fr00               101 	ld	hl, #(_sorriso + 0x001f)
+      00009E 36 7E                  102 	ld	(hl), #0x7e
+                                    103 ;--------------------------------------------------------
+                                    104 ; Home
+                                    105 ;--------------------------------------------------------
+                                    106 	.area _HOME
+                                    107 	.area _HOME
+                                    108 ;--------------------------------------------------------
+                                    109 ; code
+                                    110 ;--------------------------------------------------------
+                                    111 	.area _CODE
+                                    112 ;game.c:4: void main(){
+                                    113 ;	---------------------------------
+                                    114 ; Function main
+                                    115 ; ---------------------------------
+      000000                        116 _main::
+      000000 E8 B0                  117 	add	sp, #-80
+                                    118 ;game.c:6: set_sprite_data(0,2,sorriso);
+      000002 21r00r00               119 	ld	hl, #_sorriso
+      000005 E5                     120 	push	hl
+      000006 3E 02                  121 	ld	a, #0x02
+      000008 F5                     122 	push	af
+      000009 33                     123 	inc	sp
+      00000A AF                     124 	xor	a, a
+      00000B F5                     125 	push	af
+      00000C 33                     126 	inc	sp
+      00000D CDr00r00               127 	call	_set_sprite_data
+      000010 E8 04                  128 	add	sp, #4
+                                    129 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+      000012 21r02r00               130 	ld	hl, #(_shadow_OAM + 0x0002)
+      000015 36 00                  131 	ld	(hl), #0x00
+                                    132 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000017 21r00r00               133 	ld	hl, #_shadow_OAM
+                                    134 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      00001A 3E 4E                  135 	ld	a, #0x4e
+      00001C 22                     136 	ld	(hl+), a
+      00001D 36 58                  137 	ld	(hl), #0x58
+                                    138 ;game.c:9: SHOW_SPRITES;
+      00001F F0r00                  139 	ldh	a, (_LCDC_REG+0)
+      000021 F6 02                  140 	or	a, #0x02
+      000023 E0r00                  141 	ldh	(_LCDC_REG+0),a
+                                    142 ;game.c:14: while(1){
+      000025                        143 00111$:
+                                    144 ;game.c:16: switch (joypad()){
+      000025 CDr00r00               145 	call	_joypad
+      000028 7B                     146 	ld	a, e
+      000029 3D                     147 	dec	a
+      00002A 28 2B                  148 	jr	Z, 00102$
+      00002C 7B                     149 	ld	a,e
+      00002D FE 02                  150 	cp	a,#0x02
+      00002F 28 1A                  151 	jr	Z, 00101$
+      000031 FE 04                  152 	cp	a,#0x04
+      000033 28 2E                  153 	jr	Z, 00103$
+      000035 FE 08                  154 	cp	a,#0x08
+      000037 28 36                  155 	jr	Z, 00104$
+      000039 FE 10                  156 	cp	a,#0x10
+      00003B 28 6E                  157 	jr	Z, 00107$
+      00003D FE 20                  158 	cp	a,#0x20
+      00003F 28 71                  159 	jr	Z, 00108$
+      000041 FE 40                  160 	cp	a,#0x40
+      000043 28 36                  161 	jr	Z, 00105$
+      000045 D6 80                  162 	sub	a, #0x80
+      000047 28 4A                  163 	jr	Z, 00106$
+      000049 18 6C                  164 	jr	00109$
+                                    165 ;game.c:17: case J_LEFT:
+      00004B                        166 00101$:
+                                    167 ;c:/gbdk/include/gb/gb.h:1088: OAM_item_t * itm = &shadow_OAM[nb];
+      00004B 01r00r00               168 	ld	bc, #_shadow_OAM+0
+                                    169 ;c:/gbdk/include/gb/gb.h:1089: itm->y+=y, itm->x+=x;
+      00004E 0A                     170 	ld	a, (bc)
+      00004F 02                     171 	ld	(bc), a
+      000050 03                     172 	inc	bc
+      000051 0A                     173 	ld	a, (bc)
+      000052 C6 FB                  174 	add	a, #0xfb
+      000054 02                     175 	ld	(bc), a
+                                    176 ;game.c:19: break;
+      000055 18 60                  177 	jr	00109$
+                                    178 ;game.c:20: case J_RIGHT:
+      000057                        179 00102$:
+                                    180 ;c:/gbdk/include/gb/gb.h:1088: OAM_item_t * itm = &shadow_OAM[nb];
+      000057 01r00r00               181 	ld	bc, #_shadow_OAM
+                                    182 ;c:/gbdk/include/gb/gb.h:1089: itm->y+=y, itm->x+=x;
+      00005A 0A                     183 	ld	a, (bc)
+      00005B 02                     184 	ld	(bc), a
+      00005C 03                     185 	inc	bc
+      00005D 0A                     186 	ld	a, (bc)
+      00005E C6 05                  187 	add	a, #0x05
+      000060 02                     188 	ld	(bc), a
+                                    189 ;game.c:22: break;
+      000061 18 54                  190 	jr	00109$
+                                    191 ;game.c:23: case J_UP:
+      000063                        192 00103$:
+                                    193 ;c:/gbdk/include/gb/gb.h:1088: OAM_item_t * itm = &shadow_OAM[nb];
+      000063 01r00r00               194 	ld	bc, #_shadow_OAM
+                                    195 ;c:/gbdk/include/gb/gb.h:1089: itm->y+=y, itm->x+=x;
+      000066 0A                     196 	ld	a, (bc)
+      000067 C6 FB                  197 	add	a, #0xfb
+      000069 02                     198 	ld	(bc), a
+      00006A 03                     199 	inc	bc
+      00006B 0A                     200 	ld	a, (bc)
+      00006C 02                     201 	ld	(bc), a
+                                    202 ;game.c:25: break;
+      00006D 18 48                  203 	jr	00109$
+                                    204 ;game.c:26: case J_DOWN:
+      00006F                        205 00104$:
+                                    206 ;c:/gbdk/include/gb/gb.h:1088: OAM_item_t * itm = &shadow_OAM[nb];
+      00006F 01r00r00               207 	ld	bc, #_shadow_OAM
+                                    208 ;c:/gbdk/include/gb/gb.h:1089: itm->y+=y, itm->x+=x;
+      000072 0A                     209 	ld	a, (bc)
+      000073 C6 05                  210 	add	a, #0x05
+      000075 02                     211 	ld	(bc), a
+      000076 03                     212 	inc	bc
+      000077 0A                     213 	ld	a, (bc)
+      000078 02                     214 	ld	(bc), a
+                                    215 ;game.c:28: break;
+      000079 18 3C                  216 	jr	00109$
+                                    217 ;game.c:29: case J_SELECT:
+      00007B                        218 00105$:
+                                    219 ;game.c:30: sprintf(str, "SELECT");
+      00007B F8 00                  220 	ldhl	sp,	#0
+      00007D 4D                     221 	ld	c, l
+      00007E 44                     222 	ld	b, h
+      00007F 59                     223 	ld	e, c
+      000080 50                     224 	ld	d, b
+      000081 C5                     225 	push	bc
+      000082 21rC6r00               226 	ld	hl, #___str_0
+      000085 E5                     227 	push	hl
+      000086 D5                     228 	push	de
+      000087 CDr00r00               229 	call	_sprintf
+      00008A E8 04                  230 	add	sp, #4
+      00008C CDr00r00               231 	call	_puts
+      00008F E8 02                  232 	add	sp, #2
+                                    233 ;game.c:32: break;
+      000091 18 24                  234 	jr	00109$
+                                    235 ;game.c:33: case J_START:
+      000093                        236 00106$:
+                                    237 ;game.c:34: sprintf(str, "START");
+      000093 F8 00                  238 	ldhl	sp,	#0
+      000095 4D                     239 	ld	c, l
+      000096 44                     240 	ld	b, h
+      000097 59                     241 	ld	e, c
+      000098 50                     242 	ld	d, b
+      000099 C5                     243 	push	bc
+      00009A 21rCDr00               244 	ld	hl, #___str_1
+      00009D E5                     245 	push	hl
+      00009E D5                     246 	push	de
+      00009F CDr00r00               247 	call	_sprintf
+      0000A2 E8 04                  248 	add	sp, #4
+      0000A4 CDr00r00               249 	call	_puts
+      0000A7 E8 02                  250 	add	sp, #2
+                                    251 ;game.c:36: break;
+      0000A9 18 0C                  252 	jr	00109$
+                                    253 ;game.c:37: case J_A:
+      0000AB                        254 00107$:
+                                    255 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+      0000AB 21r02r00               256 	ld	hl, #(_shadow_OAM + 0x0002)
+      0000AE 36 00                  257 	ld	(hl), #0x00
+                                    258 ;game.c:39: break;
+      0000B0 18 05                  259 	jr	00109$
+                                    260 ;game.c:40: case J_B:
+      0000B2                        261 00108$:
+                                    262 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+      0000B2 21r02r00               263 	ld	hl, #(_shadow_OAM + 0x0002)
+      0000B5 36 01                  264 	ld	(hl), #0x01
+                                    265 ;game.c:43: }
+      0000B7                        266 00109$:
+                                    267 ;game.c:44: delay(100);
+      0000B7 21 64 00               268 	ld	hl, #0x0064
+      0000BA E5                     269 	push	hl
+      0000BB CDr00r00               270 	call	_delay
+      0000BE E8 02                  271 	add	sp, #2
+      0000C0 C3r25r00               272 	jp	00111$
+                                    273 ;game.c:46: }
+      0000C3 E8 50                  274 	add	sp, #80
+      0000C5 C9                     275 	ret
+      0000C6                        276 ___str_0:
+      0000C6 53 45 4C 45 43 54      277 	.ascii "SELECT"
+      0000CC 00                     278 	.db 0x00
+      0000CD                        279 ___str_1:
+      0000CD 53 54 41 52 54         280 	.ascii "START"
+      0000D2 00                     281 	.db 0x00
+                                    282 	.area _CODE
+                                    283 	.area _CABS (ABS)
