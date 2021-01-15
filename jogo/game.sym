@@ -8,27 +8,35 @@ Symbol Table
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000000 L
     _LCDC_REG                                                      ****** GX
-  0 ___str_0                                                       0000C6 R
-  0 ___str_1                                                       0000CD R
-    _delay                                                         ****** GX
+  0 ___str_0                                                       0003D2 R
+  1 _astronauta                                                    000080 GR
+  0 _checkCollisions                                               000099 GR
+  1 _foguete                                                       000088 GR
     _joypad                                                        ****** GX
-  0 _main                                                          000000 GR
+  0 _main                                                          0002C7 GR
+  0 _performantdelay                                               000000 GR
     _puts                                                          ****** GX
+  0 _setPositionGameCharacter                                      00000D GR
     _set_sprite_data                                               ****** GX
+  0 _setupAstronauta                                               00022A GR
+  0 _setupFoguete                                                  000278 GR
     _shadow_OAM                                                    ****** GX
-  1 _sorriso                                                       000000 GR
     _sprintf                                                       ****** GX
+  1 _sprites1                                                      000000 GR
+  1 _spritesize                                                    000090 GR
+    _wait_vbl_done                                                 ****** GX
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size     D3   flags    0
-   1 _DATA                                      size     20   flags    0
+   0 _CODE                                      size    3F3   flags    0
+   1 _DATA                                      size     91   flags    0
    2 _DABS                                      size      0   flags    8
    3 _HOME                                      size      0   flags    0
-   4 _GSINIT                                    size     A0   flags    0
+   4 _GSINIT                                    size    285   flags    0
    5 _GSFINAL                                   size      0   flags    0
    6 _CABS                                      size      0   flags    8
 
