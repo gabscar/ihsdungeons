@@ -1,11 +1,15 @@
 #include<gb/gb.h>
 #include <stdio.h>
-#include "astronautaEfoguete.c"
+#include "../design/backTiles.c"
+#include "../design/simpleMap.c"
+#include "../design/gameSprites.c"
 #include "personagens.c"
 
 struct personagem astronauta;
 struct personagem foguete;
 UBYTE spritesize = 8;
+UBYTE idFlecha = 8;
+UBYTE spriteFlecha = 8;
 
 void performantdelay(UINT8 numloops){ // nova funcao delay
     UINT8 i;
@@ -22,6 +26,9 @@ void setPositionGameCharacter(struct personagem* character, UINT8 x, UINT8 y){ /
 }
 
 UBYTE checkCollisions(struct personagem* one, struct personagem* two){
+    return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+}
+UBYTE checkCollisionsFlecha(struct personagem* one, struct flecha* two){
     return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
 }
 // void movimentarPersonagem(struct personagem* character, UINT8 x, UINT8 y){ //movimenta personagem no mapa
@@ -69,16 +76,66 @@ void setupFoguete(){
     setPositionGameCharacter(&foguete, foguete.x, foguete.y);
 }
 
-void main(){
+void setupFlechas(UINT8 qtde_flechas,UINT8 spriteTile){
+   for(UINT8 i=0; i<qtde_flechas;i++){
+        set_sprite_tile(8+i, spriteTile);
+        move_sprite(8+i, 50+i*10, 50);
+   }
+}
 
-    set_sprite_data(0, 8, sprites1);
+void setupFlecha(struct flecha* arrow){
+    
+    arrow->x=0;
+    arrow->y=0;
+    arrow->spriteIds=idFlecha;
+    arrow->width=8;
+    arrow->height=8;
+
+    set_sprite_tile(idFlecha, spriteFlecha);
+    idFlecha++;   
+}
+
+
+void atirar(struct flecha* arrow,struct personagem* rocket){
+    while (arrow->y >=0)
+    {
+        arrow->y = arrow->y-10;
+        move_sprite(arrow->spriteIds,arrow->x,arrow->y);
+
+        if(checkCollisionsFlecha(rocket,arrow)){
+            rocket->y=0;
+            setPositionGameCharacter(rocket, rocket->x, rocket->y);
+        };
+        performantdelay(1);
+
+    }
+
+    arrow->y=0;
+   
+}
+
+void main(){
+    set_bkg_data(0, 10, backTiles);
+    set_bkg_tiles(0, 0, 20, 36, simpleMap);
+    set_sprite_data(0, 9, gameSprites);
     setupAstronauta();
     setupFoguete();
+    
+    struct flecha arrow1;
+    setupFlecha(&arrow1);
+    
+    
 
+
+    
+    SHOW_BKG;
     SHOW_SPRITES;
     DISPLAY_ON;
-
+    
+    
     while(!checkCollisions(&astronauta,&foguete)){
+        scroll_bkg(0,1);
+        
         if(joypad() & J_LEFT){
             astronauta.x=astronauta.x-2;
             setPositionGameCharacter(&astronauta, astronauta.x,astronauta.y);
@@ -95,6 +152,11 @@ void main(){
             astronauta.y=astronauta.y+2;
             setPositionGameCharacter(&astronauta,astronauta.x,astronauta.y);
         }
+        if(joypad() & J_A){
+            arrow1.x=astronauta.x;
+            arrow1.y=astronauta.y;
+            atirar(&arrow1,&foguete);
+        }
 
         foguete.y+= 5;
         if(foguete.y >= 144){
@@ -110,4 +172,5 @@ void main(){
 
     sprintf(str,"\n \n \n \n \n \n \n === GAME  OVER ===");
     puts(str);
+    
 }
