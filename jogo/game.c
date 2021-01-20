@@ -101,12 +101,12 @@ void atirar(struct flecha* arrow,struct personagem* rocket){
     {
         arrow->y = arrow->y-10;
         move_sprite(arrow->spriteIds,arrow->x,arrow->y);
-
+        wait_vbl_done();
         if(checkCollisionsFlecha(rocket,arrow)){
             rocket->y=0;
             setPositionGameCharacter(rocket, rocket->x, rocket->y);
         };
-        performantdelay(1);
+        //performantdelay(1);
 
     }
 
@@ -124,9 +124,7 @@ void main(){
     struct flecha arrow1;
     setupFlecha(&arrow1);
     
-    
-
-
+   
     
     SHOW_BKG;
     SHOW_SPRITES;
@@ -168,9 +166,11 @@ void main(){
        
 
     }
-    char str[80];
+   
 
+    char str[80];
     sprintf(str,"\n \n \n \n \n \n \n === GAME  OVER ===");
     puts(str);
+
     
 }
