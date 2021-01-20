@@ -9,6 +9,11 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
+	.globl _moveBala
+	.globl _setupBala
+	.globl _moveInimigo2
+	.globl _moveInimigo1
+	.globl _setupInimigo
 	.globl _setupAstronauta
 	.globl _setPositionGameCharacter
 	.globl _performantdelay
@@ -18,8 +23,9 @@
 	.globl _wait_vbl_done
 	.globl _waitpad
 	.globl _joypad
-	.globl _spriteFlecha
-	.globl _idFlecha
+	.globl _spriteBala
+	.globl _idInimigo
+	.globl _idBala
 	.globl _spritesize
 	.globl _astronauta
 	.globl _gameSprites
@@ -39,12 +45,14 @@ _simpleMap::
 _gameSprites::
 	.ds 144
 _astronauta::
-	.ds 8
+	.ds 9
 _spritesize::
 	.ds 1
-_idFlecha::
+_idBala::
 	.ds 1
-_spriteFlecha::
+_idInimigo::
+	.ds 1
+_spriteBala::
 	.ds 1
 ;--------------------------------------------------------
 ; absolute external ram data
@@ -1755,7 +1763,7 @@ _spriteFlecha::
 	ld	(hl), #0x01
 	ld	hl, #(_simpleMap + 0x02cf)
 	ld	(hl), #0x01
-;../design/gameSprites.c:26: unsigned char gameSprites[] =
+;gameSprites.c:26: unsigned char gameSprites[] =
 	ld	hl, #_gameSprites
 	ld	(hl), #0x0f
 	ld	hl, #(_gameSprites + 0x0001)
@@ -2013,45 +2021,48 @@ _spriteFlecha::
 	ld	hl, #(_gameSprites + 0x007f)
 	ld	(hl), #0x80
 	ld	hl, #(_gameSprites + 0x0080)
-	ld	(hl), #0x18
+	ld	(hl), #0x20
 	ld	hl, #(_gameSprites + 0x0081)
-	ld	(hl), #0x18
+	ld	(hl), #0x20
 	ld	hl, #(_gameSprites + 0x0082)
-	ld	(hl), #0x3c
+	ld	(hl), #0x70
 	ld	hl, #(_gameSprites + 0x0083)
-	ld	(hl), #0x3c
+	ld	(hl), #0x70
 	ld	hl, #(_gameSprites + 0x0084)
-	ld	(hl), #0x5a
+	ld	(hl), #0x88
 	ld	hl, #(_gameSprites + 0x0085)
-	ld	(hl), #0x5a
+	ld	(hl), #0xf8
 	ld	hl, #(_gameSprites + 0x0086)
-	ld	(hl), #0x99
+	ld	(hl), #0xf8
 	ld	hl, #(_gameSprites + 0x0087)
-	ld	(hl), #0x99
+	ld	(hl), #0x88
 	ld	hl, #(_gameSprites + 0x0088)
-	ld	(hl), #0x18
+	ld	(hl), #0xf8
 	ld	hl, #(_gameSprites + 0x0089)
-	ld	(hl), #0x18
+	ld	(hl), #0x88
 	ld	hl, #(_gameSprites + 0x008a)
-	ld	(hl), #0x18
+	ld	(hl), #0x88
 	ld	hl, #(_gameSprites + 0x008b)
-	ld	(hl), #0x18
+	ld	(hl), #0xf8
 	ld	hl, #(_gameSprites + 0x008c)
-	ld	(hl), #0x18
+	ld	(hl), #0xf8
 	ld	hl, #(_gameSprites + 0x008d)
-	ld	(hl), #0x18
+	ld	(hl), #0xf8
 	ld	hl, #(_gameSprites + 0x008e)
-	ld	(hl), #0x18
+	ld	(hl), #0x00
 	ld	hl, #(_gameSprites + 0x008f)
-	ld	(hl), #0x18
-;game.c:9: UBYTE spritesize = 8;
+	ld	(hl), #0x00
+;game.c:14: UBYTE spritesize = 8;
 	ld	hl, #_spritesize
 	ld	(hl), #0x08
-;game.c:10: UBYTE idFlecha = 8;
-	ld	hl, #_idFlecha
-	ld	(hl), #0x08
-;game.c:11: UBYTE spriteFlecha = 8;
-	ld	hl, #_spriteFlecha
+;game.c:15: UBYTE idBala = 4;
+	ld	hl, #_idBala
+	ld	(hl), #0x04
+;game.c:16: UBYTE idInimigo = 9;
+	ld	hl, #_idInimigo
+	ld	(hl), #0x09
+;game.c:17: UBYTE spriteBala = 8;
+	ld	hl, #_spriteBala
 	ld	(hl), #0x08
 ;--------------------------------------------------------
 ; Home
@@ -2062,31 +2073,31 @@ _spriteFlecha::
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;game.c:13: void performantdelay(UINT8 numloops){ // nova funcao delay
+;game.c:19: void performantdelay(UINT8 numloops){ // nova funcao delay
 ;	---------------------------------
 ; Function performantdelay
 ; ---------------------------------
 _performantdelay::
-;game.c:15: for(i = 0; i < numloops; i++){
+;game.c:21: for(i = 0; i < numloops; i++){
 	ld	c, #0x00
 00103$:
 	ld	a, c
 	ldhl	sp,	#2
 	sub	a, (hl)
 	ret	NC
-;game.c:16: wait_vbl_done();
+;game.c:22: wait_vbl_done();
 	call	_wait_vbl_done
-;game.c:15: for(i = 0; i < numloops; i++){
+;game.c:21: for(i = 0; i < numloops; i++){
 	inc	c
-;game.c:18: }
+;game.c:24: }
 	jr	00103$
-;game.c:19: void setPositionGameCharacter(struct personagem* character, UINT8 x, UINT8 y){ //define uma posição no mapa
+;game.c:25: void setPositionGameCharacter(struct personagem* character, UINT8 x, UINT8 y){ //define uma posição no mapa
 ;	---------------------------------
 ; Function setPositionGameCharacter
 ; ---------------------------------
 _setPositionGameCharacter::
 	add	sp, #-3
-;game.c:20: move_sprite(character->spriteIds[0], x, y);
+;game.c:26: move_sprite(character->spriteIds[0], x, y);
 	ldhl	sp,	#8
 	ld	a, (hl)
 	ldhl	sp,	#0
@@ -2118,7 +2129,7 @@ _setPositionGameCharacter::
 	inc	bc
 	ld	a, (hl)
 	ld	(bc), a
-;game.c:21: move_sprite(character->spriteIds[1], x + spritesize, y);
+;game.c:27: move_sprite(character->spriteIds[1], x + spritesize, y);
 	ld	a, (hl)
 	ld	hl, #_spritesize
 	add	a, (hl)
@@ -2146,7 +2157,7 @@ _setPositionGameCharacter::
 	inc	hl
 	ld	a, (hl)
 	ld	(bc), a
-;game.c:22: move_sprite(character->spriteIds[2], x, y + spritesize);
+;game.c:28: move_sprite(character->spriteIds[2], x, y + spritesize);
 	dec	hl
 	dec	hl
 	ld	a, (hl)
@@ -2177,7 +2188,7 @@ _setPositionGameCharacter::
 	dec	hl
 	ld	a, (hl)
 	ld	(bc), a
-;game.c:23: move_sprite(character->spriteIds[3], x + spritesize, y + spritesize);
+;game.c:29: move_sprite(character->spriteIds[3], x + spritesize, y + spritesize);
 	dec	hl
 	ld	a, (hl)
 	ld	hl, #_spritesize
@@ -2205,53 +2216,53 @@ _setPositionGameCharacter::
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
-;game.c:23: move_sprite(character->spriteIds[3], x + spritesize, y + spritesize);
-;game.c:24: }
+;game.c:29: move_sprite(character->spriteIds[3], x + spritesize, y + spritesize);
+;game.c:30: }
 	add	sp, #3
 	ret
-;game.c:26: void setupAstronauta(){
+;game.c:33: void setupAstronauta(){
 ;	---------------------------------
 ; Function setupAstronauta
 ; ---------------------------------
 _setupAstronauta::
-;game.c:27: astronauta.x = 80;
+;game.c:34: astronauta.x = 80;
 	ld	bc, #_astronauta+0
 	ld	hl, #(_astronauta + 0x0004)
 	ld	(hl), #0x50
-;game.c:28: astronauta.y = 130;
+;game.c:35: astronauta.y = 128;
 	ld	hl, #(_astronauta + 0x0005)
-	ld	(hl), #0x82
-;game.c:29: astronauta.width = 16;
-	ld	hl, #(_astronauta + 0x0006)
-	ld	(hl), #0x10
-;game.c:30: astronauta.height = 16;
+	ld	(hl), #0x80
+;game.c:36: astronauta.width = 16;
 	ld	hl, #(_astronauta + 0x0007)
+	ld	(hl), #0x10
+;game.c:37: astronauta.height = 16;
+	ld	hl, #(_astronauta + 0x0008)
 	ld	(hl), #0x10
 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 0x0002)
 	ld	(hl), #0x00
-;game.c:34: astronauta.spriteIds[0] = 0;
+;game.c:41: astronauta.spriteIds[0] = 0;
 	xor	a, a
 	ld	(bc), a
 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 0x0006)
 	ld	(hl), #0x01
-;game.c:36: astronauta.spriteIds[1] = 1;
+;game.c:43: astronauta.spriteIds[1] = 1;
 	ld	hl, #(_astronauta + 0x0001)
 	ld	(hl), #0x01
 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 0x000a)
 	ld	(hl), #0x02
-;game.c:38: astronauta.spriteIds[2] = 2;
+;game.c:45: astronauta.spriteIds[2] = 2;
 	ld	hl, #(_astronauta + 0x0002)
 	ld	(hl), #0x02
 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
 	ld	hl, #(_shadow_OAM + 0x000e)
 	ld	(hl), #0x03
-;game.c:40: astronauta.spriteIds[3] = 3;
+;game.c:47: astronauta.spriteIds[3] = 3;
 	ld	hl, #(_astronauta + 0x0003)
 	ld	(hl), #0x03
-;game.c:42: setPositionGameCharacter(&astronauta, astronauta.x, astronauta.y);
+;game.c:49: setPositionGameCharacter(&astronauta, astronauta.x, astronauta.y);
 	ld	a, (#(_astronauta + 0x0005) + 0)
 	ld	hl, #(_astronauta + 0x0004)
 	ld	h, (hl)
@@ -2262,14 +2273,1797 @@ _setupAstronauta::
 	push	bc
 	call	_setPositionGameCharacter
 	add	sp, #4
-;game.c:43: }
+;game.c:50: }
 	ret
-;game.c:45: void main(){
+;game.c:52: void setupInimigo(struct personagem* enemy){
+;	---------------------------------
+; Function setupInimigo
+; ---------------------------------
+_setupInimigo::
+;game.c:54: enemy->x = 0;
+	pop	bc
+	pop	de
+	push	de
+	push	bc
+	ld	hl, #0x0004
+	add	hl, de
+	ld	(hl), #0x00
+;game.c:55: enemy->y = 0;
+	ld	hl, #0x0005
+	add	hl, de
+	ld	(hl), #0x00
+;game.c:56: enemy->width = 16;
+	ld	hl, #0x0007
+	add	hl, de
+	ld	(hl), #0x10
+;game.c:57: enemy->height = 16;
+	ld	hl, #0x0008
+	add	hl, de
+	ld	(hl), #0x10
+;game.c:58: enemy->ativo = 0;
+	ld	hl, #0x0006
+	add	hl, de
+	ld	(hl), #0x00
+;game.c:61: set_sprite_tile(idInimigo, 4);
+	ld	hl, #_idInimigo
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ld	h, #0x00
+	ld	l, c
+	add	hl, hl
+	add	hl, hl
+	ld	bc, #_shadow_OAM
+	add	hl, bc
+	inc	hl
+	inc	hl
+	ld	(hl), #0x04
+;game.c:62: enemy->spriteIds[0] = idInimigo;
+	ld	hl, #_idInimigo
+	ld	a, (hl)
+	ld	(de), a
+;game.c:63: idInimigo++;
+	inc	(hl)
+;game.c:65: set_sprite_tile(idInimigo, 5);
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ld	h, #0x00
+	ld	l, c
+	add	hl, hl
+	add	hl, hl
+	ld	bc, #_shadow_OAM
+	add	hl, bc
+	inc	hl
+	inc	hl
+	ld	(hl), #0x05
+;game.c:66: enemy->spriteIds[1] = idInimigo;
+	ld	c, e
+	ld	b, d
+	inc	bc
+	ld	hl, #_idInimigo
+	ld	a, (hl)
+	ld	(bc), a
+;game.c:67: idInimigo++;
+	inc	(hl)
+;game.c:69: set_sprite_tile(idInimigo, 6);
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ld	h, #0x00
+	ld	l, c
+	add	hl, hl
+	add	hl, hl
+	ld	bc, #_shadow_OAM
+	add	hl, bc
+	inc	hl
+	inc	hl
+	ld	(hl), #0x06
+;game.c:70: enemy->spriteIds[2] = idInimigo;
+	ld	c, e
+	ld	b, d
+	inc	bc
+	inc	bc
+	ld	hl, #_idInimigo
+	ld	a, (hl)
+	ld	(bc), a
+;game.c:71: idInimigo++;
+	inc	(hl)
+;game.c:73: set_sprite_tile(idInimigo, 7);
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ld	h, #0x00
+	ld	l, c
+	add	hl, hl
+	add	hl, hl
+	ld	bc, #_shadow_OAM
+	add	hl, bc
+	inc	hl
+	inc	hl
+	ld	(hl), #0x07
+;game.c:74: enemy->spriteIds[3] = idInimigo;
+	inc	de
+	inc	de
+	inc	de
+	ld	hl, #_idInimigo
+	ld	a, (hl)
+	ld	(de), a
+;game.c:75: idInimigo++;
+	inc	(hl)
+;game.c:76: }
+	ret
+;game.c:79: void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
+;	---------------------------------
+; Function moveInimigo1
+; ---------------------------------
+_moveInimigo1::
+	add	sp, #-14
+;game.c:80: if(enemy->ativo==1){
+	ldhl	sp,	#16
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#0
+	ld	(hl+), a
+	ld	(hl), e
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0006
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#13
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#12
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	dec	a
+	jp	NZ,00106$
+;game.c:81: if(enemy->y+enemy->height+3<=180){
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0005
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#4
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#3
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,	#13
+	ld	(hl), a
+	ld	c, (hl)
+	ld	b, #0x00
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0008
+	add	hl, de
+	ld	e, l
+	ld	d, h
+	ld	a, (de)
+	ld	l, a
+	ld	h, #0x00
+	add	hl, bc
+	inc	hl
+	inc	hl
+	inc	hl
+	ld	b, l
+	ld	c, h
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0004
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+	ld	(hl), a
+;game.c:81: if(enemy->y+enemy->height+3<=180){
+	ld	e, c
+	ld	d, #0x00
+	ld	a, #0xb4
+	cp	a, b
+	ld	a, #0x00
+	sbc	a, c
+	bit	7, e
+	jr	Z, 00328$
+	bit	7, d
+	jr	NZ, 00329$
+	cp	a, a
+	jr	00329$
+00328$:
+	bit	7, d
+	jr	Z, 00329$
+	scf
+00329$:
+	jp	C, 00102$
+;game.c:82: enemy->y=enemy->y+1;
+	ldhl	sp,	#13
+	ld	c, (hl)
+	inc	c
+	ldhl	sp,	#2
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ldhl	sp,#18
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+;c
+	ld	hl, #0x0004
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#8
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#7
+	ld	(hl-), a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,	#13
+	ld	(hl), a
+	ld	a, c
+	sub	a, #0x0a
+	jr	NZ, 00108$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00110$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00110$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00109$
+00108$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00109$:
+;game.c:84: (enemy->y==20)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#13
+	ld	(hl), a
+	pop	af
+;game.c:84: (enemy->y==20)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x14
+	jr	NZ, 00111$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#11
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	inc	hl
+	ld	a, c
+	ld	(hl+), a
+	ld	(hl), b
+	bit	7, b
+	jr	Z, 00113$
+	inc	bc
+	dec	hl
+	ld	a, c
+	ld	(hl+), a
+	ld	(hl), b
+00113$:
+	ldhl	sp,#12
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	sra	b
+	rr	c
+	dec	hl
+	dec	hl
+	ld	a, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00112$
+00111$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#11
+	ld	a, (hl)
+	ld	(de), a
+00112$:
+;game.c:85: (enemy->y==30)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:85: (enemy->y==30)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x1e
+	jr	NZ, 00114$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00116$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00116$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00115$
+00114$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00115$:
+;game.c:86: (enemy->y==40)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:86: (enemy->y==40)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x28
+	jr	NZ, 00117$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00119$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00119$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00118$
+00117$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00118$:
+;game.c:87: (enemy->y==45)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:87: (enemy->y==45)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x2d
+	jr	NZ, 00120$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00122$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00122$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00121$
+00120$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00121$:
+;game.c:88: (enemy->y==50)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:88: (enemy->y==50)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x32
+	jr	NZ, 00123$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00125$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00125$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00124$
+00123$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00124$:
+;game.c:89: (enemy->y==55)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:89: (enemy->y==55)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x37
+	jr	NZ, 00126$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00128$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00128$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00127$
+00126$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00127$:
+;game.c:90: (enemy->y==60)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:90: (enemy->y==60)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x3c
+	jr	NZ, 00129$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00131$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00131$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00130$
+00129$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00130$:
+;game.c:91: (enemy->y==65)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:91: (enemy->y==65)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x41
+	jr	NZ, 00132$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00134$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00134$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00133$
+00132$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00133$:
+;game.c:92: (enemy->y==70)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:92: (enemy->y==70)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x46
+	jr	NZ, 00135$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00137$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00137$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00136$
+00135$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00136$:
+;game.c:93: (enemy->y==75)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:93: (enemy->y==75)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x4b
+	jr	NZ, 00138$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00140$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00140$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00139$
+00138$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00139$:
+;game.c:94: (enemy->y==80)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:94: (enemy->y==80)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x50
+	jr	NZ, 00141$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00143$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00143$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00142$
+00141$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00142$:
+;game.c:95: (enemy->y==85)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:95: (enemy->y==85)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x55
+	jr	NZ, 00144$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00146$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00146$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00145$
+00144$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00145$:
+;game.c:96: (enemy->y==90)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:96: (enemy->y==90)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x5a
+	jr	NZ, 00147$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00149$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00149$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00148$
+00147$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00148$:
+;game.c:97: (enemy->y==95)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ld	c, a
+	pop	af
+;game.c:97: (enemy->y==95)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x5f
+	jr	NZ, 00150$
+	inc	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	inc	hl
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl+), a
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl-), a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	a, e
+	sub	a, l
+	ld	e, a
+	ld	a, d
+	sbc	a, h
+	ldhl	sp,	#13
+	ld	(hl-), a
+	ld	(hl), e
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#10
+	ld	(hl+), a
+	ld	a, e
+	ld	(hl+), a
+	ld	a, (hl)
+	sub	a, #0x00
+	inc	hl
+	ld	a, (hl)
+	sbc	a, #0x00
+	ld	d, (hl)
+	ld	a, #0x00
+	bit	7,a
+	jr	Z, 00360$
+	bit	7, d
+	jr	NZ, 00361$
+	cp	a, a
+	jr	00361$
+00360$:
+	bit	7, d
+	jr	Z, 00361$
+	scf
+00361$:
+	jr	NC, 00152$
+;c
+	ldhl	sp,#12
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#12
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#11
+	ld	(hl), a
+00152$:
+	ldhl	sp,#10
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	sra	d
+	rr	e
+	ld	a, e
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00151$
+00150$:
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+00151$:
+;game.c:98: (enemy->y==100)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;game.c:83: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;game.c:98: (enemy->y==100)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x64
+	jr	NZ, 00153$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00155$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00155$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00154$
+00153$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00154$:
+;game.c:106: setPositionGameCharacter(enemy,enemy->x,enemy->y);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	b, a
+	inc	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	push	bc
+	inc	sp
+	push	af
+	inc	sp
+	pop	bc
+	pop	hl
+	push	hl
+	push	bc
+	push	hl
+	call	_setPositionGameCharacter
+	add	sp, #4
+	jr	00106$
+00102$:
+;game.c:108: enemy->ativo=0;
+	ldhl	sp,	#11
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), #0x00
+;game.c:109: enemy->y=0;
+	pop	bc
+	pop	hl
+	push	hl
+	push	bc
+	ld	(hl), #0x00
+;game.c:110: enemy->x=160;
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), #0xa0
+;game.c:111: setPositionGameCharacter(enemy,enemy->x,enemy->y);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	b, a
+	inc	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	push	bc
+	inc	sp
+	push	af
+	inc	sp
+	pop	bc
+	pop	hl
+	push	hl
+	push	bc
+	push	hl
+	call	_setPositionGameCharacter
+	add	sp, #4
+00106$:
+;game.c:115: }
+	add	sp, #14
+	ret
+;game.c:117: void moveInimigo2(struct personagem* enemy){//uma das movimentações
+;	---------------------------------
+; Function moveInimigo2
+; ---------------------------------
+_moveInimigo2::
+	add	sp, #-9
+;game.c:118: if(enemy->ativo==1){
+	ldhl	sp,#11
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	hl, #0x0006
+	add	hl, bc
+	inc	sp
+	inc	sp
+	ld	e, l
+	ld	d, h
+	push	de
+	ld	a, (de)
+	dec	a
+	jp	NZ,00106$
+;game.c:119: if(enemy->y+enemy->height+3<=144){
+	ld	hl, #0x0005
+	add	hl, bc
+	push	hl
+	ld	a, l
+	ldhl	sp,	#4
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#3
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	inc	hl
+	ld	(hl), a
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	hl, #0x0008
+	add	hl, bc
+	ld	l, (hl)
+	ld	h, #0x00
+	add	hl, de
+	inc	hl
+	inc	hl
+	inc	hl
+	ld	e, l
+	ld	d, h
+	ldhl	sp,	#5
+	ld	a, e
+	ld	(hl+), a
+	ld	(hl), d
+;game.c:121: setPositionGameCharacter(enemy,enemy->x,enemy->y);
+	ld	hl, #0x0004
+	add	hl, bc
+	push	hl
+	ld	a, l
+	ldhl	sp,	#9
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#8
+	ld	(hl), a
+;game.c:119: if(enemy->y+enemy->height+3<=144){
+	ldhl	sp,	#5
+	ld	a, #0x90
+	sub	a, (hl)
+	inc	hl
+	ld	a, #0x00
+	sbc	a, (hl)
+	ld	a, #0x00
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00120$
+	bit	7, d
+	jr	NZ, 00121$
+	cp	a, a
+	jr	00121$
+00120$:
+	bit	7, d
+	jr	Z, 00121$
+	scf
+00121$:
+	jr	C, 00102$
+;game.c:120: enemy->y=enemy->y+3;
+	ldhl	sp,	#4
+	ld	a, (hl)
+	add	a, #0x03
+	dec	hl
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:121: setPositionGameCharacter(enemy,enemy->x,enemy->y);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,#7
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ld	h, a
+	inc	sp
+	push	hl
+	inc	sp
+	push	bc
+	call	_setPositionGameCharacter
+	add	sp, #4
+	jr	00106$
+00102$:
+;game.c:123: enemy->ativo=0;
+	pop	hl
+	push	hl
+	ld	(hl), #0x00
+;game.c:124: enemy->y=0;
+	ldhl	sp,	#2
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), #0x00
+;game.c:125: enemy->x=160;
+	ldhl	sp,	#7
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), #0xa0
+;game.c:126: setPositionGameCharacter(enemy,enemy->x,enemy->y);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,#7
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ld	h, a
+	inc	sp
+	push	hl
+	inc	sp
+	push	bc
+	call	_setPositionGameCharacter
+	add	sp, #4
+00106$:
+;game.c:130: }
+	add	sp, #9
+	ret
+;game.c:132: void setupBala(struct bala* bullet){
+;	---------------------------------
+; Function setupBala
+; ---------------------------------
+_setupBala::
+;game.c:133: bullet->spriteIds=idBala;
+	pop	bc
+	pop	de
+	push	de
+	push	bc
+	ld	c, e
+	ld	b, d
+	inc	bc
+	inc	bc
+	inc	bc
+	ld	a, (#_idBala)
+	ld	(bc), a
+;game.c:134: set_sprite_tile(idBala, spriteBala);
+	ld	hl, #_spriteBala
+	ld	c, (hl)
+	ld	hl, #_idBala
+	ld	b, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	xor	a, a
+	ld	l, b
+	ld	h, a
+	add	hl, hl
+	add	hl, hl
+	push	de
+	ld	de, #_shadow_OAM
+	add	hl, de
+	pop	de
+	inc	hl
+	inc	hl
+	ld	(hl), c
+;game.c:135: idBala++;
+	ld	hl, #_idBala
+	inc	(hl)
+;game.c:136: bullet->width=5;
+	ld	hl, #0x0004
+	add	hl, de
+	ld	(hl), #0x05
+;game.c:137: bullet->height=7;
+	ld	hl, #0x0005
+	add	hl, de
+	ld	(hl), #0x07
+;game.c:138: bullet->ativo=0;
+	inc	de
+	inc	de
+	xor	a, a
+	ld	(de), a
+;game.c:139: }
+	ret
+;game.c:142: void moveBala(struct bala* bullet){
+;	---------------------------------
+; Function moveBala
+; ---------------------------------
+_moveBala::
+	add	sp, #-9
+;game.c:143: if(bullet->ativo==1){
+	ldhl	sp,	#11
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#0
+	ld	(hl+), a
+	ld	(hl), e
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#4
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#3
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	dec	a
+	jp	NZ,00108$
+;game.c:144: if(bullet->y+bullet->height-15>=-10){
+;c
+	pop	de
+	push	de
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	inc	hl
+	ld	(hl), a
+	ld	a, (hl)
+	ld	c, a
+	rla
+	sbc	a, a
+	ld	b, a
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0005
+	add	hl, de
+	ld	e, l
+	ld	d, h
+	ld	a, (de)
+	ld	l, a
+	ld	h, #0x00
+	add	hl, bc
+	ld	bc, #0xfff1
+	add	hl,bc
+	ld	c, l
+	ld	b, h
+;game.c:146: move_sprite(bullet->spriteIds,bullet->x,bullet->y);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0003
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#9
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#8
+	ld	(hl), a
+;game.c:144: if(bullet->y+bullet->height-15>=-10){
+	ld	a, c
+	sub	a, #0xf6
+	ld	a, b
+	rla
+	ccf
+	rra
+	sbc	a, #0x7f
+	jr	C, 00102$
+;game.c:145: bullet->y=bullet->y-15;
+	dec	hl
+	dec	hl
+	ld	a, (hl)
+	add	a, #0xf1
+	ld	b, a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), b
+;game.c:146: move_sprite(bullet->spriteIds,bullet->x,bullet->y);
+	pop	de
+	push	de
+	ld	a, (de)
+	ld	c, a
+	ldhl	sp,#7
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	(hl), a
+;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	l, e
+	ld	h, d
+	add	hl, hl
+	add	hl, hl
+	ld	de, #_shadow_OAM
+	add	hl, de
+;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+	ld	a, b
+	ld	(hl+), a
+	ld	(hl), c
+;game.c:146: move_sprite(bullet->spriteIds,bullet->x,bullet->y);
+	jr	00108$
+00102$:
+;game.c:148: bullet->ativo=0;
+	pop	bc
+	pop	hl
+	push	hl
+	push	bc
+	ld	(hl), #0x00
+;game.c:149: move_sprite(bullet->spriteIds,150,0);
+	ldhl	sp,#7
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+	ld	de, #_shadow_OAM+0
+	xor	a, a
+	ld	l, c
+	ld	h, a
+	add	hl, hl
+	add	hl, hl
+	add	hl, de
+;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+	ld	a, #0x00
+	ld	(hl+), a
+	ld	(hl), #0x96
+;game.c:149: move_sprite(bullet->spriteIds,150,0);
+00108$:
+;game.c:152: }
+	add	sp, #9
+	ret
+;game.c:154: void main(){
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
-;game.c:46: set_bkg_data(0, 10, backTiles);
+	add	sp, #-62
+;game.c:156: set_bkg_data(0, 10, backTiles);
 	ld	hl, #_backTiles
 	push	hl
 	ld	a, #0x0a
@@ -2280,7 +4074,7 @@ _main::
 	inc	sp
 	call	_set_bkg_data
 	add	sp, #4
-;game.c:47: set_bkg_tiles(0, 0, 20, 36, simpleMap);
+;game.c:157: set_bkg_tiles(0, 0, 20, 36, simpleMap);
 	ld	hl, #_simpleMap
 	push	hl
 	ld	de, #0x2414
@@ -2293,7 +4087,7 @@ _main::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;game.c:48: set_sprite_data(0, 9, gameSprites);
+;game.c:158: set_sprite_data(0, 9, gameSprites);
 	ld	hl, #_gameSprites
 	push	hl
 	ld	a, #0x09
@@ -2304,57 +4098,200 @@ _main::
 	inc	sp
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:49: setupAstronauta();
+;game.c:166: setupBala(&projetil1);
+	ldhl	sp,	#0
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#48
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_setupBala
+	add	sp, #2
+;game.c:167: setupBala(&projetil2);
+	ldhl	sp,	#6
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#50
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_setupBala
+	add	sp, #2
+;game.c:168: setupBala(&projetil3);
+	ldhl	sp,	#12
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#52
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_setupBala
+	add	sp, #2
+;game.c:169: setupBala(&projetil4);
+	ldhl	sp,	#18
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#54
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_setupBala
+	add	sp, #2
+;game.c:170: setupBala(&projetil5);
+	ldhl	sp,	#24
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#56
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_setupBala
+	add	sp, #2
+;game.c:173: setupInimigo(&inimigo1);
+	ldhl	sp,	#30
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#58
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_setupInimigo
+	add	sp, #2
+;game.c:175: setupInimigo(&inimigo2);
+	ldhl	sp,	#39
+	push	hl
+	call	_setupInimigo
+	add	sp, #2
+;game.c:178: setupAstronauta();
 	call	_setupAstronauta
-;game.c:51: SHOW_BKG;
+;game.c:180: SHOW_BKG;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x01
 	ldh	(_LCDC_REG+0),a
-;game.c:52: SHOW_SPRITES;
+;game.c:181: SHOW_SPRITES;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x02
 	ldh	(_LCDC_REG+0),a
-;game.c:53: DISPLAY_ON;
+;game.c:182: DISPLAY_ON;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x80
 	ldh	(_LCDC_REG+0),a
-;game.c:55: waitpad(J_START);
+;game.c:184: waitpad(J_START);
 	ld	a, #0x80
 	push	af
 	inc	sp
 	call	_waitpad
 	inc	sp
-;game.c:57: while(1){
-00112$:
+;game.c:186: while(1){
+00128$:
 ;c:/gbdk/include/gb/gb.h:770: SCX_REG+=x, SCY_REG+=y;
 	ldh	a, (_SCY_REG+0)
 	inc	a
 	ldh	(_SCY_REG+0),a
-;game.c:60: if(joypad() & J_LEFT){
+;game.c:188: moveBala(&projetil1);
+	ldhl	sp,#48
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_moveBala
+	add	sp, #2
+;game.c:189: moveBala(&projetil2);
+	ldhl	sp,#50
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_moveBala
+	add	sp, #2
+;game.c:190: moveBala(&projetil3);
+	ldhl	sp,#52
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_moveBala
+	add	sp, #2
+;game.c:191: moveBala(&projetil4);
+	ldhl	sp,#54
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_moveBala
+	add	sp, #2
+;game.c:192: moveBala(&projetil5);
+	ldhl	sp,#56
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_moveBala
+	add	sp, #2
+;game.c:193: moveInimigo1(&inimigo1,&astronauta);
+	ld	de, #_astronauta
+	ldhl	sp,#58
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	de
+	push	bc
+	call	_moveInimigo1
+	add	sp, #4
+;game.c:196: if(joypad() & J_LEFT){
 	call	_joypad
+;game.c:197: (astronauta.x-8-2) < 0 ? (astronauta.x=astronauta.x) : (astronauta.x=astronauta.x-2);
+;game.c:200: setPositionGameCharacter(&astronauta, astronauta.x,astronauta.y);
+;game.c:196: if(joypad() & J_LEFT){
 	bit	1, e
 	jr	Z, 00102$
-;game.c:61: (astronauta.x-8-2) < 0 ? (astronauta.x=astronauta.x) : (astronauta.x=astronauta.x-2);
+;game.c:197: (astronauta.x-8-2) < 0 ? (astronauta.x=astronauta.x) : (astronauta.x=astronauta.x-2);
 	ld	hl, #(_astronauta + 0x0004)
 	ld	c, (hl)
-	ld	a, c
-	ld	e, #0x00
-	add	a, #0xf6
+	ld	e, c
+	ld	d, #0x00
 	ld	a, e
+	add	a, #0xf6
+	ld	a, d
 	adc	a, #0xff
 	bit	7,a
-	jr	Z, 00117$
+	jr	Z, 00133$
 	ld	hl, #(_astronauta + 0x0004)
 	ld	(hl), c
-	jr	00118$
-00117$:
+	jr	00134$
+00133$:
 	dec	c
 	dec	c
 	ld	hl, #(_astronauta + 0x0004)
 	ld	(hl), c
-00118$:
-;game.c:64: setPositionGameCharacter(&astronauta, astronauta.x,astronauta.y);
-	ld	hl, #_astronauta + 5
+00134$:
+;game.c:200: setPositionGameCharacter(&astronauta, astronauta.x,astronauta.y);
+	ld	hl, #(_astronauta + 0x0005)
 	ld	b, (hl)
 	ld	hl, #(_astronauta + 0x0004)
 	ld	c, (hl)
@@ -2364,18 +4301,20 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00102$:
-;game.c:67: if(joypad() & J_RIGHT){
+;game.c:203: if(joypad() & J_RIGHT){
 	call	_joypad
 	ld	a, e
 	rrca
 	jr	NC, 00104$
-;game.c:68: (astronauta.x+8) >= 160 ? (astronauta.x=astronauta.x) : (astronauta.x=astronauta.x+2);
-	ld	hl, #(_astronauta + 0x0004)
+;game.c:204: (astronauta.x+8) >= 160 ? (astronauta.x=astronauta.x) : (astronauta.x=astronauta.x+2);
+	ld	a, (#(_astronauta + 0x0004) + 0)
+	ldhl	sp,	#61
+	ld	(hl), a
+	ldhl	sp,	#61
 	ld	c, (hl)
-	ld	e, c
-	ld	d, #0x00
+	ld	b, #0x00
 	ld	hl, #0x0008
-	add	hl, de
+	add	hl, bc
 	ld	a, l
 	sub	a, #0xa0
 	ld	a, h
@@ -2383,18 +4322,20 @@ _main::
 	ccf
 	rra
 	sbc	a, #0x80
-	jr	C, 00119$
-	ld	hl, #(_astronauta + 0x0004)
-	ld	(hl), c
-	jr	00120$
-00119$:
-	inc	c
-	inc	c
-	ld	hl, #(_astronauta + 0x0004)
-	ld	(hl), c
-00120$:
-;game.c:70: setPositionGameCharacter(&astronauta,astronauta.x,astronauta.y);
-	ld	hl, #_astronauta + 5
+	jr	C, 00135$
+	ld	de, #(_astronauta + 0x0004)
+	ldhl	sp,	#61
+	ld	a, (hl)
+	ld	(de), a
+	jr	00136$
+00135$:
+	ldhl	sp,	#61
+	ld	a, (hl)
+	add	a, #0x02
+	ld	(#(_astronauta + 0x0004)),a
+00136$:
+;game.c:206: setPositionGameCharacter(&astronauta,astronauta.x,astronauta.y);
+	ld	hl, #(_astronauta + 0x0005)
 	ld	b, (hl)
 	ld	hl, #(_astronauta + 0x0004)
 	ld	c, (hl)
@@ -2404,11 +4345,11 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00104$:
-;game.c:73: if(joypad() & J_UP){
+;game.c:209: if(joypad() & J_UP){
 	call	_joypad
 	bit	2, e
 	jr	Z, 00106$
-;game.c:75: (astronauta.y-16) <= 0 ? (astronauta.y=astronauta.y) : (astronauta.y=astronauta.y-2);
+;game.c:211: (astronauta.y-16) <= 20 ? (astronauta.y=astronauta.y) : (astronauta.y=astronauta.y-2);
 	ld	hl, #(_astronauta + 0x0005)
 	ld	c, (hl)
 	ld	a, c
@@ -2420,79 +4361,381 @@ _main::
 	ld	l, a
 	ld	e, l
 	ld	d, #0x00
-	xor	a, a
+	ld	a, #0x14
 	cp	a, b
+	ld	a, #0x00
 	sbc	a, l
 	bit	7, e
-	jr	Z, 00173$
+	jr	Z, 00224$
 	bit	7, d
-	jr	NZ, 00174$
+	jr	NZ, 00225$
 	cp	a, a
-	jr	00174$
-00173$:
+	jr	00225$
+00224$:
 	bit	7, d
-	jr	Z, 00174$
+	jr	Z, 00225$
 	scf
-00174$:
-	jr	C, 00121$
+00225$:
+	jr	C, 00137$
 	ld	hl, #(_astronauta + 0x0005)
 	ld	(hl), c
-	jr	00122$
-00121$:
+	jr	00138$
+00137$:
 	dec	c
 	dec	c
 	ld	hl, #(_astronauta + 0x0005)
 	ld	(hl), c
-00122$:
-;game.c:76: setPositionGameCharacter(&astronauta,astronauta.x,astronauta.y);
+00138$:
+;game.c:212: setPositionGameCharacter(&astronauta,astronauta.x,astronauta.y);
+	ld	hl, #(_astronauta + 0x0005)
+	ld	c, (hl)
+	ld	hl, #(_astronauta + 0x0004)
+	ld	b, (hl)
+	ld	a, c
+	push	af
+	inc	sp
+	push	bc
+	inc	sp
+	ld	hl, #_astronauta
+	push	hl
+	call	_setPositionGameCharacter
+	add	sp, #4
+00106$:
+;game.c:215: if(joypad() & J_DOWN){
+	call	_joypad
+	bit	3, e
+	jr	Z, 00108$
+;game.c:217: (astronauta.y) >= 128 ? (astronauta.y=astronauta.y) : (astronauta.y=astronauta.y+2);
+	ld	a, (#(_astronauta + 0x0005) + 0)
+	cp	a, #0x80
+	jr	C, 00139$
+	ld	(#(_astronauta + 0x0005)),a
+	jr	00140$
+00139$:
+	add	a, #0x02
+	ld	(#(_astronauta + 0x0005)),a
+00140$:
+;game.c:218: setPositionGameCharacter(&astronauta,astronauta.x,astronauta.y);
 	ld	hl, #(_astronauta + 0x0005)
 	ld	b, (hl)
-	ld	hl, #_astronauta + 4
+	ld	hl, #(_astronauta + 0x0004)
 	ld	c, (hl)
 	push	bc
 	ld	hl, #_astronauta
 	push	hl
 	call	_setPositionGameCharacter
 	add	sp, #4
-00106$:
-;game.c:79: if(joypad() & J_DOWN){
-	call	_joypad
-	bit	3, e
-	jr	Z, 00108$
-;game.c:81: (astronauta.y) >= 144 ? (astronauta.y=astronauta.y) : (astronauta.y=astronauta.y+2);
-	ld	hl, #_astronauta + 5
-	ld	a, (hl)
-	cp	a, #0x90
-	jr	C, 00123$
-	ld	(hl), a
-	jr	00124$
-00123$:
-	add	a, #0x02
-	ld	(hl), a
-00124$:
-;game.c:82: setPositionGameCharacter(&astronauta,astronauta.x,astronauta.y);
-	ld	c, (hl)
-	ld	hl, #(_astronauta + 0x0004)
-	ld	b, (hl)
-	ld	de, #_astronauta
-	ld	a, c
-	push	af
-	inc	sp
-	push	bc
-	inc	sp
-	push	de
-	call	_setPositionGameCharacter
-	add	sp, #4
 00108$:
-;game.c:86: if(joypad() & J_A){
+;game.c:221: if(joypad() & J_A){
 	call	_joypad
-;game.c:90: performantdelay(5);
+	bit	4, e
+	jp	Z,00124$
+;game.c:222: if( projetil1.ativo==0){
+	ldhl	sp,#48
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	inc	bc
+	inc	bc
+	ld	a, (bc)
+	or	a, a
+	jr	NZ, 00121$
+;game.c:223: projetil1.x=astronauta.x+4;
+	ld	a, (#(_astronauta + 0x0004) + 0)
+	add	a, #0x04
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:224: projetil1.y=astronauta.y-2;
+;c
+	ldhl	sp,#48
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#62
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#61
+	ld	(hl), a
+	ld	a, (#(_astronauta + 0x0005) + 0)
+	dec	a
+	dec	a
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:225: projetil1.ativo=1;
+	ld	a, #0x01
+	ld	(bc), a
+	jp	00124$
+00121$:
+;game.c:226: }else if(projetil2.ativo==0){
+	ldhl	sp,#50
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	inc	bc
+	inc	bc
+	ld	a, (bc)
+	or	a, a
+	jr	NZ, 00118$
+;game.c:227: projetil2.x=astronauta.x+4;
+	ld	a, (#(_astronauta + 0x0004) + 0)
+	add	a, #0x04
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:228: projetil2.y=astronauta.y-2;
+;c
+	ldhl	sp,#50
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#62
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#61
+	ld	(hl), a
+	ld	a, (#(_astronauta + 0x0005) + 0)
+	dec	a
+	dec	a
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:229: projetil2.ativo=1;
+	ld	a, #0x01
+	ld	(bc), a
+	jp	00124$
+00118$:
+;game.c:230: }else if(projetil3.ativo==0){
+	ldhl	sp,#52
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	inc	bc
+	inc	bc
+	ld	a, (bc)
+	or	a, a
+	jr	NZ, 00115$
+;game.c:231: projetil3.x=astronauta.x+4;
+	ld	a, (#(_astronauta + 0x0004) + 0)
+	add	a, #0x04
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:232: projetil3.y=astronauta.y-2;
+;c
+	ldhl	sp,#52
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#62
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#61
+	ld	(hl), a
+	ld	a, (#(_astronauta + 0x0005) + 0)
+	dec	a
+	dec	a
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:233: projetil3.ativo=1;
+	ld	a, #0x01
+	ld	(bc), a
+	jr	00124$
+00115$:
+;game.c:234: }else if(projetil4.ativo==0){
+	ldhl	sp,#54
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	inc	bc
+	inc	bc
+	ld	a, (bc)
+	or	a, a
+	jr	NZ, 00112$
+;game.c:235: projetil4.x=astronauta.x+4;
+	ld	a, (#(_astronauta + 0x0004) + 0)
+	add	a, #0x04
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:236: projetil4.y=astronauta.y-2;
+;c
+	ldhl	sp,#54
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#62
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#61
+	ld	(hl), a
+	ld	a, (#(_astronauta + 0x0005) + 0)
+	dec	a
+	dec	a
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:237: projetil4.ativo=1;
+	ld	a, #0x01
+	ld	(bc), a
+	jr	00124$
+00112$:
+;game.c:238: }else if(projetil5.ativo==0){
+	ldhl	sp,#56
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	inc	bc
+	inc	bc
+	ld	a, (bc)
+	or	a, a
+	jr	NZ, 00124$
+;game.c:239: projetil5.x=astronauta.x+4;
+	ld	a, (#(_astronauta + 0x0004) + 0)
+	add	a, #0x04
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:240: projetil5.y=astronauta.y-2;
+;c
+	ldhl	sp,#56
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#62
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#61
+	ld	(hl), a
+	ld	a, (#(_astronauta + 0x0005) + 0)
+	dec	a
+	dec	a
+	dec	hl
+	push	af
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	pop	af
+	ld	(hl), a
+;game.c:241: projetil5.ativo=1;
+	ld	a, #0x01
+	ld	(bc), a
+00124$:
+;game.c:246: if(joypad() & J_SELECT){
+	call	_joypad
+	bit	6, e
+	jr	Z, 00126$
+;game.c:247: inimigo1.ativo=1;
+;c
+	ldhl	sp,#58
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0006
+	add	hl, de
+	ld	(hl), #0x01
+;game.c:248: inimigo1.x=astronauta.x;
+;c
+	ldhl	sp,#58
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0004
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (#(_astronauta + 0x0004) + 0)
+	ld	(bc), a
+;game.c:249: inimigo1.y=0;
+;c
+	ldhl	sp,#58
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0005
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	xor	a, a
+	ld	(bc), a
+00126$:
+;game.c:252: performantdelay(5);
 	ld	a, #0x05
 	push	af
 	inc	sp
 	call	_performantdelay
 	inc	sp
-;game.c:100: }
-	jp	00112$
+	jp	00128$
+;game.c:262: }
+	add	sp, #62
+	ret
 	.area _CODE
 	.area _CABS (ABS)
