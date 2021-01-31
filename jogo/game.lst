@@ -1,0 +1,1810 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.0.4 #11952 (MINGW64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module game
+                                      6 	.optsdcc -mgbz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _setPositionGameCharacter2
+                                     13 	.globl _setPositionGameCharacter
+                                     14 	.globl _setupSubBoss
+                                     15 	.globl _setupHero
+                                     16 	.globl _setupEnemy
+                                     17 	.globl _set_sprite_data
+                                     18 	.globl _wait_vbl_done
+                                     19 	.globl _waitpad
+                                     20 	.globl _joypad
+                                     21 	.globl _spritesize
+                                     22 	.globl _spriteId
+                                     23 	.globl _MiniBossOgro
+                                     24 	.globl _ghost
+                                     25 	.globl _protagonista
+                                     26 	.globl _performantdelay
+                                     27 ;--------------------------------------------------------
+                                     28 ; special function registers
+                                     29 ;--------------------------------------------------------
+                                     30 ;--------------------------------------------------------
+                                     31 ; ram data
+                                     32 ;--------------------------------------------------------
+                                     33 	.area _DATA
+      000000                         34 _protagonista::
+      000000                         35 	.ds 80
+      000050                         36 _ghost::
+      000050                         37 	.ds 64
+      000090                         38 _MiniBossOgro::
+      000090                         39 	.ds 144
+      000120                         40 _spriteId::
+      000120                         41 	.ds 1
+      000121                         42 _spritesize::
+      000121                         43 	.ds 1
+                                     44 ;--------------------------------------------------------
+                                     45 ; absolute external ram data
+                                     46 ;--------------------------------------------------------
+                                     47 	.area _DABS (ABS)
+                                     48 ;--------------------------------------------------------
+                                     49 ; global & static initialisations
+                                     50 ;--------------------------------------------------------
+                                     51 	.area _HOME
+                                     52 	.area _GSINIT
+                                     53 	.area _GSFINAL
+                                     54 	.area _GSINIT
+                                     55 ;../design/protagonista.c:26: unsigned char protagonista[] =
+      000000 21r00r00                56 	ld	hl, #_protagonista
+      000003 36 0F                   57 	ld	(hl), #0x0f
+      000005 21r01r00                58 	ld	hl, #(_protagonista + 0x0001)
+      000008 36 0F                   59 	ld	(hl), #0x0f
+      00000A 21r02r00                60 	ld	hl, #(_protagonista + 0x0002)
+      00000D 36 11                   61 	ld	(hl), #0x11
+      00000F 21r03r00                62 	ld	hl, #(_protagonista + 0x0003)
+      000012 36 1E                   63 	ld	(hl), #0x1e
+      000014 21r04r00                64 	ld	hl, #(_protagonista + 0x0004)
+      000017 36 13                   65 	ld	(hl), #0x13
+      000019 21r05r00                66 	ld	hl, #(_protagonista + 0x0005)
+      00001C 36 1C                   67 	ld	(hl), #0x1c
+      00001E 21r06r00                68 	ld	hl, #(_protagonista + 0x0006)
+      000021 36 7F                   69 	ld	(hl), #0x7f
+      000023 21r07r00                70 	ld	hl, #(_protagonista + 0x0007)
+      000026 36 7F                   71 	ld	(hl), #0x7f
+      000028 21r08r00                72 	ld	hl, #(_protagonista + 0x0008)
+      00002B 36 10                   73 	ld	(hl), #0x10
+      00002D 21r09r00                74 	ld	hl, #(_protagonista + 0x0009)
+      000030 36 1F                   75 	ld	(hl), #0x1f
+      000032 21r0Ar00                76 	ld	hl, #(_protagonista + 0x000a)
+      000035 36 1C                   77 	ld	(hl), #0x1c
+      000037 21r0Br00                78 	ld	hl, #(_protagonista + 0x000b)
+      00003A 36 13                   79 	ld	(hl), #0x13
+      00003C 21r0Cr00                80 	ld	hl, #(_protagonista + 0x000c)
+      00003F 36 0F                   81 	ld	(hl), #0x0f
+      000041 21r0Dr00                82 	ld	hl, #(_protagonista + 0x000d)
+      000044 36 0F                   83 	ld	(hl), #0x0f
+      000046 21r0Er00                84 	ld	hl, #(_protagonista + 0x000e)
+      000049 36 35                   85 	ld	(hl), #0x35
+      00004B 21r0Fr00                86 	ld	hl, #(_protagonista + 0x000f)
+      00004E 36 3A                   87 	ld	(hl), #0x3a
+      000050 21r10r00                88 	ld	hl, #(_protagonista + 0x0010)
+      000053 36 F0                   89 	ld	(hl), #0xf0
+      000055 21r11r00                90 	ld	hl, #(_protagonista + 0x0011)
+      000058 36 F0                   91 	ld	(hl), #0xf0
+      00005A 21r12r00                92 	ld	hl, #(_protagonista + 0x0012)
+      00005D 36 F8                   93 	ld	(hl), #0xf8
+      00005F 21r13r00                94 	ld	hl, #(_protagonista + 0x0013)
+      000062 36 08                   95 	ld	(hl), #0x08
+      000064 21r14r00                96 	ld	hl, #(_protagonista + 0x0014)
+      000067 36 F8                   97 	ld	(hl), #0xf8
+      000069 21r15r00                98 	ld	hl, #(_protagonista + 0x0015)
+      00006C 36 08                   99 	ld	(hl), #0x08
+      00006E 21r16r00               100 	ld	hl, #(_protagonista + 0x0016)
+      000071 36 FE                  101 	ld	(hl), #0xfe
+      000073 21r17r00               102 	ld	hl, #(_protagonista + 0x0017)
+      000076 36 FE                  103 	ld	(hl), #0xfe
+      000078 21r18r00               104 	ld	hl, #(_protagonista + 0x0018)
+      00007B 36 08                  105 	ld	(hl), #0x08
+      00007D 21r19r00               106 	ld	hl, #(_protagonista + 0x0019)
+      000080 36 F8                  107 	ld	(hl), #0xf8
+      000082 21r1Ar00               108 	ld	hl, #(_protagonista + 0x001a)
+      000085 36 38                  109 	ld	(hl), #0x38
+      000087 21r1Br00               110 	ld	hl, #(_protagonista + 0x001b)
+      00008A 36 C8                  111 	ld	(hl), #0xc8
+      00008C 21r1Cr00               112 	ld	hl, #(_protagonista + 0x001c)
+      00008F 36 F0                  113 	ld	(hl), #0xf0
+      000091 21r1Dr00               114 	ld	hl, #(_protagonista + 0x001d)
+      000094 36 F0                  115 	ld	(hl), #0xf0
+      000096 21r1Er00               116 	ld	hl, #(_protagonista + 0x001e)
+      000099 36 5C                  117 	ld	(hl), #0x5c
+      00009B 21r1Fr00               118 	ld	hl, #(_protagonista + 0x001f)
+      00009E 36 AC                  119 	ld	(hl), #0xac
+      0000A0 21r20r00               120 	ld	hl, #(_protagonista + 0x0020)
+      0000A3 36 2A                  121 	ld	(hl), #0x2a
+      0000A5 21r21r00               122 	ld	hl, #(_protagonista + 0x0021)
+      0000A8 36 35                  123 	ld	(hl), #0x35
+      0000AA 21r22r00               124 	ld	hl, #(_protagonista + 0x0022)
+      0000AD 36 35                  125 	ld	(hl), #0x35
+      0000AF 21r23r00               126 	ld	hl, #(_protagonista + 0x0023)
+      0000B2 36 2E                  127 	ld	(hl), #0x2e
+      0000B4 21r24r00               128 	ld	hl, #(_protagonista + 0x0024)
+      0000B7 36 2E                  129 	ld	(hl), #0x2e
+      0000B9 21r25r00               130 	ld	hl, #(_protagonista + 0x0025)
+      0000BC 36 35                  131 	ld	(hl), #0x35
+      0000BE 21r26r00               132 	ld	hl, #(_protagonista + 0x0026)
+      0000C1 36 35                  133 	ld	(hl), #0x35
+      0000C3 21r27r00               134 	ld	hl, #(_protagonista + 0x0027)
+      0000C6 36 2E                  135 	ld	(hl), #0x2e
+      0000C8 21r28r00               136 	ld	hl, #(_protagonista + 0x0028)
+      0000CB 36 1F                  137 	ld	(hl), #0x1f
+      0000CD 21r29r00               138 	ld	hl, #(_protagonista + 0x0029)
+      0000D0 36 1F                  139 	ld	(hl), #0x1f
+      0000D2 21r2Ar00               140 	ld	hl, #(_protagonista + 0x002a)
+      0000D5 36 0A                  141 	ld	(hl), #0x0a
+      0000D7 21r2Br00               142 	ld	hl, #(_protagonista + 0x002b)
+      0000DA 36 0E                  143 	ld	(hl), #0x0e
+      0000DC 21r2Cr00               144 	ld	hl, #(_protagonista + 0x002c)
+      0000DF 36 0A                  145 	ld	(hl), #0x0a
+      0000E1 21r2Dr00               146 	ld	hl, #(_protagonista + 0x002d)
+      0000E4 36 0E                  147 	ld	(hl), #0x0e
+      0000E6 21r2Er00               148 	ld	hl, #(_protagonista + 0x002e)
+      0000E9 36 0E                  149 	ld	(hl), #0x0e
+      0000EB 21r2Fr00               150 	ld	hl, #(_protagonista + 0x002f)
+      0000EE 36 0E                  151 	ld	(hl), #0x0e
+      0000F0 21r30r00               152 	ld	hl, #(_protagonista + 0x0030)
+      0000F3 36 AC                  153 	ld	(hl), #0xac
+      0000F5 21r31r00               154 	ld	hl, #(_protagonista + 0x0031)
+      0000F8 36 54                  155 	ld	(hl), #0x54
+      0000FA 21r32r00               156 	ld	hl, #(_protagonista + 0x0032)
+      0000FD 36 74                  157 	ld	(hl), #0x74
+      0000FF 21r33r00               158 	ld	hl, #(_protagonista + 0x0033)
+      000102 36 AC                  159 	ld	(hl), #0xac
+      000104 21r34r00               160 	ld	hl, #(_protagonista + 0x0034)
+      000107 36 AC                  161 	ld	(hl), #0xac
+      000109 21r35r00               162 	ld	hl, #(_protagonista + 0x0035)
+      00010C 36 74                  163 	ld	(hl), #0x74
+      00010E 21r36r00               164 	ld	hl, #(_protagonista + 0x0036)
+      000111 36 74                  165 	ld	(hl), #0x74
+      000113 21r37r00               166 	ld	hl, #(_protagonista + 0x0037)
+      000116 36 AC                  167 	ld	(hl), #0xac
+      000118 21r38r00               168 	ld	hl, #(_protagonista + 0x0038)
+      00011B 36 F8                  169 	ld	(hl), #0xf8
+      00011D 21r39r00               170 	ld	hl, #(_protagonista + 0x0039)
+      000120 36 F8                  171 	ld	(hl), #0xf8
+      000122 21r3Ar00               172 	ld	hl, #(_protagonista + 0x003a)
+      000125 36 50                  173 	ld	(hl), #0x50
+      000127 21r3Br00               174 	ld	hl, #(_protagonista + 0x003b)
+      00012A 36 70                  175 	ld	(hl), #0x70
+      00012C 21r3Cr00               176 	ld	hl, #(_protagonista + 0x003c)
+      00012F 36 50                  177 	ld	(hl), #0x50
+      000131 21r3Dr00               178 	ld	hl, #(_protagonista + 0x003d)
+      000134 36 70                  179 	ld	(hl), #0x70
+      000136 21r3Er00               180 	ld	hl, #(_protagonista + 0x003e)
+      000139 36 70                  181 	ld	(hl), #0x70
+      00013B 21r3Fr00               182 	ld	hl, #(_protagonista + 0x003f)
+      00013E 36 70                  183 	ld	(hl), #0x70
+      000140 21r40r00               184 	ld	hl, #(_protagonista + 0x0040)
+      000143 36 00                  185 	ld	(hl), #0x00
+      000145 21r41r00               186 	ld	hl, #(_protagonista + 0x0041)
+      000148 36 00                  187 	ld	(hl), #0x00
+      00014A 21r42r00               188 	ld	hl, #(_protagonista + 0x0042)
+      00014D 36 00                  189 	ld	(hl), #0x00
+      00014F 21r43r00               190 	ld	hl, #(_protagonista + 0x0043)
+      000152 36 00                  191 	ld	(hl), #0x00
+      000154 21r44r00               192 	ld	hl, #(_protagonista + 0x0044)
+      000157 36 00                  193 	ld	(hl), #0x00
+      000159 21r45r00               194 	ld	hl, #(_protagonista + 0x0045)
+      00015C 36 00                  195 	ld	(hl), #0x00
+      00015E 21r46r00               196 	ld	hl, #(_protagonista + 0x0046)
+      000161 36 00                  197 	ld	(hl), #0x00
+      000163 21r47r00               198 	ld	hl, #(_protagonista + 0x0047)
+      000166 36 00                  199 	ld	(hl), #0x00
+      000168 21r48r00               200 	ld	hl, #(_protagonista + 0x0048)
+      00016B 36 00                  201 	ld	(hl), #0x00
+      00016D 21r49r00               202 	ld	hl, #(_protagonista + 0x0049)
+      000170 36 00                  203 	ld	(hl), #0x00
+      000172 21r4Ar00               204 	ld	hl, #(_protagonista + 0x004a)
+      000175 36 00                  205 	ld	(hl), #0x00
+      000177 21r4Br00               206 	ld	hl, #(_protagonista + 0x004b)
+      00017A 36 00                  207 	ld	(hl), #0x00
+      00017C 21r4Cr00               208 	ld	hl, #(_protagonista + 0x004c)
+      00017F 36 00                  209 	ld	(hl), #0x00
+      000181 21r4Dr00               210 	ld	hl, #(_protagonista + 0x004d)
+      000184 36 00                  211 	ld	(hl), #0x00
+      000186 21r4Er00               212 	ld	hl, #(_protagonista + 0x004e)
+      000189 36 00                  213 	ld	(hl), #0x00
+      00018B 21r4Fr00               214 	ld	hl, #(_protagonista + 0x004f)
+      00018E 36 00                  215 	ld	(hl), #0x00
+                                    216 ;../design/ghost.c:26: unsigned char ghost[] =
+      000190 21r50r00               217 	ld	hl, #_ghost
+      000193 36 5F                  218 	ld	(hl), #0x5f
+      000195 21r51r00               219 	ld	hl, #(_ghost + 0x0001)
+      000198 36 5F                  220 	ld	(hl), #0x5f
+      00019A 21r52r00               221 	ld	hl, #(_ghost + 0x0002)
+      00019D 36 3F                  222 	ld	(hl), #0x3f
+      00019F 21r53r00               223 	ld	hl, #(_ghost + 0x0003)
+      0001A2 36 30                  224 	ld	(hl), #0x30
+      0001A4 21r54r00               225 	ld	hl, #(_ghost + 0x0004)
+      0001A7 36 7F                  226 	ld	(hl), #0x7f
+      0001A9 21r55r00               227 	ld	hl, #(_ghost + 0x0005)
+      0001AC 36 60                  228 	ld	(hl), #0x60
+      0001AE 21r56r00               229 	ld	hl, #(_ghost + 0x0006)
+      0001B1 36 FF                  230 	ld	(hl), #0xff
+      0001B3 21r57r00               231 	ld	hl, #(_ghost + 0x0007)
+      0001B6 36 80                  232 	ld	(hl), #0x80
+      0001B8 21r58r00               233 	ld	hl, #(_ghost + 0x0008)
+      0001BB 36 EF                  234 	ld	(hl), #0xef
+      0001BD 21r59r00               235 	ld	hl, #(_ghost + 0x0009)
+      0001C0 36 90                  236 	ld	(hl), #0x90
+      0001C2 21r5Ar00               237 	ld	hl, #(_ghost + 0x000a)
+      0001C5 36 E7                  238 	ld	(hl), #0xe7
+      0001C7 21r5Br00               239 	ld	hl, #(_ghost + 0x000b)
+      0001CA 36 98                  240 	ld	(hl), #0x98
+      0001CC 21r5Cr00               241 	ld	hl, #(_ghost + 0x000c)
+      0001CF 36 EB                  242 	ld	(hl), #0xeb
+      0001D1 21r5Dr00               243 	ld	hl, #(_ghost + 0x000d)
+      0001D4 36 94                  244 	ld	(hl), #0x94
+      0001D6 21r5Er00               245 	ld	hl, #(_ghost + 0x000e)
+      0001D9 36 E1                  246 	ld	(hl), #0xe1
+      0001DB 21r5Fr00               247 	ld	hl, #(_ghost + 0x000f)
+      0001DE 36 9E                  248 	ld	(hl), #0x9e
+      0001E0 21r60r00               249 	ld	hl, #(_ghost + 0x0010)
+      0001E3 36 FA                  250 	ld	(hl), #0xfa
+      0001E5 21r61r00               251 	ld	hl, #(_ghost + 0x0011)
+      0001E8 36 FA                  252 	ld	(hl), #0xfa
+      0001EA 21r62r00               253 	ld	hl, #(_ghost + 0x0012)
+      0001ED 36 FC                  254 	ld	(hl), #0xfc
+      0001EF 21r63r00               255 	ld	hl, #(_ghost + 0x0013)
+      0001F2 36 0C                  256 	ld	(hl), #0x0c
+      0001F4 21r64r00               257 	ld	hl, #(_ghost + 0x0014)
+      0001F7 36 FE                  258 	ld	(hl), #0xfe
+      0001F9 21r65r00               259 	ld	hl, #(_ghost + 0x0015)
+      0001FC 36 06                  260 	ld	(hl), #0x06
+      0001FE 21r66r00               261 	ld	hl, #(_ghost + 0x0016)
+      000201 36 FF                  262 	ld	(hl), #0xff
+      000203 21r67r00               263 	ld	hl, #(_ghost + 0x0017)
+      000206 36 01                  264 	ld	(hl), #0x01
+      000208 21r68r00               265 	ld	hl, #(_ghost + 0x0018)
+      00020B 36 F7                  266 	ld	(hl), #0xf7
+      00020D 21r69r00               267 	ld	hl, #(_ghost + 0x0019)
+      000210 36 09                  268 	ld	(hl), #0x09
+      000212 21r6Ar00               269 	ld	hl, #(_ghost + 0x001a)
+      000215 36 E7                  270 	ld	(hl), #0xe7
+      000217 21r6Br00               271 	ld	hl, #(_ghost + 0x001b)
+      00021A 36 19                  272 	ld	(hl), #0x19
+      00021C 21r6Cr00               273 	ld	hl, #(_ghost + 0x001c)
+      00021F 36 D7                  274 	ld	(hl), #0xd7
+      000221 21r6Dr00               275 	ld	hl, #(_ghost + 0x001d)
+      000224 36 29                  276 	ld	(hl), #0x29
+      000226 21r6Er00               277 	ld	hl, #(_ghost + 0x001e)
+      000229 36 87                  278 	ld	(hl), #0x87
+      00022B 21r6Fr00               279 	ld	hl, #(_ghost + 0x001f)
+      00022E 36 79                  280 	ld	(hl), #0x79
+      000230 21r70r00               281 	ld	hl, #(_ghost + 0x0020)
+      000233 36 FF                  282 	ld	(hl), #0xff
+      000235 21r71r00               283 	ld	hl, #(_ghost + 0x0021)
+      000238 36 80                  284 	ld	(hl), #0x80
+      00023A 21r72r00               285 	ld	hl, #(_ghost + 0x0022)
+      00023D 36 FF                  286 	ld	(hl), #0xff
+      00023F 21r73r00               287 	ld	hl, #(_ghost + 0x0023)
+      000242 36 80                  288 	ld	(hl), #0x80
+      000244 21r74r00               289 	ld	hl, #(_ghost + 0x0024)
+      000247 36 FF                  290 	ld	(hl), #0xff
+      000249 21r75r00               291 	ld	hl, #(_ghost + 0x0025)
+      00024C 36 80                  292 	ld	(hl), #0x80
+      00024E 21r76r00               293 	ld	hl, #(_ghost + 0x0026)
+      000251 36 BF                  294 	ld	(hl), #0xbf
+      000253 21r77r00               295 	ld	hl, #(_ghost + 0x0027)
+      000256 36 C0                  296 	ld	(hl), #0xc0
+      000258 21r78r00               297 	ld	hl, #(_ghost + 0x0028)
+      00025B 36 9C                  298 	ld	(hl), #0x9c
+      00025D 21r79r00               299 	ld	hl, #(_ghost + 0x0029)
+      000260 36 E3                  300 	ld	(hl), #0xe3
+      000262 21r7Ar00               301 	ld	hl, #(_ghost + 0x002a)
+      000265 36 88                  302 	ld	(hl), #0x88
+      000267 21r7Br00               303 	ld	hl, #(_ghost + 0x002b)
+      00026A 36 FF                  304 	ld	(hl), #0xff
+      00026C 21r7Cr00               305 	ld	hl, #(_ghost + 0x002c)
+      00026F 36 D5                  306 	ld	(hl), #0xd5
+      000271 21r7Dr00               307 	ld	hl, #(_ghost + 0x002d)
+      000274 36 F7                  308 	ld	(hl), #0xf7
+      000276 21r7Er00               309 	ld	hl, #(_ghost + 0x002e)
+      000279 36 A2                  310 	ld	(hl), #0xa2
+      00027B 21r7Fr00               311 	ld	hl, #(_ghost + 0x002f)
+      00027E 36 A2                  312 	ld	(hl), #0xa2
+      000280 21r80r00               313 	ld	hl, #(_ghost + 0x0030)
+      000283 36 FF                  314 	ld	(hl), #0xff
+      000285 21r81r00               315 	ld	hl, #(_ghost + 0x0031)
+      000288 36 01                  316 	ld	(hl), #0x01
+      00028A 21r82r00               317 	ld	hl, #(_ghost + 0x0032)
+      00028D 36 FF                  318 	ld	(hl), #0xff
+      00028F 21r83r00               319 	ld	hl, #(_ghost + 0x0033)
+      000292 36 01                  320 	ld	(hl), #0x01
+      000294 21r84r00               321 	ld	hl, #(_ghost + 0x0034)
+      000297 36 FF                  322 	ld	(hl), #0xff
+      000299 21r85r00               323 	ld	hl, #(_ghost + 0x0035)
+      00029C 36 01                  324 	ld	(hl), #0x01
+      00029E 21r86r00               325 	ld	hl, #(_ghost + 0x0036)
+      0002A1 36 FD                  326 	ld	(hl), #0xfd
+      0002A3 21r87r00               327 	ld	hl, #(_ghost + 0x0037)
+      0002A6 36 03                  328 	ld	(hl), #0x03
+      0002A8 21r88r00               329 	ld	hl, #(_ghost + 0x0038)
+      0002AB 36 F9                  330 	ld	(hl), #0xf9
+      0002AD 21r89r00               331 	ld	hl, #(_ghost + 0x0039)
+      0002B0 36 07                  332 	ld	(hl), #0x07
+      0002B2 21r8Ar00               333 	ld	hl, #(_ghost + 0x003a)
+      0002B5 36 21                  334 	ld	(hl), #0x21
+      0002B7 21r8Br00               335 	ld	hl, #(_ghost + 0x003b)
+      0002BA 36 FF                  336 	ld	(hl), #0xff
+      0002BC 21r8Cr00               337 	ld	hl, #(_ghost + 0x003c)
+      0002BF 36 55                  338 	ld	(hl), #0x55
+      0002C1 21r8Dr00               339 	ld	hl, #(_ghost + 0x003d)
+      0002C4 36 DF                  340 	ld	(hl), #0xdf
+      0002C6 21r8Er00               341 	ld	hl, #(_ghost + 0x003e)
+      0002C9 36 8B                  342 	ld	(hl), #0x8b
+      0002CB 21r8Fr00               343 	ld	hl, #(_ghost + 0x003f)
+      0002CE 36 8B                  344 	ld	(hl), #0x8b
+                                    345 ;../design/MiniBossOgro.c:26: unsigned char MiniBossOgro[] =
+      0002D0 21r90r00               346 	ld	hl, #_MiniBossOgro
+      0002D3 36 60                  347 	ld	(hl), #0x60
+      0002D5 21r91r00               348 	ld	hl, #(_MiniBossOgro + 0x0001)
+      0002D8 36 60                  349 	ld	(hl), #0x60
+      0002DA 21r92r00               350 	ld	hl, #(_MiniBossOgro + 0x0002)
+      0002DD 36 58                  351 	ld	(hl), #0x58
+      0002DF 21r93r00               352 	ld	hl, #(_MiniBossOgro + 0x0003)
+      0002E2 36 78                  353 	ld	(hl), #0x78
+      0002E4 21r94r00               354 	ld	hl, #(_MiniBossOgro + 0x0004)
+      0002E7 36 4E                  355 	ld	(hl), #0x4e
+      0002E9 21r95r00               356 	ld	hl, #(_MiniBossOgro + 0x0005)
+      0002EC 36 7E                  357 	ld	(hl), #0x7e
+      0002EE 21r96r00               358 	ld	hl, #(_MiniBossOgro + 0x0006)
+      0002F1 36 41                  359 	ld	(hl), #0x41
+      0002F3 21r97r00               360 	ld	hl, #(_MiniBossOgro + 0x0007)
+      0002F6 36 7F                  361 	ld	(hl), #0x7f
+      0002F8 21r98r00               362 	ld	hl, #(_MiniBossOgro + 0x0008)
+      0002FB 36 20                  363 	ld	(hl), #0x20
+      0002FD 21r99r00               364 	ld	hl, #(_MiniBossOgro + 0x0009)
+      000300 36 3F                  365 	ld	(hl), #0x3f
+      000302 21r9Ar00               366 	ld	hl, #(_MiniBossOgro + 0x000a)
+      000305 36 1C                  367 	ld	(hl), #0x1c
+      000307 21r9Br00               368 	ld	hl, #(_MiniBossOgro + 0x000b)
+      00030A 36 1F                  369 	ld	(hl), #0x1f
+      00030C 21r9Cr00               370 	ld	hl, #(_MiniBossOgro + 0x000c)
+      00030F 36 04                  371 	ld	(hl), #0x04
+      000311 21r9Dr00               372 	ld	hl, #(_MiniBossOgro + 0x000d)
+      000314 36 07                  373 	ld	(hl), #0x07
+      000316 21r9Er00               374 	ld	hl, #(_MiniBossOgro + 0x000e)
+      000319 36 04                  375 	ld	(hl), #0x04
+      00031B 21r9Fr00               376 	ld	hl, #(_MiniBossOgro + 0x000f)
+      00031E 36 07                  377 	ld	(hl), #0x07
+      000320 21rA0r00               378 	ld	hl, #(_MiniBossOgro + 0x0010)
+      000323 36 00                  379 	ld	(hl), #0x00
+      000325 21rA1r00               380 	ld	hl, #(_MiniBossOgro + 0x0011)
+      000328 36 00                  381 	ld	(hl), #0x00
+      00032A 21rA2r00               382 	ld	hl, #(_MiniBossOgro + 0x0012)
+      00032D 36 00                  383 	ld	(hl), #0x00
+      00032F 21rA3r00               384 	ld	hl, #(_MiniBossOgro + 0x0013)
+      000332 36 00                  385 	ld	(hl), #0x00
+      000334 21rA4r00               386 	ld	hl, #(_MiniBossOgro + 0x0014)
+      000337 36 3F                  387 	ld	(hl), #0x3f
+      000339 21rA5r00               388 	ld	hl, #(_MiniBossOgro + 0x0015)
+      00033C 36 3F                  389 	ld	(hl), #0x3f
+      00033E 21rA6r00               390 	ld	hl, #(_MiniBossOgro + 0x0016)
+      000341 36 C0                  391 	ld	(hl), #0xc0
+      000343 21rA7r00               392 	ld	hl, #(_MiniBossOgro + 0x0017)
+      000346 36 FF                  393 	ld	(hl), #0xff
+      000348 21rA8r00               394 	ld	hl, #(_MiniBossOgro + 0x0018)
+      00034B 36 00                  395 	ld	(hl), #0x00
+      00034D 21rA9r00               396 	ld	hl, #(_MiniBossOgro + 0x0019)
+      000350 36 FF                  397 	ld	(hl), #0xff
+      000352 21rAAr00               398 	ld	hl, #(_MiniBossOgro + 0x001a)
+      000355 36 1F                  399 	ld	(hl), #0x1f
+      000357 21rABr00               400 	ld	hl, #(_MiniBossOgro + 0x001b)
+      00035A 36 E0                  401 	ld	(hl), #0xe0
+      00035C 21rACr00               402 	ld	hl, #(_MiniBossOgro + 0x001c)
+      00035F 36 1F                  403 	ld	(hl), #0x1f
+      000361 21rADr00               404 	ld	hl, #(_MiniBossOgro + 0x001d)
+      000364 36 E6                  405 	ld	(hl), #0xe6
+      000366 21rAEr00               406 	ld	hl, #(_MiniBossOgro + 0x001e)
+      000369 36 1F                  407 	ld	(hl), #0x1f
+      00036B 21rAFr00               408 	ld	hl, #(_MiniBossOgro + 0x001f)
+      00036E 36 E6                  409 	ld	(hl), #0xe6
+      000370 21rB0r00               410 	ld	hl, #(_MiniBossOgro + 0x0020)
+      000373 36 06                  411 	ld	(hl), #0x06
+      000375 21rB1r00               412 	ld	hl, #(_MiniBossOgro + 0x0021)
+      000378 36 06                  413 	ld	(hl), #0x06
+      00037A 21rB2r00               414 	ld	hl, #(_MiniBossOgro + 0x0022)
+      00037D 36 09                  415 	ld	(hl), #0x09
+      00037F 21rB3r00               416 	ld	hl, #(_MiniBossOgro + 0x0023)
+      000382 36 0F                  417 	ld	(hl), #0x0f
+      000384 21rB4r00               418 	ld	hl, #(_MiniBossOgro + 0x0024)
+      000387 36 09                  419 	ld	(hl), #0x09
+      000389 21rB5r00               420 	ld	hl, #(_MiniBossOgro + 0x0025)
+      00038C 36 0F                  421 	ld	(hl), #0x0f
+      00038E 21rB6r00               422 	ld	hl, #(_MiniBossOgro + 0x0026)
+      000391 36 F9                  423 	ld	(hl), #0xf9
+      000393 21rB7r00               424 	ld	hl, #(_MiniBossOgro + 0x0027)
+      000396 36 FF                  425 	ld	(hl), #0xff
+      000398 21rB8r00               426 	ld	hl, #(_MiniBossOgro + 0x0028)
+      00039B 36 01                  427 	ld	(hl), #0x01
+      00039D 21rB9r00               428 	ld	hl, #(_MiniBossOgro + 0x0029)
+      0003A0 36 FF                  429 	ld	(hl), #0xff
+      0003A2 21rBAr00               430 	ld	hl, #(_MiniBossOgro + 0x002a)
+      0003A5 36 1E                  431 	ld	(hl), #0x1e
+      0003A7 21rBBr00               432 	ld	hl, #(_MiniBossOgro + 0x002b)
+      0003AA 36 FE                  433 	ld	(hl), #0xfe
+      0003AC 21rBCr00               434 	ld	hl, #(_MiniBossOgro + 0x002c)
+      0003AF 36 10                  435 	ld	(hl), #0x10
+      0003B1 21rBDr00               436 	ld	hl, #(_MiniBossOgro + 0x002d)
+      0003B4 36 F0                  437 	ld	(hl), #0xf0
+      0003B6 21rBEr00               438 	ld	hl, #(_MiniBossOgro + 0x002e)
+      0003B9 36 10                  439 	ld	(hl), #0x10
+      0003BB 21rBFr00               440 	ld	hl, #(_MiniBossOgro + 0x002f)
+      0003BE 36 F0                  441 	ld	(hl), #0xf0
+      0003C0 21rC0r00               442 	ld	hl, #(_MiniBossOgro + 0x0030)
+      0003C3 36 02                  443 	ld	(hl), #0x02
+      0003C5 21rC1r00               444 	ld	hl, #(_MiniBossOgro + 0x0031)
+      0003C8 36 03                  445 	ld	(hl), #0x03
+      0003CA 21rC2r00               446 	ld	hl, #(_MiniBossOgro + 0x0032)
+      0003CD 36 02                  447 	ld	(hl), #0x02
+      0003CF 21rC3r00               448 	ld	hl, #(_MiniBossOgro + 0x0033)
+      0003D2 36 03                  449 	ld	(hl), #0x03
+      0003D4 21rC4r00               450 	ld	hl, #(_MiniBossOgro + 0x0034)
+      0003D7 36 0F                  451 	ld	(hl), #0x0f
+      0003D9 21rC5r00               452 	ld	hl, #(_MiniBossOgro + 0x0035)
+      0003DC 36 0F                  453 	ld	(hl), #0x0f
+      0003DE 21rC6r00               454 	ld	hl, #(_MiniBossOgro + 0x0036)
+      0003E1 36 13                  455 	ld	(hl), #0x13
+      0003E3 21rC7r00               456 	ld	hl, #(_MiniBossOgro + 0x0037)
+      0003E6 36 1D                  457 	ld	(hl), #0x1d
+      0003E8 21rC8r00               458 	ld	hl, #(_MiniBossOgro + 0x0038)
+      0003EB 36 22                  459 	ld	(hl), #0x22
+      0003ED 21rC9r00               460 	ld	hl, #(_MiniBossOgro + 0x0039)
+      0003F0 36 3D                  461 	ld	(hl), #0x3d
+      0003F2 21rCAr00               462 	ld	hl, #(_MiniBossOgro + 0x003a)
+      0003F5 36 24                  463 	ld	(hl), #0x24
+      0003F7 21rCBr00               464 	ld	hl, #(_MiniBossOgro + 0x003b)
+      0003FA 36 3B                  465 	ld	(hl), #0x3b
+      0003FC 21rCCr00               466 	ld	hl, #(_MiniBossOgro + 0x003c)
+      0003FF 36 28                  467 	ld	(hl), #0x28
+      000401 21rCDr00               468 	ld	hl, #(_MiniBossOgro + 0x003d)
+      000404 36 37                  469 	ld	(hl), #0x37
+      000406 21rCEr00               470 	ld	hl, #(_MiniBossOgro + 0x003e)
+      000409 36 24                  471 	ld	(hl), #0x24
+      00040B 21rCFr00               472 	ld	hl, #(_MiniBossOgro + 0x003f)
+      00040E 36 3B                  473 	ld	(hl), #0x3b
+      000410 21rD0r00               474 	ld	hl, #(_MiniBossOgro + 0x0040)
+      000413 36 1F                  475 	ld	(hl), #0x1f
+      000415 21rD1r00               476 	ld	hl, #(_MiniBossOgro + 0x0041)
+      000418 36 E0                  477 	ld	(hl), #0xe0
+      00041A 21rD2r00               478 	ld	hl, #(_MiniBossOgro + 0x0042)
+      00041D 36 00                  479 	ld	(hl), #0x00
+      00041F 21rD3r00               480 	ld	hl, #(_MiniBossOgro + 0x0043)
+      000422 36 FF                  481 	ld	(hl), #0xff
+      000424 21rD4r00               482 	ld	hl, #(_MiniBossOgro + 0x0044)
+      000427 36 1F                  483 	ld	(hl), #0x1f
+      000429 21rD5r00               484 	ld	hl, #(_MiniBossOgro + 0x0045)
+      00042C 36 FF                  485 	ld	(hl), #0xff
+      00042E 21rD6r00               486 	ld	hl, #(_MiniBossOgro + 0x0046)
+      000431 36 80                  487 	ld	(hl), #0x80
+      000433 21rD7r00               488 	ld	hl, #(_MiniBossOgro + 0x0047)
+      000436 36 FF                  489 	ld	(hl), #0xff
+      000438 21rD8r00               490 	ld	hl, #(_MiniBossOgro + 0x0048)
+      00043B 36 7F                  491 	ld	(hl), #0x7f
+      00043D 21rD9r00               492 	ld	hl, #(_MiniBossOgro + 0x0049)
+      000440 36 FF                  493 	ld	(hl), #0xff
+      000442 21rDAr00               494 	ld	hl, #(_MiniBossOgro + 0x004a)
+      000445 36 00                  495 	ld	(hl), #0x00
+      000447 21rDBr00               496 	ld	hl, #(_MiniBossOgro + 0x004b)
+      00044A 36 FF                  497 	ld	(hl), #0xff
+      00044C 21rDCr00               498 	ld	hl, #(_MiniBossOgro + 0x004c)
+      00044F 36 00                  499 	ld	(hl), #0x00
+      000451 21rDDr00               500 	ld	hl, #(_MiniBossOgro + 0x004d)
+      000454 36 FF                  501 	ld	(hl), #0xff
+      000456 21rDEr00               502 	ld	hl, #(_MiniBossOgro + 0x004e)
+      000459 36 00                  503 	ld	(hl), #0x00
+      00045B 21rDFr00               504 	ld	hl, #(_MiniBossOgro + 0x004f)
+      00045E 36 FF                  505 	ld	(hl), #0xff
+      000460 21rE0r00               506 	ld	hl, #(_MiniBossOgro + 0x0050)
+      000463 36 10                  507 	ld	(hl), #0x10
+      000465 21rE1r00               508 	ld	hl, #(_MiniBossOgro + 0x0051)
+      000468 36 F0                  509 	ld	(hl), #0xf0
+      00046A 21rE2r00               510 	ld	hl, #(_MiniBossOgro + 0x0052)
+      00046D 36 10                  511 	ld	(hl), #0x10
+      00046F 21rE3r00               512 	ld	hl, #(_MiniBossOgro + 0x0053)
+      000472 36 F0                  513 	ld	(hl), #0xf0
+      000474 21rE4r00               514 	ld	hl, #(_MiniBossOgro + 0x0054)
+      000477 36 38                  515 	ld	(hl), #0x38
+      000479 21rE5r00               516 	ld	hl, #(_MiniBossOgro + 0x0055)
+      00047C 36 F8                  517 	ld	(hl), #0xf8
+      00047E 21rE6r00               518 	ld	hl, #(_MiniBossOgro + 0x0056)
+      000481 36 34                  519 	ld	(hl), #0x34
+      000483 21rE7r00               520 	ld	hl, #(_MiniBossOgro + 0x0057)
+      000486 36 EC                  521 	ld	(hl), #0xec
+      000488 21rE8r00               522 	ld	hl, #(_MiniBossOgro + 0x0058)
+      00048B 36 D2                  523 	ld	(hl), #0xd2
+      00048D 21rE9r00               524 	ld	hl, #(_MiniBossOgro + 0x0059)
+      000490 36 EE                  525 	ld	(hl), #0xee
+      000492 21rEAr00               526 	ld	hl, #(_MiniBossOgro + 0x005a)
+      000495 36 12                  527 	ld	(hl), #0x12
+      000497 21rEBr00               528 	ld	hl, #(_MiniBossOgro + 0x005b)
+      00049A 36 EE                  529 	ld	(hl), #0xee
+      00049C 21rECr00               530 	ld	hl, #(_MiniBossOgro + 0x005c)
+      00049F 36 12                  531 	ld	(hl), #0x12
+      0004A1 21rEDr00               532 	ld	hl, #(_MiniBossOgro + 0x005d)
+      0004A4 36 EE                  533 	ld	(hl), #0xee
+      0004A6 21rEEr00               534 	ld	hl, #(_MiniBossOgro + 0x005e)
+      0004A9 36 12                  535 	ld	(hl), #0x12
+      0004AB 21rEFr00               536 	ld	hl, #(_MiniBossOgro + 0x005f)
+      0004AE 36 EE                  537 	ld	(hl), #0xee
+      0004B0 21rF0r00               538 	ld	hl, #(_MiniBossOgro + 0x0060)
+      0004B3 36 2F                  539 	ld	(hl), #0x2f
+      0004B5 21rF1r00               540 	ld	hl, #(_MiniBossOgro + 0x0061)
+      0004B8 36 30                  541 	ld	(hl), #0x30
+      0004BA 21rF2r00               542 	ld	hl, #(_MiniBossOgro + 0x0062)
+      0004BD 36 1E                  543 	ld	(hl), #0x1e
+      0004BF 21rF3r00               544 	ld	hl, #(_MiniBossOgro + 0x0063)
+      0004C2 36 11                  545 	ld	(hl), #0x11
+      0004C4 21rF4r00               546 	ld	hl, #(_MiniBossOgro + 0x0064)
+      0004C7 36 1A                  547 	ld	(hl), #0x1a
+      0004C9 21rF5r00               548 	ld	hl, #(_MiniBossOgro + 0x0065)
+      0004CC 36 15                  549 	ld	(hl), #0x15
+      0004CE 21rF6r00               550 	ld	hl, #(_MiniBossOgro + 0x0066)
+      0004D1 36 0D                  551 	ld	(hl), #0x0d
+      0004D3 21rF7r00               552 	ld	hl, #(_MiniBossOgro + 0x0067)
+      0004D6 36 0A                  553 	ld	(hl), #0x0a
+      0004D8 21rF8r00               554 	ld	hl, #(_MiniBossOgro + 0x0068)
+      0004DB 36 0A                  555 	ld	(hl), #0x0a
+      0004DD 21rF9r00               556 	ld	hl, #(_MiniBossOgro + 0x0069)
+      0004E0 36 0D                  557 	ld	(hl), #0x0d
+      0004E2 21rFAr00               558 	ld	hl, #(_MiniBossOgro + 0x006a)
+      0004E5 36 08                  559 	ld	(hl), #0x08
+      0004E7 21rFBr00               560 	ld	hl, #(_MiniBossOgro + 0x006b)
+      0004EA 36 0F                  561 	ld	(hl), #0x0f
+      0004EC 21rFCr00               562 	ld	hl, #(_MiniBossOgro + 0x006c)
+      0004EF 36 08                  563 	ld	(hl), #0x08
+      0004F1 21rFDr00               564 	ld	hl, #(_MiniBossOgro + 0x006d)
+      0004F4 36 0F                  565 	ld	(hl), #0x0f
+      0004F6 21rFEr00               566 	ld	hl, #(_MiniBossOgro + 0x006e)
+      0004F9 36 0F                  567 	ld	(hl), #0x0f
+      0004FB 21rFFr00               568 	ld	hl, #(_MiniBossOgro + 0x006f)
+      0004FE 36 0F                  569 	ld	(hl), #0x0f
+      000500 21r00r01               570 	ld	hl, #(_MiniBossOgro + 0x0070)
+      000503 36 DF                  571 	ld	(hl), #0xdf
+      000505 21r01r01               572 	ld	hl, #(_MiniBossOgro + 0x0071)
+      000508 36 20                  573 	ld	(hl), #0x20
+      00050A 21r02r01               574 	ld	hl, #(_MiniBossOgro + 0x0072)
+      00050D 36 FF                  575 	ld	(hl), #0xff
+      00050F 21r03r01               576 	ld	hl, #(_MiniBossOgro + 0x0073)
+      000512 36 0C                  577 	ld	(hl), #0x0c
+      000514 21r04r01               578 	ld	hl, #(_MiniBossOgro + 0x0074)
+      000517 36 DE                  579 	ld	(hl), #0xde
+      000519 21r05r01               580 	ld	hl, #(_MiniBossOgro + 0x0075)
+      00051C 36 21                  581 	ld	(hl), #0x21
+      00051E 21r06r01               582 	ld	hl, #(_MiniBossOgro + 0x0076)
+      000521 36 FF                  583 	ld	(hl), #0xff
+      000523 21r07r01               584 	ld	hl, #(_MiniBossOgro + 0x0077)
+      000526 36 00                  585 	ld	(hl), #0x00
+      000528 21r08r01               586 	ld	hl, #(_MiniBossOgro + 0x0078)
+      00052B 36 FF                  587 	ld	(hl), #0xff
+      00052D 21r09r01               588 	ld	hl, #(_MiniBossOgro + 0x0079)
+      000530 36 FF                  589 	ld	(hl), #0xff
+      000532 21r0Ar01               590 	ld	hl, #(_MiniBossOgro + 0x007a)
+      000535 36 80                  591 	ld	(hl), #0x80
+      000537 21r0Br01               592 	ld	hl, #(_MiniBossOgro + 0x007b)
+      00053A 36 80                  593 	ld	(hl), #0x80
+      00053C 21r0Cr01               594 	ld	hl, #(_MiniBossOgro + 0x007c)
+      00053F 36 40                  595 	ld	(hl), #0x40
+      000541 21r0Dr01               596 	ld	hl, #(_MiniBossOgro + 0x007d)
+      000544 36 C0                  597 	ld	(hl), #0xc0
+      000546 21r0Er01               598 	ld	hl, #(_MiniBossOgro + 0x007e)
+      000549 36 C0                  599 	ld	(hl), #0xc0
+      00054B 21r0Fr01               600 	ld	hl, #(_MiniBossOgro + 0x007f)
+      00054E 36 C0                  601 	ld	(hl), #0xc0
+      000550 21r10r01               602 	ld	hl, #(_MiniBossOgro + 0x0080)
+      000553 36 FE                  603 	ld	(hl), #0xfe
+      000555 21r11r01               604 	ld	hl, #(_MiniBossOgro + 0x0081)
+      000558 36 02                  605 	ld	(hl), #0x02
+      00055A 21r12r01               606 	ld	hl, #(_MiniBossOgro + 0x0082)
+      00055D 36 FC                  607 	ld	(hl), #0xfc
+      00055F 21r13r01               608 	ld	hl, #(_MiniBossOgro + 0x0083)
+      000562 36 04                  609 	ld	(hl), #0x04
+      000564 21r14r01               610 	ld	hl, #(_MiniBossOgro + 0x0084)
+      000567 36 FC                  611 	ld	(hl), #0xfc
+      000569 21r15r01               612 	ld	hl, #(_MiniBossOgro + 0x0085)
+      00056C 36 0C                  613 	ld	(hl), #0x0c
+      00056E 21r16r01               614 	ld	hl, #(_MiniBossOgro + 0x0086)
+      000571 36 A8                  615 	ld	(hl), #0xa8
+      000573 21r17r01               616 	ld	hl, #(_MiniBossOgro + 0x0087)
+      000576 36 58                  617 	ld	(hl), #0x58
+      000578 21r18r01               618 	ld	hl, #(_MiniBossOgro + 0x0088)
+      00057B 36 F8                  619 	ld	(hl), #0xf8
+      00057D 21r19r01               620 	ld	hl, #(_MiniBossOgro + 0x0089)
+      000580 36 88                  621 	ld	(hl), #0x88
+      000582 21r1Ar01               622 	ld	hl, #(_MiniBossOgro + 0x008a)
+      000585 36 88                  623 	ld	(hl), #0x88
+      000587 21r1Br01               624 	ld	hl, #(_MiniBossOgro + 0x008b)
+      00058A 36 F8                  625 	ld	(hl), #0xf8
+      00058C 21r1Cr01               626 	ld	hl, #(_MiniBossOgro + 0x008c)
+      00058F 36 9C                  627 	ld	(hl), #0x9c
+      000591 21r1Dr01               628 	ld	hl, #(_MiniBossOgro + 0x008d)
+      000594 36 E4                  629 	ld	(hl), #0xe4
+      000596 21r1Er01               630 	ld	hl, #(_MiniBossOgro + 0x008e)
+      000599 36 FC                  631 	ld	(hl), #0xfc
+      00059B 21r1Fr01               632 	ld	hl, #(_MiniBossOgro + 0x008f)
+      00059E 36 FC                  633 	ld	(hl), #0xfc
+                                    634 ;personagem.c:3: UINT8 spriteId=0;
+      0005A0 21r20r01               635 	ld	hl, #_spriteId
+      0005A3 36 00                  636 	ld	(hl), #0x00
+                                    637 ;movimentacao.c:2: UBYTE spritesize = 8;
+      0005A5 21r21r01               638 	ld	hl, #_spritesize
+      0005A8 36 08                  639 	ld	(hl), #0x08
+                                    640 ;--------------------------------------------------------
+                                    641 ; Home
+                                    642 ;--------------------------------------------------------
+                                    643 	.area _HOME
+                                    644 	.area _HOME
+                                    645 ;--------------------------------------------------------
+                                    646 ; code
+                                    647 ;--------------------------------------------------------
+                                    648 	.area _CODE
+                                    649 ;personagem.c:34: void setupEnemy(struct personagem *enemy,UINT8 start,UINT8 end){
+                                    650 ;	---------------------------------
+                                    651 ; Function setupEnemy
+                                    652 ; ---------------------------------
+      000000                        653 _setupEnemy::
+      000000 E8 FE                  654 	add	sp, #-2
+                                    655 ;personagem.c:35: enemy->x = 0;
+      000002 F8 04                  656 	ldhl	sp,#4
+      000004 2A                     657 	ld	a, (hl+)
+      000005 4F                     658 	ld	c, a
+      000006 46                     659 	ld	b, (hl)
+      000007 21 04 00               660 	ld	hl, #0x0004
+      00000A 09                     661 	add	hl, bc
+      00000B 36 00                  662 	ld	(hl), #0x00
+                                    663 ;personagem.c:36: enemy->y = 0;
+      00000D 21 05 00               664 	ld	hl, #0x0005
+      000010 09                     665 	add	hl, bc
+      000011 36 00                  666 	ld	(hl), #0x00
+                                    667 ;personagem.c:37: enemy->width = 16;
+      000013 21 08 00               668 	ld	hl, #0x0008
+      000016 09                     669 	add	hl, bc
+      000017 36 10                  670 	ld	(hl), #0x10
+                                    671 ;personagem.c:38: enemy->height = 16;
+      000019 21 09 00               672 	ld	hl, #0x0009
+      00001C 09                     673 	add	hl, bc
+      00001D 36 10                  674 	ld	(hl), #0x10
+                                    675 ;personagem.c:39: enemy->ativo = 0;
+      00001F 21 06 00               676 	ld	hl, #0x0006
+      000022 09                     677 	add	hl, bc
+      000023 36 00                  678 	ld	(hl), #0x00
+                                    679 ;personagem.c:41: for(UINT8 i=start; i<end ; i++){
+      000025 F8 06                  680 	ldhl	sp,	#6
+      000027 7E                     681 	ld	a, (hl)
+      000028 F8 00                  682 	ldhl	sp,	#0
+      00002A 77                     683 	ld	(hl), a
+      00002B AF                     684 	xor	a, a
+      00002C 23                     685 	inc	hl
+      00002D 77                     686 	ld	(hl), a
+      00002E                        687 00104$:
+      00002E F8 00                  688 	ldhl	sp,	#0
+      000030 7E                     689 	ld	a, (hl)
+      000031 F8 07                  690 	ldhl	sp,	#7
+      000033 96                     691 	sub	a, (hl)
+      000034 30 2C                  692 	jr	NC, 00106$
+                                    693 ;personagem.c:42: set_sprite_tile(spriteId, i);
+      000036 21r20r01               694 	ld	hl, #_spriteId
+      000039 5E                     695 	ld	e, (hl)
+                                    696 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+      00003A 26 00                  697 	ld	h, #0x00
+      00003C 6B                     698 	ld	l, e
+      00003D 29                     699 	add	hl, hl
+      00003E 29                     700 	add	hl, hl
+      00003F 11r00r00               701 	ld	de, #_shadow_OAM
+      000042 19                     702 	add	hl, de
+      000043 23                     703 	inc	hl
+      000044 23                     704 	inc	hl
+      000045 5D                     705 	ld	e, l
+      000046 54                     706 	ld	d, h
+      000047 F8 00                  707 	ldhl	sp,	#0
+      000049 7E                     708 	ld	a, (hl)
+      00004A 12                     709 	ld	(de), a
+                                    710 ;personagem.c:43: enemy->spriteIds[aux] = spriteId;
+      00004B 23                     711 	inc	hl
+      00004C 6E                     712 	ld	l, (hl)
+      00004D 26 00                  713 	ld	h, #0x00
+      00004F 09                     714 	add	hl, bc
+      000050 5D                     715 	ld	e, l
+      000051 54                     716 	ld	d, h
+      000052 FAr20r01               717 	ld	a, (#_spriteId)
+      000055 12                     718 	ld	(de), a
+                                    719 ;personagem.c:44: aux++;
+      000056 F8 01                  720 	ldhl	sp,	#1
+      000058 34                     721 	inc	(hl)
+                                    722 ;personagem.c:45: spriteId++;
+      000059 21r20r01               723 	ld	hl, #_spriteId
+      00005C 34                     724 	inc	(hl)
+                                    725 ;personagem.c:41: for(UINT8 i=start; i<end ; i++){
+      00005D F8 00                  726 	ldhl	sp,	#0
+      00005F 34                     727 	inc	(hl)
+      000060 18 CC                  728 	jr	00104$
+      000062                        729 00106$:
+                                    730 ;personagem.c:47: }
+      000062 E8 02                  731 	add	sp, #2
+      000064 C9                     732 	ret
+                                    733 ;personagem.c:49: void setupHero(struct personagem *hero,UINT8 start,UINT8 end){
+                                    734 ;	---------------------------------
+                                    735 ; Function setupHero
+                                    736 ; ---------------------------------
+      000065                        737 _setupHero::
+      000065 E8 FE                  738 	add	sp, #-2
+                                    739 ;personagem.c:50: hero->x = 80;
+      000067 F8 04                  740 	ldhl	sp,#4
+      000069 2A                     741 	ld	a, (hl+)
+      00006A 4F                     742 	ld	c, a
+      00006B 46                     743 	ld	b, (hl)
+      00006C 21 04 00               744 	ld	hl, #0x0004
+      00006F 09                     745 	add	hl, bc
+      000070 36 50                  746 	ld	(hl), #0x50
+                                    747 ;personagem.c:51: hero->y = 128;
+      000072 21 05 00               748 	ld	hl, #0x0005
+      000075 09                     749 	add	hl, bc
+      000076 36 80                  750 	ld	(hl), #0x80
+                                    751 ;personagem.c:52: hero->width = 16;
+      000078 21 08 00               752 	ld	hl, #0x0008
+      00007B 09                     753 	add	hl, bc
+      00007C 36 10                  754 	ld	(hl), #0x10
+                                    755 ;personagem.c:53: hero->height = 16;
+      00007E 21 09 00               756 	ld	hl, #0x0009
+      000081 09                     757 	add	hl, bc
+      000082 36 10                  758 	ld	(hl), #0x10
+                                    759 ;personagem.c:54: hero->ativo = 0;
+      000084 21 06 00               760 	ld	hl, #0x0006
+      000087 09                     761 	add	hl, bc
+      000088 36 00                  762 	ld	(hl), #0x00
+                                    763 ;personagem.c:56: for(UINT8 i=start; i<end ; i++){
+      00008A F8 06                  764 	ldhl	sp,	#6
+      00008C 7E                     765 	ld	a, (hl)
+      00008D F8 00                  766 	ldhl	sp,	#0
+      00008F 77                     767 	ld	(hl), a
+      000090 AF                     768 	xor	a, a
+      000091 23                     769 	inc	hl
+      000092 77                     770 	ld	(hl), a
+      000093                        771 00104$:
+      000093 F8 00                  772 	ldhl	sp,	#0
+      000095 7E                     773 	ld	a, (hl)
+      000096 F8 07                  774 	ldhl	sp,	#7
+      000098 96                     775 	sub	a, (hl)
+      000099 30 2C                  776 	jr	NC, 00106$
+                                    777 ;personagem.c:57: set_sprite_tile(spriteId, i);
+      00009B 21r20r01               778 	ld	hl, #_spriteId
+      00009E 5E                     779 	ld	e, (hl)
+                                    780 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+      00009F 26 00                  781 	ld	h, #0x00
+      0000A1 6B                     782 	ld	l, e
+      0000A2 29                     783 	add	hl, hl
+      0000A3 29                     784 	add	hl, hl
+      0000A4 11r00r00               785 	ld	de, #_shadow_OAM
+      0000A7 19                     786 	add	hl, de
+      0000A8 23                     787 	inc	hl
+      0000A9 23                     788 	inc	hl
+      0000AA 5D                     789 	ld	e, l
+      0000AB 54                     790 	ld	d, h
+      0000AC F8 00                  791 	ldhl	sp,	#0
+      0000AE 7E                     792 	ld	a, (hl)
+      0000AF 12                     793 	ld	(de), a
+                                    794 ;personagem.c:58: hero->spriteIds[aux] = spriteId;
+      0000B0 23                     795 	inc	hl
+      0000B1 6E                     796 	ld	l, (hl)
+      0000B2 26 00                  797 	ld	h, #0x00
+      0000B4 09                     798 	add	hl, bc
+      0000B5 5D                     799 	ld	e, l
+      0000B6 54                     800 	ld	d, h
+      0000B7 FAr20r01               801 	ld	a, (#_spriteId)
+      0000BA 12                     802 	ld	(de), a
+                                    803 ;personagem.c:59: aux++;
+      0000BB F8 01                  804 	ldhl	sp,	#1
+      0000BD 34                     805 	inc	(hl)
+                                    806 ;personagem.c:60: spriteId++;
+      0000BE 21r20r01               807 	ld	hl, #_spriteId
+      0000C1 34                     808 	inc	(hl)
+                                    809 ;personagem.c:56: for(UINT8 i=start; i<end ; i++){
+      0000C2 F8 00                  810 	ldhl	sp,	#0
+      0000C4 34                     811 	inc	(hl)
+      0000C5 18 CC                  812 	jr	00104$
+      0000C7                        813 00106$:
+                                    814 ;personagem.c:62: }
+      0000C7 E8 02                  815 	add	sp, #2
+      0000C9 C9                     816 	ret
+                                    817 ;personagem.c:64: void setupSubBoss(struct subBoss *miniBoss,UINT8 start,UINT8 end){
+                                    818 ;	---------------------------------
+                                    819 ; Function setupSubBoss
+                                    820 ; ---------------------------------
+      0000CA                        821 _setupSubBoss::
+      0000CA E8 FE                  822 	add	sp, #-2
+                                    823 ;personagem.c:65: miniBoss->x = 0;
+      0000CC F8 04                  824 	ldhl	sp,#4
+      0000CE 2A                     825 	ld	a, (hl+)
+      0000CF 4F                     826 	ld	c, a
+      0000D0 46                     827 	ld	b, (hl)
+      0000D1 21 09 00               828 	ld	hl, #0x0009
+      0000D4 09                     829 	add	hl, bc
+      0000D5 36 00                  830 	ld	(hl), #0x00
+                                    831 ;personagem.c:66: miniBoss->y = 0;
+      0000D7 21 0A 00               832 	ld	hl, #0x000a
+      0000DA 09                     833 	add	hl, bc
+      0000DB 36 00                  834 	ld	(hl), #0x00
+                                    835 ;personagem.c:67: miniBoss->width = 24;
+      0000DD 21 0D 00               836 	ld	hl, #0x000d
+      0000E0 09                     837 	add	hl, bc
+      0000E1 36 18                  838 	ld	(hl), #0x18
+                                    839 ;personagem.c:68: miniBoss->height = 24;
+      0000E3 21 0E 00               840 	ld	hl, #0x000e
+      0000E6 09                     841 	add	hl, bc
+      0000E7 36 18                  842 	ld	(hl), #0x18
+                                    843 ;personagem.c:69: miniBoss->ativo = 0;
+      0000E9 21 0B 00               844 	ld	hl, #0x000b
+      0000EC 09                     845 	add	hl, bc
+      0000ED 36 00                  846 	ld	(hl), #0x00
+                                    847 ;personagem.c:71: for(UINT8 i=start; i<end ; i++){
+      0000EF F8 06                  848 	ldhl	sp,	#6
+      0000F1 7E                     849 	ld	a, (hl)
+      0000F2 F8 00                  850 	ldhl	sp,	#0
+      0000F4 77                     851 	ld	(hl), a
+      0000F5 AF                     852 	xor	a, a
+      0000F6 23                     853 	inc	hl
+      0000F7 77                     854 	ld	(hl), a
+      0000F8                        855 00104$:
+      0000F8 F8 00                  856 	ldhl	sp,	#0
+      0000FA 7E                     857 	ld	a, (hl)
+      0000FB F8 07                  858 	ldhl	sp,	#7
+      0000FD 96                     859 	sub	a, (hl)
+      0000FE 30 2C                  860 	jr	NC, 00106$
+                                    861 ;personagem.c:72: set_sprite_tile(spriteId, i);
+      000100 21r20r01               862 	ld	hl, #_spriteId
+      000103 5E                     863 	ld	e, (hl)
+                                    864 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+      000104 26 00                  865 	ld	h, #0x00
+      000106 6B                     866 	ld	l, e
+      000107 29                     867 	add	hl, hl
+      000108 29                     868 	add	hl, hl
+      000109 11r00r00               869 	ld	de, #_shadow_OAM
+      00010C 19                     870 	add	hl, de
+      00010D 23                     871 	inc	hl
+      00010E 23                     872 	inc	hl
+      00010F 5D                     873 	ld	e, l
+      000110 54                     874 	ld	d, h
+      000111 F8 00                  875 	ldhl	sp,	#0
+      000113 7E                     876 	ld	a, (hl)
+      000114 12                     877 	ld	(de), a
+                                    878 ;personagem.c:73: miniBoss->spriteIds[aux] = spriteId;
+      000115 23                     879 	inc	hl
+      000116 6E                     880 	ld	l, (hl)
+      000117 26 00                  881 	ld	h, #0x00
+      000119 09                     882 	add	hl, bc
+      00011A 5D                     883 	ld	e, l
+      00011B 54                     884 	ld	d, h
+      00011C FAr20r01               885 	ld	a, (#_spriteId)
+      00011F 12                     886 	ld	(de), a
+                                    887 ;personagem.c:74: aux++;
+      000120 F8 01                  888 	ldhl	sp,	#1
+      000122 34                     889 	inc	(hl)
+                                    890 ;personagem.c:75: spriteId++;
+      000123 21r20r01               891 	ld	hl, #_spriteId
+      000126 34                     892 	inc	(hl)
+                                    893 ;personagem.c:71: for(UINT8 i=start; i<end ; i++){
+      000127 F8 00                  894 	ldhl	sp,	#0
+      000129 34                     895 	inc	(hl)
+      00012A 18 CC                  896 	jr	00104$
+      00012C                        897 00106$:
+                                    898 ;personagem.c:77: }
+      00012C E8 02                  899 	add	sp, #2
+      00012E C9                     900 	ret
+                                    901 ;movimentacao.c:3: void setPositionGameCharacter(struct personagem* character, UINT8 x, UINT8 y){ //define uma posição no mapa
+                                    902 ;	---------------------------------
+                                    903 ; Function setPositionGameCharacter
+                                    904 ; ---------------------------------
+      00012F                        905 _setPositionGameCharacter::
+      00012F E8 FD                  906 	add	sp, #-3
+                                    907 ;movimentacao.c:4: move_sprite(character->spriteIds[0], x, y);
+      000131 F8 08                  908 	ldhl	sp,	#8
+      000133 7E                     909 	ld	a, (hl)
+      000134 F8 00                  910 	ldhl	sp,	#0
+      000136 77                     911 	ld	(hl), a
+      000137 F8 07                  912 	ldhl	sp,	#7
+      000139 7E                     913 	ld	a, (hl)
+      00013A F8 01                  914 	ldhl	sp,	#1
+      00013C 77                     915 	ld	(hl), a
+      00013D F8 05                  916 	ldhl	sp,#5
+      00013F 2A                     917 	ld	a, (hl+)
+      000140 5F                     918 	ld	e, a
+      000141 56                     919 	ld	d, (hl)
+      000142 1A                     920 	ld	a, (de)
+      000143 4F                     921 	ld	c, a
+                                    922 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000144 AF                     923 	xor	a, a
+      000145 69                     924 	ld	l, c
+      000146 67                     925 	ld	h, a
+      000147 29                     926 	add	hl, hl
+      000148 29                     927 	add	hl, hl
+      000149 01r00r00               928 	ld	bc, #_shadow_OAM
+      00014C 09                     929 	add	hl, bc
+      00014D 4D                     930 	ld	c, l
+      00014E 44                     931 	ld	b, h
+                                    932 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      00014F F8 00                  933 	ldhl	sp,	#0
+      000151 2A                     934 	ld	a, (hl+)
+      000152 02                     935 	ld	(bc), a
+      000153 03                     936 	inc	bc
+      000154 7E                     937 	ld	a, (hl)
+      000155 02                     938 	ld	(bc), a
+                                    939 ;movimentacao.c:5: move_sprite(character->spriteIds[1], x + spritesize, y);
+      000156 7E                     940 	ld	a, (hl)
+      000157 21r21r01               941 	ld	hl, #_spritesize
+      00015A 86                     942 	add	a, (hl)
+      00015B 6B                     943 	ld	l, e
+      00015C 62                     944 	ld	h, d
+      00015D 23                     945 	inc	hl
+      00015E 4E                     946 	ld	c, (hl)
+      00015F F8 02                  947 	ldhl	sp,	#2
+      000161 77                     948 	ld	(hl), a
+                                    949 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000162 AF                     950 	xor	a, a
+      000163 69                     951 	ld	l, c
+      000164 67                     952 	ld	h, a
+      000165 29                     953 	add	hl, hl
+      000166 29                     954 	add	hl, hl
+      000167 01r00r00               955 	ld	bc, #_shadow_OAM
+      00016A 09                     956 	add	hl, bc
+      00016B 4D                     957 	ld	c, l
+      00016C 44                     958 	ld	b, h
+                                    959 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      00016D F8 00                  960 	ldhl	sp,	#0
+      00016F 2A                     961 	ld	a, (hl+)
+      000170 02                     962 	ld	(bc), a
+      000171 03                     963 	inc	bc
+      000172 23                     964 	inc	hl
+      000173 7E                     965 	ld	a, (hl)
+      000174 02                     966 	ld	(bc), a
+                                    967 ;movimentacao.c:6: move_sprite(character->spriteIds[2], x, y + spritesize);
+      000175 2B                     968 	dec	hl
+      000176 2B                     969 	dec	hl
+      000177 7E                     970 	ld	a, (hl)
+      000178 21r21r01               971 	ld	hl, #_spritesize
+      00017B 86                     972 	add	a, (hl)
+      00017C F8 02                  973 	ldhl	sp,	#2
+      00017E 77                     974 	ld	(hl), a
+      00017F 6B                     975 	ld	l, e
+      000180 62                     976 	ld	h, d
+      000181 23                     977 	inc	hl
+      000182 23                     978 	inc	hl
+      000183 4E                     979 	ld	c, (hl)
+                                    980 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000184 AF                     981 	xor	a, a
+      000185 69                     982 	ld	l, c
+      000186 67                     983 	ld	h, a
+      000187 29                     984 	add	hl, hl
+      000188 29                     985 	add	hl, hl
+      000189 01r00r00               986 	ld	bc, #_shadow_OAM
+      00018C 09                     987 	add	hl, bc
+      00018D 4D                     988 	ld	c, l
+      00018E 44                     989 	ld	b, h
+                                    990 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      00018F F8 02                  991 	ldhl	sp,	#2
+      000191 7E                     992 	ld	a, (hl)
+      000192 02                     993 	ld	(bc), a
+      000193 03                     994 	inc	bc
+      000194 2B                     995 	dec	hl
+      000195 7E                     996 	ld	a, (hl)
+      000196 02                     997 	ld	(bc), a
+                                    998 ;movimentacao.c:7: move_sprite(character->spriteIds[3], x + spritesize, y + spritesize);
+      000197 2B                     999 	dec	hl
+      000198 7E                    1000 	ld	a, (hl)
+      000199 21r21r01              1001 	ld	hl, #_spritesize
+      00019C 86                    1002 	add	a, (hl)
+      00019D 47                    1003 	ld	b, a
+      00019E F8 01                 1004 	ldhl	sp,	#1
+      0001A0 7E                    1005 	ld	a, (hl)
+      0001A1 21r21r01              1006 	ld	hl, #_spritesize
+      0001A4 86                    1007 	add	a, (hl)
+      0001A5 4F                    1008 	ld	c, a
+      0001A6 13                    1009 	inc	de
+      0001A7 13                    1010 	inc	de
+      0001A8 13                    1011 	inc	de
+      0001A9 1A                    1012 	ld	a, (de)
+      0001AA 5F                    1013 	ld	e, a
+                                   1014 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      0001AB 16 00                 1015 	ld	d, #0x00
+      0001AD 6B                    1016 	ld	l, e
+      0001AE 62                    1017 	ld	h, d
+      0001AF 29                    1018 	add	hl, hl
+      0001B0 29                    1019 	add	hl, hl
+      0001B1 11r00r00              1020 	ld	de, #_shadow_OAM
+      0001B4 19                    1021 	add	hl, de
+                                   1022 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      0001B5 78                    1023 	ld	a, b
+      0001B6 22                    1024 	ld	(hl+), a
+      0001B7 71                    1025 	ld	(hl), c
+                                   1026 ;movimentacao.c:7: move_sprite(character->spriteIds[3], x + spritesize, y + spritesize);
+                                   1027 ;movimentacao.c:8: }
+      0001B8 E8 03                 1028 	add	sp, #3
+      0001BA C9                    1029 	ret
+                                   1030 ;movimentacao.c:10: void setPositionGameCharacter2(struct subBoss* character, UINT8 x, UINT8 y){ //define uma posição no mapa
+                                   1031 ;	---------------------------------
+                                   1032 ; Function setPositionGameCharacter2
+                                   1033 ; ---------------------------------
+      0001BB                       1034 _setPositionGameCharacter2::
+      0001BB E8 FB                 1035 	add	sp, #-5
+                                   1036 ;movimentacao.c:11: move_sprite(character->spriteIds[0], x, y);
+      0001BD F8 0A                 1037 	ldhl	sp,	#10
+      0001BF 7E                    1038 	ld	a, (hl)
+      0001C0 F8 00                 1039 	ldhl	sp,	#0
+      0001C2 77                    1040 	ld	(hl), a
+      0001C3 F8 09                 1041 	ldhl	sp,	#9
+      0001C5 7E                    1042 	ld	a, (hl)
+      0001C6 F8 01                 1043 	ldhl	sp,	#1
+      0001C8 77                    1044 	ld	(hl), a
+      0001C9 F8 07                 1045 	ldhl	sp,#7
+      0001CB 2A                    1046 	ld	a, (hl+)
+      0001CC 5F                    1047 	ld	e, a
+      0001CD 56                    1048 	ld	d, (hl)
+      0001CE 1A                    1049 	ld	a, (de)
+      0001CF 4F                    1050 	ld	c, a
+                                   1051 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      0001D0 AF                    1052 	xor	a, a
+      0001D1 69                    1053 	ld	l, c
+      0001D2 67                    1054 	ld	h, a
+      0001D3 29                    1055 	add	hl, hl
+      0001D4 29                    1056 	add	hl, hl
+      0001D5 01r00r00              1057 	ld	bc, #_shadow_OAM
+      0001D8 09                    1058 	add	hl, bc
+      0001D9 4D                    1059 	ld	c, l
+      0001DA 44                    1060 	ld	b, h
+                                   1061 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      0001DB F8 00                 1062 	ldhl	sp,	#0
+      0001DD 2A                    1063 	ld	a, (hl+)
+      0001DE 02                    1064 	ld	(bc), a
+      0001DF 03                    1065 	inc	bc
+      0001E0 7E                    1066 	ld	a, (hl)
+      0001E1 02                    1067 	ld	(bc), a
+                                   1068 ;movimentacao.c:12: move_sprite(character->spriteIds[1], x + spritesize, y);
+      0001E2 7E                    1069 	ld	a, (hl)
+      0001E3 21r21r01              1070 	ld	hl, #_spritesize
+      0001E6 86                    1071 	add	a, (hl)
+      0001E7 6B                    1072 	ld	l, e
+      0001E8 62                    1073 	ld	h, d
+      0001E9 23                    1074 	inc	hl
+      0001EA 4E                    1075 	ld	c, (hl)
+      0001EB F8 04                 1076 	ldhl	sp,	#4
+      0001ED 77                    1077 	ld	(hl), a
+                                   1078 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      0001EE AF                    1079 	xor	a, a
+      0001EF 69                    1080 	ld	l, c
+      0001F0 67                    1081 	ld	h, a
+      0001F1 29                    1082 	add	hl, hl
+      0001F2 29                    1083 	add	hl, hl
+      0001F3 01r00r00              1084 	ld	bc, #_shadow_OAM
+      0001F6 09                    1085 	add	hl, bc
+      0001F7 4D                    1086 	ld	c, l
+      0001F8 44                    1087 	ld	b, h
+                                   1088 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      0001F9 F8 00                 1089 	ldhl	sp,	#0
+      0001FB 7E                    1090 	ld	a, (hl)
+      0001FC 02                    1091 	ld	(bc), a
+      0001FD 03                    1092 	inc	bc
+      0001FE F8 04                 1093 	ldhl	sp,	#4
+      000200 7E                    1094 	ld	a, (hl)
+      000201 02                    1095 	ld	(bc), a
+                                   1096 ;movimentacao.c:13: move_sprite(character->spriteIds[2], x + 2*spritesize, y);
+      000202 FAr21r01              1097 	ld	a, (#_spritesize)
+      000205 87                    1098 	add	a, a
+      000206 4F                    1099 	ld	c, a
+      000207 F8 01                 1100 	ldhl	sp,	#1
+      000209 2A                    1101 	ld	a, (hl+)
+      00020A 77                    1102 	ld	(hl), a
+      00020B 81                    1103 	add	a,c
+      00020C 6B                    1104 	ld	l, e
+      00020D 62                    1105 	ld	h, d
+      00020E 23                    1106 	inc	hl
+      00020F 23                    1107 	inc	hl
+      000210 4E                    1108 	ld	c, (hl)
+      000211 F8 04                 1109 	ldhl	sp,	#4
+      000213 77                    1110 	ld	(hl), a
+                                   1111 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000214 AF                    1112 	xor	a, a
+      000215 69                    1113 	ld	l, c
+      000216 67                    1114 	ld	h, a
+      000217 29                    1115 	add	hl, hl
+      000218 29                    1116 	add	hl, hl
+      000219 01r00r00              1117 	ld	bc, #_shadow_OAM
+      00021C 09                    1118 	add	hl, bc
+      00021D 4D                    1119 	ld	c, l
+      00021E 44                    1120 	ld	b, h
+                                   1121 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      00021F F8 00                 1122 	ldhl	sp,	#0
+      000221 7E                    1123 	ld	a, (hl)
+      000222 02                    1124 	ld	(bc), a
+      000223 03                    1125 	inc	bc
+      000224 F8 04                 1126 	ldhl	sp,	#4
+      000226 7E                    1127 	ld	a, (hl)
+      000227 02                    1128 	ld	(bc), a
+                                   1129 ;movimentacao.c:15: move_sprite(character->spriteIds[3], x, y + spritesize);
+      000228 F8 00                 1130 	ldhl	sp,	#0
+      00022A 7E                    1131 	ld	a, (hl)
+      00022B 21r21r01              1132 	ld	hl, #_spritesize
+      00022E 86                    1133 	add	a, (hl)
+      00022F F8 04                 1134 	ldhl	sp,	#4
+      000231 77                    1135 	ld	(hl), a
+      000232 6B                    1136 	ld	l, e
+      000233 62                    1137 	ld	h, d
+      000234 23                    1138 	inc	hl
+      000235 23                    1139 	inc	hl
+      000236 23                    1140 	inc	hl
+      000237 4E                    1141 	ld	c, (hl)
+                                   1142 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000238 26 00                 1143 	ld	h, #0x00
+      00023A 69                    1144 	ld	l, c
+      00023B 29                    1145 	add	hl, hl
+      00023C 29                    1146 	add	hl, hl
+      00023D 01r00r00              1147 	ld	bc, #_shadow_OAM
+      000240 09                    1148 	add	hl, bc
+      000241 4D                    1149 	ld	c, l
+      000242 44                    1150 	ld	b, h
+                                   1151 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      000243 F8 04                 1152 	ldhl	sp,	#4
+      000245 7E                    1153 	ld	a, (hl)
+      000246 02                    1154 	ld	(bc), a
+      000247 03                    1155 	inc	bc
+      000248 F8 01                 1156 	ldhl	sp,	#1
+      00024A 7E                    1157 	ld	a, (hl)
+      00024B 02                    1158 	ld	(bc), a
+                                   1159 ;movimentacao.c:16: move_sprite(character->spriteIds[4], x + spritesize, y + spritesize);
+      00024C 2B                    1160 	dec	hl
+      00024D 7E                    1161 	ld	a, (hl)
+      00024E 21r21r01              1162 	ld	hl, #_spritesize
+      000251 86                    1163 	add	a, (hl)
+      000252 F8 03                 1164 	ldhl	sp,	#3
+      000254 32                    1165 	ld	(hl-), a
+      000255 2B                    1166 	dec	hl
+      000256 7E                    1167 	ld	a, (hl)
+      000257 21r21r01              1168 	ld	hl, #_spritesize
+      00025A 86                    1169 	add	a, (hl)
+      00025B 47                    1170 	ld	b, a
+      00025C 21 04 00              1171 	ld	hl, #0x0004
+      00025F 19                    1172 	add	hl, de
+      000260 4E                    1173 	ld	c, (hl)
+      000261 F8 04                 1174 	ldhl	sp,	#4
+      000263 70                    1175 	ld	(hl), b
+                                   1176 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000264 AF                    1177 	xor	a, a
+      000265 69                    1178 	ld	l, c
+      000266 67                    1179 	ld	h, a
+      000267 29                    1180 	add	hl, hl
+      000268 29                    1181 	add	hl, hl
+      000269 01r00r00              1182 	ld	bc, #_shadow_OAM
+      00026C 09                    1183 	add	hl, bc
+      00026D 4D                    1184 	ld	c, l
+      00026E 44                    1185 	ld	b, h
+                                   1186 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      00026F F8 03                 1187 	ldhl	sp,	#3
+      000271 2A                    1188 	ld	a, (hl+)
+      000272 02                    1189 	ld	(bc), a
+      000273 03                    1190 	inc	bc
+      000274 7E                    1191 	ld	a, (hl)
+      000275 02                    1192 	ld	(bc), a
+                                   1193 ;movimentacao.c:17: move_sprite(character->spriteIds[5], x + 2*spritesize, y + spritesize);
+      000276 F8 00                 1194 	ldhl	sp,	#0
+      000278 7E                    1195 	ld	a, (hl)
+      000279 21r21r01              1196 	ld	hl, #_spritesize
+      00027C 86                    1197 	add	a, (hl)
+      00027D F8 03                 1198 	ldhl	sp,	#3
+      00027F 77                    1199 	ld	(hl), a
+      000280 FAr21r01              1200 	ld	a, (#_spritesize)
+      000283 87                    1201 	add	a, a
+      000284 F8 02                 1202 	ldhl	sp,	#2
+      000286 86                    1203 	add	a, (hl)
+      000287 47                    1204 	ld	b, a
+      000288 21 05 00              1205 	ld	hl, #0x0005
+      00028B 19                    1206 	add	hl, de
+      00028C 4E                    1207 	ld	c, (hl)
+      00028D F8 04                 1208 	ldhl	sp,	#4
+      00028F 70                    1209 	ld	(hl), b
+                                   1210 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000290 AF                    1211 	xor	a, a
+      000291 69                    1212 	ld	l, c
+      000292 67                    1213 	ld	h, a
+      000293 29                    1214 	add	hl, hl
+      000294 29                    1215 	add	hl, hl
+      000295 01r00r00              1216 	ld	bc, #_shadow_OAM
+      000298 09                    1217 	add	hl, bc
+      000299 4D                    1218 	ld	c, l
+      00029A 44                    1219 	ld	b, h
+                                   1220 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      00029B F8 03                 1221 	ldhl	sp,	#3
+      00029D 2A                    1222 	ld	a, (hl+)
+      00029E 02                    1223 	ld	(bc), a
+      00029F 03                    1224 	inc	bc
+      0002A0 7E                    1225 	ld	a, (hl)
+      0002A1 02                    1226 	ld	(bc), a
+                                   1227 ;movimentacao.c:19: move_sprite(character->spriteIds[6], x, y + 2*spritesize);
+      0002A2 FAr21r01              1228 	ld	a, (#_spritesize)
+      0002A5 87                    1229 	add	a, a
+      0002A6 4F                    1230 	ld	c, a
+      0002A7 F8 00                 1231 	ldhl	sp,	#0
+      0002A9 7E                    1232 	ld	a, (hl)
+      0002AA F8 04                 1233 	ldhl	sp,	#4
+      0002AC 77                    1234 	ld	(hl), a
+      0002AD 81                    1235 	add	a,c
+      0002AE 2B                    1236 	dec	hl
+      0002AF 77                    1237 	ld	(hl), a
+      0002B0 21 06 00              1238 	ld	hl, #0x0006
+      0002B3 19                    1239 	add	hl, de
+      0002B4 4E                    1240 	ld	c, (hl)
+                                   1241 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      0002B5 AF                    1242 	xor	a, a
+      0002B6 69                    1243 	ld	l, c
+      0002B7 67                    1244 	ld	h, a
+      0002B8 29                    1245 	add	hl, hl
+      0002B9 29                    1246 	add	hl, hl
+      0002BA 01r00r00              1247 	ld	bc, #_shadow_OAM
+      0002BD 09                    1248 	add	hl, bc
+      0002BE 4D                    1249 	ld	c, l
+      0002BF 44                    1250 	ld	b, h
+                                   1251 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      0002C0 F8 03                 1252 	ldhl	sp,	#3
+      0002C2 7E                    1253 	ld	a, (hl)
+      0002C3 02                    1254 	ld	(bc), a
+      0002C4 03                    1255 	inc	bc
+      0002C5 2B                    1256 	dec	hl
+      0002C6 2B                    1257 	dec	hl
+      0002C7 7E                    1258 	ld	a, (hl)
+      0002C8 02                    1259 	ld	(bc), a
+                                   1260 ;movimentacao.c:20: move_sprite(character->spriteIds[7], x + spritesize, y + 2*spritesize);
+      0002C9 FAr21r01              1261 	ld	a, (#_spritesize)
+      0002CC 87                    1262 	add	a, a
+      0002CD F8 04                 1263 	ldhl	sp,	#4
+      0002CF 86                    1264 	add	a, (hl)
+      0002D0 2B                    1265 	dec	hl
+      0002D1 32                    1266 	ld	(hl-), a
+      0002D2 2B                    1267 	dec	hl
+      0002D3 7E                    1268 	ld	a, (hl)
+      0002D4 21r21r01              1269 	ld	hl, #_spritesize
+      0002D7 86                    1270 	add	a, (hl)
+      0002D8 47                    1271 	ld	b, a
+      0002D9 21 07 00              1272 	ld	hl, #0x0007
+      0002DC 19                    1273 	add	hl, de
+      0002DD 4E                    1274 	ld	c, (hl)
+      0002DE F8 01                 1275 	ldhl	sp,	#1
+      0002E0 70                    1276 	ld	(hl), b
+                                   1277 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      0002E1 AF                    1278 	xor	a, a
+      0002E2 69                    1279 	ld	l, c
+      0002E3 67                    1280 	ld	h, a
+      0002E4 29                    1281 	add	hl, hl
+      0002E5 29                    1282 	add	hl, hl
+      0002E6 01r00r00              1283 	ld	bc, #_shadow_OAM
+      0002E9 09                    1284 	add	hl, bc
+      0002EA 4D                    1285 	ld	c, l
+      0002EB 44                    1286 	ld	b, h
+                                   1287 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      0002EC F8 03                 1288 	ldhl	sp,	#3
+      0002EE 7E                    1289 	ld	a, (hl)
+      0002EF 02                    1290 	ld	(bc), a
+      0002F0 03                    1291 	inc	bc
+      0002F1 2B                    1292 	dec	hl
+      0002F2 2B                    1293 	dec	hl
+      0002F3 7E                    1294 	ld	a, (hl)
+      0002F4 02                    1295 	ld	(bc), a
+                                   1296 ;movimentacao.c:21: move_sprite(character->spriteIds[8], x + 2*spritesize, y + 2*spritesize);
+      0002F5 FAr21r01              1297 	ld	a, (#_spritesize)
+      0002F8 87                    1298 	add	a, a
+      0002F9 4F                    1299 	ld	c, a
+      0002FA F8 04                 1300 	ldhl	sp,	#4
+      0002FC 7E                    1301 	ld	a, (hl)
+      0002FD 81                    1302 	add	a, c
+      0002FE 47                    1303 	ld	b, a
+      0002FF 2B                    1304 	dec	hl
+      000300 2B                    1305 	dec	hl
+      000301 7E                    1306 	ld	a, (hl)
+      000302 81                    1307 	add	a, c
+      000303 4F                    1308 	ld	c, a
+      000304 21 08 00              1309 	ld	hl, #0x0008
+      000307 19                    1310 	add	hl, de
+      000308 5E                    1311 	ld	e, (hl)
+                                   1312 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+      000309 16 00                 1313 	ld	d, #0x00
+      00030B 6B                    1314 	ld	l, e
+      00030C 62                    1315 	ld	h, d
+      00030D 29                    1316 	add	hl, hl
+      00030E 29                    1317 	add	hl, hl
+      00030F 11r00r00              1318 	ld	de, #_shadow_OAM
+      000312 19                    1319 	add	hl, de
+                                   1320 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+      000313 78                    1321 	ld	a, b
+      000314 22                    1322 	ld	(hl+), a
+      000315 71                    1323 	ld	(hl), c
+                                   1324 ;movimentacao.c:21: move_sprite(character->spriteIds[8], x + 2*spritesize, y + 2*spritesize);
+                                   1325 ;movimentacao.c:24: }
+      000316 E8 05                 1326 	add	sp, #5
+      000318 C9                    1327 	ret
+                                   1328 ;game.c:17: void main(){
+                                   1329 ;	---------------------------------
+                                   1330 ; Function main
+                                   1331 ; ---------------------------------
+      000319                       1332 _main::
+      000319 E8 D2                 1333 	add	sp, #-46
+                                   1334 ;game.c:19: set_sprite_data(0, 4, ghost);
+      00031B 21r50r00              1335 	ld	hl, #_ghost
+      00031E E5                    1336 	push	hl
+      00031F 3E 04                 1337 	ld	a, #0x04
+      000321 F5                    1338 	push	af
+      000322 33                    1339 	inc	sp
+      000323 AF                    1340 	xor	a, a
+      000324 F5                    1341 	push	af
+      000325 33                    1342 	inc	sp
+      000326 CDr00r00              1343 	call	_set_sprite_data
+      000329 E8 04                 1344 	add	sp, #4
+                                   1345 ;game.c:20: set_sprite_data(4, 4, protagonista);
+      00032B 21r00r00              1346 	ld	hl, #_protagonista
+      00032E E5                    1347 	push	hl
+      00032F 11 04 04              1348 	ld	de, #0x0404
+      000332 D5                    1349 	push	de
+      000333 CDr00r00              1350 	call	_set_sprite_data
+      000336 E8 04                 1351 	add	sp, #4
+                                   1352 ;game.c:21: set_sprite_data(8, 9, MiniBossOgro);
+      000338 21r90r00              1353 	ld	hl, #_MiniBossOgro
+      00033B E5                    1354 	push	hl
+      00033C 11 08 09              1355 	ld	de, #0x0908
+      00033F D5                    1356 	push	de
+      000340 CDr00r00              1357 	call	_set_sprite_data
+      000343 E8 04                 1358 	add	sp, #4
+                                   1359 ;game.c:25: setupEnemy(&inimigo1,0,4);
+      000345 F8 00                 1360 	ldhl	sp,	#0
+      000347 4D                    1361 	ld	c, l
+      000348 44                    1362 	ld	b, h
+      000349 59                    1363 	ld	e, c
+      00034A 50                    1364 	ld	d, b
+      00034B C5                    1365 	push	bc
+      00034C 3E 04                 1366 	ld	a, #0x04
+      00034E F5                    1367 	push	af
+      00034F 33                    1368 	inc	sp
+      000350 AF                    1369 	xor	a, a
+      000351 F5                    1370 	push	af
+      000352 33                    1371 	inc	sp
+      000353 D5                    1372 	push	de
+      000354 CDr00r00              1373 	call	_setupEnemy
+      000357 E8 04                 1374 	add	sp, #4
+      000359 C1                    1375 	pop	bc
+                                   1376 ;game.c:26: setPositionGameCharacter(&inimigo1,100,100);
+      00035A 11 64 64              1377 	ld	de, #0x6464
+      00035D D5                    1378 	push	de
+      00035E C5                    1379 	push	bc
+      00035F CDr2Fr01              1380 	call	_setPositionGameCharacter
+      000362 E8 04                 1381 	add	sp, #4
+                                   1382 ;game.c:29: setupHero(&protagonista,4,8);
+      000364 F8 0A                 1383 	ldhl	sp,	#10
+      000366 7D                    1384 	ld	a, l
+      000367 54                    1385 	ld	d, h
+      000368 F8 23                 1386 	ldhl	sp,	#35
+      00036A 22                    1387 	ld	(hl+), a
+      00036B 7A                    1388 	ld	a, d
+      00036C 32                    1389 	ld	(hl-), a
+      00036D 2A                    1390 	ld	a, (hl+)
+      00036E 4F                    1391 	ld	c, a
+      00036F 46                    1392 	ld	b, (hl)
+      000370 11 04 08              1393 	ld	de, #0x0804
+      000373 D5                    1394 	push	de
+      000374 C5                    1395 	push	bc
+      000375 CDr65r00              1396 	call	_setupHero
+      000378 E8 04                 1397 	add	sp, #4
+                                   1398 ;game.c:30: setPositionGameCharacter(&protagonista,80,128);
+      00037A F8 23                 1399 	ldhl	sp,#35
+      00037C 2A                    1400 	ld	a, (hl+)
+      00037D 4F                    1401 	ld	c, a
+      00037E 46                    1402 	ld	b, (hl)
+      00037F 11 50 80              1403 	ld	de, #0x8050
+      000382 D5                    1404 	push	de
+      000383 C5                    1405 	push	bc
+      000384 CDr2Fr01              1406 	call	_setPositionGameCharacter
+      000387 E8 04                 1407 	add	sp, #4
+                                   1408 ;game.c:33: setupSubBoss(&miniboss1,8,17);
+      000389 F8 14                 1409 	ldhl	sp,	#20
+      00038B 4D                    1410 	ld	c, l
+      00038C 44                    1411 	ld	b, h
+      00038D 59                    1412 	ld	e, c
+      00038E 50                    1413 	ld	d, b
+      00038F C5                    1414 	push	bc
+      000390 21 08 11              1415 	ld	hl, #0x1108
+      000393 E5                    1416 	push	hl
+      000394 D5                    1417 	push	de
+      000395 CDrCAr00              1418 	call	_setupSubBoss
+      000398 E8 04                 1419 	add	sp, #4
+      00039A C1                    1420 	pop	bc
+                                   1421 ;game.c:34: setPositionGameCharacter2(&miniboss1,40,80);
+      00039B 11 28 50              1422 	ld	de, #0x5028
+      00039E D5                    1423 	push	de
+      00039F C5                    1424 	push	bc
+      0003A0 CDrBBr01              1425 	call	_setPositionGameCharacter2
+      0003A3 E8 04                 1426 	add	sp, #4
+                                   1427 ;game.c:36: SHOW_BKG;
+      0003A5 F0r00                 1428 	ldh	a, (_LCDC_REG+0)
+      0003A7 F6 01                 1429 	or	a, #0x01
+      0003A9 E0r00                 1430 	ldh	(_LCDC_REG+0),a
+                                   1431 ;game.c:37: SHOW_SPRITES;
+      0003AB F0r00                 1432 	ldh	a, (_LCDC_REG+0)
+      0003AD F6 02                 1433 	or	a, #0x02
+      0003AF E0r00                 1434 	ldh	(_LCDC_REG+0),a
+                                   1435 ;game.c:38: DISPLAY_ON;
+      0003B1 F0r00                 1436 	ldh	a, (_LCDC_REG+0)
+      0003B3 F6 80                 1437 	or	a, #0x80
+      0003B5 E0r00                 1438 	ldh	(_LCDC_REG+0),a
+                                   1439 ;game.c:40: waitpad(J_START);
+      0003B7 3E 80                 1440 	ld	a, #0x80
+      0003B9 F5                    1441 	push	af
+      0003BA 33                    1442 	inc	sp
+      0003BB CDr00r00              1443 	call	_waitpad
+      0003BE 33                    1444 	inc	sp
+                                   1445 ;game.c:42: while(1){
+      0003BF                       1446 00116$:
+                                   1447 ;game.c:44: if(joypad() & J_LEFT){
+      0003BF CDr00r00              1448 	call	_joypad
+      0003C2 4B                    1449 	ld	c, e
+                                   1450 ;game.c:45: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+                                   1451 ;c
+      0003C3 F8 23                 1452 	ldhl	sp,#35
+      0003C5 2A                    1453 	ld	a, (hl+)
+      0003C6 5F                    1454 	ld	e, a
+      0003C7 56                    1455 	ld	d, (hl)
+      0003C8 21 04 00              1456 	ld	hl, #0x0004
+      0003CB 19                    1457 	add	hl, de
+      0003CC E5                    1458 	push	hl
+      0003CD 7D                    1459 	ld	a, l
+      0003CE F8 27                 1460 	ldhl	sp,	#39
+      0003D0 77                    1461 	ld	(hl), a
+      0003D1 E1                    1462 	pop	hl
+      0003D2 7C                    1463 	ld	a, h
+      0003D3 F8 26                 1464 	ldhl	sp,	#38
+                                   1465 ;game.c:48: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+                                   1466 ;c
+      0003D5 32                    1467 	ld	(hl-), a
+      0003D6 2B                    1468 	dec	hl
+      0003D7 2B                    1469 	dec	hl
+      0003D8 2A                    1470 	ld	a, (hl+)
+      0003D9 5F                    1471 	ld	e, a
+      0003DA 56                    1472 	ld	d, (hl)
+      0003DB 21 05 00              1473 	ld	hl, #0x0005
+      0003DE 19                    1474 	add	hl, de
+      0003DF E5                    1475 	push	hl
+      0003E0 7D                    1476 	ld	a, l
+      0003E1 F8 29                 1477 	ldhl	sp,	#41
+      0003E3 77                    1478 	ld	(hl), a
+      0003E4 E1                    1479 	pop	hl
+      0003E5 7C                    1480 	ld	a, h
+      0003E6 F8 28                 1481 	ldhl	sp,	#40
+      0003E8 77                    1482 	ld	(hl), a
+                                   1483 ;game.c:44: if(joypad() & J_LEFT){
+      0003E9 CB 49                 1484 	bit	1, c
+      0003EB 28 40                 1485 	jr	Z, 00102$
+                                   1486 ;game.c:45: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+      0003ED F8 25                 1487 	ldhl	sp,#37
+      0003EF 2A                    1488 	ld	a, (hl+)
+      0003F0 5F                    1489 	ld	e, a
+      0003F1 56                    1490 	ld	d, (hl)
+      0003F2 1A                    1491 	ld	a, (de)
+      0003F3 4F                    1492 	ld	c, a
+      0003F4 59                    1493 	ld	e, c
+      0003F5 16 00                 1494 	ld	d, #0x00
+      0003F7 7B                    1495 	ld	a, e
+      0003F8 C6 F6                 1496 	add	a, #0xf6
+      0003FA 7A                    1497 	ld	a, d
+      0003FB CE FF                 1498 	adc	a, #0xff
+      0003FD CB 7F                 1499 	bit	7,a
+      0003FF 28 08                 1500 	jr	Z, 00120$
+      000401 F8 25                 1501 	ldhl	sp,	#37
+      000403 2A                    1502 	ld	a, (hl+)
+      000404 66                    1503 	ld	h, (hl)
+      000405 6F                    1504 	ld	l, a
+      000406 71                    1505 	ld	(hl), c
+      000407 18 08                 1506 	jr	00121$
+      000409                       1507 00120$:
+      000409 0D                    1508 	dec	c
+      00040A 0D                    1509 	dec	c
+      00040B F8 25                 1510 	ldhl	sp,	#37
+      00040D 2A                    1511 	ld	a, (hl+)
+      00040E 66                    1512 	ld	h, (hl)
+      00040F 6F                    1513 	ld	l, a
+      000410 71                    1514 	ld	(hl), c
+      000411                       1515 00121$:
+                                   1516 ;game.c:48: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+      000411 F8 27                 1517 	ldhl	sp,#39
+      000413 2A                    1518 	ld	a, (hl+)
+      000414 5F                    1519 	ld	e, a
+      000415 56                    1520 	ld	d, (hl)
+      000416 1A                    1521 	ld	a, (de)
+      000417 47                    1522 	ld	b, a
+      000418 2B                    1523 	dec	hl
+      000419 2B                    1524 	dec	hl
+      00041A 2B                    1525 	dec	hl
+      00041B 2A                    1526 	ld	a, (hl+)
+      00041C 5F                    1527 	ld	e, a
+      00041D 56                    1528 	ld	d, (hl)
+      00041E 1A                    1529 	ld	a, (de)
+      00041F 4F                    1530 	ld	c, a
+      000420 2B                    1531 	dec	hl
+      000421 2B                    1532 	dec	hl
+      000422 2B                    1533 	dec	hl
+      000423 2A                    1534 	ld	a, (hl+)
+      000424 5F                    1535 	ld	e, a
+      000425 56                    1536 	ld	d, (hl)
+      000426 C5                    1537 	push	bc
+      000427 D5                    1538 	push	de
+      000428 CDr2Fr01              1539 	call	_setPositionGameCharacter
+      00042B E8 04                 1540 	add	sp, #4
+      00042D                       1541 00102$:
+                                   1542 ;game.c:51: if(joypad() & J_RIGHT){
+      00042D CDr00r00              1543 	call	_joypad
+      000430 7B                    1544 	ld	a, e
+      000431 0F                    1545 	rrca
+      000432 30 71                 1546 	jr	NC, 00104$
+                                   1547 ;game.c:52: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+      000434 F8 25                 1548 	ldhl	sp,#37
+      000436 2A                    1549 	ld	a, (hl+)
+      000437 5F                    1550 	ld	e, a
+      000438 56                    1551 	ld	d, (hl)
+      000439 1A                    1552 	ld	a, (de)
+      00043A F8 29                 1553 	ldhl	sp,	#41
+      00043C 77                    1554 	ld	(hl), a
+      00043D 2A                    1555 	ld	a, (hl+)
+      00043E 77                    1556 	ld	(hl), a
+      00043F AF                    1557 	xor	a, a
+      000440 23                    1558 	inc	hl
+                                   1559 ;c
+      000441 32                    1560 	ld	(hl-), a
+      000442 2A                    1561 	ld	a, (hl+)
+      000443 5F                    1562 	ld	e, a
+      000444 56                    1563 	ld	d, (hl)
+      000445 21 08 00              1564 	ld	hl, #0x0008
+      000448 19                    1565 	add	hl, de
+      000449 E5                    1566 	push	hl
+      00044A 7D                    1567 	ld	a, l
+      00044B F8 2E                 1568 	ldhl	sp,	#46
+      00044D 77                    1569 	ld	(hl), a
+      00044E E1                    1570 	pop	hl
+      00044F 7C                    1571 	ld	a, h
+      000450 F8 2D                 1572 	ldhl	sp,	#45
+      000452 32                    1573 	ld	(hl-), a
+      000453 7E                    1574 	ld	a, (hl)
+      000454 D6 A0                 1575 	sub	a, #0xa0
+      000456 23                    1576 	inc	hl
+      000457 7E                    1577 	ld	a, (hl)
+      000458 DE 00                 1578 	sbc	a, #0x00
+      00045A 56                    1579 	ld	d, (hl)
+      00045B 3E 00                 1580 	ld	a, #0x00
+      00045D CB 7F                 1581 	bit	7,a
+      00045F 28 07                 1582 	jr	Z, 00175$
+      000461 CB 7A                 1583 	bit	7, d
+      000463 20 08                 1584 	jr	NZ, 00176$
+      000465 BF                    1585 	cp	a, a
+      000466 18 05                 1586 	jr	00176$
+      000468                       1587 00175$:
+      000468 CB 7A                 1588 	bit	7, d
+      00046A 28 01                 1589 	jr	Z, 00176$
+      00046C 37                    1590 	scf
+      00046D                       1591 00176$:
+      00046D 38 0B                 1592 	jr	C, 00122$
+      00046F F8 25                 1593 	ldhl	sp,#37
+      000471 2A                    1594 	ld	a, (hl+)
+      000472 5F                    1595 	ld	e, a
+      000473 56                    1596 	ld	d, (hl)
+      000474 F8 29                 1597 	ldhl	sp,	#41
+      000476 7E                    1598 	ld	a, (hl)
+      000477 12                    1599 	ld	(de), a
+      000478 18 0F                 1600 	jr	00123$
+      00047A                       1601 00122$:
+      00047A F8 29                 1602 	ldhl	sp,	#41
+      00047C 7E                    1603 	ld	a, (hl)
+      00047D F8 2D                 1604 	ldhl	sp,	#45
+      00047F 77                    1605 	ld	(hl), a
+      000480 4E                    1606 	ld	c, (hl)
+      000481 0C                    1607 	inc	c
+      000482 0C                    1608 	inc	c
+      000483 F8 25                 1609 	ldhl	sp,	#37
+      000485 2A                    1610 	ld	a, (hl+)
+      000486 66                    1611 	ld	h, (hl)
+      000487 6F                    1612 	ld	l, a
+      000488 71                    1613 	ld	(hl), c
+      000489                       1614 00123$:
+                                   1615 ;game.c:54: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+      000489 F8 27                 1616 	ldhl	sp,#39
+      00048B 2A                    1617 	ld	a, (hl+)
+      00048C 5F                    1618 	ld	e, a
+      00048D 56                    1619 	ld	d, (hl)
+      00048E 1A                    1620 	ld	a, (de)
+      00048F 47                    1621 	ld	b, a
+      000490 2B                    1622 	dec	hl
+      000491 2B                    1623 	dec	hl
+      000492 2B                    1624 	dec	hl
+      000493 2A                    1625 	ld	a, (hl+)
+      000494 5F                    1626 	ld	e, a
+      000495 56                    1627 	ld	d, (hl)
+      000496 1A                    1628 	ld	a, (de)
+      000497 4F                    1629 	ld	c, a
+      000498 2B                    1630 	dec	hl
+      000499 2B                    1631 	dec	hl
+      00049A 2B                    1632 	dec	hl
+      00049B 2A                    1633 	ld	a, (hl+)
+      00049C 5F                    1634 	ld	e, a
+      00049D 56                    1635 	ld	d, (hl)
+      00049E C5                    1636 	push	bc
+      00049F D5                    1637 	push	de
+      0004A0 CDr2Fr01              1638 	call	_setPositionGameCharacter
+      0004A3 E8 04                 1639 	add	sp, #4
+      0004A5                       1640 00104$:
+                                   1641 ;game.c:57: if(joypad() & J_UP){
+      0004A5 CDr00r00              1642 	call	_joypad
+      0004A8 CB 53                 1643 	bit	2, e
+      0004AA 28 5B                 1644 	jr	Z, 00106$
+                                   1645 ;game.c:59: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+      0004AC F8 27                 1646 	ldhl	sp,#39
+      0004AE 2A                    1647 	ld	a, (hl+)
+      0004AF 5F                    1648 	ld	e, a
+      0004B0 56                    1649 	ld	d, (hl)
+      0004B1 1A                    1650 	ld	a, (de)
+      0004B2 4F                    1651 	ld	c, a
+      0004B3 1E 00                 1652 	ld	e, #0x00
+      0004B5 C6 F0                 1653 	add	a, #0xf0
+      0004B7 47                    1654 	ld	b, a
+      0004B8 7B                    1655 	ld	a, e
+      0004B9 CE FF                 1656 	adc	a, #0xff
+      0004BB 6F                    1657 	ld	l, a
+      0004BC 5D                    1658 	ld	e, l
+      0004BD 16 00                 1659 	ld	d, #0x00
+      0004BF 3E 14                 1660 	ld	a, #0x14
+      0004C1 B8                    1661 	cp	a, b
+      0004C2 3E 00                 1662 	ld	a, #0x00
+      0004C4 9D                    1663 	sbc	a, l
+      0004C5 CB 7B                 1664 	bit	7, e
+      0004C7 28 07                 1665 	jr	Z, 00178$
+      0004C9 CB 7A                 1666 	bit	7, d
+      0004CB 20 08                 1667 	jr	NZ, 00179$
+      0004CD BF                    1668 	cp	a, a
+      0004CE 18 05                 1669 	jr	00179$
+      0004D0                       1670 00178$:
+      0004D0 CB 7A                 1671 	bit	7, d
+      0004D2 28 01                 1672 	jr	Z, 00179$
+      0004D4 37                    1673 	scf
+      0004D5                       1674 00179$:
+      0004D5 38 08                 1675 	jr	C, 00124$
+      0004D7 F8 27                 1676 	ldhl	sp,	#39
+      0004D9 2A                    1677 	ld	a, (hl+)
+      0004DA 66                    1678 	ld	h, (hl)
+      0004DB 6F                    1679 	ld	l, a
+      0004DC 71                    1680 	ld	(hl), c
+      0004DD 18 08                 1681 	jr	00125$
+      0004DF                       1682 00124$:
+      0004DF 0D                    1683 	dec	c
+      0004E0 0D                    1684 	dec	c
+      0004E1 F8 27                 1685 	ldhl	sp,	#39
+      0004E3 2A                    1686 	ld	a, (hl+)
+      0004E4 66                    1687 	ld	h, (hl)
+      0004E5 6F                    1688 	ld	l, a
+      0004E6 71                    1689 	ld	(hl), c
+      0004E7                       1690 00125$:
+                                   1691 ;game.c:60: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+      0004E7 F8 27                 1692 	ldhl	sp,#39
+      0004E9 2A                    1693 	ld	a, (hl+)
+      0004EA 5F                    1694 	ld	e, a
+      0004EB 56                    1695 	ld	d, (hl)
+      0004EC 1A                    1696 	ld	a, (de)
+      0004ED 4F                    1697 	ld	c, a
+      0004EE 2B                    1698 	dec	hl
+      0004EF 2B                    1699 	dec	hl
+      0004F0 2B                    1700 	dec	hl
+      0004F1 2A                    1701 	ld	a, (hl+)
+      0004F2 5F                    1702 	ld	e, a
+      0004F3 56                    1703 	ld	d, (hl)
+      0004F4 1A                    1704 	ld	a, (de)
+      0004F5 47                    1705 	ld	b, a
+      0004F6 2B                    1706 	dec	hl
+      0004F7 2B                    1707 	dec	hl
+      0004F8 2B                    1708 	dec	hl
+      0004F9 2A                    1709 	ld	a, (hl+)
+      0004FA 5F                    1710 	ld	e, a
+      0004FB 56                    1711 	ld	d, (hl)
+      0004FC 79                    1712 	ld	a, c
+      0004FD F5                    1713 	push	af
+      0004FE 33                    1714 	inc	sp
+      0004FF C5                    1715 	push	bc
+      000500 33                    1716 	inc	sp
+      000501 D5                    1717 	push	de
+      000502 CDr2Fr01              1718 	call	_setPositionGameCharacter
+      000505 E8 04                 1719 	add	sp, #4
+      000507                       1720 00106$:
+                                   1721 ;game.c:63: if(joypad() & J_DOWN){
+      000507 CDr00r00              1722 	call	_joypad
+      00050A CB 5B                 1723 	bit	3, e
+      00050C 28 36                 1724 	jr	Z, 00108$
+                                   1725 ;game.c:65: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+      00050E F8 27                 1726 	ldhl	sp,#39
+      000510 2A                    1727 	ld	a, (hl+)
+      000511 5F                    1728 	ld	e, a
+      000512 56                    1729 	ld	d, (hl)
+      000513 1A                    1730 	ld	a, (de)
+      000514 4F                    1731 	ld	c, a
+      000515 D6 80                 1732 	sub	a, #0x80
+      000517 38 07                 1733 	jr	C, 00126$
+      000519 2B                    1734 	dec	hl
+      00051A 2A                    1735 	ld	a, (hl+)
+      00051B 66                    1736 	ld	h, (hl)
+      00051C 6F                    1737 	ld	l, a
+      00051D 71                    1738 	ld	(hl), c
+      00051E 18 08                 1739 	jr	00127$
+      000520                       1740 00126$:
+      000520 0C                    1741 	inc	c
+      000521 0C                    1742 	inc	c
+      000522 F8 27                 1743 	ldhl	sp,	#39
+      000524 2A                    1744 	ld	a, (hl+)
+      000525 66                    1745 	ld	h, (hl)
+      000526 6F                    1746 	ld	l, a
+      000527 71                    1747 	ld	(hl), c
+      000528                       1748 00127$:
+                                   1749 ;game.c:66: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+      000528 F8 27                 1750 	ldhl	sp,#39
+      00052A 2A                    1751 	ld	a, (hl+)
+      00052B 5F                    1752 	ld	e, a
+      00052C 56                    1753 	ld	d, (hl)
+      00052D 1A                    1754 	ld	a, (de)
+      00052E 47                    1755 	ld	b, a
+      00052F 2B                    1756 	dec	hl
+      000530 2B                    1757 	dec	hl
+      000531 2B                    1758 	dec	hl
+      000532 2A                    1759 	ld	a, (hl+)
+      000533 5F                    1760 	ld	e, a
+      000534 56                    1761 	ld	d, (hl)
+      000535 1A                    1762 	ld	a, (de)
+      000536 4F                    1763 	ld	c, a
+      000537 2B                    1764 	dec	hl
+      000538 2B                    1765 	dec	hl
+      000539 2B                    1766 	dec	hl
+      00053A 2A                    1767 	ld	a, (hl+)
+      00053B 5F                    1768 	ld	e, a
+      00053C 56                    1769 	ld	d, (hl)
+      00053D C5                    1770 	push	bc
+      00053E D5                    1771 	push	de
+      00053F CDr2Fr01              1772 	call	_setPositionGameCharacter
+      000542 E8 04                 1773 	add	sp, #4
+      000544                       1774 00108$:
+                                   1775 ;game.c:69: if(joypad() & J_A){
+      000544 CDr00r00              1776 	call	_joypad
+                                   1777 ;game.c:96: if(joypad() & J_SELECT){
+      000547 CDr00r00              1778 	call	_joypad
+                                   1779 ;game.c:103: if(joypad() & J_START){
+      00054A CDr00r00              1780 	call	_joypad
+                                   1781 ;game.c:111: performantdelay(5);
+      00054D 3E 05                 1782 	ld	a, #0x05
+      00054F F5                    1783 	push	af
+      000550 33                    1784 	inc	sp
+      000551 CDr5Br05              1785 	call	_performantdelay
+      000554 33                    1786 	inc	sp
+      000555 C3rBFr03              1787 	jp	00116$
+                                   1788 ;game.c:115: }
+      000558 E8 2E                 1789 	add	sp, #46
+      00055A C9                    1790 	ret
+                                   1791 ;game.c:117: void performantdelay(UINT8 numloops){ // nova funcao delay
+                                   1792 ;	---------------------------------
+                                   1793 ; Function performantdelay
+                                   1794 ; ---------------------------------
+      00055B                       1795 _performantdelay::
+                                   1796 ;game.c:119: for(i = 0; i < numloops; i++){
+      00055B 0E 00                 1797 	ld	c, #0x00
+      00055D                       1798 00103$:
+      00055D 79                    1799 	ld	a, c
+      00055E F8 02                 1800 	ldhl	sp,	#2
+      000560 96                    1801 	sub	a, (hl)
+      000561 D0                    1802 	ret	NC
+                                   1803 ;game.c:120: wait_vbl_done();
+      000562 CDr00r00              1804 	call	_wait_vbl_done
+                                   1805 ;game.c:119: for(i = 0; i < numloops; i++){
+      000565 0C                    1806 	inc	c
+                                   1807 ;game.c:122: }
+      000566 18 F5                 1808 	jr	00103$
+                                   1809 	.area _CODE
+                                   1810 	.area _CABS (ABS)

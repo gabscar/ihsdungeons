@@ -1,0 +1,42 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 1.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+    _LCDC_REG                                                      ****** GX
+  1 _MiniBossOgro                                                  000090 GR
+  1 _ghost                                                         000050 GR
+    _joypad                                                        ****** GX
+  0 _main                                                          000319 GR
+  0 _performantdelay                                               00055B GR
+  1 _protagonista                                                  000000 GR
+  0 _setPositionGameCharacter                                      00012F GR
+  0 _setPositionGameCharacter2                                     0001BB GR
+    _set_sprite_data                                               ****** GX
+  0 _setupEnemy                                                    000000 GR
+  0 _setupHero                                                     000065 GR
+  0 _setupSubBoss                                                  0000CA GR
+    _shadow_OAM                                                    ****** GX
+  1 _spriteId                                                      000120 GR
+  1 _spritesize                                                    000121 GR
+    _wait_vbl_done                                                 ****** GX
+    _waitpad                                                       ****** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size    568   flags    0
+   1 _DATA                                      size    122   flags    0
+   2 _DABS                                      size      0   flags    8
+   3 _HOME                                      size      0   flags    0
+   4 _GSINIT                                    size    5AA   flags    0
+   5 _GSFINAL                                   size      0   flags    0
+   6 _CABS                                      size      0   flags    8
+
