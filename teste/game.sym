@@ -11,36 +11,38 @@ Symbol Table
     _SCY_REG                                                       ****** GX
   1 _astronauta                                                    0003E0 GR
   1 _backTiles                                                     000000 GR
+  0 _checarColisaoBala                                             0003B3 GR
+  0 _checarColisaoPersonagem                                       000222 GR
   1 _gameSprites                                                   000350 GR
-  1 _idBala                                                        0003EA GR
-  1 _idInimigo                                                     0003EB GR
+  1 _idBala                                                        0003EB GR
+  1 _idInimigo                                                     0003EC GR
     _joypad                                                        ****** GX
-  0 _main                                                          0008EC GR
-  0 _moveBala                                                      00083D GR
+  0 _main                                                          000687 GR
+  0 _moveBala                                                      0005C9 GR
   0 _moveInimigo1                                                  000167 GR
-  0 _moveInimigo2                                                  000749 GR
   0 _performantdelay                                               000000 GR
   0 _setPositionGameCharacter                                      00000D GR
     _set_bkg_data                                                  ****** GX
     _set_bkg_tiles                                                 ****** GX
     _set_sprite_data                                               ****** GX
   0 _setupAstronauta                                               000099 GR
-  0 _setupBala                                                     000805 GR
+  0 _setupBala                                                     000591 GR
   0 _setupInimigo                                                  0000E7 GR
     _shadow_OAM                                                    ****** GX
   1 _simpleMap                                                     000080 GR
-  1 _spriteBala                                                    0003EC GR
-  1 _spritesize                                                    0003E9 GR
+  1 _spriteBala                                                    0003ED GR
+  1 _spritesize                                                    0003EA GR
     _wait_vbl_done                                                 ****** GX
     _waitpad                                                       ****** GX
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
 Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size    C59   flags    0
-   1 _DATA                                      size    3ED   flags    0
+   0 _CODE                                      size    A5A   flags    0
+   1 _DATA                                      size    3EE   flags    0
    2 _DABS                                      size      0   flags    8
    3 _HOME                                      size      0   flags    0
    4 _GSINIT                                    size   1374   flags    0

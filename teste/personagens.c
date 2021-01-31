@@ -7,6 +7,7 @@ struct personagem {
 	UINT8 x;
 	UINT8 y;
 	UINT8 ativo;
+	UINT8 vida;
 	UINT8 width;
 	UINT8 height;
 };

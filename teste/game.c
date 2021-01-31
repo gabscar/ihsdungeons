@@ -80,6 +80,7 @@ void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
     if(enemy->ativo==1){
         if(enemy->y+enemy->height+3<=180){
             enemy->y=enemy->y+1;
+            /*
             (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
             (enemy->y==20)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
             (enemy->y==30)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
@@ -96,13 +97,7 @@ void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
             (enemy->y==90)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
             (enemy->y==95)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
             (enemy->y==100)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
-            // (enemy->y==20)?(enemy->x=astronaut->x) :( enemy->x=enemy->x);
-            // (enemy->y==30)?(enemy->x=astronaut->x) :( enemy->x=enemy->x);
-            // //(enemy->y==25)?(enemy->x=astronaut->x) :( enemy->x=enemy->x);
-            // (enemy->y==40)?(enemy->x=astronaut->x) :( enemy->x=enemy->x);
-            // //(enemy->y==35)?(enemy->x=astronaut->x) :( enemy->x=enemy->x);
-            // (enemy->y==50)?(enemy->x=astronaut->x) :( enemy->x=enemy->x);
-           
+            */
             setPositionGameCharacter(enemy,enemy->x,enemy->y);
         }else{
             enemy->ativo=0;
@@ -114,20 +109,18 @@ void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
 
 }
 
-void moveInimigo2(struct personagem* enemy){//uma das movimentações
-    if(enemy->ativo==1){
-        if(enemy->y+enemy->height+3<=144){
-            enemy->y=enemy->y+3;
-            setPositionGameCharacter(enemy,enemy->x,enemy->y);
-        }else{
-            enemy->ativo=0;
-            enemy->y=0;
-            enemy->x=160;
-            setPositionGameCharacter(enemy,enemy->x,enemy->y);
-        }
-    }
-
+UINT8 checarColisaoPersonagem(struct personagem* one,struct personagem* two){
+    
+    return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
 }
+
+UINT8 checarColisaoBala(struct personagem* one,struct bala* two){
+    
+    return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+}
+
+
+
 
 void setupBala(struct bala* bullet){
     bullet->spriteIds=idBala;
@@ -141,8 +134,9 @@ void setupBala(struct bala* bullet){
 
 void moveBala(struct bala* bullet){
     if(bullet->ativo==1){
-        if(bullet->y+bullet->height-15>=-10){
-            bullet->y=bullet->y-15;
+        if(bullet->y+bullet->height-5>=-10){
+            bullet->y=bullet->y-5;
+             performantdelay(1);
             move_sprite(bullet->spriteIds,bullet->x,bullet->y);
         }else{
             bullet->ativo=0;
@@ -156,6 +150,7 @@ void main(){
     set_bkg_data(0, 10, backTiles);
     set_bkg_tiles(0, 0, 20, 36, simpleMap);
     set_sprite_data(0, 9, gameSprites);
+
     
     //setup personagens
     struct bala projetil1;
@@ -173,18 +168,19 @@ void main(){
     setupInimigo(&inimigo1);
     struct personagem inimigo2;
     setupInimigo(&inimigo2);
-    
-    
+
     setupAstronauta();
     
+    UINT8 colisaoPersonagem=0;
     SHOW_BKG;
     SHOW_SPRITES;
     DISPLAY_ON;
     
     waitpad(J_START);
 
-    while(1){
+    while(colisaoPersonagem==0){
         scroll_bkg(0,1);
+        colisaoPersonagem=checarColisaoBala(&inimigo1,&projetil1);
         moveBala(&projetil1);
         moveBala(&projetil2);
         moveBala(&projetil3);
