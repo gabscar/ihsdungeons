@@ -1,0 +1,323 @@
+AREA .  .ABS.
+	RADIX HEX
+	BASE 0000
+	SIZE 0000
+	ATTRIB ABS OVR
+	GLOBALS
+		l__BASE	0000
+		l__HEAP	0000
+		l__BSEG	0000
+		l_.  .ABS.	0000
+		l__GSFINAL	0000
+		l__ISEG	0000
+		s_.  .ABS.	0000
+		s__HEADER	0000
+		l__XSEG	0000
+		.init	0000
+		l__OVERLAY	0000
+		l__LIT	0000
+		s__SFR	0000
+		l__GSINITTAIL	0001
+		l__GSINIT	0032
+		l__DATA	004A
+		l__BSS	0059
+		l__HOME	01AC
+		l__HEADER	01E1
+		s__CODE	0200
+		l__CODE	0235
+		s__HOME	0435
+		l__CODE_2	05B0
+		s__BASE	05E1
+		s__LIT	05E1
+		s__GSINIT	05E1
+		s__GSINITTAIL	0613
+		s__GSFINAL	0614
+		l__CODE_1	0671
+		s__CODE_1	4000
+		s__CODE_2	4000
+		.OAM	C000
+		s__DATA	C0A0
+		s__BSS	C0EA
+		s__HEAP	C143
+		s__BSEG	C143
+		s__ISEG	C143
+		s__XSEG	C143
+		s__OVERLAY	C143
+		.STACK	E000
+		.refresh_OAM	FF80
+		l__SFR	10000
+AREA _CODE
+	RADIX HEX
+	BASE 0200
+	SIZE 0235
+	ATTRIB REL CON
+	GLOBALS
+		_main	0200
+		gbt_get_pattern_ptr	0233
+		_gbt_play	0250
+		_gbt_pause	030B
+		_gbt_loop	0317
+		_gbt_stop	031E
+		_gbt_enable_channels	0329
+		_gbt_update	0330
+AREA _HEADER
+	RADIX HEX
+	BASE 0000
+	SIZE 01E1
+	ATTRIB ABS OVR
+	GLOBALS
+		_exit	01D2
+AREA _HOME
+	RADIX HEX
+	BASE 0435
+	SIZE 01AC
+	ATTRIB REL CON
+	GLOBALS
+		.set_mode	0435
+		.remove_VBL	0445
+		.remove_LCD	044B
+		.remove_TIM	0451
+		.remove_SIO	0457
+		.remove_JOY	045D
+		.add_VBL	0463
+		.add_LCD	0469
+		.add_TIM	046F
+		.add_SIO	0475
+		.add_JOY	047B
+		.remove_int	0481
+		.add_int	04A1
+		.wait_vbl_done	04BD
+		_wait_vbl_done	04BD
+		_display_off	04D4
+		.display_off	04D4
+		.serial_IO	04F5
+		_mode	0524
+		_get_mode	052D
+		_enable_interrupts	0532
+		_disable_interrupts	0534
+		_reset	0536
+		.reset	0536
+		_set_interrupts	053C
+		_remove_VBL	0547
+		_remove_LCD	0552
+		_remove_TIM	055D
+		_remove_SIO	0568
+		_remove_JOY	0573
+		_add_VBL	057E
+		_add_LCD	0589
+		_add_TIM	0594
+		_add_SIO	059F
+		_add_JOY	05AA
+		_clock	05B5
+		__printTStates	05BE
+		banked_call	05BF
+		banked_ret	05D8
+AREA _BASE
+	RADIX HEX
+	BASE 05E1
+	SIZE 0000
+	ATTRIB REL CON
+AREA _LIT
+	RADIX HEX
+	BASE 05E1
+	SIZE 0000
+	ATTRIB REL CON
+AREA _GSINIT
+	RADIX HEX
+	BASE 05E1
+	SIZE 0032
+	ATTRIB REL CON
+	GLOBALS
+		gsinit	05E1
+AREA _GSINITTAIL
+	RADIX HEX
+	BASE 0613
+	SIZE 0001
+	ATTRIB REL CON
+AREA _GSFINAL
+	RADIX HEX
+	BASE 0614
+	SIZE 0000
+	ATTRIB REL CON
+AREA _DATA
+	RADIX HEX
+	BASE C0A0
+	SIZE 004A
+	ATTRIB REL CON
+	GLOBALS
+		_song_Data	C0A0
+		gbt_playing	C0AA
+		gbt_song	C0AB
+		gbt_bank	C0AD
+		gbt_speed	C0AE
+		gbt_temp_play_data	C0AF
+		gbt_loop_enabled	C0BB
+		gbt_ticks_elapsed	C0BC
+		gbt_current_step	C0BD
+		gbt_current_pattern	C0BE
+		gbt_current_step_data_ptr	C0BF
+		gbt_channels_enabled	C0C1
+		gbt_pan	C0C2
+		gbt_vol	C0C6
+		gbt_instr	C0CA
+		gbt_freq	C0CE
+		gbt_channel3_loaded_instrument	C0D4
+		gbt_arpeggio_freq_index	C0D5
+		gbt_arpeggio_enabled	C0DE
+		gbt_arpeggio_tick	C0E1
+		gbt_cut_note_tick	C0E4
+		gbt_have_to_stop_next_step	C0E8
+		gbt_update_pattern_pointers	C0E9
+AREA _BSS
+	RADIX HEX
+	BASE C0EA
+	SIZE 0059
+	ATTRIB REL CON
+	GLOBALS
+		__cpu	C0EA
+		.mode	C0EB
+		__io_out	C0EC
+		__io_in	C0ED
+		__io_status	C0EE
+		.vbl_done	C0EF
+		__current_bank	C0F0
+		_sys_time	C0F1
+		.sys_time	C0F1
+		.int_0x40	C0F3
+		.int_0x48	C103
+		.int_0x50	C113
+		.int_0x58	C123
+		.int_0x60	C133
+AREA _HEAP
+	RADIX HEX
+	BASE C143
+	SIZE 0000
+	ATTRIB REL CON
+	GLOBALS
+		_malloc_heap_start	C143
+AREA _OVERLAY
+	RADIX HEX
+	BASE C143
+	SIZE 0000
+	ATTRIB REL CON
+AREA _ISEG
+	RADIX HEX
+	BASE C143
+	SIZE 0000
+	ATTRIB REL CON
+AREA _BSEG
+	RADIX HEX
+	BASE C143
+	SIZE 0000
+	ATTRIB REL CON
+AREA _XSEG
+	RADIX HEX
+	BASE C143
+	SIZE 0000
+	ATTRIB REL CON
+AREA _CODE_2
+	RADIX HEX
+	BASE 4000
+	SIZE 05B0
+	ATTRIB REL CON
+	GLOBALS
+		_song0	4000
+		_song1	4142
+		_song2	42C0
+		_song3	4439
+AREA _CODE_1
+	RADIX HEX
+	BASE 4000
+	SIZE 0671
+	ATTRIB REL CON
+	GLOBALS
+		gbt_channel_1_handle	412C
+		gbt_channel_2_handle	4283
+		gbt_channel_3_handle	43D6
+		gbt_channel_4_handle	4548
+		gbt_update_bank1	4638
+		gbt_update_effects_bank1	4654
+AREA _SFR
+	RADIX HEX
+	BASE 0000
+	SIZE 10000
+	ATTRIB ABS OVR
+	GLOBALS
+		_P1_REG	FF00
+		_SB_REG	FF01
+		_SC_REG	FF02
+		_DIV_REG	FF04
+		_TIMA_REG	FF05
+		_TMA_REG	FF06
+		_TAC_REG	FF07
+		_IF_REG	FF0F
+		_NR10_REG	FF10
+		_NR11_REG	FF11
+		_NR12_REG	FF12
+		_NR13_REG	FF13
+		_NR14_REG	FF14
+		_NR21_REG	FF16
+		_NR22_REG	FF17
+		_NR23_REG	FF18
+		_NR24_REG	FF19
+		_NR30_REG	FF1A
+		_NR31_REG	FF1B
+		_NR32_REG	FF1C
+		_NR33_REG	FF1D
+		_NR34_REG	FF1E
+		_NR41_REG	FF20
+		_NR42_REG	FF21
+		_NR43_REG	FF22
+		_NR44_REG	FF23
+		_NR50_REG	FF24
+		_NR51_REG	FF25
+		_NR52_REG	FF26
+		_LCDC_REG	FF40
+		_STAT_REG	FF41
+		_SCY_REG	FF42
+		_SCX_REG	FF43
+		_LY_REG	FF44
+		_LYC_REG	FF45
+		_DMA_REG	FF46
+		_BGP_REG	FF47
+		_OBP0_REG	FF48
+		_OBP1_REG	FF49
+		_WY_REG	FF4A
+		_WX_REG	FF4B
+		_KEY1_REG	FF4D
+		_VBK_REG	FF4F
+		_HDMA1_REG	FF51
+		_HDMA2_REG	FF52
+		_HDMA3_REG	FF53
+		_HDMA4_REG	FF54
+		_HDMA5_REG	FF55
+		_RP_REG	FF56
+		_BCPS_REG	FF68
+		_BCPD_REG	FF69
+		_OCPS_REG	FF6A
+		_OCPD_REG	FF6B
+		_SVBK_REG	FF70
+		_IE_REG	FFFF
+MODULES
+	FILE C:\gbdk\lib/small/asxxxx/gb/crt0.o
+		NAME Runtime
+	FILE main.o
+		NAME lcc202200
+	FILE output.o
+		NAME lcc199080
+	FILE gbt_player.o
+	FILE gbt_player_bank1.o
+LIBRARIES
+	LIBRARY C:\gbdk\lib/small/asxxxx/gb/gb.lib
+		MODULE sfr.o
+USERBASEDEF
+	_CODE=0x0200
+	_DATA=0xC0A0
+	_CODE_1=0x4000
+	_CODE_2=0x4000
+	_CODE_3=0x4000
+USERGLOBALDEF
+	.OAM=0xC000
+	.STACK=0xE000
+	.refresh_OAM=0xFF80
+	.init=0x0000
