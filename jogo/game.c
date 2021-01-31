@@ -3,44 +3,74 @@
 #include "../design/protagonista.c"
 #include "../design/ghost.c"
 #include "../design/MiniBossOgro.c"
+#include "../design/projetil.c"
+#include "../design/backTiles.c"
+#include "../design/simpleMap.c"
+#include "../design/score.c"
 #include "personagem.c"
 #include "movimentacao.c"
+#include "changeScore.c"
 
 //variaveis globais
 void performantdelay(UINT8 numloops);
 
-
-
-
-
-
 void main(){
+
     //setup game
+    set_bkg_data(0, 10, backTiles);
+    set_bkg_tiles(0, 0, 20, 36, simpleMap);
+
     set_sprite_data(0, 4, ghost);
     set_sprite_data(4, 4, protagonista);
     set_sprite_data(8, 9, MiniBossOgro);
+    set_sprite_data(17, 1, projetil);
+    set_sprite_data(18,16, score);
 
     //setup personagens
-    struct personagem inimigo1;
-    setupEnemy(&inimigo1,0,4);
-    setPositionGameCharacter(&inimigo1,100,100);
+    // struct personagem inimigo1;
+    // setupEnemy(&inimigo1,0,4);
+    // setPositionGameCharacter(&inimigo1,100,100);
 
     struct personagem protagonista;
     setupHero(&protagonista,4,8);
     setPositionGameCharacter(&protagonista,80,128);
 
-    struct subBoss miniboss1;
-    setupSubBoss(&miniboss1,8,17);
-    setPositionGameCharacter2(&miniboss1,40,80);
+    // struct subBoss miniboss1;
+    // setupSubBoss(&miniboss1,8,17);
+    // setPositionGameCharacter2(&miniboss1,40,80);
+    struct scorePoint pontuacao;
+    setupScore(&pontuacao,18,96,152);
+
+
+    struct bala projetil1;
+    struct bala projetil2;
+    struct bala projetil3;
+    struct bala projetil4;
+    struct bala projetil5;
+    setupBala(&projetil1,17);
+    setupBala(&projetil2,17);
+    setupBala(&projetil3,17);
+    setupBala(&projetil4,17);
+    setupBala(&projetil5,17);
+
+    //move_sprite(projetil.spriteIds,85,110);
 
     SHOW_BKG;
     SHOW_SPRITES;
+   
     DISPLAY_ON;
+
+
 
     waitpad(J_START);
 
     while(1){
-        
+        scroll_bkg(0,1);
+        moveBala(&projetil1);
+        moveBala(&projetil2);
+        moveBala(&projetil3);
+        moveBala(&projetil4);
+        moveBala(&projetil5);
         if(joypad() & J_LEFT){
             (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
             // (condição) ? (caso true) : (caso false)
@@ -67,7 +97,9 @@ void main(){
         }
         
         if(joypad() & J_A){
-            /*
+            
+            sumScore(&pontuacao,10);
+
             if( projetil1.ativo==0){
                 projetil1.x=protagonista.x+4;
                 projetil1.y=protagonista.y-2;
@@ -89,9 +121,7 @@ void main(){
                 projetil5.y=protagonista.y-2;
                 projetil5.ativo=1;
             }
-            */
             
-        
         }
         if(joypad() & J_SELECT){
             /*
@@ -101,6 +131,8 @@ void main(){
             */
         }
          if(joypad() & J_START){
+            
+           
             /*
             inimigo1.ativo=1;
             inimigo1.x=protagonista.x;
@@ -111,6 +143,7 @@ void main(){
         performantdelay(5);
        
     }
+   
     
 }
 

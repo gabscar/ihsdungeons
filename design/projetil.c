@@ -1,8 +1,8 @@
 /*
 
- MINIBOSSOGRO.H
+ PROJETIL.C
 
- Include File.
+ Tile Source File.
 
  Info:
   Form                 : All tiles as one unit.
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 8
+  Tiles                : 0 to 1
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -22,10 +22,13 @@
 
 */
 
-
-/* Bank of tiles. */
-#define TileLabelBank 0
 /* Start of tile array. */
-extern unsigned char TileLabel[];
+unsigned char projetil[] =
+{
+  0x40,0x40,0xA0,0xE0,0xE0,0xE0,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+};
 
-/* End of MINIBOSSOGRO.H */
+/* End of PROJETIL.C */

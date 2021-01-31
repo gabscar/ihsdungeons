@@ -1,6 +1,10 @@
 
 #include <gb/gb.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 UINT8 spriteId=0;
+UBYTE spritesizes = 8;
 //generical character structure: id, position, graphics
 struct personagem {
 	UBYTE spriteIds[4]; // all characters use 4 sprites
@@ -30,6 +34,13 @@ struct bala{
 	UINT8 width;
 	UINT8 height;
 };
+
+struct scorePoint {
+	UBYTE spriteIds[9];
+	UINT16 valor;
+    UBYTE spriteTiles[11];
+};
+
 
 void setupEnemy(struct personagem *enemy,UINT8 start,UINT8 end){
     enemy->x = 0;
@@ -75,3 +86,154 @@ void setupSubBoss(struct subBoss *miniBoss,UINT8 start,UINT8 end){
         spriteId++;
     }
 }
+
+void setupBala(struct bala* bullet,UINT8 spriteBala){
+    bullet->spriteIds=spriteId;
+    set_sprite_tile(spriteId, spriteBala);
+    spriteId++;
+    bullet->width=3;
+    bullet->height=3;
+    bullet->ativo=0;
+}
+
+
+void setupScore(struct scorePoint *score, UINT8 start,UINT8 x, UINT8 y){   
+        UINT8 i=0;
+        
+        score->valor=0;
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        start++; spriteId++; i++;
+
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        start++; spriteId++; i++;
+
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        start++; spriteId++; i++;
+
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        start++; spriteId++; i++;
+
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        start++; spriteId++; i++;
+
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        spriteId++; i++;
+
+        UINT8 aux=start;
+        for (UINT8 j = 0; j < 11; j++){
+           score->spriteTiles[j]=aux;
+           aux++;
+        }
+
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        spriteId++; i++;
+       
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        spriteId++; i++;start++;
+        
+        set_sprite_tile(spriteId, start);
+        score->spriteIds[i] = spriteId;
+        spriteId++; i++;
+
+        move_sprite(score->spriteIds[0], x, y);
+        move_sprite(score->spriteIds[1], x + spritesizes, y);
+        move_sprite(score->spriteIds[2], x + 2*spritesizes, y);
+        move_sprite(score->spriteIds[3], x + 3*spritesizes, y);
+        move_sprite(score->spriteIds[4], x + 4*spritesizes, y);
+        move_sprite(score->spriteIds[5], x + 5*spritesizes, y);
+        move_sprite(score->spriteIds[6], x + 6*spritesizes, y);
+        move_sprite(score->spriteIds[7], x + 7*spritesizes, y);
+        move_sprite(score->spriteIds[8], x + 8*spritesizes, y);
+    }
+   
+
+    void sumScore(struct scorePoint *score,UINT16 value){
+
+        score->valor=score->valor+value;
+        
+        UINT16 first= (score->valor) / 100;
+        UINT16 second= ((score->valor)-first*100)/10;
+        UINT16 third= (score->valor) - first*100 -second*10;
+        printf("%d",third);
+        if(first==9){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
+        }else if(first==8){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[9]);
+        }else if(first==7){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[8]);
+        }else if(first==6){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[7]);
+        }else if(first==5){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[6]);
+        }else if(first==4){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[5]);
+        }else if(first==3){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[4]);
+        }else if(first==2){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[3]);
+        }else if(first==1){
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[2]);
+        }else{
+            set_sprite_tile(score->spriteIds[5],score->spriteTiles[0]);
+        }
+
+        if(second==9){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
+        }else if(second==8){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[9]);
+        }else if(second==7){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[8]);
+        }else if(second==6){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[7]);
+        }else if(second==5){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[6]);
+        }else if(second==4){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[5]);
+        }else if(second==3){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[4]);
+        }else if(second==2){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[3]);
+        }else if(second==1){
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[2]);
+        }else{
+            set_sprite_tile(score->spriteIds[6],score->spriteTiles[0]);
+        }
+
+         if(third==9){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
+        }else if(third==8){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[9]);
+        }else if(third==7){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[8]);
+        }else if(third==6){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[7]);
+        }else if(third==5){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[6]);
+        }else if(third==4){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[5]);
+        }else if(third==3){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[4]);
+        }else if(third==2){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[3]);
+        }else if(third==1){
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[2]);
+        }else{
+            set_sprite_tile(score->spriteIds[7],score->spriteTiles[0]);
+        }
+        
+        
+      
+
+    }
+
+
+
+    

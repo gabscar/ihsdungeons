@@ -9,20 +9,33 @@ Symbol Table
     .__.H$L.                                                    =  000000 L
     _LCDC_REG                                                      ****** GX
   1 _MiniBossOgro                                                  000090 GR
+    _SCY_REG                                                       ****** GX
+    __divuint                                                      ****** GX
+  1 _backTiles                                                     000140 GR
   1 _ghost                                                         000050 GR
     _joypad                                                        ****** GX
-  0 _main                                                          000319 GR
-  0 _performantdelay                                               00055B GR
+  0 _main                                                          0011A7 GR
+  0 _moveBala                                                      0010F8 GR
+  0 _performantdelay                                               0015D9 GR
+  1 _projetil                                                      000120 GR
   1 _protagonista                                                  000000 GR
-  0 _setPositionGameCharacter                                      00012F GR
-  0 _setPositionGameCharacter2                                     0001BB GR
+  1 _score                                                         000490 GR
+  0 _setPositionGameCharacter                                      000F0E GR
+  0 _setPositionGameCharacter2                                     000F9A GR
+    _set_bkg_data                                                  ****** GX
+    _set_bkg_tiles                                                 ****** GX
     _set_sprite_data                                               ****** GX
+  0 _setupBala                                                     00012F GR
   0 _setupEnemy                                                    000000 GR
   0 _setupHero                                                     000065 GR
+  0 _setupScore                                                    000166 GR
   0 _setupSubBoss                                                  0000CA GR
     _shadow_OAM                                                    ****** GX
-  1 _spriteId                                                      000120 GR
-  1 _spritesize                                                    000121 GR
+  1 _simpleMap                                                     0001C0 GR
+  1 _spriteId                                                      000590 GR
+  1 _spritesize                                                    000592 GR
+  1 _spritesizes                                                   000591 GR
+  0 _sumScore                                                      000465 GR
     _wait_vbl_done                                                 ****** GX
     _waitpad                                                       ****** GX
 
@@ -32,11 +45,11 @@ Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size    568   flags    0
-   1 _DATA                                      size    122   flags    0
+   0 _CODE                                      size   15E6   flags    0
+   1 _DATA                                      size    593   flags    0
    2 _DABS                                      size      0   flags    8
    3 _HOME                                      size      0   flags    0
-   4 _GSINIT                                    size    5AA   flags    0
+   4 _GSINIT                                    size   1BDF   flags    0
    5 _GSFINAL                                   size      0   flags    0
    6 _CABS                                      size      0   flags    8
 
