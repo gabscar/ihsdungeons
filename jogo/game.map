@@ -71,9 +71,9 @@ Area                       Addr        Size        Decimal Bytes (Attributes)
      00000007  l__HEADER |    00000008  l__HEADER |    00000018  l__BSS   
      0000002C  l__HEADER |    00000033  l__HEADER |    0000006A  l__HOME  
      0000007E  l__HEADER |    0000014C  l__BASE   |    00000200  s__CODE  
-     00000593  l__DATA   |    00001721  l__CODE   |    00001921  s__HOME  
-     0000198B  s__BASE   |    00001AD7  s__CODE_0 |    00001AD7  s__GSINIT
-     00001AD7  s__LIT    |    00001BDF  l__GSINIT |    000036B6  s__GSFINA
+     00000593  l__DATA   |    00001896  l__CODE   |    00001A96  s__HOME  
+     00001B00  s__BASE   |    00001BDF  l__GSINIT |    00001C4C  s__CODE_0
+     00001C4C  s__GSINIT |    00001C4C  s__LIT    |    0000382B  s__GSFINA
      0000C000  _shadow_O |    0000C0A0  s__DATA   |    0000C633  s__BSS   
      0000C64B  s__HEAP   |    0000E000  .STACK    |    0000FF80  .refresh_
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
@@ -81,21 +81,21 @@ Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000200    00001721 =        5921. bytes (REL,CON)
+_CODE                  00000200    00001896 =        6294. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000200  _setupEne |    00000265  _setupHer |    000002CA  _setupSub
      0000032F  _setupBal |    00000366  _setupSco |    00000665  _sumScore
-     0000110E  _setPosit |    0000119A  _setPosit |    000012F8  _moveBala
-     000013A7  _main     |    000017D9  _performa |    000017E6  __divsuch
-     000017F5  __modsuch |    00001801  __divusch |    00001813  __modusch
-     00001823  __divscha |    00001831  __modscha |    0000183D  __divsint
-     00001850  __modsint |    00001861  __divucha |    0000186F  __moducha
-     0000187B  __divuint |    0000188E  __moduint |    0000189F  .div8    
-     0000189F  .mod8     |    000018A7  .div16    |    000018A7  .mod16   
-     000018DD  .divu8    |    000018DD  .modu8    |    000018E0  .divu16  
-     000018E0  .modu16  
+     0000127C  _setPosit |    00001308  _setPosit |    00001466  _moveBala
+     00001515  _main     |    0000194E  _performa |    0000195B  __divsuch
+     0000196A  __modsuch |    00001976  __divusch |    00001988  __modusch
+     00001998  __divscha |    000019A6  __modscha |    000019B2  __divsint
+     000019C5  __modsint |    000019D6  __divucha |    000019E4  __moducha
+     000019F0  __divuint |    00001A03  __moduint |    00001A14  .div8    
+     00001A14  .mod8     |    00001A1C  .div16    |    00001A1C  .mod16   
+     00001A52  .divu8    |    00001A52  .modu8    |    00001A55  .divu16  
+     00001A55  .modu16  
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
@@ -261,45 +261,45 @@ Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_HOME                  00001921    0000006A =         106. bytes (REL,CON)
+_HOME                  00001A96    0000006A =         106. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00001921  .remove_V |    00001924  .remove_i |    00001941  .add_VBL 
-     00001944  .add_int  |    0000194F  .wait_vbl |    0000194F  _wait_vbl
-     0000195E  .display_ |    0000195E  _display_ |    00001975  _remove_V
-     00001980  _add_VBL 
+     00001A96  .remove_V |    00001A99  .remove_i |    00001AB6  .add_VBL 
+     00001AB9  .add_int  |    00001AC4  .wait_vbl |    00001AC4  _wait_vbl
+     00001AD3  .display_ |    00001AD3  _display_ |    00001AEA  _remove_V
+     00001AF5  _add_VBL 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_BASE                  0000198B    0000014C =         332. bytes (REL,CON)
+_BASE                  00001B00    0000014C =         332. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     0000198B  .padup    |    0000198B  _waitpadu |    0000199B  .jpad    
-     0000199B  _joypad   |    000019C3  _waitpad  |    000019C6  .wait_pad
-     000019CD  _set_bkg_ |    000019CD  _set_win_ |    000019D5  _set_spri
-     00001A4B  .copy_vra |    00001A5A  _get_data |    00001A5A  _set_data
-     00001A6D  _set_bkg_ |    00001A81  .set_xy_w |    00001A8A  .set_xy_b
-     00001A99  .set_xy_t
+     00001B00  .padup    |    00001B00  _waitpadu |    00001B10  .jpad    
+     00001B10  _joypad   |    00001B38  _waitpad  |    00001B3B  .wait_pad
+     00001B42  _set_bkg_ |    00001B42  _set_win_ |    00001B4A  _set_spri
+     00001BC0  .copy_vra |    00001BCF  _get_data |    00001BCF  _set_data
+     00001BE2  _set_bkg_ |    00001BF6  .set_xy_w |    00001BFF  .set_xy_b
+     00001C0E  .set_xy_t
 ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_GSINIT                00001AD7    00001BDF =        7135. bytes (REL,CON)
+_GSINIT                00001C4C    00001BDF =        7135. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00001AD7  gsinit   
+     00001C4C  gsinit   
 ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_GSFINAL               000036B6    00000001 =           1. bytes (REL,CON)
+_GSFINAL               0000382B    00000001 =           1. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    

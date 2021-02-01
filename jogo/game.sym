@@ -14,14 +14,14 @@ Symbol Table
   1 _backTiles                                                     000140 GR
   1 _ghost                                                         000050 GR
     _joypad                                                        ****** GX
-  0 _main                                                          0011A7 GR
-  0 _moveBala                                                      0010F8 GR
-  0 _performantdelay                                               0015D9 GR
+  0 _main                                                          001315 GR
+  0 _moveBala                                                      001266 GR
+  0 _performantdelay                                               00174E GR
   1 _projetil                                                      000120 GR
   1 _protagonista                                                  000000 GR
   1 _score                                                         000490 GR
-  0 _setPositionGameCharacter                                      000F0E GR
-  0 _setPositionGameCharacter2                                     000F9A GR
+  0 _setPositionGameCharacter                                      00107C GR
+  0 _setPositionGameCharacter2                                     001108 GR
     _set_bkg_data                                                  ****** GX
     _set_bkg_tiles                                                 ****** GX
     _set_sprite_data                                               ****** GX
@@ -45,7 +45,7 @@ Hexadecimal [24-Bits]
 
 Area Table
 
-   0 _CODE                                      size   15E6   flags    0
+   0 _CODE                                      size   175B   flags    0
    1 _DATA                                      size    593   flags    0
    2 _DABS                                      size      0   flags    8
    3 _HOME                                      size      0   flags    0

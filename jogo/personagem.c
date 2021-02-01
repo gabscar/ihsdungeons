@@ -157,76 +157,102 @@ void setupScore(struct scorePoint *score, UINT8 start,UINT8 x, UINT8 y){
 
     void sumScore(struct scorePoint *score,UINT16 value){
 
-        score->valor=score->valor+value;
+        score->valor= score->valor+value ;
+       if(score->valor>9999){
+            score->valor=0;
+       }
+        UINT16 zero= (score->valor)/1000;
+        UINT16 first= (score->valor - zero*1000)/ 100;
+        UINT16 second= ((score->valor) - zero*1000 -first*100)/10;
+        UINT16 third= (score->valor) - zero*1000 - first*100 -second*10;
         
-        UINT16 first= (score->valor) / 100;
-        UINT16 second= ((score->valor)-first*100)/10;
-        UINT16 third= (score->valor) - first*100 -second*10;
-        printf("%d",third);
-        if(first==9){
+        if(zero==9){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
-        }else if(first==8){
+        }else if(zero==8){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[9]);
-        }else if(first==7){
+        }else if(zero==7){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[8]);
-        }else if(first==6){
+        }else if(zero==6){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[7]);
-        }else if(first==5){
+        }else if(zero==5){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[6]);
-        }else if(first==4){
+        }else if(zero==4){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[5]);
-        }else if(first==3){
+        }else if(zero==3){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[4]);
-        }else if(first==2){
+        }else if(zero==2){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[3]);
-        }else if(first==1){
+        }else if(zero==1){
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[2]);
         }else{
             set_sprite_tile(score->spriteIds[5],score->spriteTiles[0]);
         }
 
-        if(second==9){
+
+        if(first==9){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
-        }else if(second==8){
+        }else if(first==8){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[9]);
-        }else if(second==7){
+        }else if(first==7){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[8]);
-        }else if(second==6){
+        }else if(first==6){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[7]);
-        }else if(second==5){
+        }else if(first==5){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[6]);
-        }else if(second==4){
+        }else if(first==4){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[5]);
-        }else if(second==3){
+        }else if(first==3){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[4]);
-        }else if(second==2){
+        }else if(first==2){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[3]);
-        }else if(second==1){
+        }else if(first==1){
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[2]);
         }else{
             set_sprite_tile(score->spriteIds[6],score->spriteTiles[0]);
         }
 
-         if(third==9){
+        if(second==9){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
-        }else if(third==8){
+        }else if(second==8){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[9]);
-        }else if(third==7){
+        }else if(second==7){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[8]);
-        }else if(third==6){
+        }else if(second==6){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[7]);
-        }else if(third==5){
+        }else if(second==5){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[6]);
-        }else if(third==4){
+        }else if(second==4){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[5]);
-        }else if(third==3){
+        }else if(second==3){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[4]);
-        }else if(third==2){
+        }else if(second==2){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[3]);
-        }else if(third==1){
+        }else if(second==1){
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[2]);
         }else{
             set_sprite_tile(score->spriteIds[7],score->spriteTiles[0]);
+        }
+
+         if(third==9){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[10]);
+        }else if(third==8){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[9]);
+        }else if(third==7){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[8]);
+        }else if(third==6){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[7]);
+        }else if(third==5){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[6]);
+        }else if(third==4){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[5]);
+        }else if(third==3){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[4]);
+        }else if(third==2){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[3]);
+        }else if(third==1){
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[2]);
+        }else{
+            set_sprite_tile(score->spriteIds[8],score->spriteTiles[0]);
         }
         
         

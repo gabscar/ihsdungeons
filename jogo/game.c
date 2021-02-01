@@ -98,7 +98,7 @@ void main(){
         
         if(joypad() & J_A){
             
-            sumScore(&pontuacao,10);
+           
 
             if( projetil1.ativo==0){
                 projetil1.x=protagonista.x+4;
@@ -122,6 +122,9 @@ void main(){
                 projetil5.ativo=1;
             }
             
+        }
+        if(joypad() & J_B){
+           sumScore(&pontuacao,1111);
         }
         if(joypad() & J_SELECT){
             /*
