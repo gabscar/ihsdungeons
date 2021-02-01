@@ -25,6 +25,16 @@ void setPositionGameCharacter2(struct subBoss* character, UINT8 x, UINT8 y){ //d
     move_sprite(character->spriteIds[8], x + 2*spritesize, y + 2*spritesize);
 }
 
+void moveOutMinnion(struct personagem* enemy){
+    enemy->ativo=0;
+    setPositionGameCharacter(enemy,160, 0);
+}
+
+void moveOutBullet(struct bala* bullet){
+    bullet->ativo=0;
+    move_sprite(bullet->spriteIds,150,0);
+}
+
 void moveBala(struct bala* bullet){
     if(bullet->ativo==1){
         if(bullet->y+bullet->height-5>=-10){
@@ -32,8 +42,7 @@ void moveBala(struct bala* bullet){
             //performantdelay(1);
             move_sprite(bullet->spriteIds,bullet->x,bullet->y);
         }else{
-            bullet->ativo=0;
-            move_sprite(bullet->spriteIds,150,0);
+            moveOutBullet(bullet);
         }
     }
 }
@@ -71,6 +80,3 @@ void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
 
 }
 
-void moveOutEnemy(struct personagem* enemy){
-    setPositionGameCharacter(enemy,160, 0);
-}
