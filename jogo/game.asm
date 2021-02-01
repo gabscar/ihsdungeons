@@ -9,6 +9,11 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
+	.globl _hitMinnion
+	.globl _checarColisaoBala
+	.globl _checarColisaoPersonagem
+	.globl _moveOutEnemy
+	.globl _moveInimigo1
 	.globl _moveBala
 	.globl _setPositionGameCharacter2
 	.globl _setPositionGameCharacter
@@ -2928,10 +2933,10 @@ _spritesize::
 	ld	(hl), #0x00
 	ld	hl, #(_score + 0x00ff)
 	ld	(hl), #0xff
-;personagem.c:6: UINT8 spriteId=0;
+;personagem.c:5: UINT8 spriteId=0;
 	ld	hl, #_spriteId
 	ld	(hl), #0x00
-;personagem.c:7: UBYTE spritesizes = 8;
+;personagem.c:6: UBYTE spritesizes = 8;
 	ld	hl, #_spritesizes
 	ld	(hl), #0x08
 ;movimentacao.c:5: UBYTE spritesize = 8;
@@ -2946,13 +2951,13 @@ _spritesize::
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;personagem.c:45: void setupEnemy(struct personagem *enemy,UINT8 start,UINT8 end){
+;personagem.c:44: void setupEnemy(struct personagem *enemy,UINT8 start,UINT8 end){
 ;	---------------------------------
 ; Function setupEnemy
 ; ---------------------------------
 _setupEnemy::
 	add	sp, #-2
-;personagem.c:46: enemy->x = 0;
+;personagem.c:45: enemy->x = 0;
 	ldhl	sp,#4
 	ld	a, (hl+)
 	ld	c, a
@@ -2960,22 +2965,26 @@ _setupEnemy::
 	ld	hl, #0x0004
 	add	hl, bc
 	ld	(hl), #0x00
-;personagem.c:47: enemy->y = 0;
+;personagem.c:46: enemy->y = 0;
 	ld	hl, #0x0005
 	add	hl, bc
 	ld	(hl), #0x00
-;personagem.c:48: enemy->width = 16;
+;personagem.c:47: enemy->width = 16;
 	ld	hl, #0x0008
 	add	hl, bc
 	ld	(hl), #0x10
-;personagem.c:49: enemy->height = 16;
+;personagem.c:48: enemy->height = 16;
 	ld	hl, #0x0009
 	add	hl, bc
 	ld	(hl), #0x10
-;personagem.c:50: enemy->ativo = 0;
+;personagem.c:49: enemy->ativo = 0;
 	ld	hl, #0x0006
 	add	hl, bc
 	ld	(hl), #0x00
+;personagem.c:50: enemy->vida = 100;
+	ld	hl, #0x0007
+	add	hl, bc
+	ld	(hl), #0x64
 ;personagem.c:52: for(UINT8 i=start; i<end ; i++){
 	ldhl	sp,	#6
 	ld	a, (hl)
@@ -3926,37 +3935,52 @@ _sumScore::
 	push	de
 	ld	hl, #0x0009
 	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#13
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#12
+	ld	c, l
+	ld	b, h
+	ld	e, c
+	ld	d, b
+	ld	a, (de)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	inc	de
+	ld	a, (de)
+;c
 	ld	(hl-), a
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
-	ld	a, (de)
-	ld	c, a
-	inc	de
-	ld	a, (de)
-	ld	b, a
 	ldhl	sp,	#17
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
-	add	hl, bc
-	ld	c, l
-	ld	b, h
-	ldhl	sp,	#11
-	ld	a, (hl+)
-	ld	h, (hl)
-	ld	l, a
-	ld	a, c
+	add	hl, de
+	ld	e, l
+	ld	d, h
+	ld	l, c
+	ld	h, b
+	ld	a, e
 	ld	(hl+), a
-	ld	(hl), b
-;personagem.c:162: UINT16 zero= (score->valor)/1000;
+	ld	(hl), d
+;personagem.c:161: if(score->valor>9999){
+	ld	a, #0x0f
+	cp	a, e
+	ld	a, #0x27
+	sbc	a, d
+	jr	NC, 00102$
+;personagem.c:162: score->valor=0;
+	ld	l, c
+	ld	h, b
+	xor	a, a
+	ld	(hl+), a
+	ld	(hl), a
+00102$:
+;personagem.c:160: score->valor= score->valor+value ;
+	ld	l, c
+	ld	h, b
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+;personagem.c:164: UINT16 zero= (score->valor)/1000;
 	push	bc
 	ld	hl, #0x03e8
 	push	hl
@@ -3967,7 +3991,7 @@ _sumScore::
 	ldhl	sp,	#10
 	ld	a, e
 	ld	(hl+), a
-;personagem.c:163: UINT16 first= (score->valor - zero*1000)/ 100;
+;personagem.c:165: UINT16 first= (score->valor - zero*1000)/ 100;
 	ld	a, d
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -4005,7 +4029,7 @@ _sumScore::
 	ldhl	sp,	#2
 	ld	a, e
 	ld	(hl+), a
-;personagem.c:164: UINT16 second= ((score->valor) - zero*1000 -first*100)/10;
+;personagem.c:166: UINT16 second= ((score->valor) - zero*1000 -first*100)/10;
 	ld	a, d
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -4037,7 +4061,7 @@ _sumScore::
 	ldhl	sp,	#4
 	ld	a, e
 	ld	(hl+), a
-;personagem.c:165: UINT16 third= (score->valor) - zero*1000 - first*100 -second*10;
+;personagem.c:167: UINT16 third= (score->valor) - zero*1000 - first*100 -second*10;
 	ld	a, d
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -4059,7 +4083,7 @@ _sumScore::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-;personagem.c:168: set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
+;personagem.c:170: set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
 ;c
 	pop	de
 	push	de
@@ -4069,15 +4093,15 @@ _sumScore::
 	ld	b, h
 	ld	a, (bc)
 	ldhl	sp,	#12
-;personagem.c:167: if(zero==9){
+;personagem.c:169: if(zero==9){
 	ld	(hl-), a
 	dec	hl
 	ld	a, (hl)
 	sub	a, #0x09
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00126$
-;personagem.c:168: set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
+	jr	NZ, 00128$
+;personagem.c:170: set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
 ;c
 	pop	de
 	push	de
@@ -4095,17 +4119,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:168: set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
-	jp	00127$
-00126$:
-;personagem.c:169: }else if(zero==8){
+;personagem.c:170: set_sprite_tile(score->spriteIds[5],score->spriteTiles[10]);
+	jp	00129$
+00128$:
+;personagem.c:171: }else if(zero==8){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	sub	a, #0x08
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00123$
-;personagem.c:170: set_sprite_tile(score->spriteIds[5],score->spriteTiles[9]);
+	jr	NZ, 00125$
+;personagem.c:172: set_sprite_tile(score->spriteIds[5],score->spriteTiles[9]);
 ;c
 	pop	de
 	push	de
@@ -4124,17 +4148,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:170: set_sprite_tile(score->spriteIds[5],score->spriteTiles[9]);
-	jp	00127$
-00123$:
-;personagem.c:171: }else if(zero==7){
+;personagem.c:172: set_sprite_tile(score->spriteIds[5],score->spriteTiles[9]);
+	jp	00129$
+00125$:
+;personagem.c:173: }else if(zero==7){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	sub	a, #0x07
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00120$
-;personagem.c:172: set_sprite_tile(score->spriteIds[5],score->spriteTiles[8]);
+	jr	NZ, 00122$
+;personagem.c:174: set_sprite_tile(score->spriteIds[5],score->spriteTiles[8]);
 ;c
 	pop	de
 	push	de
@@ -4153,17 +4177,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:172: set_sprite_tile(score->spriteIds[5],score->spriteTiles[8]);
-	jp	00127$
-00120$:
-;personagem.c:173: }else if(zero==6){
+;personagem.c:174: set_sprite_tile(score->spriteIds[5],score->spriteTiles[8]);
+	jp	00129$
+00122$:
+;personagem.c:175: }else if(zero==6){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	sub	a, #0x06
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00117$
-;personagem.c:174: set_sprite_tile(score->spriteIds[5],score->spriteTiles[7]);
+	jr	NZ, 00119$
+;personagem.c:176: set_sprite_tile(score->spriteIds[5],score->spriteTiles[7]);
 ;c
 	pop	de
 	push	de
@@ -4182,17 +4206,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:174: set_sprite_tile(score->spriteIds[5],score->spriteTiles[7]);
-	jp	00127$
-00117$:
-;personagem.c:175: }else if(zero==5){
+;personagem.c:176: set_sprite_tile(score->spriteIds[5],score->spriteTiles[7]);
+	jp	00129$
+00119$:
+;personagem.c:177: }else if(zero==5){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	sub	a, #0x05
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00114$
-;personagem.c:176: set_sprite_tile(score->spriteIds[5],score->spriteTiles[6]);
+	jr	NZ, 00116$
+;personagem.c:178: set_sprite_tile(score->spriteIds[5],score->spriteTiles[6]);
 ;c
 	pop	de
 	push	de
@@ -4211,17 +4235,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:176: set_sprite_tile(score->spriteIds[5],score->spriteTiles[6]);
-	jp	00127$
-00114$:
-;personagem.c:177: }else if(zero==4){
+;personagem.c:178: set_sprite_tile(score->spriteIds[5],score->spriteTiles[6]);
+	jp	00129$
+00116$:
+;personagem.c:179: }else if(zero==4){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	sub	a, #0x04
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00111$
-;personagem.c:178: set_sprite_tile(score->spriteIds[5],score->spriteTiles[5]);
+	jr	NZ, 00113$
+;personagem.c:180: set_sprite_tile(score->spriteIds[5],score->spriteTiles[5]);
 ;c
 	pop	de
 	push	de
@@ -4240,17 +4264,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:178: set_sprite_tile(score->spriteIds[5],score->spriteTiles[5]);
-	jp	00127$
-00111$:
-;personagem.c:179: }else if(zero==3){
+;personagem.c:180: set_sprite_tile(score->spriteIds[5],score->spriteTiles[5]);
+	jp	00129$
+00113$:
+;personagem.c:181: }else if(zero==3){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	sub	a, #0x03
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00108$
-;personagem.c:180: set_sprite_tile(score->spriteIds[5],score->spriteTiles[4]);
+	jr	NZ, 00110$
+;personagem.c:182: set_sprite_tile(score->spriteIds[5],score->spriteTiles[4]);
 ;c
 	pop	de
 	push	de
@@ -4269,17 +4293,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:180: set_sprite_tile(score->spriteIds[5],score->spriteTiles[4]);
-	jp	00127$
-00108$:
-;personagem.c:181: }else if(zero==2){
+;personagem.c:182: set_sprite_tile(score->spriteIds[5],score->spriteTiles[4]);
+	jp	00129$
+00110$:
+;personagem.c:183: }else if(zero==2){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	sub	a, #0x02
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00105$
-;personagem.c:182: set_sprite_tile(score->spriteIds[5],score->spriteTiles[3]);
+	jr	NZ, 00107$
+;personagem.c:184: set_sprite_tile(score->spriteIds[5],score->spriteTiles[3]);
 ;c
 	pop	de
 	push	de
@@ -4298,17 +4322,17 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:182: set_sprite_tile(score->spriteIds[5],score->spriteTiles[3]);
-	jr	00127$
-00105$:
-;personagem.c:183: }else if(zero==1){
+;personagem.c:184: set_sprite_tile(score->spriteIds[5],score->spriteTiles[3]);
+	jr	00129$
+00107$:
+;personagem.c:185: }else if(zero==1){
 	ldhl	sp,	#10
 	ld	a, (hl)
 	dec	a
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00102$
-;personagem.c:184: set_sprite_tile(score->spriteIds[5],score->spriteTiles[2]);
+	jr	NZ, 00104$
+;personagem.c:186: set_sprite_tile(score->spriteIds[5],score->spriteTiles[2]);
 ;c
 	pop	de
 	push	de
@@ -4327,10 +4351,10 @@ _sumScore::
 	inc	hl
 	inc	hl
 	ld	(hl), c
-;personagem.c:184: set_sprite_tile(score->spriteIds[5],score->spriteTiles[2]);
-	jr	00127$
-00102$:
-;personagem.c:186: set_sprite_tile(score->spriteIds[5],score->spriteTiles[0]);
+;personagem.c:186: set_sprite_tile(score->spriteIds[5],score->spriteTiles[2]);
+	jr	00129$
+00104$:
+;personagem.c:188: set_sprite_tile(score->spriteIds[5],score->spriteTiles[0]);
 ;c
 	pop	de
 	push	de
@@ -4388,9 +4412,9 @@ _sumScore::
 	ldhl	sp,	#8
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:186: set_sprite_tile(score->spriteIds[5],score->spriteTiles[0]);
-00127$:
-;personagem.c:191: set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
+;personagem.c:188: set_sprite_tile(score->spriteIds[5],score->spriteTiles[0]);
+00129$:
+;personagem.c:193: set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
 ;c
 	pop	de
 	push	de
@@ -4401,14 +4425,14 @@ _sumScore::
 	ld	a, (bc)
 	ldhl	sp,	#12
 	ld	(hl), a
-;personagem.c:190: if(first==9){
+;personagem.c:192: if(first==9){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, #0x09
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00153$
-;personagem.c:191: set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
+	jr	NZ, 00155$
+;personagem.c:193: set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
 ;c
 	pop	de
 	push	de
@@ -4427,13 +4451,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00452$:
+00459$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00452$
+	jr	NZ, 00459$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -4469,17 +4493,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:191: set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
-	jp	00154$
-00153$:
-;personagem.c:192: }else if(first==8){
+;personagem.c:193: set_sprite_tile(score->spriteIds[6],score->spriteTiles[10]);
+	jp	00156$
+00155$:
+;personagem.c:194: }else if(first==8){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, #0x08
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00150$
-;personagem.c:193: set_sprite_tile(score->spriteIds[6],score->spriteTiles[9]);
+	jr	NZ, 00152$
+;personagem.c:195: set_sprite_tile(score->spriteIds[6],score->spriteTiles[9]);
 ;c
 	pop	de
 	push	de
@@ -4506,13 +4530,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00455$:
+00462$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00455$
+	jr	NZ, 00462$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -4548,17 +4572,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:193: set_sprite_tile(score->spriteIds[6],score->spriteTiles[9]);
-	jp	00154$
-00150$:
-;personagem.c:194: }else if(first==7){
+;personagem.c:195: set_sprite_tile(score->spriteIds[6],score->spriteTiles[9]);
+	jp	00156$
+00152$:
+;personagem.c:196: }else if(first==7){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, #0x07
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00147$
-;personagem.c:195: set_sprite_tile(score->spriteIds[6],score->spriteTiles[8]);
+	jr	NZ, 00149$
+;personagem.c:197: set_sprite_tile(score->spriteIds[6],score->spriteTiles[8]);
 ;c
 	pop	de
 	push	de
@@ -4577,13 +4601,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00458$:
+00465$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00458$
+	jr	NZ, 00465$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -4619,17 +4643,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:195: set_sprite_tile(score->spriteIds[6],score->spriteTiles[8]);
-	jp	00154$
-00147$:
-;personagem.c:196: }else if(first==6){
+;personagem.c:197: set_sprite_tile(score->spriteIds[6],score->spriteTiles[8]);
+	jp	00156$
+00149$:
+;personagem.c:198: }else if(first==6){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, #0x06
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00144$
-;personagem.c:197: set_sprite_tile(score->spriteIds[6],score->spriteTiles[7]);
+	jr	NZ, 00146$
+;personagem.c:199: set_sprite_tile(score->spriteIds[6],score->spriteTiles[7]);
 ;c
 	pop	de
 	push	de
@@ -4648,13 +4672,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00461$:
+00468$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00461$
+	jr	NZ, 00468$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -4690,17 +4714,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:197: set_sprite_tile(score->spriteIds[6],score->spriteTiles[7]);
-	jp	00154$
-00144$:
-;personagem.c:198: }else if(first==5){
+;personagem.c:199: set_sprite_tile(score->spriteIds[6],score->spriteTiles[7]);
+	jp	00156$
+00146$:
+;personagem.c:200: }else if(first==5){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, #0x05
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00141$
-;personagem.c:199: set_sprite_tile(score->spriteIds[6],score->spriteTiles[6]);
+	jr	NZ, 00143$
+;personagem.c:201: set_sprite_tile(score->spriteIds[6],score->spriteTiles[6]);
 ;c
 	pop	de
 	push	de
@@ -4719,13 +4743,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00464$:
+00471$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00464$
+	jr	NZ, 00471$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -4761,17 +4785,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:199: set_sprite_tile(score->spriteIds[6],score->spriteTiles[6]);
-	jp	00154$
-00141$:
-;personagem.c:200: }else if(first==4){
+;personagem.c:201: set_sprite_tile(score->spriteIds[6],score->spriteTiles[6]);
+	jp	00156$
+00143$:
+;personagem.c:202: }else if(first==4){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, #0x04
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00138$
-;personagem.c:201: set_sprite_tile(score->spriteIds[6],score->spriteTiles[5]);
+	jr	NZ, 00140$
+;personagem.c:203: set_sprite_tile(score->spriteIds[6],score->spriteTiles[5]);
 ;c
 	pop	de
 	push	de
@@ -4790,13 +4814,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00467$:
+00474$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00467$
+	jr	NZ, 00474$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -4832,17 +4856,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:201: set_sprite_tile(score->spriteIds[6],score->spriteTiles[5]);
-	jp	00154$
-00138$:
-;personagem.c:202: }else if(first==3){
+;personagem.c:203: set_sprite_tile(score->spriteIds[6],score->spriteTiles[5]);
+	jp	00156$
+00140$:
+;personagem.c:204: }else if(first==3){
 	ldhl	sp,	#2
 	ld	a, (hl)
 	sub	a, #0x03
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00135$
-;personagem.c:203: set_sprite_tile(score->spriteIds[6],score->spriteTiles[4]);
+	jr	NZ, 00137$
+;personagem.c:205: set_sprite_tile(score->spriteIds[6],score->spriteTiles[4]);
 ;c
 	pop	de
 	push	de
@@ -4861,214 +4885,8 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00470$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00470$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#4
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#3
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:203: set_sprite_tile(score->spriteIds[6],score->spriteTiles[4]);
-	jp	00154$
-00135$:
-;personagem.c:204: }else if(first==2){
-	ldhl	sp,	#2
-	ld	a, (hl)
-	sub	a, #0x02
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00132$
-;personagem.c:205: set_sprite_tile(score->spriteIds[6],score->spriteTiles[3]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000e
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00473$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00473$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#4
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#3
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:205: set_sprite_tile(score->spriteIds[6],score->spriteTiles[3]);
-	jp	00154$
-00132$:
-;personagem.c:206: }else if(first==1){
-	ldhl	sp,	#2
-	ld	a, (hl)
-	dec	a
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00129$
-;personagem.c:207: set_sprite_tile(score->spriteIds[6],score->spriteTiles[2]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000d
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00476$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00476$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#4
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#3
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:207: set_sprite_tile(score->spriteIds[6],score->spriteTiles[2]);
-	jr	00154$
-00129$:
-;personagem.c:209: set_sprite_tile(score->spriteIds[6],score->spriteTiles[0]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000b
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#8
-	ld	(hl), a
-	ldhl	sp,	#12
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ld	a, (hl-)
-	ld	(hl), a
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
 00477$:
-	ldhl	sp,	#11
+	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
@@ -5083,11 +4901,11 @@ _sumScore::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ldhl	sp,	#11
+	ldhl	sp,	#4
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#10
+	ldhl	sp,	#3
 ;c
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -5097,43 +4915,33 @@ _sumScore::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ldhl	sp,	#13
+	ldhl	sp,	#11
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#12
+	ldhl	sp,	#10
 	ld	(hl-), a
 	ld	a, (hl+)
 	ld	e, a
-	ld	d, (hl)
-	ldhl	sp,	#8
+	ld	a, (hl+)
+	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:209: set_sprite_tile(score->spriteIds[6],score->spriteTiles[0]);
-00154$:
-;personagem.c:213: set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x0007
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#12
-	ld	(hl), a
-;personagem.c:212: if(second==9){
-	ldhl	sp,	#4
+;personagem.c:205: set_sprite_tile(score->spriteIds[6],score->spriteTiles[4]);
+	jp	00156$
+00137$:
+;personagem.c:206: }else if(first==2){
+	ldhl	sp,	#2
 	ld	a, (hl)
-	sub	a, #0x09
+	sub	a, #0x02
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00180$
-;personagem.c:213: set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
+	jr	NZ, 00134$
+;personagem.c:207: set_sprite_tile(score->spriteIds[6],score->spriteTiles[3]);
 ;c
 	pop	de
 	push	de
-	ld	hl, #0x0015
+	ld	hl, #0x000e
 	add	hl, de
 	ld	c, l
 	ld	b, h
@@ -5164,11 +4972,11 @@ _sumScore::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ldhl	sp,	#6
+	ldhl	sp,	#4
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#5
+	ldhl	sp,	#3
 ;c
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -5190,39 +4998,31 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:213: set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
-	jp	00181$
-00180$:
-;personagem.c:214: }else if(second==8){
-	ldhl	sp,	#4
+;personagem.c:207: set_sprite_tile(score->spriteIds[6],score->spriteTiles[3]);
+	jp	00156$
+00134$:
+;personagem.c:208: }else if(first==1){
+	ldhl	sp,	#2
 	ld	a, (hl)
-	sub	a, #0x08
+	dec	a
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00177$
-;personagem.c:215: set_sprite_tile(score->spriteIds[7],score->spriteTiles[9]);
+	jr	NZ, 00131$
+;personagem.c:209: set_sprite_tile(score->spriteIds[6],score->spriteTiles[2]);
 ;c
 	pop	de
 	push	de
-	ld	hl, #0x0014
+	ld	hl, #0x000d
 	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#12
-	ld	(hl), a
-	pop	hl
-	ld	a, h
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
 	ldhl	sp,	#11
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
 	ld	(hl+), a
-	ld	a, (hl)
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
-	ld	(hl), a
+	ld	(hl), c
 	xor	a, a
 	inc	hl
 	ld	(hl), a
@@ -5243,82 +5043,11 @@ _sumScore::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ldhl	sp,	#6
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#5
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:215: set_sprite_tile(score->spriteIds[7],score->spriteTiles[9]);
-	jp	00181$
-00177$:
-;personagem.c:216: }else if(second==7){
 	ldhl	sp,	#4
-	ld	a, (hl)
-	sub	a, #0x07
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00174$
-;personagem.c:217: set_sprite_tile(score->spriteIds[7],score->spriteTiles[8]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x0013
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00486$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00486$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#6
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#5
+	ldhl	sp,	#3
 ;c
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -5340,436 +5069,10 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:217: set_sprite_tile(score->spriteIds[7],score->spriteTiles[8]);
-	jp	00181$
-00174$:
-;personagem.c:218: }else if(second==6){
-	ldhl	sp,	#4
-	ld	a, (hl)
-	sub	a, #0x06
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00171$
-;personagem.c:219: set_sprite_tile(score->spriteIds[7],score->spriteTiles[7]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x0012
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00489$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00489$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#6
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#5
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:219: set_sprite_tile(score->spriteIds[7],score->spriteTiles[7]);
-	jp	00181$
-00171$:
-;personagem.c:220: }else if(second==5){
-	ldhl	sp,	#4
-	ld	a, (hl)
-	sub	a, #0x05
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00168$
-;personagem.c:221: set_sprite_tile(score->spriteIds[7],score->spriteTiles[6]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x0011
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00492$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00492$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#6
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#5
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:221: set_sprite_tile(score->spriteIds[7],score->spriteTiles[6]);
-	jp	00181$
-00168$:
-;personagem.c:222: }else if(second==4){
-	ldhl	sp,	#4
-	ld	a, (hl)
-	sub	a, #0x04
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00165$
-;personagem.c:223: set_sprite_tile(score->spriteIds[7],score->spriteTiles[5]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x0010
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00495$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00495$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#6
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#5
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:223: set_sprite_tile(score->spriteIds[7],score->spriteTiles[5]);
-	jp	00181$
-00165$:
-;personagem.c:224: }else if(second==3){
-	ldhl	sp,	#4
-	ld	a, (hl)
-	sub	a, #0x03
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00162$
-;personagem.c:225: set_sprite_tile(score->spriteIds[7],score->spriteTiles[4]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000f
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00498$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00498$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#6
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#5
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:225: set_sprite_tile(score->spriteIds[7],score->spriteTiles[4]);
-	jp	00181$
-00162$:
-;personagem.c:226: }else if(second==2){
-	ldhl	sp,	#4
-	ld	a, (hl)
-	sub	a, #0x02
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00159$
-;personagem.c:227: set_sprite_tile(score->spriteIds[7],score->spriteTiles[3]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000e
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00501$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00501$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#6
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#5
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:227: set_sprite_tile(score->spriteIds[7],score->spriteTiles[3]);
-	jp	00181$
-00159$:
-;personagem.c:228: }else if(second==1){
-	ldhl	sp,	#4
-	ld	a, (hl)
-	dec	a
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00156$
-;personagem.c:229: set_sprite_tile(score->spriteIds[7],score->spriteTiles[2]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000d
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00504$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00504$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#6
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#5
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:229: set_sprite_tile(score->spriteIds[7],score->spriteTiles[2]);
-	jr	00181$
-00156$:
-;personagem.c:231: set_sprite_tile(score->spriteIds[7],score->spriteTiles[0]);
+;personagem.c:209: set_sprite_tile(score->spriteIds[6],score->spriteTiles[2]);
+	jr	00156$
+00131$:
+;personagem.c:211: set_sprite_tile(score->spriteIds[6],score->spriteTiles[0]);
 ;c
 	pop	de
 	push	de
@@ -5788,13 +5091,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00505$:
+00484$:
 	ldhl	sp,	#11
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00505$
+	jr	NZ, 00484$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -5830,31 +5133,536 @@ _sumScore::
 	ldhl	sp,	#8
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:231: set_sprite_tile(score->spriteIds[7],score->spriteTiles[0]);
-00181$:
-;personagem.c:235: set_sprite_tile(score->spriteIds[8],score->spriteTiles[10]);
+;personagem.c:211: set_sprite_tile(score->spriteIds[6],score->spriteTiles[0]);
+00156$:
+;personagem.c:215: set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
 ;c
 	pop	de
 	push	de
-	ld	hl, #0x0008
+	ld	hl, #0x0007
 	add	hl, de
 	ld	c, l
 	ld	b, h
 	ld	a, (bc)
 	ldhl	sp,	#12
 	ld	(hl), a
-;personagem.c:234: if(third==9){
-	ldhl	sp,	#6
+;personagem.c:214: if(second==9){
+	ldhl	sp,	#4
 	ld	a, (hl)
 	sub	a, #0x09
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00207$
-;personagem.c:235: set_sprite_tile(score->spriteIds[8],score->spriteTiles[10]);
+	jr	NZ, 00182$
+;personagem.c:215: set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
 ;c
 	pop	de
 	push	de
 	ld	hl, #0x0015
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00487$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00487$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:215: set_sprite_tile(score->spriteIds[7],score->spriteTiles[10]);
+	jp	00183$
+00182$:
+;personagem.c:216: }else if(second==8){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	sub	a, #0x08
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00179$
+;personagem.c:217: set_sprite_tile(score->spriteIds[7],score->spriteTiles[9]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0014
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#12
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#11
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ld	(hl+), a
+	ld	a, (hl)
+	ldhl	sp,	#9
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00490$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00490$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:217: set_sprite_tile(score->spriteIds[7],score->spriteTiles[9]);
+	jp	00183$
+00179$:
+;personagem.c:218: }else if(second==7){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	sub	a, #0x07
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00176$
+;personagem.c:219: set_sprite_tile(score->spriteIds[7],score->spriteTiles[8]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0013
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00493$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00493$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:219: set_sprite_tile(score->spriteIds[7],score->spriteTiles[8]);
+	jp	00183$
+00176$:
+;personagem.c:220: }else if(second==6){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	sub	a, #0x06
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00173$
+;personagem.c:221: set_sprite_tile(score->spriteIds[7],score->spriteTiles[7]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0012
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00496$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00496$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:221: set_sprite_tile(score->spriteIds[7],score->spriteTiles[7]);
+	jp	00183$
+00173$:
+;personagem.c:222: }else if(second==5){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	sub	a, #0x05
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00170$
+;personagem.c:223: set_sprite_tile(score->spriteIds[7],score->spriteTiles[6]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0011
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00499$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00499$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:223: set_sprite_tile(score->spriteIds[7],score->spriteTiles[6]);
+	jp	00183$
+00170$:
+;personagem.c:224: }else if(second==4){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	sub	a, #0x04
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00167$
+;personagem.c:225: set_sprite_tile(score->spriteIds[7],score->spriteTiles[5]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0010
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00502$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00502$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:225: set_sprite_tile(score->spriteIds[7],score->spriteTiles[5]);
+	jp	00183$
+00167$:
+;personagem.c:226: }else if(second==3){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	sub	a, #0x03
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00164$
+;personagem.c:227: set_sprite_tile(score->spriteIds[7],score->spriteTiles[4]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x000f
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00505$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00505$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:227: set_sprite_tile(score->spriteIds[7],score->spriteTiles[4]);
+	jp	00183$
+00164$:
+;personagem.c:228: }else if(second==2){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	sub	a, #0x02
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00161$
+;personagem.c:229: set_sprite_tile(score->spriteIds[7],score->spriteTiles[3]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x000e
 	add	hl, de
 	ld	c, l
 	ld	b, h
@@ -5885,6 +5693,222 @@ _sumScore::
 	add	hl, de
 	push	hl
 	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:229: set_sprite_tile(score->spriteIds[7],score->spriteTiles[3]);
+	jp	00183$
+00161$:
+;personagem.c:230: }else if(second==1){
+	ldhl	sp,	#4
+	ld	a, (hl)
+	dec	a
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00158$
+;personagem.c:231: set_sprite_tile(score->spriteIds[7],score->spriteTiles[2]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x000d
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00511$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00511$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:231: set_sprite_tile(score->spriteIds[7],score->spriteTiles[2]);
+	jr	00183$
+00158$:
+;personagem.c:233: set_sprite_tile(score->spriteIds[7],score->spriteTiles[0]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x000b
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#8
+	ld	(hl), a
+	ldhl	sp,	#12
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ld	a, (hl-)
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00512$:
+	ldhl	sp,	#11
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00512$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#13
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#12
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#8
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:233: set_sprite_tile(score->spriteIds[7],score->spriteTiles[0]);
+00183$:
+;personagem.c:237: set_sprite_tile(score->spriteIds[8],score->spriteTiles[10]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0008
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#12
+	ld	(hl), a
+;personagem.c:236: if(third==9){
+	ldhl	sp,	#6
+	ld	a, (hl)
+	sub	a, #0x09
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00209$
+;personagem.c:237: set_sprite_tile(score->spriteIds[8],score->spriteTiles[10]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0015
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00515$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00515$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
 	ldhl	sp,	#9
 	ld	(hl), a
 	pop	hl
@@ -5911,17 +5935,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:235: set_sprite_tile(score->spriteIds[8],score->spriteTiles[10]);
-	jp	00249$
-00207$:
-;personagem.c:236: }else if(third==8){
+;personagem.c:237: set_sprite_tile(score->spriteIds[8],score->spriteTiles[10]);
+	jp	00251$
+00209$:
+;personagem.c:238: }else if(third==8){
 	ldhl	sp,	#6
 	ld	a, (hl)
 	sub	a, #0x08
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00204$
-;personagem.c:237: set_sprite_tile(score->spriteIds[8],score->spriteTiles[9]);
+	jr	NZ, 00206$
+;personagem.c:239: set_sprite_tile(score->spriteIds[8],score->spriteTiles[9]);
 ;c
 	pop	de
 	push	de
@@ -5948,13 +5972,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00511$:
+00518$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00511$
+	jr	NZ, 00518$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -5990,17 +6014,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:237: set_sprite_tile(score->spriteIds[8],score->spriteTiles[9]);
-	jp	00249$
-00204$:
-;personagem.c:238: }else if(third==7){
+;personagem.c:239: set_sprite_tile(score->spriteIds[8],score->spriteTiles[9]);
+	jp	00251$
+00206$:
+;personagem.c:240: }else if(third==7){
 	ldhl	sp,	#6
 	ld	a, (hl)
 	sub	a, #0x07
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00201$
-;personagem.c:239: set_sprite_tile(score->spriteIds[8],score->spriteTiles[8]);
+	jr	NZ, 00203$
+;personagem.c:241: set_sprite_tile(score->spriteIds[8],score->spriteTiles[8]);
 ;c
 	pop	de
 	push	de
@@ -6019,13 +6043,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00514$:
+00521$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00514$
+	jr	NZ, 00521$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -6061,17 +6085,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:239: set_sprite_tile(score->spriteIds[8],score->spriteTiles[8]);
-	jp	00249$
-00201$:
-;personagem.c:240: }else if(third==6){
+;personagem.c:241: set_sprite_tile(score->spriteIds[8],score->spriteTiles[8]);
+	jp	00251$
+00203$:
+;personagem.c:242: }else if(third==6){
 	ldhl	sp,	#6
 	ld	a, (hl)
 	sub	a, #0x06
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00198$
-;personagem.c:241: set_sprite_tile(score->spriteIds[8],score->spriteTiles[7]);
+	jr	NZ, 00200$
+;personagem.c:243: set_sprite_tile(score->spriteIds[8],score->spriteTiles[7]);
 ;c
 	pop	de
 	push	de
@@ -6090,13 +6114,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00517$:
+00524$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00517$
+	jr	NZ, 00524$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -6132,17 +6156,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:241: set_sprite_tile(score->spriteIds[8],score->spriteTiles[7]);
-	jp	00249$
-00198$:
-;personagem.c:242: }else if(third==5){
+;personagem.c:243: set_sprite_tile(score->spriteIds[8],score->spriteTiles[7]);
+	jp	00251$
+00200$:
+;personagem.c:244: }else if(third==5){
 	ldhl	sp,	#6
 	ld	a, (hl)
 	sub	a, #0x05
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00195$
-;personagem.c:243: set_sprite_tile(score->spriteIds[8],score->spriteTiles[6]);
+	jr	NZ, 00197$
+;personagem.c:245: set_sprite_tile(score->spriteIds[8],score->spriteTiles[6]);
 ;c
 	pop	de
 	push	de
@@ -6161,13 +6185,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00520$:
+00527$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00520$
+	jr	NZ, 00527$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -6203,17 +6227,17 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:243: set_sprite_tile(score->spriteIds[8],score->spriteTiles[6]);
-	jp	00249$
-00195$:
-;personagem.c:244: }else if(third==4){
+;personagem.c:245: set_sprite_tile(score->spriteIds[8],score->spriteTiles[6]);
+	jp	00251$
+00197$:
+;personagem.c:246: }else if(third==4){
 	ldhl	sp,	#6
 	ld	a, (hl)
 	sub	a, #0x04
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00192$
-;personagem.c:245: set_sprite_tile(score->spriteIds[8],score->spriteTiles[5]);
+	jr	NZ, 00194$
+;personagem.c:247: set_sprite_tile(score->spriteIds[8],score->spriteTiles[5]);
 ;c
 	pop	de
 	push	de
@@ -6232,13 +6256,13 @@ _sumScore::
 	inc	hl
 	ld	(hl), a
 	ld	a, #0x02
-00523$:
+00530$:
 	ldhl	sp,	#9
 	sla	(hl)
 	inc	hl
 	rl	(hl)
 	dec	a
-	jr	NZ, 00523$
+	jr	NZ, 00530$
 ;c
 	dec	hl
 	ld	a, (hl+)
@@ -6274,227 +6298,21 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:245: set_sprite_tile(score->spriteIds[8],score->spriteTiles[5]);
-	jp	00249$
-00192$:
-;personagem.c:246: }else if(third==3){
+;personagem.c:247: set_sprite_tile(score->spriteIds[8],score->spriteTiles[5]);
+	jp	00251$
+00194$:
+;personagem.c:248: }else if(third==3){
 	ldhl	sp,	#6
 	ld	a, (hl)
 	sub	a, #0x03
 	inc	hl
 	or	a, (hl)
-	jr	NZ, 00189$
-;personagem.c:247: set_sprite_tile(score->spriteIds[8],score->spriteTiles[4]);
+	jr	NZ, 00191$
+;personagem.c:249: set_sprite_tile(score->spriteIds[8],score->spriteTiles[4]);
 ;c
 	pop	de
 	push	de
 	ld	hl, #0x000f
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00526$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00526$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#9
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#8
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:247: set_sprite_tile(score->spriteIds[8],score->spriteTiles[4]);
-	jp	00249$
-00189$:
-;personagem.c:248: }else if(third==2){
-	ldhl	sp,	#6
-	ld	a, (hl)
-	sub	a, #0x02
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00186$
-;personagem.c:249: set_sprite_tile(score->spriteIds[8],score->spriteTiles[3]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000e
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00529$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00529$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#9
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#8
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:249: set_sprite_tile(score->spriteIds[8],score->spriteTiles[3]);
-	jp	00249$
-00186$:
-;personagem.c:250: }else if(third==1){
-	ldhl	sp,	#6
-	ld	a, (hl)
-	dec	a
-	inc	hl
-	or	a, (hl)
-	jr	NZ, 00183$
-;personagem.c:251: set_sprite_tile(score->spriteIds[8],score->spriteTiles[2]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000d
-	add	hl, de
-	ld	c, l
-	ld	b, h
-	ld	a, (bc)
-	ldhl	sp,	#11
-	ld	(hl+), a
-	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
-	ldhl	sp,	#9
-	ld	(hl), c
-	xor	a, a
-	inc	hl
-	ld	(hl), a
-	ld	a, #0x02
-00532$:
-	ldhl	sp,	#9
-	sla	(hl)
-	inc	hl
-	rl	(hl)
-	dec	a
-	jr	NZ, 00532$
-;c
-	dec	hl
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #_shadow_OAM
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#9
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#8
-;c
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	hl, #0x0002
-	add	hl, de
-	push	hl
-	ld	a, l
-	ldhl	sp,	#11
-	ld	(hl), a
-	pop	hl
-	ld	a, h
-	ldhl	sp,	#10
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	e, a
-	ld	a, (hl+)
-	ld	d, a
-	ld	a, (hl)
-	ld	(de), a
-;personagem.c:251: set_sprite_tile(score->spriteIds[8],score->spriteTiles[2]);
-	jr	00249$
-00183$:
-;personagem.c:253: set_sprite_tile(score->spriteIds[8],score->spriteTiles[0]);
-;c
-	pop	de
-	push	de
-	ld	hl, #0x000b
 	add	hl, de
 	ld	c, l
 	ld	b, h
@@ -6551,9 +6369,215 @@ _sumScore::
 	ld	d, a
 	ld	a, (hl)
 	ld	(de), a
-;personagem.c:253: set_sprite_tile(score->spriteIds[8],score->spriteTiles[0]);
-00249$:
-;personagem.c:259: }
+;personagem.c:249: set_sprite_tile(score->spriteIds[8],score->spriteTiles[4]);
+	jp	00251$
+00191$:
+;personagem.c:250: }else if(third==2){
+	ldhl	sp,	#6
+	ld	a, (hl)
+	sub	a, #0x02
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00188$
+;personagem.c:251: set_sprite_tile(score->spriteIds[8],score->spriteTiles[3]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x000e
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00536$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00536$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#9
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#8
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:251: set_sprite_tile(score->spriteIds[8],score->spriteTiles[3]);
+	jp	00251$
+00188$:
+;personagem.c:252: }else if(third==1){
+	ldhl	sp,	#6
+	ld	a, (hl)
+	dec	a
+	inc	hl
+	or	a, (hl)
+	jr	NZ, 00185$
+;personagem.c:253: set_sprite_tile(score->spriteIds[8],score->spriteTiles[2]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x000d
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00539$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00539$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#9
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#8
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:253: set_sprite_tile(score->spriteIds[8],score->spriteTiles[2]);
+	jr	00251$
+00185$:
+;personagem.c:255: set_sprite_tile(score->spriteIds[8],score->spriteTiles[0]);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x000b
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#11
+	ld	(hl+), a
+	ld	c, (hl)
+;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+	ldhl	sp,	#9
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ld	a, #0x02
+00540$:
+	ldhl	sp,	#9
+	sla	(hl)
+	inc	hl
+	rl	(hl)
+	dec	a
+	jr	NZ, 00540$
+;c
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #_shadow_OAM
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#9
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#8
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0002
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl)
+	ld	(de), a
+;personagem.c:255: set_sprite_tile(score->spriteIds[8],score->spriteTiles[0]);
+00251$:
+;personagem.c:261: }
 	add	sp, #13
 	ret
 ;movimentacao.c:7: void setPositionGameCharacter(struct personagem* character, UINT8 x, UINT8 y){ //define uma posição no mapa
@@ -7148,13 +7172,2116 @@ _moveBala::
 ;movimentacao.c:39: }
 	add	sp, #9
 	ret
-;game.c:17: void main(){
+;movimentacao.c:41: void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
+;	---------------------------------
+; Function moveInimigo1
+; ---------------------------------
+_moveInimigo1::
+	add	sp, #-14
+;movimentacao.c:42: if(enemy->ativo==1){
+	ldhl	sp,	#16
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#0
+	ld	(hl+), a
+	ld	(hl), e
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0006
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#13
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#12
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	dec	a
+	jp	NZ,00106$
+;movimentacao.c:43: if(enemy->y+enemy->height+3<=180){
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0005
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#4
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#3
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,	#13
+	ld	(hl), a
+	ld	c, (hl)
+	ld	b, #0x00
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0009
+	add	hl, de
+	ld	e, l
+	ld	d, h
+	ld	a, (de)
+	ld	l, a
+	ld	h, #0x00
+	add	hl, bc
+	inc	hl
+	inc	hl
+	inc	hl
+	ld	b, l
+	ld	c, h
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0004
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#6
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#5
+	ld	(hl), a
+;movimentacao.c:43: if(enemy->y+enemy->height+3<=180){
+	ld	e, c
+	ld	d, #0x00
+	ld	a, #0xb4
+	cp	a, b
+	ld	a, #0x00
+	sbc	a, c
+	bit	7, e
+	jr	Z, 00328$
+	bit	7, d
+	jr	NZ, 00329$
+	cp	a, a
+	jr	00329$
+00328$:
+	bit	7, d
+	jr	Z, 00329$
+	scf
+00329$:
+	jp	C, 00102$
+;movimentacao.c:44: enemy->y=enemy->y+1;
+	ldhl	sp,	#13
+	ld	c, (hl)
+	inc	c
+	ldhl	sp,	#2
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ldhl	sp,#18
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+;c
+	ld	hl, #0x0004
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#8
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#7
+	ld	(hl-), a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,	#13
+	ld	(hl), a
+	ld	a, c
+	sub	a, #0x0a
+	jr	NZ, 00108$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00110$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00110$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00109$
+00108$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00109$:
+;movimentacao.c:47: (enemy->y==20)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#13
+	ld	(hl), a
+	pop	af
+;movimentacao.c:47: (enemy->y==20)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x14
+	jr	NZ, 00111$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#11
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	inc	hl
+	ld	a, c
+	ld	(hl+), a
+	ld	(hl), b
+	bit	7, b
+	jr	Z, 00113$
+	inc	bc
+	dec	hl
+	ld	a, c
+	ld	(hl+), a
+	ld	(hl), b
+00113$:
+	ldhl	sp,#12
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	sra	b
+	rr	c
+	dec	hl
+	dec	hl
+	ld	a, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00112$
+00111$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#11
+	ld	a, (hl)
+	ld	(de), a
+00112$:
+;movimentacao.c:48: (enemy->y==30)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:48: (enemy->y==30)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x1e
+	jr	NZ, 00114$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00116$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00116$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00115$
+00114$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00115$:
+;movimentacao.c:49: (enemy->y==40)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:49: (enemy->y==40)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x28
+	jr	NZ, 00117$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00119$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00119$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00118$
+00117$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00118$:
+;movimentacao.c:50: (enemy->y==45)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:50: (enemy->y==45)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x2d
+	jr	NZ, 00120$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00122$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00122$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00121$
+00120$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00121$:
+;movimentacao.c:51: (enemy->y==50)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:51: (enemy->y==50)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x32
+	jr	NZ, 00123$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00125$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00125$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00124$
+00123$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00124$:
+;movimentacao.c:52: (enemy->y==55)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:52: (enemy->y==55)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x37
+	jr	NZ, 00126$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00128$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00128$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00127$
+00126$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00127$:
+;movimentacao.c:53: (enemy->y==60)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:53: (enemy->y==60)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x3c
+	jr	NZ, 00129$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00131$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00131$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00130$
+00129$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00130$:
+;movimentacao.c:54: (enemy->y==65)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:54: (enemy->y==65)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x41
+	jr	NZ, 00132$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00134$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00134$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00133$
+00132$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00133$:
+;movimentacao.c:55: (enemy->y==70)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:55: (enemy->y==70)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x46
+	jr	NZ, 00135$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00137$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00137$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00136$
+00135$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00136$:
+;movimentacao.c:56: (enemy->y==75)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:56: (enemy->y==75)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x4b
+	jr	NZ, 00138$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00140$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00140$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00139$
+00138$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00139$:
+;movimentacao.c:57: (enemy->y==80)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:57: (enemy->y==80)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x50
+	jr	NZ, 00141$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00143$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00143$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00142$
+00141$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00142$:
+;movimentacao.c:58: (enemy->y==85)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:58: (enemy->y==85)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x55
+	jr	NZ, 00144$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00146$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00146$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00145$
+00144$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00145$:
+;movimentacao.c:59: (enemy->y==90)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:59: (enemy->y==90)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x5a
+	jr	NZ, 00147$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00149$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00149$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00148$
+00147$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00148$:
+;movimentacao.c:60: (enemy->y==95)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ld	c, a
+	pop	af
+;movimentacao.c:60: (enemy->y==95)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x5f
+	jr	NZ, 00150$
+	inc	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	inc	hl
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl+), a
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl-), a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	a, e
+	sub	a, l
+	ld	e, a
+	ld	a, d
+	sbc	a, h
+	ldhl	sp,	#13
+	ld	(hl-), a
+	ld	(hl), e
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#10
+	ld	(hl+), a
+	ld	a, e
+	ld	(hl+), a
+	ld	a, (hl)
+	sub	a, #0x00
+	inc	hl
+	ld	a, (hl)
+	sbc	a, #0x00
+	ld	d, (hl)
+	ld	a, #0x00
+	bit	7,a
+	jr	Z, 00360$
+	bit	7, d
+	jr	NZ, 00361$
+	cp	a, a
+	jr	00361$
+00360$:
+	bit	7, d
+	jr	Z, 00361$
+	scf
+00361$:
+	jr	NC, 00152$
+;c
+	ldhl	sp,#12
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#12
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#11
+	ld	(hl), a
+00152$:
+	ldhl	sp,#10
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	sra	d
+	rr	e
+	ld	a, e
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00151$
+00150$:
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+00151$:
+;movimentacao.c:61: (enemy->y==100)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+;movimentacao.c:46: (enemy->y==10)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	inc	hl
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	push	af
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	af
+;movimentacao.c:61: (enemy->y==100)?(enemy->x=((astronaut->x-enemy->x)/2)+enemy->x) :( enemy->x=enemy->x);
+	sub	a, #0x64
+	jr	NZ, 00153$
+	ldhl	sp,#6
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ld	b, #0x00
+	ldhl	sp,	#13
+	ld	e, (hl)
+	ld	d, #0x00
+	ld	a, c
+	sub	a, e
+	ld	c, a
+	ld	a, b
+	sbc	a, d
+	ld	b, a
+	ld	l, c
+	ld	h, b
+	bit	7, b
+	jr	Z, 00155$
+	ld	l, c
+	ld	h, b
+	inc	hl
+00155$:
+	sra	h
+	rr	l
+	ld	a, l
+	ldhl	sp,	#13
+	ld	c, (hl)
+	add	a, c
+	ld	c, a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+	jr	00154$
+00153$:
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#13
+	ld	a, (hl)
+	ld	(de), a
+00154$:
+;movimentacao.c:63: setPositionGameCharacter(enemy,enemy->x,enemy->y);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	b, a
+	inc	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	push	bc
+	inc	sp
+	push	af
+	inc	sp
+	pop	bc
+	pop	hl
+	push	hl
+	push	bc
+	push	hl
+	call	_setPositionGameCharacter
+	add	sp, #4
+	jr	00106$
+00102$:
+;movimentacao.c:65: enemy->ativo=0;
+	ldhl	sp,	#11
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), #0x00
+;movimentacao.c:66: enemy->y=0;
+	pop	bc
+	pop	hl
+	push	hl
+	push	bc
+	ld	(hl), #0x00
+;movimentacao.c:67: enemy->x=170;
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), #0xaa
+;movimentacao.c:68: setPositionGameCharacter(enemy,enemy->x,enemy->y);
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	b, a
+	inc	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	push	bc
+	inc	sp
+	push	af
+	inc	sp
+	pop	bc
+	pop	hl
+	push	hl
+	push	bc
+	push	hl
+	call	_setPositionGameCharacter
+	add	sp, #4
+00106$:
+;movimentacao.c:72: }
+	add	sp, #14
+	ret
+;movimentacao.c:74: void moveOutEnemy(struct personagem* enemy){
+;	---------------------------------
+; Function moveOutEnemy
+; ---------------------------------
+_moveOutEnemy::
+;movimentacao.c:75: setPositionGameCharacter(enemy,160, 0);
+	xor	a, a
+	ld	d,a
+	ld	e,#0xa0
+	push	de
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	push	hl
+	call	_setPositionGameCharacter
+	add	sp, #4
+;movimentacao.c:76: }
+	ret
+;colisoes.c:4: UINT8 checarColisaoPersonagem(struct personagem* one,struct personagem* two){
+;	---------------------------------
+; Function checarColisaoPersonagem
+; ---------------------------------
+_checarColisaoPersonagem::
+	add	sp, #-16
+;colisoes.c:6: return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+	ldhl	sp,	#18
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#2
+	ld	(hl+), a
+;c
+	ld	a, e
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0004
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#4
+	ld	(hl), a
+	ldhl	sp,	#20
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#0
+	ld	(hl+), a
+	ld	(hl), e
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0004
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#5
+	ld	(hl), a
+	ld	a, (hl+)
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ldhl	sp,	#4
+	ld	a, (hl)
+	ldhl	sp,	#8
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+;c
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0005
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#12
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#11
+	ld	(hl), a
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0005
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#14
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#13
+	ld	(hl), a
+	ldhl	sp,	#4
+	ld	a, (hl+)
+	sub	a, (hl)
+	jr	C, 00108$
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0008
+	add	hl, de
+	ld	c, (hl)
+	ld	b, #0x00
+	ldhl	sp,	#6
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	add	hl, bc
+	ld	c, l
+	ld	b, h
+	ldhl	sp,	#8
+	ld	a, c
+	sub	a, (hl)
+	inc	hl
+	ld	a, b
+	sbc	a, (hl)
+	ld	a, b
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00152$
+	bit	7, d
+	jr	NZ, 00153$
+	cp	a, a
+	jr	00153$
+00152$:
+	bit	7, d
+	jr	Z, 00153$
+	scf
+00153$:
+	jr	C, 00108$
+	ldhl	sp,#10
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,	#15
+	ld	(hl-), a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	inc	hl
+	inc	hl
+	ld	a, (hl)
+	sub	a, c
+	jr	C, 00108$
+	ld	b, #0x00
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0009
+	add	hl, de
+	ld	e, l
+	ld	d, h
+	ld	a, (de)
+	ld	l, a
+	ld	h, #0x00
+	add	hl, bc
+	ld	c, l
+	ld	b, h
+	ldhl	sp,	#15
+	ld	a, (hl-)
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl-), a
+	ld	a, c
+	sub	a, (hl)
+	inc	hl
+	ld	a, b
+	sbc	a, (hl)
+	ld	a, b
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00154$
+	bit	7, d
+	jr	NZ, 00155$
+	cp	a, a
+	jr	00155$
+00154$:
+	bit	7, d
+	jr	Z, 00155$
+	scf
+00155$:
+	jp	NC, 00104$
+00108$:
+	ldhl	sp,	#5
+	ld	a, (hl-)
+	sub	a, (hl)
+	jp	C, 00103$
+;c
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0008
+	add	hl, de
+	ld	c, (hl)
+	ld	b, #0x00
+	ldhl	sp,	#8
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	add	hl, bc
+	ld	c, l
+	ld	b, h
+	ldhl	sp,	#6
+	ld	a, c
+	sub	a, (hl)
+	inc	hl
+	ld	a, b
+	sbc	a, (hl)
+	ld	a, b
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00156$
+	bit	7, d
+	jr	NZ, 00157$
+	cp	a, a
+	jr	00157$
+00156$:
+	bit	7, d
+	jr	Z, 00157$
+	scf
+00157$:
+	jr	C, 00103$
+	ldhl	sp,#12
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	inc	hl
+	inc	hl
+	ld	(hl), a
+	ldhl	sp,#10
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	ldhl	sp,	#15
+	ld	a, (hl)
+	sub	a, c
+	jr	C, 00103$
+	ldhl	sp,	#11
+	ld	(hl), c
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+;c
+	ldhl	sp,#2
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0009
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#15
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#14
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	(hl), a
+	ld	a, (hl-)
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+;c
+	ld	(hl-), a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl+)
+	ld	d, a
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#11
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#10
+	ld	(hl), a
+	ldhl	sp,	#15
+	ld	a, (hl-)
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ldhl	sp,	#9
+	ld	e, l
+	ld	d, h
+	ldhl	sp,	#14
+	ld	a, (de)
+	sub	a, (hl)
+	inc	hl
+	inc	de
+	ld	a, (de)
+	sbc	a, (hl)
+	ld	a, (de)
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00158$
+	bit	7, d
+	jr	NZ, 00159$
+	cp	a, a
+	jr	00159$
+00158$:
+	bit	7, d
+	jr	Z, 00159$
+	scf
+00159$:
+	jr	NC, 00104$
+00103$:
+	xor	a, a
+	ldhl	sp,	#15
+	ld	(hl), a
+	jr	00105$
+00104$:
+	ldhl	sp,	#15
+	ld	(hl), #0x01
+00105$:
+	ldhl	sp,	#15
+	ld	e, (hl)
+;colisoes.c:7: }
+	add	sp, #16
+	ret
+;colisoes.c:9: UINT8 checarColisaoBala(struct personagem* one,struct bala* two ){
+;	---------------------------------
+; Function checarColisaoBala
+; ---------------------------------
+_checarColisaoBala::
+	add	sp, #-14
+;colisoes.c:11: return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+	ldhl	sp,	#16
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#0
+	ld	(hl+), a
+	ld	(hl), e
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0004
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ld	a, (bc)
+	ldhl	sp,	#2
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ldhl	sp,	#18
+	ld	a, (hl+)
+	ld	e, (hl)
+	ldhl	sp,	#4
+	ld	(hl+), a
+	ld	a, e
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	inc	hl
+	ld	(hl), a
+	rla
+	sbc	a, a
+	inc	hl
+	ld	(hl), a
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0005
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#10
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#9
+	ld	(hl), a
+;c
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	inc	hl
+	push	hl
+	ld	a, l
+	ldhl	sp,	#12
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#11
+	ld	(hl), a
+	ldhl	sp,	#2
+	ld	e, l
+	ld	d, h
+	ldhl	sp,	#6
+	ld	a, (de)
+	sub	a, (hl)
+	inc	hl
+	inc	de
+	ld	a, (de)
+	sbc	a, (hl)
+	ld	a, (de)
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00152$
+	bit	7, d
+	jr	NZ, 00153$
+	cp	a, a
+	jr	00153$
+00152$:
+	bit	7, d
+	jr	Z, 00153$
+	scf
+00153$:
+	jp	C, 00108$
+;c
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0004
+	add	hl, de
+	ld	c, (hl)
+	ld	b, #0x00
+	ldhl	sp,	#6
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	add	hl, bc
+	ld	c, l
+	ld	b, h
+	ldhl	sp,	#2
+	ld	a, c
+	sub	a, (hl)
+	inc	hl
+	ld	a, b
+	sbc	a, (hl)
+	ld	a, b
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00154$
+	bit	7, d
+	jr	NZ, 00155$
+	cp	a, a
+	jr	00155$
+00154$:
+	bit	7, d
+	jr	Z, 00155$
+	scf
+00155$:
+	jr	C, 00108$
+	ldhl	sp,#8
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ldhl	sp,	#12
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl-), a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	c, a
+	rla
+	sbc	a, a
+	ld	b, a
+	inc	hl
+	ld	a, (hl)
+	sub	a, c
+	inc	hl
+	ld	a, (hl)
+	sbc	a, b
+	ld	d, (hl)
+	ld	a, b
+	bit	7,a
+	jr	Z, 00156$
+	bit	7, d
+	jr	NZ, 00157$
+	cp	a, a
+	jr	00157$
+00156$:
+	bit	7, d
+	jr	Z, 00157$
+	scf
+00157$:
+	jr	C, 00108$
+;c
+	ldhl	sp,#4
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0005
+	add	hl, de
+	ld	e, l
+	ld	d, h
+	ld	a, (de)
+	ld	l, a
+	ld	h, #0x00
+	add	hl, bc
+	ld	c, l
+	ld	b, h
+	ldhl	sp,	#12
+	ld	a, c
+	sub	a, (hl)
+	inc	hl
+	ld	a, b
+	sbc	a, (hl)
+	ld	a, b
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00158$
+	bit	7, d
+	jr	NZ, 00159$
+	cp	a, a
+	jr	00159$
+00158$:
+	bit	7, d
+	jr	Z, 00159$
+	scf
+00159$:
+	jp	NC, 00104$
+00108$:
+	ldhl	sp,	#6
+	ld	e, l
+	ld	d, h
+	ldhl	sp,	#2
+	ld	a, (de)
+	sub	a, (hl)
+	inc	hl
+	inc	de
+	ld	a, (de)
+	sbc	a, (hl)
+	ld	a, (de)
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00160$
+	bit	7, d
+	jr	NZ, 00161$
+	cp	a, a
+	jr	00161$
+00160$:
+	bit	7, d
+	jr	Z, 00161$
+	scf
+00161$:
+	jp	C, 00103$
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0008
+	add	hl, de
+	ld	c, (hl)
+	ld	b, #0x00
+	ldhl	sp,	#2
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	add	hl, bc
+	ld	c, l
+	ld	b, h
+	ldhl	sp,	#6
+	ld	a, c
+	sub	a, (hl)
+	inc	hl
+	ld	a, b
+	sbc	a, (hl)
+	ld	a, b
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00162$
+	bit	7, d
+	jr	NZ, 00163$
+	cp	a, a
+	jr	00163$
+00162$:
+	bit	7, d
+	jr	Z, 00163$
+	scf
+00163$:
+	jp	C, 00103$
+	ldhl	sp,#10
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	inc	hl
+	ld	(hl), a
+	rla
+	sbc	a, a
+	inc	hl
+	ld	(hl), a
+	ldhl	sp,#8
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	dec	hl
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+	ld	(hl), a
+	ldhl	sp,	#12
+	ld	e, l
+	ld	d, h
+	ldhl	sp,	#8
+	ld	a, (de)
+	sub	a, (hl)
+	inc	hl
+	inc	de
+	ld	a, (de)
+	sbc	a, (hl)
+	ld	a, (de)
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00164$
+	bit	7, d
+	jr	NZ, 00165$
+	cp	a, a
+	jr	00165$
+00164$:
+	bit	7, d
+	jr	Z, 00165$
+	scf
+00165$:
+	jr	C, 00103$
+;c
+	pop	de
+	push	de
+	ld	hl, #0x0009
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#12
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#11
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	(hl), a
+	ld	a, (hl-)
+	ld	(hl), a
+	xor	a, a
+	inc	hl
+;c
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,	#8
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	add	hl, de
+	push	hl
+	ld	a, l
+	ldhl	sp,	#8
+	ld	(hl), a
+	pop	hl
+	ld	a, h
+	ldhl	sp,	#7
+	ld	(hl), a
+	ldhl	sp,	#6
+	ld	e, l
+	ld	d, h
+	ldhl	sp,	#12
+	ld	a, (de)
+	sub	a, (hl)
+	inc	hl
+	inc	de
+	ld	a, (de)
+	sbc	a, (hl)
+	ld	a, (de)
+	ld	d, a
+	bit	7, (hl)
+	jr	Z, 00166$
+	bit	7, d
+	jr	NZ, 00167$
+	cp	a, a
+	jr	00167$
+00166$:
+	bit	7, d
+	jr	Z, 00167$
+	scf
+00167$:
+	jr	NC, 00104$
+00103$:
+	xor	a, a
+	ldhl	sp,	#13
+	ld	(hl), a
+	jr	00105$
+00104$:
+	ldhl	sp,	#13
+	ld	(hl), #0x01
+00105$:
+	ldhl	sp,	#13
+	ld	e, (hl)
+;colisoes.c:12: }
+	add	sp, #14
+	ret
+;gameplay.c:3: void hitMinnion(struct personagem* enemy1,struct bala* bullet,UINT8 hit){
+;	---------------------------------
+; Function hitMinnion
+; ---------------------------------
+_hitMinnion::
+	add	sp, #-3
+;gameplay.c:5: if(checarColisaoBala(enemy1,bullet)){
+	ldhl	sp,	#7
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	push	hl
+	ldhl	sp,	#7
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	push	hl
+	call	_checarColisaoBala
+	add	sp, #4
+	ld	a, e
+	or	a, a
+	jr	Z, 00105$
+;gameplay.c:6: enemy1->vida=enemy1->vida-hit;
+	ldhl	sp,#5
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	hl, #0x0007
+	add	hl, bc
+	ld	e, l
+	ld	d, h
+	ld	a, (de)
+	ldhl	sp,	#0
+	ld	(hl), a
+	ldhl	sp,	#9
+	ld	a, (hl)
+	ldhl	sp,	#2
+	ld	(hl-), a
+	dec	hl
+	ld	a, (hl+)
+	inc	hl
+	sub	a, (hl)
+	ld	(hl), a
+	ld	(de), a
+;gameplay.c:7: if(enemy1->vida<=0){
+	ld	e, (hl)
+	ld	d, #0x00
+	xor	a, a
+	sub	a, (hl)
+	bit	7, e
+	jr	Z, 00117$
+	bit	7, d
+	jr	NZ, 00118$
+	cp	a, a
+	jr	00118$
+00117$:
+	bit	7, d
+	jr	Z, 00118$
+	scf
+00118$:
+	jr	C, 00105$
+;gameplay.c:8: enemy1->ativo=0;
+	ld	hl, #0x0006
+	add	hl, bc
+	ld	(hl), #0x00
+;gameplay.c:9: moveOutEnemy(enemy1);
+	push	bc
+	call	_moveOutEnemy
+	add	sp, #2
+00105$:
+;gameplay.c:14: }
+	add	sp, #3
+	ret
+;game.c:22: void main(){
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
-	add	sp, #-81
-;game.c:20: set_bkg_data(0, 10, backTiles);
+	add	sp, #-94
+;game.c:25: set_bkg_data(0, 10, backTiles);
 	ld	hl, #_backTiles
 	push	hl
 	ld	a, #0x0a
@@ -7165,7 +9292,7 @@ _main::
 	inc	sp
 	call	_set_bkg_data
 	add	sp, #4
-;game.c:21: set_bkg_tiles(0, 0, 20, 36, simpleMap);
+;game.c:26: set_bkg_tiles(0, 0, 20, 36, simpleMap);
 	ld	hl, #_simpleMap
 	push	hl
 	ld	de, #0x2414
@@ -7178,7 +9305,7 @@ _main::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;game.c:23: set_sprite_data(0, 4, ghost);
+;game.c:28: set_sprite_data(0, 4, ghost);
 	ld	hl, #_ghost
 	push	hl
 	ld	a, #0x04
@@ -7189,39 +9316,59 @@ _main::
 	inc	sp
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:24: set_sprite_data(4, 4, protagonista);
+;game.c:29: set_sprite_data(4, 4, protagonista);
 	ld	hl, #_protagonista
 	push	hl
 	ld	de, #0x0404
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:25: set_sprite_data(8, 9, MiniBossOgro);
+;game.c:30: set_sprite_data(8, 9, MiniBossOgro);
 	ld	hl, #_MiniBossOgro
 	push	hl
 	ld	de, #0x0908
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:26: set_sprite_data(17, 1, projetil);
+;game.c:31: set_sprite_data(17, 1, projetil);
 	ld	hl, #_projetil
 	push	hl
 	ld	de, #0x0111
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:27: set_sprite_data(18,16, score);
+;game.c:32: set_sprite_data(18,16, score);
 	ld	hl, #_score
 	push	hl
 	ld	de, #0x1012
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:35: setupHero(&protagonista,4,8);
+;game.c:36: setupEnemy(&inimigo1,0,4);
 	ldhl	sp,	#0
 	ld	a, l
 	ld	d, h
-	ldhl	sp,	#62
+	ldhl	sp,	#72
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x04
+	push	af
+	inc	sp
+	xor	a, a
+	push	af
+	inc	sp
+	push	bc
+	call	_setupEnemy
+	add	sp, #4
+;game.c:40: setupHero(&protagonista,4,8);
+	ldhl	sp,	#10
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#74
 	ld	(hl+), a
 	ld	a, d
 	ld	(hl-), a
@@ -7233,8 +9380,8 @@ _main::
 	push	bc
 	call	_setupHero
 	add	sp, #4
-;game.c:36: setPositionGameCharacter(&protagonista,80,128);
-	ldhl	sp,#62
+;game.c:41: setPositionGameCharacter(&protagonista,80,128);
+	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -7243,11 +9390,11 @@ _main::
 	push	bc
 	call	_setPositionGameCharacter
 	add	sp, #4
-;game.c:42: setupScore(&pontuacao,18,96,152);
-	ldhl	sp,	#10
+;game.c:47: setupScore(&pontuacao,18,96,152);
+	ldhl	sp,	#20
 	ld	a, l
 	ld	d, h
-	ldhl	sp,	#64
+	ldhl	sp,	#76
 	ld	(hl+), a
 	ld	a, d
 	ld	(hl-), a
@@ -7262,28 +9409,79 @@ _main::
 	push	bc
 	call	_setupScore
 	add	sp, #5
-;game.c:50: setupBala(&projetil1,17);
-	ldhl	sp,	#32
+;game.c:55: setupBala(&projetil1,17);
+	ldhl	sp,	#42
 	ld	a, l
 	ld	d, h
+	ldhl	sp,	#78
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x11
+	push	af
+	inc	sp
+	push	bc
+	call	_setupBala
+	add	sp, #3
+;game.c:56: setupBala(&projetil2,17);
+	ldhl	sp,	#48
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#80
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x11
+	push	af
+	inc	sp
+	push	bc
+	call	_setupBala
+	add	sp, #3
+;game.c:57: setupBala(&projetil3,17);
+	ldhl	sp,	#54
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#82
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x11
+	push	af
+	inc	sp
+	push	bc
+	call	_setupBala
+	add	sp, #3
+;game.c:58: setupBala(&projetil4,17);
+	ldhl	sp,	#60
+	ld	a, l
+	ld	d, h
+	ldhl	sp,	#84
+	ld	(hl+), a
+	ld	a, d
+	ld	(hl-), a
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x11
+	push	af
+	inc	sp
+	push	bc
+	call	_setupBala
+	add	sp, #3
+;game.c:59: setupBala(&projetil5,17);
 	ldhl	sp,	#66
-	ld	(hl+), a
-	ld	a, d
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	c, a
-	ld	b, (hl)
-	ld	a, #0x11
-	push	af
-	inc	sp
-	push	bc
-	call	_setupBala
-	add	sp, #3
-;game.c:51: setupBala(&projetil2,17);
-	ldhl	sp,	#38
 	ld	a, l
 	ld	d, h
-	ldhl	sp,	#68
+	ldhl	sp,	#86
 	ld	(hl+), a
 	ld	a, d
 	ld	(hl-), a
@@ -7296,127 +9494,171 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:52: setupBala(&projetil3,17);
-	ldhl	sp,	#44
-	ld	a, l
-	ld	d, h
-	ldhl	sp,	#70
-	ld	(hl+), a
-	ld	a, d
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	c, a
-	ld	b, (hl)
-	ld	a, #0x11
-	push	af
-	inc	sp
-	push	bc
-	call	_setupBala
-	add	sp, #3
-;game.c:53: setupBala(&projetil4,17);
-	ldhl	sp,	#50
-	ld	a, l
-	ld	d, h
-	ldhl	sp,	#72
-	ld	(hl+), a
-	ld	a, d
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	c, a
-	ld	b, (hl)
-	ld	a, #0x11
-	push	af
-	inc	sp
-	push	bc
-	call	_setupBala
-	add	sp, #3
-;game.c:54: setupBala(&projetil5,17);
-	ldhl	sp,	#56
-	ld	a, l
-	ld	d, h
-	ldhl	sp,	#74
-	ld	(hl+), a
-	ld	a, d
-	ld	(hl-), a
-	ld	a, (hl+)
-	ld	c, a
-	ld	b, (hl)
-	ld	a, #0x11
-	push	af
-	inc	sp
-	push	bc
-	call	_setupBala
-	add	sp, #3
-;game.c:58: SHOW_BKG;
+;game.c:63: SHOW_BKG;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x01
 	ldh	(_LCDC_REG+0),a
-;game.c:59: SHOW_SPRITES;
+;game.c:64: SHOW_SPRITES;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x02
 	ldh	(_LCDC_REG+0),a
-;game.c:61: DISPLAY_ON;
+;game.c:66: DISPLAY_ON;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x80
 	ldh	(_LCDC_REG+0),a
-;game.c:65: waitpad(J_START);
+;game.c:70: waitpad(J_START);
 	ld	a, #0x80
 	push	af
 	inc	sp
 	call	_waitpad
 	inc	sp
-;game.c:67: while(1){
-00132$:
+;game.c:72: while(1){
+00130$:
 ;c:/gbdk/include/gb/gb.h:770: SCX_REG+=x, SCY_REG+=y;
 	ldh	a, (_SCY_REG+0)
 	inc	a
 	ldh	(_SCY_REG+0),a
-;game.c:69: moveBala(&projetil1);
-	ldhl	sp,#66
+;game.c:74: moveBala(&projetil1);
+	ldhl	sp,#78
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:70: moveBala(&projetil2);
-	ldhl	sp,#68
+;game.c:75: moveBala(&projetil2);
+	ldhl	sp,#80
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:71: moveBala(&projetil3);
-	ldhl	sp,#70
+;game.c:76: moveBala(&projetil3);
+	ldhl	sp,#82
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:72: moveBala(&projetil4);
+;game.c:77: moveBala(&projetil4);
+	ldhl	sp,#84
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_moveBala
+	add	sp, #2
+;game.c:78: moveBala(&projetil5);
+	ldhl	sp,#86
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	bc
+	call	_moveBala
+	add	sp, #2
+;game.c:80: moveInimigo1(&inimigo1,&protagonista);
+	ldhl	sp,#74
+	ld	a, (hl+)
+	ld	e, a
+	ld	a, (hl-)
+	ld	d, a
+	dec	hl
+	dec	hl
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	push	de
+	push	bc
+	call	_moveInimigo1
+	add	sp, #4
+;game.c:82: hitMinnion(&inimigo1,&projetil1,50);
+	ldhl	sp,#78
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
 	ldhl	sp,#72
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
+	ld	a, #0x32
+	push	af
+	inc	sp
+	push	de
 	push	bc
-	call	_moveBala
-	add	sp, #2
-;game.c:73: moveBala(&projetil5);
-	ldhl	sp,#74
+	call	_hitMinnion
+	add	sp, #5
+;game.c:83: hitMinnion(&inimigo1,&projetil2,50);
+	ldhl	sp,#80
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,#72
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
+	ld	a, #0x32
+	push	af
+	inc	sp
+	push	de
 	push	bc
-	call	_moveBala
-	add	sp, #2
-;game.c:74: if(joypad() & J_LEFT){
+	call	_hitMinnion
+	add	sp, #5
+;game.c:84: hitMinnion(&inimigo1,&projetil3,50);
+	ldhl	sp,#82
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,#72
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x32
+	push	af
+	inc	sp
+	push	de
+	push	bc
+	call	_hitMinnion
+	add	sp, #5
+;game.c:85: hitMinnion(&inimigo1,&projetil4,50);
+	ldhl	sp,#84
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,#72
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x32
+	push	af
+	inc	sp
+	push	de
+	push	bc
+	call	_hitMinnion
+	add	sp, #5
+;game.c:86: hitMinnion(&inimigo1,&projetil5,50);
+	ldhl	sp,#86
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ldhl	sp,#72
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	ld	a, #0x32
+	push	af
+	inc	sp
+	push	de
+	push	bc
+	call	_hitMinnion
+	add	sp, #5
+;game.c:90: if(joypad() & J_LEFT){
 	call	_joypad
 	ld	c, e
-;game.c:75: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+;game.c:91: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
 ;c
-	ldhl	sp,#62
+	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7424,15 +9666,15 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ldhl	sp,	#78
+	ldhl	sp,	#90
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#77
+	ldhl	sp,	#89
 	ld	(hl), a
-;game.c:78: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+;game.c:93: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
 ;c
-	ldhl	sp,#62
+	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7440,17 +9682,17 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ldhl	sp,	#80
+	ldhl	sp,	#92
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#79
+	ldhl	sp,	#91
 	ld	(hl), a
-;game.c:74: if(joypad() & J_LEFT){
+;game.c:90: if(joypad() & J_LEFT){
 	bit	1, c
 	jr	Z, 00102$
-;game.c:75: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
-	ldhl	sp,#76
+;game.c:91: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7463,24 +9705,24 @@ _main::
 	ld	a, d
 	adc	a, #0xff
 	bit	7,a
-	jr	Z, 00137$
-	ldhl	sp,	#76
+	jr	Z, 00135$
+	ldhl	sp,	#88
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-	jr	00138$
-00137$:
+	jr	00136$
+00135$:
 	dec	c
 	dec	c
-	ldhl	sp,	#76
+	ldhl	sp,	#88
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-00138$:
-;game.c:78: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
-	ldhl	sp,#78
+00136$:
+;game.c:93: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7494,7 +9736,7 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-	ldhl	sp,#62
+	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7503,18 +9745,18 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00102$:
-;game.c:81: if(joypad() & J_RIGHT){
+;game.c:95: if(joypad() & J_RIGHT){
 	call	_joypad
 	ld	a, e
 	rrca
 	jr	NC, 00104$
-;game.c:82: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
-	ldhl	sp,#76
+;game.c:96: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ldhl	sp,	#80
+	ldhl	sp,	#93
 	ld	(hl), a
 	ld	c, (hl)
 	ld	b, #0x00
@@ -7527,28 +9769,28 @@ _main::
 	ccf
 	rra
 	sbc	a, #0x80
-	jr	C, 00139$
-	ldhl	sp,#76
+	jr	C, 00137$
+	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
-	ldhl	sp,	#80
+	ldhl	sp,	#93
 	ld	a, (hl)
 	ld	(de), a
-	jr	00140$
-00139$:
-	ldhl	sp,	#80
+	jr	00138$
+00137$:
+	ldhl	sp,	#93
 	ld	c, (hl)
 	inc	c
 	inc	c
-	ldhl	sp,	#76
+	ldhl	sp,	#88
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-00140$:
-;game.c:84: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ldhl	sp,#78
+00138$:
+;game.c:97: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7562,7 +9804,7 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-	ldhl	sp,#62
+	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7571,12 +9813,12 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00104$:
-;game.c:87: if(joypad() & J_UP){
+;game.c:99: if(joypad() & J_UP){
 	call	_joypad
 	bit	2, e
 	jr	Z, 00106$
-;game.c:89: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
-	ldhl	sp,#78
+;game.c:100: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7597,34 +9839,34 @@ _main::
 	ld	a, #0x00
 	sbc	a, l
 	bit	7, e
-	jr	Z, 00228$
+	jr	Z, 00231$
 	bit	7, d
-	jr	NZ, 00229$
+	jr	NZ, 00232$
 	cp	a, a
-	jr	00229$
-00228$:
+	jr	00232$
+00231$:
 	bit	7, d
-	jr	Z, 00229$
+	jr	Z, 00232$
 	scf
-00229$:
-	jr	C, 00141$
-	ldhl	sp,	#78
+00232$:
+	jr	C, 00139$
+	ldhl	sp,	#90
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-	jr	00142$
-00141$:
+	jr	00140$
+00139$:
 	dec	c
 	dec	c
-	ldhl	sp,	#78
+	ldhl	sp,	#90
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-00142$:
-;game.c:90: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ldhl	sp,#78
+00140$:
+;game.c:101: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7638,7 +9880,7 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-	ldhl	sp,#62
+	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7647,36 +9889,36 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00106$:
-;game.c:93: if(joypad() & J_DOWN){
+;game.c:103: if(joypad() & J_DOWN){
 	call	_joypad
 	bit	3, e
 	jr	Z, 00108$
-;game.c:95: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
-	ldhl	sp,#78
+;game.c:104: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
 	sub	a, #0x80
-	jr	C, 00143$
+	jr	C, 00141$
 	dec	hl
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-	jr	00144$
-00143$:
+	jr	00142$
+00141$:
 	inc	c
 	inc	c
-	ldhl	sp,	#78
+	ldhl	sp,	#90
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-00144$:
-;game.c:96: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ldhl	sp,#78
+00142$:
+;game.c:105: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7690,7 +9932,7 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-	ldhl	sp,#62
+	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7699,12 +9941,12 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00108$:
-;game.c:99: if(joypad() & J_A){
+;game.c:107: if(joypad() & J_A){   
 	call	_joypad
 	bit	4, e
 	jp	Z,00124$
-;game.c:103: if( projetil1.ativo==0){
-	ldhl	sp,#66
+;game.c:108: if( projetil1.ativo==0){
+	ldhl	sp,#78
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -7713,23 +9955,23 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00121$
-;game.c:104: projetil1.x=protagonista.x+4;
-	ldhl	sp,#76
+;game.c:109: projetil1.x=protagonista.x+4;
+	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	add	a, #0x04
-	ldhl	sp,	#66
+	ldhl	sp,	#78
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:105: projetil1.y=protagonista.y-2;
+;game.c:110: projetil1.y=protagonista.y-2;
 ;c
-	ldhl	sp,#66
+	ldhl	sp,#78
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7738,32 +9980,34 @@ _main::
 	inc	hl
 	push	hl
 	ld	a, l
-	ldhl	sp,	#78
+	ldhl	sp,	#94
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#77
-	ld	(hl+), a
+	ldhl	sp,	#93
+	ld	(hl-), a
+	dec	hl
+	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	dec	a
 	dec	a
-	ldhl	sp,	#76
+	inc	hl
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:106: projetil1.ativo=1;
+;game.c:111: projetil1.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
 	jp	00124$
 00121$:
-;game.c:107: }else if(projetil2.ativo==0){
-	ldhl	sp,#68
+;game.c:112: }else if(projetil2.ativo==0){
+	ldhl	sp,#80
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -7772,23 +10016,23 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00118$
-;game.c:108: projetil2.x=protagonista.x+4;
-	ldhl	sp,#76
+;game.c:113: projetil2.x=protagonista.x+4;
+	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	add	a, #0x04
-	ldhl	sp,	#68
+	ldhl	sp,	#80
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:109: projetil2.y=protagonista.y-2;
+;game.c:114: projetil2.y=protagonista.y-2;
 ;c
-	ldhl	sp,#68
+	ldhl	sp,#80
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7797,32 +10041,34 @@ _main::
 	inc	hl
 	push	hl
 	ld	a, l
-	ldhl	sp,	#78
+	ldhl	sp,	#94
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#77
-	ld	(hl+), a
+	ldhl	sp,	#93
+	ld	(hl-), a
+	dec	hl
+	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	dec	a
 	dec	a
-	ldhl	sp,	#76
+	inc	hl
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:110: projetil2.ativo=1;
+;game.c:115: projetil2.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
 	jp	00124$
 00118$:
-;game.c:111: }else if(projetil3.ativo==0){
-	ldhl	sp,#70
+;game.c:116: }else if(projetil3.ativo==0){
+	ldhl	sp,#82
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -7831,23 +10077,23 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00115$
-;game.c:112: projetil3.x=protagonista.x+4;
-	ldhl	sp,#76
+;game.c:117: projetil3.x=protagonista.x+4;
+	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	add	a, #0x04
-	ldhl	sp,	#70
+	ldhl	sp,	#82
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:113: projetil3.y=protagonista.y-2;
+;game.c:118: projetil3.y=protagonista.y-2;
 ;c
-	ldhl	sp,#70
+	ldhl	sp,#82
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7856,32 +10102,34 @@ _main::
 	inc	hl
 	push	hl
 	ld	a, l
-	ldhl	sp,	#78
+	ldhl	sp,	#94
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#77
-	ld	(hl+), a
+	ldhl	sp,	#93
+	ld	(hl-), a
+	dec	hl
+	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	dec	a
 	dec	a
-	ldhl	sp,	#76
+	inc	hl
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:114: projetil3.ativo=1;
+;game.c:119: projetil3.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
 	jp	00124$
 00115$:
-;game.c:115: }else if(projetil4.ativo==0){
-	ldhl	sp,#72
+;game.c:120: }else if(projetil4.ativo==0){
+	ldhl	sp,#84
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -7890,23 +10138,23 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00112$
-;game.c:116: projetil4.x=protagonista.x+4;
-	ldhl	sp,#76
+;game.c:121: projetil4.x=protagonista.x+4;
+	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	add	a, #0x04
-	ldhl	sp,	#72
+	ldhl	sp,	#84
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:117: projetil4.y=protagonista.y-2;
+;game.c:122: projetil4.y=protagonista.y-2;
 ;c
-	ldhl	sp,#72
+	ldhl	sp,#84
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7915,32 +10163,34 @@ _main::
 	inc	hl
 	push	hl
 	ld	a, l
-	ldhl	sp,	#78
+	ldhl	sp,	#94
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#77
-	ld	(hl+), a
+	ldhl	sp,	#93
+	ld	(hl-), a
+	dec	hl
+	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	dec	a
 	dec	a
-	ldhl	sp,	#76
+	inc	hl
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:118: projetil4.ativo=1;
+;game.c:123: projetil4.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
 	jr	00124$
 00112$:
-;game.c:119: }else if(projetil5.ativo==0){
-	ldhl	sp,#74
+;game.c:124: }else if(projetil5.ativo==0){
+	ldhl	sp,#86
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -7949,23 +10199,23 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00124$
-;game.c:120: projetil5.x=protagonista.x+4;
+;game.c:125: projetil5.x=protagonista.x+4;
 	inc	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	add	a, #0x04
-	ldhl	sp,	#74
+	ldhl	sp,	#86
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:121: projetil5.y=protagonista.y-2;
+;game.c:126: projetil5.y=protagonista.y-2;
 ;c
-	ldhl	sp,#74
+	ldhl	sp,#86
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
@@ -7974,35 +10224,37 @@ _main::
 	inc	hl
 	push	hl
 	ld	a, l
-	ldhl	sp,	#78
+	ldhl	sp,	#94
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ldhl	sp,	#77
-	ld	(hl+), a
+	ldhl	sp,	#93
+	ld	(hl-), a
+	dec	hl
+	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	dec	a
 	dec	a
-	ldhl	sp,	#76
+	inc	hl
 	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:122: projetil5.ativo=1;
+;game.c:127: projetil5.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
 00124$:
-;game.c:126: if(joypad() & J_B){
+;game.c:130: if(joypad() & J_B){
 	call	_joypad
 	bit	5, e
 	jr	Z, 00126$
-;game.c:127: sumScore(&pontuacao,1111);
-	ldhl	sp,#64
+;game.c:131: sumScore(&pontuacao,1111);
+	ldhl	sp,#76
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
@@ -8012,37 +10264,75 @@ _main::
 	call	_sumScore
 	add	sp, #4
 00126$:
-;game.c:129: if(joypad() & J_SELECT){
+;game.c:133: if(joypad() & J_SELECT){
 	call	_joypad
-;game.c:136: if(joypad() & J_START){
-	call	_joypad
-;game.c:146: performantdelay(5);
+	bit	6, e
+	jr	Z, 00128$
+;game.c:134: inimigo1.ativo=1;
+;c
+	ldhl	sp,#72
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0006
+	add	hl, de
+	ld	(hl), #0x01
+;game.c:135: inimigo1.x=protagonista.x;
+;c
+	ldhl	sp,#72
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0004
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	ldhl	sp,#88
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	ld	(bc), a
+;game.c:136: inimigo1.y=0;
+;c
+	ldhl	sp,#72
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	hl, #0x0005
+	add	hl, de
+	ld	c, l
+	ld	b, h
+	xor	a, a
+	ld	(bc), a
+00128$:
+;game.c:138: performantdelay(5);  
 	ld	a, #0x05
 	push	af
 	inc	sp
 	call	_performantdelay
 	inc	sp
-	jp	00132$
-;game.c:151: }
-	add	sp, #81
+	jp	00130$
+;game.c:141: }
+	add	sp, #94
 	ret
-;game.c:153: void performantdelay(UINT8 numloops){ // nova funcao delay
+;game.c:143: void performantdelay(UINT8 numloops){ // nova funcao delay
 ;	---------------------------------
 ; Function performantdelay
 ; ---------------------------------
 _performantdelay::
-;game.c:155: for(i = 0; i < numloops; i++){
+;game.c:145: for(i = 0; i < numloops; i++){
 	ld	c, #0x00
 00103$:
 	ld	a, c
 	ldhl	sp,	#2
 	sub	a, (hl)
 	ret	NC
-;game.c:156: wait_vbl_done();
+;game.c:146: wait_vbl_done();
 	call	_wait_vbl_done
-;game.c:155: for(i = 0; i < numloops; i++){
+;game.c:145: for(i = 0; i < numloops; i++){
 	inc	c
-;game.c:158: }
+;game.c:148: }
 	jr	00103$
 	.area _CODE
 	.area _CABS (ABS)

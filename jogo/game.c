@@ -10,9 +10,14 @@
 #include "personagem.c"
 #include "movimentacao.c"
 #include "changeScore.c"
+#include "colisoes.c"
+#include "gameplay.c"
+
 
 //variaveis globais
 void performantdelay(UINT8 numloops);
+
+
 
 void main(){
 
@@ -27,9 +32,9 @@ void main(){
     set_sprite_data(18,16, score);
 
     //setup personagens
-    // struct personagem inimigo1;
-    // setupEnemy(&inimigo1,0,4);
-    // setPositionGameCharacter(&inimigo1,100,100);
+    struct personagem inimigo1;
+    setupEnemy(&inimigo1,0,4);
+    
 
     struct personagem protagonista;
     setupHero(&protagonista,4,8);
@@ -71,35 +76,35 @@ void main(){
         moveBala(&projetil3);
         moveBala(&projetil4);
         moveBala(&projetil5);
+
+        moveInimigo1(&inimigo1,&protagonista);
+
+        hitMinnion(&inimigo1,&projetil1,50);
+        hitMinnion(&inimigo1,&projetil2,50);
+        hitMinnion(&inimigo1,&projetil3,50);
+        hitMinnion(&inimigo1,&projetil4,50);
+        hitMinnion(&inimigo1,&projetil5,50);
+        
+
+
         if(joypad() & J_LEFT){
             (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
             // (condição) ? (caso true) : (caso false)
-            
             setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
-            
         }
         if(joypad() & J_RIGHT){
             (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
-
             setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-           
         }
         if(joypad() & J_UP){
-            
             (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
             setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-           
         }
         if(joypad() & J_DOWN){
-            //protagonista.y=protagonista.y+2;
             (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
             setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
         }
-        
-        if(joypad() & J_A){
-            
-           
-
+        if(joypad() & J_A){   
             if( projetil1.ativo==0){
                 projetil1.x=protagonista.x+4;
                 projetil1.y=protagonista.y-2;
@@ -121,33 +126,18 @@ void main(){
                 projetil5.y=protagonista.y-2;
                 projetil5.ativo=1;
             }
-            
         }
         if(joypad() & J_B){
            sumScore(&pontuacao,1111);
         }
         if(joypad() & J_SELECT){
-            /*
             inimigo1.ativo=1;
             inimigo1.x=protagonista.x;
             inimigo1.y=0;
-            */
         }
-         if(joypad() & J_START){
-            
-           
-            /*
-            inimigo1.ativo=1;
-            inimigo1.x=protagonista.x;
-            inimigo1.y=0;
-            */
-        }
-
-        performantdelay(5);
-       
+        performantdelay(5);  
     }
-   
-    
+
 }
 
 void performantdelay(UINT8 numloops){ // nova funcao delay

@@ -1,0 +1,20 @@
+
+#include <gb/gb.h>
+
+UINT8 checarColisaoPersonagem(struct personagem* one,struct personagem* two){
+    
+    return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+}
+
+UINT8 checarColisaoBala(struct personagem* one,struct bala* two ){
+    
+    return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+}
+
+
+
+
+
+
+
+

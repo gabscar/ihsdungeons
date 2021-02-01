@@ -1,8 +1,7 @@
 
 #include <gb/gb.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
+
 UINT8 spriteId=0;
 UBYTE spritesizes = 8;
 //generical character structure: id, position, graphics
@@ -11,7 +10,7 @@ struct personagem {
 	UINT8 x;
 	UINT8 y;
 	UINT8 ativo;
-	UINT8 vida;
+	INT8 vida;
 	UINT8 width;
 	UINT8 height;
 };
@@ -21,7 +20,7 @@ struct subBoss {
 	UINT8 x;
 	UINT8 y;
 	UINT8 ativo;
-	UINT8 vida;
+	INT8 vida;
 	UINT8 width;
 	UINT8 height;
 };
@@ -48,6 +47,7 @@ void setupEnemy(struct personagem *enemy,UINT8 start,UINT8 end){
     enemy->width = 16;
     enemy->height = 16;
     enemy->ativo = 0;
+    enemy->vida = 100;
     UINT8 aux=0;
     for(UINT8 i=start; i<end ; i++){
         set_sprite_tile(spriteId, i);
