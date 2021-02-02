@@ -14,19 +14,33 @@
 #include "changeScore.c"
 #include "colisoes.c"
 #include "gameplay.c"
-
+#include "hUGEDriver.h"
 
 //variaveis globais
 void performantdelay(UINT8 numloops);
 
+extern const hUGESong_t Intro;
+
+const unsigned char pattern1[] = {0x80,0x80,0x40,0x40,0x20,0x20,0x10,0x10,0x08,0x08,0x04,0x04,0x02,0x02,0x01,0x01};
+const unsigned char pattern2[] = {0x00,0x00,0x7E,0x7E,0x40,0x40,0x54,0x54,0x48,0x48,0x54,0x54,0x40,0x40,0x00,0x00};
 
 
 void main(){
     //set music on
+    BGP_REG  = 0b11100100;
     NR52_REG = 0x80;
     NR51_REG = 0x11;
     NR50_REG = 0x77;
     //setup game
+    //music
+    
+    set_bkg_data(0, 1, pattern1);
+    set_bkg_data(0x20, 1, pattern2);
+    __critical {
+        hUGE_init(&Intro);
+        add_VBL(hUGE_dosound);
+    }
+    //others
     set_bkg_data(0, 10, backTiles);
     set_bkg_tiles(0, 0, 20, 36, simpleMap);
 
@@ -76,7 +90,9 @@ void main(){
     SHOW_SPRITES;
    
     DISPLAY_ON;
-
+    
+    
+    
 
     UINT8 gameOver=0;
     waitpad(J_START);
