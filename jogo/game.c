@@ -49,7 +49,7 @@ void main(){
 
     struct scorePoint pontuacao;
     setupScore(&pontuacao,18,96,152);
-
+    
 
     struct bala projetil1;
     struct bala projetil2;
@@ -70,19 +70,21 @@ void main(){
     DISPLAY_ON;
 
 
-
+    UINT8 gameOver=0;
     waitpad(J_START);
-    while(1){
+    while(gameOver!=1){
         
         UINT8 qtdeMinnions=10;
         inimigo1.ativo=1;
         inimigo1.x=protagonista.x;
         inimigo1.y=0;
-
-        while(qtdeMinnions!=0){
+        
+        while(qtdeMinnions!=0 && gameOver!=1){
             scroll_bkg(0,1);
             moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
-
+            if(checarColisaoPersonagem(&protagonista,&inimigo1)){
+                gameOver=1;
+            }
             moveInimigo1(&inimigo1,&protagonista);
 
             hitMinnion(&inimigo1,&projetil1,50); hitMinnion(&inimigo1,&projetil2,50); hitMinnion(&inimigo1,&projetil3,50);
@@ -148,8 +150,52 @@ void main(){
         miniboss1.x=protagonista.x;
         miniboss1.y=20;
         setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);
-        while(1){
+        
+        while(gameOver!=1){
             scroll_bkg(0,1);
+            moveSubBoss(&miniboss1);
+            moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
+
+            if(joypad() & J_LEFT){
+                (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+                // (condição) ? (caso true) : (caso false)
+                setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+            }
+            if(joypad() & J_RIGHT){
+                (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+                setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+            }
+            if(joypad() & J_UP){
+                (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+                setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+            }
+            if(joypad() & J_DOWN){
+                (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+                setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+            }
+            if(joypad() & J_A){   
+                if( projetil1.ativo==0){
+                    projetil1.x=protagonista.x+4;
+                    projetil1.y=protagonista.y-2;
+                    projetil1.ativo=1;
+                }else if(projetil2.ativo==0){
+                    projetil2.x=protagonista.x+4;
+                    projetil2.y=protagonista.y-2;
+                    projetil2.ativo=1;
+                }else if(projetil3.ativo==0){
+                    projetil3.x=protagonista.x+4;
+                    projetil3.y=protagonista.y-2;
+                    projetil3.ativo=1;
+                }else if(projetil4.ativo==0){
+                    projetil4.x=protagonista.x+4;
+                    projetil4.y=protagonista.y-2;
+                    projetil4.ativo=1;
+                }else if(projetil5.ativo==0){
+                    projetil5.x=protagonista.x+4;
+                    projetil5.y=protagonista.y-2;
+                    projetil5.ativo=1;
+                }
+            }
             performantdelay(2);  
         }
         

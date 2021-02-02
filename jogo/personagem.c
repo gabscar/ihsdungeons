@@ -19,6 +19,7 @@ struct subBoss {
 	UBYTE spriteIds[9]; // all characters use 4 sprites
 	UINT8 x;
 	UINT8 y;
+    INT8 orientacao;
 	UINT8 ativo;
 	UINT8 vida;
 	UINT8 width;
@@ -79,6 +80,7 @@ void setupSubBoss(struct subBoss *miniBoss,UINT8 start,UINT8 end){
     miniBoss->height = 24;
     miniBoss->ativo = 0;
     miniBoss->vida = 900;
+    miniBoss->orientacao = 1;
     UINT8 aux=0;
     for(UINT8 i=start; i<end ; i++){
         set_sprite_tile(spriteId, i);

@@ -77,6 +77,16 @@ void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
             setPositionGameCharacter(enemy,enemy->x,enemy->y);
         }
     }
-
 }
 
+void moveSubBoss(struct subBoss* miniBoss){
+    if(miniBoss->orientacao==1){
+        (miniBoss->x<=142)?(miniBoss->x=miniBoss->x+2) :( miniBoss->orientacao=-1);
+       
+    }else{
+        (miniBoss->x>=10)?(miniBoss->x=miniBoss->x-2) :( miniBoss->orientacao=1);
+    }  
+    setPositionGameCharacter2(miniBoss, miniBoss->x,miniBoss->y);
+    performantdelay(3);
+
+}
