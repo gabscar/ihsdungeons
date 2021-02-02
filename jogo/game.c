@@ -20,8 +20,9 @@ void performantdelay(UINT8 numloops);
 
 
 void main(){
-    
-
+    NR52_REG = 0x80;
+    NR51_REG = 0x11;
+    NR50_REG = 0x77;
     //setup game
     set_bkg_data(0, 10, backTiles);
     set_bkg_tiles(0, 0, 20, 36, simpleMap);
@@ -103,6 +104,7 @@ void main(){
                 // (condição) ? (caso true) : (caso false)
                 setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
             }
+           
             if(joypad() & J_RIGHT){
                 (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
                 setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
@@ -115,7 +117,12 @@ void main(){
                 (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
                 setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
             }
-            if(joypad() & J_A){   
+            if(joypad() & J_A){
+                NR10_REG = 0x2C;
+                NR11_REG = 0x81;
+                NR12_REG = 0x92;
+                NR13_REG = 0x2A;
+                NR14_REG = 0x84;   
                 if( projetil1.ativo==0){
                     projetil1.x=protagonista.x+4;
                     projetil1.y=protagonista.y-2;
