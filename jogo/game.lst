@@ -3002,7 +3002,7 @@
                                    3002 ;personagem.c:53: set_sprite_tile(spriteId, i);
       00003C 21r90r05              3003 	ld	hl, #_spriteId
       00003F 5E                    3004 	ld	e, (hl)
-                                   3005 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3005 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000040 26 00                 3006 	ld	h, #0x00
       000042 6B                    3007 	ld	l, e
       000043 29                    3008 	add	hl, hl
@@ -3086,7 +3086,7 @@
                                    3086 ;personagem.c:68: set_sprite_tile(spriteId, i);
       0000A1 21r90r05              3087 	ld	hl, #_spriteId
       0000A4 5E                    3088 	ld	e, (hl)
-                                   3089 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3089 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0000A5 26 00                 3090 	ld	h, #0x00
       0000A7 6B                    3091 	ld	l, e
       0000A8 29                    3092 	add	hl, hl
@@ -3170,7 +3170,7 @@
                                    3170 ;personagem.c:83: set_sprite_tile(spriteId, i);
       000106 21r90r05              3171 	ld	hl, #_spriteId
       000109 5E                    3172 	ld	e, (hl)
-                                   3173 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3173 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00010A 26 00                 3174 	ld	h, #0x00
       00010C 6B                    3175 	ld	l, e
       00010D 29                    3176 	add	hl, hl
@@ -3229,7 +3229,7 @@
       000144 4E                    3229 	ld	c, (hl)
       000145 21r90r05              3230 	ld	hl, #_spriteId
       000148 46                    3231 	ld	b, (hl)
-                                   3232 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3232 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000149 AF                    3233 	xor	a, a
       00014A 68                    3234 	ld	l, b
       00014B 67                    3235 	ld	h, a
@@ -3288,7 +3288,7 @@
       000182 F8 17                 3288 	ldhl	sp,	#23
       000184 4E                    3289 	ld	c, (hl)
       000185 21r90r05              3290 	ld	hl, #_spriteId
-                                   3291 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3291 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000188 6E                    3292 	ld	l, (hl)
       000189 11r00r00              3293 	ld	de, #_shadow_OAM+0
       00018C 26 00                 3294 	ld	h, #0x00
@@ -3314,7 +3314,7 @@
       0001A3 F8 17                 3314 	ldhl	sp,	#23
       0001A5 4E                    3315 	ld	c, (hl)
       0001A6 21r90r05              3316 	ld	hl, #_spriteId
-                                   3317 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3317 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0001A9 6E                    3318 	ld	l, (hl)
       0001AA 11r00r00              3319 	ld	de, #_shadow_OAM+0
       0001AD 26 00                 3320 	ld	h, #0x00
@@ -3356,7 +3356,7 @@
       0001D6 4E                    3356 	ld	c, (hl)
       0001D7 21r90r05              3357 	ld	hl, #_spriteId
       0001DA 5E                    3358 	ld	e, (hl)
-                                   3359 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3359 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0001DB 16 00                 3360 	ld	d, #0x00
       0001DD 6B                    3361 	ld	l, e
       0001DE 62                    3362 	ld	h, d
@@ -3398,7 +3398,7 @@
       00020A 4E                    3398 	ld	c, (hl)
       00020B 21r90r05              3399 	ld	hl, #_spriteId
       00020E 5E                    3400 	ld	e, (hl)
-                                   3401 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3401 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00020F 16 00                 3402 	ld	d, #0x00
       000211 6B                    3403 	ld	l, e
       000212 62                    3404 	ld	h, d
@@ -3440,7 +3440,7 @@
       00023E 4E                    3440 	ld	c, (hl)
       00023F 21r90r05              3441 	ld	hl, #_spriteId
       000242 5E                    3442 	ld	e, (hl)
-                                   3443 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3443 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000243 16 00                 3444 	ld	d, #0x00
       000245 6B                    3445 	ld	l, e
       000246 62                    3446 	ld	h, d
@@ -3481,7 +3481,7 @@
       000270 F8 17                 3481 	ldhl	sp,	#23
       000272 4E                    3482 	ld	c, (hl)
       000273 21r90r05              3483 	ld	hl, #_spriteId
-                                   3484 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3484 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000276 6E                    3485 	ld	l, (hl)
       000277 11r00r00              3486 	ld	de, #_shadow_OAM+0
       00027A 26 00                 3487 	ld	h, #0x00
@@ -3542,7 +3542,7 @@
       0002B5 4E                    3542 	ld	c, (hl)
       0002B6 21r90r05              3543 	ld	hl, #_spriteId
       0002B9 46                    3544 	ld	b, (hl)
-                                   3545 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3545 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0002BA 26 00                 3546 	ld	h, #0x00
       0002BC 68                    3547 	ld	l, b
       0002BD 29                    3548 	add	hl, hl
@@ -3576,7 +3576,7 @@
       0002DE 34                    3576 	inc	(hl)
                                    3577 ;personagem.c:138: set_sprite_tile(spriteId, start);
       0002DF 46                    3578 	ld	b, (hl)
-                                   3579 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3579 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0002E0 26 00                 3580 	ld	h, #0x00
       0002E2 68                    3581 	ld	l, b
       0002E3 29                    3582 	add	hl, hl
@@ -3616,7 +3616,7 @@
       00030A 4E                    3616 	ld	c, (hl)
       00030B 21r90r05              3617 	ld	hl, #_spriteId
       00030E 46                    3618 	ld	b, (hl)
-                                   3619 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   3619 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00030F 11r00r00              3620 	ld	de, #_shadow_OAM+0
       000312 26 00                 3621 	ld	h, #0x00
       000314 68                    3622 	ld	l, b
@@ -3658,7 +3658,7 @@
       00033D D1                    3658 	pop	de
       00033E D5                    3659 	push	de
       00033F 1A                    3660 	ld	a, (de)
-                                   3661 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3661 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       000340 6F                    3662 	ld	l, a
       000341 26 00                 3663 	ld	h, #0x00
       000343 29                    3664 	add	hl, hl
@@ -3667,7 +3667,7 @@
       000348 19                    3667 	add	hl, de
       000349 5D                    3668 	ld	e, l
       00034A 54                    3669 	ld	d, h
-                                   3670 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3670 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00034B F8 12                 3671 	ldhl	sp,	#18
       00034D 7E                    3672 	ld	a, (hl)
       00034E 12                    3673 	ld	(de), a
@@ -3687,7 +3687,7 @@
       00035E 47                    3687 	ld	b, a
       00035F F1                    3688 	pop	af
       000360 77                    3689 	ld	(hl), a
-                                   3690 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3690 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       000361 68                    3691 	ld	l, b
       000362 26 00                 3692 	ld	h, #0x00
       000364 29                    3693 	add	hl, hl
@@ -3696,7 +3696,7 @@
       000369 19                    3696 	add	hl, de
       00036A 5D                    3697 	ld	e, l
       00036B 54                    3698 	ld	d, h
-                                   3699 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3699 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00036C F8 12                 3700 	ldhl	sp,	#18
       00036E 7E                    3701 	ld	a, (hl)
       00036F 12                    3702 	ld	(de), a
@@ -3719,7 +3719,7 @@
       000383 56                    3719 	ld	d, (hl)
       000384 1A                    3720 	ld	a, (de)
       000385 4F                    3721 	ld	c, a
-                                   3722 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3722 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       000386 11r00r00              3723 	ld	de, #_shadow_OAM+0
       000389 26 00                 3724 	ld	h, #0x00
       00038B 69                    3725 	ld	l, c
@@ -3728,7 +3728,7 @@
       00038E 19                    3728 	add	hl, de
       00038F 5D                    3729 	ld	e, l
       000390 54                    3730 	ld	d, h
-                                   3731 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3731 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       000391 F8 12                 3732 	ldhl	sp,	#18
       000393 7E                    3733 	ld	a, (hl)
       000394 12                    3734 	ld	(de), a
@@ -3749,7 +3749,7 @@
       0003A6 56                    3749 	ld	d, (hl)
       0003A7 1A                    3750 	ld	a, (de)
       0003A8 4F                    3751 	ld	c, a
-                                   3752 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3752 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0003A9 11r00r00              3753 	ld	de, #_shadow_OAM+0
       0003AC 26 00                 3754 	ld	h, #0x00
       0003AE 69                    3755 	ld	l, c
@@ -3758,7 +3758,7 @@
       0003B1 19                    3758 	add	hl, de
       0003B2 5D                    3759 	ld	e, l
       0003B3 54                    3760 	ld	d, h
-                                   3761 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3761 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0003B4 F8 12                 3762 	ldhl	sp,	#18
       0003B6 7E                    3763 	ld	a, (hl)
       0003B7 12                    3764 	ld	(de), a
@@ -3777,7 +3777,7 @@
       0003C7 5F                    3777 	ld	e, a
       0003C8 56                    3778 	ld	d, (hl)
       0003C9 1A                    3779 	ld	a, (de)
-                                   3780 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3780 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0003CA 6F                    3781 	ld	l, a
       0003CB 26 00                 3782 	ld	h, #0x00
       0003CD 29                    3783 	add	hl, hl
@@ -3786,7 +3786,7 @@
       0003D2 19                    3786 	add	hl, de
       0003D3 5D                    3787 	ld	e, l
       0003D4 54                    3788 	ld	d, h
-                                   3789 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3789 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0003D5 F8 12                 3790 	ldhl	sp,	#18
       0003D7 7E                    3791 	ld	a, (hl)
       0003D8 12                    3792 	ld	(de), a
@@ -3807,7 +3807,7 @@
       0003EA 5F                    3807 	ld	e, a
       0003EB 56                    3808 	ld	d, (hl)
       0003EC 1A                    3809 	ld	a, (de)
-                                   3810 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3810 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0003ED 6F                    3811 	ld	l, a
       0003EE 26 00                 3812 	ld	h, #0x00
       0003F0 29                    3813 	add	hl, hl
@@ -3816,7 +3816,7 @@
       0003F5 19                    3816 	add	hl, de
       0003F6 5D                    3817 	ld	e, l
       0003F7 54                    3818 	ld	d, h
-                                   3819 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3819 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0003F8 F8 12                 3820 	ldhl	sp,	#18
       0003FA 7E                    3821 	ld	a, (hl)
       0003FB 12                    3822 	ld	(de), a
@@ -3837,7 +3837,7 @@
       00040D 5F                    3837 	ld	e, a
       00040E 56                    3838 	ld	d, (hl)
       00040F 1A                    3839 	ld	a, (de)
-                                   3840 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3840 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       000410 6F                    3841 	ld	l, a
       000411 26 00                 3842 	ld	h, #0x00
       000413 29                    3843 	add	hl, hl
@@ -3846,7 +3846,7 @@
       000418 19                    3846 	add	hl, de
       000419 5D                    3847 	ld	e, l
       00041A 54                    3848 	ld	d, h
-                                   3849 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3849 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00041B F8 12                 3850 	ldhl	sp,	#18
       00041D 7E                    3851 	ld	a, (hl)
       00041E 12                    3852 	ld	(de), a
@@ -3868,7 +3868,7 @@
       000431 5F                    3868 	ld	e, a
       000432 56                    3869 	ld	d, (hl)
       000433 1A                    3870 	ld	a, (de)
-                                   3871 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3871 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       000434 6F                    3872 	ld	l, a
       000435 26 00                 3873 	ld	h, #0x00
       000437 29                    3874 	add	hl, hl
@@ -3877,7 +3877,7 @@
       00043C 19                    3877 	add	hl, de
       00043D 5D                    3878 	ld	e, l
       00043E 54                    3879 	ld	d, h
-                                   3880 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3880 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00043F F8 12                 3881 	ldhl	sp,	#18
       000441 7E                    3882 	ld	a, (hl)
       000442 12                    3883 	ld	(de), a
@@ -3897,7 +3897,7 @@
       000453 5F                    3897 	ld	e, a
       000454 56                    3898 	ld	d, (hl)
       000455 1A                    3899 	ld	a, (de)
-                                   3900 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   3900 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       000456 6F                    3901 	ld	l, a
       000457 26 00                 3902 	ld	h, #0x00
       000459 29                    3903 	add	hl, hl
@@ -3906,7 +3906,7 @@
       00045E 19                    3906 	add	hl, de
       00045F 5D                    3907 	ld	e, l
       000460 54                    3908 	ld	d, h
-                                   3909 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   3909 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       000461 F8 12                 3910 	ldhl	sp,	#18
       000463 7E                    3911 	ld	a, (hl)
       000464 12                    3912 	ld	(de), a
@@ -4109,7 +4109,7 @@
       000537 19                    4109 	add	hl, de
       000538 4E                    4110 	ld	c, (hl)
       000539 F8 0C                 4111 	ldhl	sp,	#12
-                                   4112 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4112 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00053B 6E                    4113 	ld	l, (hl)
       00053C 11r00r00              4114 	ld	de, #_shadow_OAM+0
       00053F 26 00                 4115 	ld	h, #0x00
@@ -4138,7 +4138,7 @@
       000559 4E                    4138 	ld	c, (hl)
       00055A F8 0C                 4139 	ldhl	sp,	#12
       00055C 46                    4140 	ld	b, (hl)
-                                   4141 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4141 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00055D 11r00r00              4142 	ld	de, #_shadow_OAM+0
       000560 26 00                 4143 	ld	h, #0x00
       000562 68                    4144 	ld	l, b
@@ -4167,7 +4167,7 @@
       00057B 4E                    4167 	ld	c, (hl)
       00057C F8 0C                 4168 	ldhl	sp,	#12
       00057E 46                    4169 	ld	b, (hl)
-                                   4170 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4170 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00057F 11r00r00              4171 	ld	de, #_shadow_OAM+0
       000582 26 00                 4172 	ld	h, #0x00
       000584 68                    4173 	ld	l, b
@@ -4196,7 +4196,7 @@
       00059D 4E                    4196 	ld	c, (hl)
       00059E F8 0C                 4197 	ldhl	sp,	#12
       0005A0 46                    4198 	ld	b, (hl)
-                                   4199 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4199 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0005A1 11r00r00              4200 	ld	de, #_shadow_OAM+0
       0005A4 26 00                 4201 	ld	h, #0x00
       0005A6 68                    4202 	ld	l, b
@@ -4225,7 +4225,7 @@
       0005BF 4E                    4225 	ld	c, (hl)
       0005C0 F8 0C                 4226 	ldhl	sp,	#12
       0005C2 46                    4227 	ld	b, (hl)
-                                   4228 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4228 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0005C3 11r00r00              4229 	ld	de, #_shadow_OAM+0
       0005C6 26 00                 4230 	ld	h, #0x00
       0005C8 68                    4231 	ld	l, b
@@ -4254,7 +4254,7 @@
       0005E1 4E                    4254 	ld	c, (hl)
       0005E2 F8 0C                 4255 	ldhl	sp,	#12
       0005E4 46                    4256 	ld	b, (hl)
-                                   4257 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4257 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0005E5 11r00r00              4258 	ld	de, #_shadow_OAM+0
       0005E8 26 00                 4259 	ld	h, #0x00
       0005EA 68                    4260 	ld	l, b
@@ -4283,7 +4283,7 @@
       000603 4E                    4283 	ld	c, (hl)
       000604 F8 0C                 4284 	ldhl	sp,	#12
       000606 46                    4285 	ld	b, (hl)
-                                   4286 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4286 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000607 11r00r00              4287 	ld	de, #_shadow_OAM+0
       00060A 26 00                 4288 	ld	h, #0x00
       00060C 68                    4289 	ld	l, b
@@ -4312,7 +4312,7 @@
       000625 4E                    4312 	ld	c, (hl)
       000626 F8 0C                 4313 	ldhl	sp,	#12
       000628 46                    4314 	ld	b, (hl)
-                                   4315 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4315 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000629 11r00r00              4316 	ld	de, #_shadow_OAM+0
       00062C 26 00                 4317 	ld	h, #0x00
       00062E 68                    4318 	ld	l, b
@@ -4341,7 +4341,7 @@
       000645 4E                    4341 	ld	c, (hl)
       000646 F8 0C                 4342 	ldhl	sp,	#12
       000648 46                    4343 	ld	b, (hl)
-                                   4344 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4344 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000649 11r00r00              4345 	ld	de, #_shadow_OAM+0
       00064C 26 00                 4346 	ld	h, #0x00
       00064E 68                    4347 	ld	l, b
@@ -4367,7 +4367,7 @@
       000662 77                    4367 	ld	(hl), a
       000663 F8 0C                 4368 	ldhl	sp,	#12
       000665 4E                    4369 	ld	c, (hl)
-                                   4370 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4370 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000666 AF                    4371 	xor	a, a
       000667 CB 21                 4372 	sla	c
       000669 8F                    4373 	adc	a, a
@@ -4444,7 +4444,7 @@
       0006B9 F8 0B                 4444 	ldhl	sp,	#11
       0006BB 22                    4445 	ld	(hl+), a
       0006BC 4E                    4446 	ld	c, (hl)
-                                   4447 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4447 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0006BD F8 09                 4448 	ldhl	sp,	#9
       0006BF 71                    4449 	ld	(hl), c
       0006C0 AF                    4450 	xor	a, a
@@ -4521,7 +4521,7 @@
       000715 5F                    4521 	ld	e, a
       000716 56                    4522 	ld	d, (hl)
       000717 1A                    4523 	ld	a, (de)
-                                   4524 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4524 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000718 22                    4525 	ld	(hl+), a
       000719 7E                    4526 	ld	a, (hl)
       00071A F8 09                 4527 	ldhl	sp,	#9
@@ -4594,7 +4594,7 @@
       00076A F8 0B                 4594 	ldhl	sp,	#11
       00076C 22                    4595 	ld	(hl+), a
       00076D 4E                    4596 	ld	c, (hl)
-                                   4597 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4597 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00076E F8 09                 4598 	ldhl	sp,	#9
       000770 71                    4599 	ld	(hl), c
       000771 AF                    4600 	xor	a, a
@@ -4665,7 +4665,7 @@
       0007BE F8 0B                 4665 	ldhl	sp,	#11
       0007C0 22                    4666 	ld	(hl+), a
       0007C1 4E                    4667 	ld	c, (hl)
-                                   4668 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4668 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0007C2 F8 09                 4669 	ldhl	sp,	#9
       0007C4 71                    4670 	ld	(hl), c
       0007C5 AF                    4671 	xor	a, a
@@ -4736,7 +4736,7 @@
       000812 F8 0B                 4736 	ldhl	sp,	#11
       000814 22                    4737 	ld	(hl+), a
       000815 4E                    4738 	ld	c, (hl)
-                                   4739 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4739 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000816 F8 09                 4740 	ldhl	sp,	#9
       000818 71                    4741 	ld	(hl), c
       000819 AF                    4742 	xor	a, a
@@ -4807,7 +4807,7 @@
       000866 F8 0B                 4807 	ldhl	sp,	#11
       000868 22                    4808 	ld	(hl+), a
       000869 4E                    4809 	ld	c, (hl)
-                                   4810 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4810 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00086A F8 09                 4811 	ldhl	sp,	#9
       00086C 71                    4812 	ld	(hl), c
       00086D AF                    4813 	xor	a, a
@@ -4878,7 +4878,7 @@
       0008BA F8 0B                 4878 	ldhl	sp,	#11
       0008BC 22                    4879 	ld	(hl+), a
       0008BD 4E                    4880 	ld	c, (hl)
-                                   4881 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4881 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0008BE F8 09                 4882 	ldhl	sp,	#9
       0008C0 71                    4883 	ld	(hl), c
       0008C1 AF                    4884 	xor	a, a
@@ -4949,7 +4949,7 @@
       00090E F8 0B                 4949 	ldhl	sp,	#11
       000910 22                    4950 	ld	(hl+), a
       000911 4E                    4951 	ld	c, (hl)
-                                   4952 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   4952 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000912 F8 09                 4953 	ldhl	sp,	#9
       000914 71                    4954 	ld	(hl), c
       000915 AF                    4955 	xor	a, a
@@ -5020,7 +5020,7 @@
       000961 F8 0B                 5020 	ldhl	sp,	#11
       000963 22                    5021 	ld	(hl+), a
       000964 4E                    5022 	ld	c, (hl)
-                                   5023 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5023 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000965 F8 09                 5024 	ldhl	sp,	#9
       000967 71                    5025 	ld	(hl), c
       000968 AF                    5026 	xor	a, a
@@ -5084,7 +5084,7 @@
       0009AB F8 08                 5084 	ldhl	sp,	#8
       0009AD 77                    5085 	ld	(hl), a
       0009AE F8 0C                 5086 	ldhl	sp,	#12
-                                   5087 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5087 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       0009B0 3A                    5088 	ld	a, (hl-)
       0009B1 77                    5089 	ld	(hl), a
       0009B2 AF                    5090 	xor	a, a
@@ -5165,7 +5165,7 @@
       000A09 F8 0B                 5165 	ldhl	sp,	#11
       000A0B 22                    5166 	ld	(hl+), a
       000A0C 4E                    5167 	ld	c, (hl)
-                                   5168 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5168 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000A0D F8 09                 5169 	ldhl	sp,	#9
       000A0F 71                    5170 	ld	(hl), c
       000A10 AF                    5171 	xor	a, a
@@ -5242,7 +5242,7 @@
       000A65 5F                    5242 	ld	e, a
       000A66 56                    5243 	ld	d, (hl)
       000A67 1A                    5244 	ld	a, (de)
-                                   5245 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5245 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000A68 22                    5246 	ld	(hl+), a
       000A69 7E                    5247 	ld	a, (hl)
       000A6A F8 09                 5248 	ldhl	sp,	#9
@@ -5315,7 +5315,7 @@
       000ABA F8 0B                 5315 	ldhl	sp,	#11
       000ABC 22                    5316 	ld	(hl+), a
       000ABD 4E                    5317 	ld	c, (hl)
-                                   5318 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5318 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000ABE F8 09                 5319 	ldhl	sp,	#9
       000AC0 71                    5320 	ld	(hl), c
       000AC1 AF                    5321 	xor	a, a
@@ -5386,7 +5386,7 @@
       000B0E F8 0B                 5386 	ldhl	sp,	#11
       000B10 22                    5387 	ld	(hl+), a
       000B11 4E                    5388 	ld	c, (hl)
-                                   5389 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5389 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000B12 F8 09                 5390 	ldhl	sp,	#9
       000B14 71                    5391 	ld	(hl), c
       000B15 AF                    5392 	xor	a, a
@@ -5457,7 +5457,7 @@
       000B62 F8 0B                 5457 	ldhl	sp,	#11
       000B64 22                    5458 	ld	(hl+), a
       000B65 4E                    5459 	ld	c, (hl)
-                                   5460 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5460 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000B66 F8 09                 5461 	ldhl	sp,	#9
       000B68 71                    5462 	ld	(hl), c
       000B69 AF                    5463 	xor	a, a
@@ -5528,7 +5528,7 @@
       000BB6 F8 0B                 5528 	ldhl	sp,	#11
       000BB8 22                    5529 	ld	(hl+), a
       000BB9 4E                    5530 	ld	c, (hl)
-                                   5531 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5531 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000BBA F8 09                 5532 	ldhl	sp,	#9
       000BBC 71                    5533 	ld	(hl), c
       000BBD AF                    5534 	xor	a, a
@@ -5599,7 +5599,7 @@
       000C0A F8 0B                 5599 	ldhl	sp,	#11
       000C0C 22                    5600 	ld	(hl+), a
       000C0D 4E                    5601 	ld	c, (hl)
-                                   5602 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5602 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000C0E F8 09                 5603 	ldhl	sp,	#9
       000C10 71                    5604 	ld	(hl), c
       000C11 AF                    5605 	xor	a, a
@@ -5670,7 +5670,7 @@
       000C5E F8 0B                 5670 	ldhl	sp,	#11
       000C60 22                    5671 	ld	(hl+), a
       000C61 4E                    5672 	ld	c, (hl)
-                                   5673 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5673 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000C62 F8 09                 5674 	ldhl	sp,	#9
       000C64 71                    5675 	ld	(hl), c
       000C65 AF                    5676 	xor	a, a
@@ -5741,7 +5741,7 @@
       000CB1 F8 0B                 5741 	ldhl	sp,	#11
       000CB3 22                    5742 	ld	(hl+), a
       000CB4 4E                    5743 	ld	c, (hl)
-                                   5744 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5744 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000CB5 F8 09                 5745 	ldhl	sp,	#9
       000CB7 71                    5746 	ld	(hl), c
       000CB8 AF                    5747 	xor	a, a
@@ -5805,7 +5805,7 @@
       000CFB F8 08                 5805 	ldhl	sp,	#8
       000CFD 77                    5806 	ld	(hl), a
       000CFE F8 0C                 5807 	ldhl	sp,	#12
-                                   5808 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5808 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000D00 3A                    5809 	ld	a, (hl-)
       000D01 77                    5810 	ld	(hl), a
       000D02 AF                    5811 	xor	a, a
@@ -5886,7 +5886,7 @@
       000D59 F8 0B                 5886 	ldhl	sp,	#11
       000D5B 22                    5887 	ld	(hl+), a
       000D5C 4E                    5888 	ld	c, (hl)
-                                   5889 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5889 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000D5D F8 09                 5890 	ldhl	sp,	#9
       000D5F 71                    5891 	ld	(hl), c
       000D60 AF                    5892 	xor	a, a
@@ -5963,7 +5963,7 @@
       000DB5 5F                    5963 	ld	e, a
       000DB6 56                    5964 	ld	d, (hl)
       000DB7 1A                    5965 	ld	a, (de)
-                                   5966 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   5966 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000DB8 22                    5967 	ld	(hl+), a
       000DB9 7E                    5968 	ld	a, (hl)
       000DBA F8 09                 5969 	ldhl	sp,	#9
@@ -6036,7 +6036,7 @@
       000E0A F8 0B                 6036 	ldhl	sp,	#11
       000E0C 22                    6037 	ld	(hl+), a
       000E0D 4E                    6038 	ld	c, (hl)
-                                   6039 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6039 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000E0E F8 09                 6040 	ldhl	sp,	#9
       000E10 71                    6041 	ld	(hl), c
       000E11 AF                    6042 	xor	a, a
@@ -6107,7 +6107,7 @@
       000E5E F8 0B                 6107 	ldhl	sp,	#11
       000E60 22                    6108 	ld	(hl+), a
       000E61 4E                    6109 	ld	c, (hl)
-                                   6110 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6110 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000E62 F8 09                 6111 	ldhl	sp,	#9
       000E64 71                    6112 	ld	(hl), c
       000E65 AF                    6113 	xor	a, a
@@ -6178,7 +6178,7 @@
       000EB2 F8 0B                 6178 	ldhl	sp,	#11
       000EB4 22                    6179 	ld	(hl+), a
       000EB5 4E                    6180 	ld	c, (hl)
-                                   6181 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6181 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000EB6 F8 09                 6182 	ldhl	sp,	#9
       000EB8 71                    6183 	ld	(hl), c
       000EB9 AF                    6184 	xor	a, a
@@ -6249,7 +6249,7 @@
       000F06 F8 0B                 6249 	ldhl	sp,	#11
       000F08 22                    6250 	ld	(hl+), a
       000F09 4E                    6251 	ld	c, (hl)
-                                   6252 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6252 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000F0A F8 09                 6253 	ldhl	sp,	#9
       000F0C 71                    6254 	ld	(hl), c
       000F0D AF                    6255 	xor	a, a
@@ -6320,7 +6320,7 @@
       000F5A F8 0B                 6320 	ldhl	sp,	#11
       000F5C 22                    6321 	ld	(hl+), a
       000F5D 4E                    6322 	ld	c, (hl)
-                                   6323 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6323 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000F5E F8 09                 6324 	ldhl	sp,	#9
       000F60 71                    6325 	ld	(hl), c
       000F61 AF                    6326 	xor	a, a
@@ -6391,7 +6391,7 @@
       000FAE F8 0B                 6391 	ldhl	sp,	#11
       000FB0 22                    6392 	ld	(hl+), a
       000FB1 4E                    6393 	ld	c, (hl)
-                                   6394 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6394 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       000FB2 F8 09                 6395 	ldhl	sp,	#9
       000FB4 71                    6396 	ld	(hl), c
       000FB5 AF                    6397 	xor	a, a
@@ -6462,7 +6462,7 @@
       001001 F8 0B                 6462 	ldhl	sp,	#11
       001003 22                    6463 	ld	(hl+), a
       001004 4E                    6464 	ld	c, (hl)
-                                   6465 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6465 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       001005 F8 09                 6466 	ldhl	sp,	#9
       001007 71                    6467 	ld	(hl), c
       001008 AF                    6468 	xor	a, a
@@ -6526,7 +6526,7 @@
       00104B F8 0B                 6526 	ldhl	sp,	#11
       00104D 22                    6527 	ld	(hl+), a
       00104E 4E                    6528 	ld	c, (hl)
-                                   6529 ;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+                                   6529 ;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
       00104F F8 09                 6530 	ldhl	sp,	#9
       001051 71                    6531 	ld	(hl), c
       001052 AF                    6532 	xor	a, a
@@ -6601,7 +6601,7 @@
       00109F 56                    6601 	ld	d, (hl)
       0010A0 1A                    6602 	ld	a, (de)
       0010A1 4F                    6603 	ld	c, a
-                                   6604 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6604 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0010A2 AF                    6605 	xor	a, a
       0010A3 69                    6606 	ld	l, c
       0010A4 67                    6607 	ld	h, a
@@ -6611,7 +6611,7 @@
       0010AA 09                    6611 	add	hl, bc
       0010AB 4D                    6612 	ld	c, l
       0010AC 44                    6613 	ld	b, h
-                                   6614 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6614 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0010AD F8 00                 6615 	ldhl	sp,	#0
       0010AF 2A                    6616 	ld	a, (hl+)
       0010B0 02                    6617 	ld	(bc), a
@@ -6628,7 +6628,7 @@
       0010BC 4E                    6628 	ld	c, (hl)
       0010BD F8 02                 6629 	ldhl	sp,	#2
       0010BF 77                    6630 	ld	(hl), a
-                                   6631 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6631 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0010C0 AF                    6632 	xor	a, a
       0010C1 69                    6633 	ld	l, c
       0010C2 67                    6634 	ld	h, a
@@ -6638,7 +6638,7 @@
       0010C8 09                    6638 	add	hl, bc
       0010C9 4D                    6639 	ld	c, l
       0010CA 44                    6640 	ld	b, h
-                                   6641 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6641 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0010CB F8 00                 6642 	ldhl	sp,	#0
       0010CD 2A                    6643 	ld	a, (hl+)
       0010CE 02                    6644 	ld	(bc), a
@@ -6659,7 +6659,7 @@
       0010DF 23                    6659 	inc	hl
       0010E0 23                    6660 	inc	hl
       0010E1 4E                    6661 	ld	c, (hl)
-                                   6662 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6662 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0010E2 AF                    6663 	xor	a, a
       0010E3 69                    6664 	ld	l, c
       0010E4 67                    6665 	ld	h, a
@@ -6669,7 +6669,7 @@
       0010EA 09                    6669 	add	hl, bc
       0010EB 4D                    6670 	ld	c, l
       0010EC 44                    6671 	ld	b, h
-                                   6672 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6672 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0010ED F8 02                 6673 	ldhl	sp,	#2
       0010EF 7E                    6674 	ld	a, (hl)
       0010F0 02                    6675 	ld	(bc), a
@@ -6693,7 +6693,7 @@
       001106 13                    6693 	inc	de
       001107 1A                    6694 	ld	a, (de)
       001108 5F                    6695 	ld	e, a
-                                   6696 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6696 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       001109 16 00                 6697 	ld	d, #0x00
       00110B 6B                    6698 	ld	l, e
       00110C 62                    6699 	ld	h, d
@@ -6701,7 +6701,7 @@
       00110E 29                    6701 	add	hl, hl
       00110F 11r00r00              6702 	ld	de, #_shadow_OAM
       001112 19                    6703 	add	hl, de
-                                   6704 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6704 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       001113 78                    6705 	ld	a, b
       001114 22                    6706 	ld	(hl+), a
       001115 71                    6707 	ld	(hl), c
@@ -6730,7 +6730,7 @@
       00112B 56                    6730 	ld	d, (hl)
       00112C 1A                    6731 	ld	a, (de)
       00112D 4F                    6732 	ld	c, a
-                                   6733 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6733 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       00112E AF                    6734 	xor	a, a
       00112F 69                    6735 	ld	l, c
       001130 67                    6736 	ld	h, a
@@ -6740,7 +6740,7 @@
       001136 09                    6740 	add	hl, bc
       001137 4D                    6741 	ld	c, l
       001138 44                    6742 	ld	b, h
-                                   6743 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6743 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       001139 F8 00                 6744 	ldhl	sp,	#0
       00113B 2A                    6745 	ld	a, (hl+)
       00113C 02                    6746 	ld	(bc), a
@@ -6757,7 +6757,7 @@
       001148 4E                    6757 	ld	c, (hl)
       001149 F8 04                 6758 	ldhl	sp,	#4
       00114B 77                    6759 	ld	(hl), a
-                                   6760 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6760 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       00114C AF                    6761 	xor	a, a
       00114D 69                    6762 	ld	l, c
       00114E 67                    6763 	ld	h, a
@@ -6767,7 +6767,7 @@
       001154 09                    6767 	add	hl, bc
       001155 4D                    6768 	ld	c, l
       001156 44                    6769 	ld	b, h
-                                   6770 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6770 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       001157 F8 00                 6771 	ldhl	sp,	#0
       001159 7E                    6772 	ld	a, (hl)
       00115A 02                    6773 	ld	(bc), a
@@ -6790,7 +6790,7 @@
       00116E 4E                    6790 	ld	c, (hl)
       00116F F8 04                 6791 	ldhl	sp,	#4
       001171 77                    6792 	ld	(hl), a
-                                   6793 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6793 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       001172 AF                    6794 	xor	a, a
       001173 69                    6795 	ld	l, c
       001174 67                    6796 	ld	h, a
@@ -6800,7 +6800,7 @@
       00117A 09                    6800 	add	hl, bc
       00117B 4D                    6801 	ld	c, l
       00117C 44                    6802 	ld	b, h
-                                   6803 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6803 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00117D F8 00                 6804 	ldhl	sp,	#0
       00117F 7E                    6805 	ld	a, (hl)
       001180 02                    6806 	ld	(bc), a
@@ -6821,7 +6821,7 @@
       001193 23                    6821 	inc	hl
       001194 23                    6822 	inc	hl
       001195 4E                    6823 	ld	c, (hl)
-                                   6824 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6824 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       001196 26 00                 6825 	ld	h, #0x00
       001198 69                    6826 	ld	l, c
       001199 29                    6827 	add	hl, hl
@@ -6830,7 +6830,7 @@
       00119E 09                    6830 	add	hl, bc
       00119F 4D                    6831 	ld	c, l
       0011A0 44                    6832 	ld	b, h
-                                   6833 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6833 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0011A1 F8 04                 6834 	ldhl	sp,	#4
       0011A3 7E                    6835 	ld	a, (hl)
       0011A4 02                    6836 	ld	(bc), a
@@ -6855,7 +6855,7 @@
       0011BE 4E                    6855 	ld	c, (hl)
       0011BF F8 04                 6856 	ldhl	sp,	#4
       0011C1 70                    6857 	ld	(hl), b
-                                   6858 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6858 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0011C2 AF                    6859 	xor	a, a
       0011C3 69                    6860 	ld	l, c
       0011C4 67                    6861 	ld	h, a
@@ -6865,7 +6865,7 @@
       0011CA 09                    6865 	add	hl, bc
       0011CB 4D                    6866 	ld	c, l
       0011CC 44                    6867 	ld	b, h
-                                   6868 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6868 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0011CD F8 03                 6869 	ldhl	sp,	#3
       0011CF 2A                    6870 	ld	a, (hl+)
       0011D0 02                    6871 	ld	(bc), a
@@ -6889,7 +6889,7 @@
       0011EA 4E                    6889 	ld	c, (hl)
       0011EB F8 04                 6890 	ldhl	sp,	#4
       0011ED 70                    6891 	ld	(hl), b
-                                   6892 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6892 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0011EE AF                    6893 	xor	a, a
       0011EF 69                    6894 	ld	l, c
       0011F0 67                    6895 	ld	h, a
@@ -6899,7 +6899,7 @@
       0011F6 09                    6899 	add	hl, bc
       0011F7 4D                    6900 	ld	c, l
       0011F8 44                    6901 	ld	b, h
-                                   6902 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6902 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       0011F9 F8 03                 6903 	ldhl	sp,	#3
       0011FB 2A                    6904 	ld	a, (hl+)
       0011FC 02                    6905 	ld	(bc), a
@@ -6920,7 +6920,7 @@
       00120E 21 06 00              6920 	ld	hl, #0x0006
       001211 19                    6921 	add	hl, de
       001212 4E                    6922 	ld	c, (hl)
-                                   6923 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6923 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       001213 AF                    6924 	xor	a, a
       001214 69                    6925 	ld	l, c
       001215 67                    6926 	ld	h, a
@@ -6930,7 +6930,7 @@
       00121B 09                    6930 	add	hl, bc
       00121C 4D                    6931 	ld	c, l
       00121D 44                    6932 	ld	b, h
-                                   6933 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6933 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00121E F8 03                 6934 	ldhl	sp,	#3
       001220 7E                    6935 	ld	a, (hl)
       001221 02                    6936 	ld	(bc), a
@@ -6956,7 +6956,7 @@
       00123B 4E                    6956 	ld	c, (hl)
       00123C F8 01                 6957 	ldhl	sp,	#1
       00123E 70                    6958 	ld	(hl), b
-                                   6959 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6959 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       00123F AF                    6960 	xor	a, a
       001240 69                    6961 	ld	l, c
       001241 67                    6962 	ld	h, a
@@ -6966,7 +6966,7 @@
       001247 09                    6966 	add	hl, bc
       001248 4D                    6967 	ld	c, l
       001249 44                    6968 	ld	b, h
-                                   6969 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   6969 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00124A F8 03                 6970 	ldhl	sp,	#3
       00124C 7E                    6971 	ld	a, (hl)
       00124D 02                    6972 	ld	(bc), a
@@ -6991,7 +6991,7 @@
       001262 21 08 00              6991 	ld	hl, #0x0008
       001265 19                    6992 	add	hl, de
       001266 5E                    6993 	ld	e, (hl)
-                                   6994 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   6994 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       001267 16 00                 6995 	ld	d, #0x00
       001269 6B                    6996 	ld	l, e
       00126A 62                    6997 	ld	h, d
@@ -6999,7 +6999,7 @@
       00126C 29                    6999 	add	hl, hl
       00126D 11r00r00              7000 	ld	de, #_shadow_OAM
       001270 19                    7001 	add	hl, de
-                                   7002 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   7002 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       001271 78                    7003 	ld	a, b
       001272 22                    7004 	ld	(hl+), a
       001273 71                    7005 	ld	(hl), c
@@ -7126,7 +7126,7 @@
       0012F5 56                    7126 	ld	d, (hl)
       0012F6 1A                    7127 	ld	a, (de)
       0012F7 77                    7128 	ld	(hl), a
-                                   7129 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   7129 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       0012F8 5E                    7130 	ld	e, (hl)
       0012F9 16 00                 7131 	ld	d, #0x00
       0012FB 6B                    7132 	ld	l, e
@@ -7135,7 +7135,7 @@
       0012FE 29                    7135 	add	hl, hl
       0012FF 11r00r00              7136 	ld	de, #_shadow_OAM
       001302 19                    7137 	add	hl, de
-                                   7138 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   7138 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       001303 78                    7139 	ld	a, b
       001304 22                    7140 	ld	(hl+), a
       001305 71                    7141 	ld	(hl), c
@@ -7155,7 +7155,7 @@
       001312 56                    7155 	ld	d, (hl)
       001313 1A                    7156 	ld	a, (de)
       001314 4F                    7157 	ld	c, a
-                                   7158 ;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+                                   7158 ;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
       001315 11r00r00              7159 	ld	de, #_shadow_OAM+0
       001318 AF                    7160 	xor	a, a
       001319 69                    7161 	ld	l, c
@@ -7163,7 +7163,7 @@
       00131B 29                    7163 	add	hl, hl
       00131C 29                    7164 	add	hl, hl
       00131D 19                    7165 	add	hl, de
-                                   7166 ;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+                                   7166 ;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
       00131E 3E 00                 7167 	ld	a, #0x00
       001320 22                    7168 	ld	(hl+), a
       001321 36 96                 7169 	ld	(hl), #0x96
@@ -9281,1058 +9281,1079 @@
                                    9281 ; ---------------------------------
       001CE0                       9282 _main::
       001CE0 E8 A2                 9283 	add	sp, #-94
-                                   9284 ;game.c:25: set_bkg_data(0, 10, backTiles);
-      001CE2 21r40r01              9285 	ld	hl, #_backTiles
-      001CE5 E5                    9286 	push	hl
-      001CE6 3E 0A                 9287 	ld	a, #0x0a
-      001CE8 F5                    9288 	push	af
-      001CE9 33                    9289 	inc	sp
-      001CEA AF                    9290 	xor	a, a
-      001CEB F5                    9291 	push	af
-      001CEC 33                    9292 	inc	sp
-      001CED CDr00r00              9293 	call	_set_bkg_data
-      001CF0 E8 04                 9294 	add	sp, #4
-                                   9295 ;game.c:26: set_bkg_tiles(0, 0, 20, 36, simpleMap);
-      001CF2 21rC0r01              9296 	ld	hl, #_simpleMap
-      001CF5 E5                    9297 	push	hl
-      001CF6 11 14 24              9298 	ld	de, #0x2414
-      001CF9 D5                    9299 	push	de
-      001CFA AF                    9300 	xor	a, a
-      001CFB F5                    9301 	push	af
-      001CFC 33                    9302 	inc	sp
-      001CFD AF                    9303 	xor	a, a
-      001CFE F5                    9304 	push	af
-      001CFF 33                    9305 	inc	sp
-      001D00 CDr00r00              9306 	call	_set_bkg_tiles
-      001D03 E8 06                 9307 	add	sp, #6
-                                   9308 ;game.c:28: set_sprite_data(0, 4, ghost);
-      001D05 21r50r00              9309 	ld	hl, #_ghost
-      001D08 E5                    9310 	push	hl
-      001D09 3E 04                 9311 	ld	a, #0x04
-      001D0B F5                    9312 	push	af
-      001D0C 33                    9313 	inc	sp
-      001D0D AF                    9314 	xor	a, a
-      001D0E F5                    9315 	push	af
-      001D0F 33                    9316 	inc	sp
-      001D10 CDr00r00              9317 	call	_set_sprite_data
-      001D13 E8 04                 9318 	add	sp, #4
-                                   9319 ;game.c:29: set_sprite_data(4, 4, protagonista);
-      001D15 21r00r00              9320 	ld	hl, #_protagonista
-      001D18 E5                    9321 	push	hl
-      001D19 11 04 04              9322 	ld	de, #0x0404
-      001D1C D5                    9323 	push	de
-      001D1D CDr00r00              9324 	call	_set_sprite_data
-      001D20 E8 04                 9325 	add	sp, #4
-                                   9326 ;game.c:30: set_sprite_data(8, 9, MiniBossOgro);
-      001D22 21r90r00              9327 	ld	hl, #_MiniBossOgro
-      001D25 E5                    9328 	push	hl
-      001D26 11 08 09              9329 	ld	de, #0x0908
-      001D29 D5                    9330 	push	de
-      001D2A CDr00r00              9331 	call	_set_sprite_data
-      001D2D E8 04                 9332 	add	sp, #4
-                                   9333 ;game.c:31: set_sprite_data(17, 1, projetil);
-      001D2F 21r20r01              9334 	ld	hl, #_projetil
-      001D32 E5                    9335 	push	hl
-      001D33 11 11 01              9336 	ld	de, #0x0111
-      001D36 D5                    9337 	push	de
-      001D37 CDr00r00              9338 	call	_set_sprite_data
-      001D3A E8 04                 9339 	add	sp, #4
-                                   9340 ;game.c:32: set_sprite_data(18,16, score);
-      001D3C 21r90r04              9341 	ld	hl, #_score
-      001D3F E5                    9342 	push	hl
-      001D40 11 12 10              9343 	ld	de, #0x1012
-      001D43 D5                    9344 	push	de
-      001D44 CDr00r00              9345 	call	_set_sprite_data
-      001D47 E8 04                 9346 	add	sp, #4
-                                   9347 ;game.c:36: setupEnemy(&inimigo1,0,4);
-      001D49 F8 00                 9348 	ldhl	sp,	#0
-      001D4B 7D                    9349 	ld	a, l
-      001D4C 54                    9350 	ld	d, h
-      001D4D F8 48                 9351 	ldhl	sp,	#72
-      001D4F 22                    9352 	ld	(hl+), a
-      001D50 7A                    9353 	ld	a, d
-      001D51 32                    9354 	ld	(hl-), a
-      001D52 2A                    9355 	ld	a, (hl+)
-      001D53 4F                    9356 	ld	c, a
-      001D54 46                    9357 	ld	b, (hl)
-      001D55 3E 04                 9358 	ld	a, #0x04
-      001D57 F5                    9359 	push	af
-      001D58 33                    9360 	inc	sp
-      001D59 AF                    9361 	xor	a, a
-      001D5A F5                    9362 	push	af
-      001D5B 33                    9363 	inc	sp
-      001D5C C5                    9364 	push	bc
-      001D5D CDr00r00              9365 	call	_setupEnemy
-      001D60 E8 04                 9366 	add	sp, #4
-                                   9367 ;game.c:40: setupHero(&protagonista,4,8);
-      001D62 F8 0A                 9368 	ldhl	sp,	#10
-      001D64 7D                    9369 	ld	a, l
-      001D65 54                    9370 	ld	d, h
-      001D66 F8 4A                 9371 	ldhl	sp,	#74
-      001D68 22                    9372 	ld	(hl+), a
-      001D69 7A                    9373 	ld	a, d
-      001D6A 32                    9374 	ld	(hl-), a
-      001D6B 2A                    9375 	ld	a, (hl+)
-      001D6C 4F                    9376 	ld	c, a
-      001D6D 46                    9377 	ld	b, (hl)
-      001D6E 11 04 08              9378 	ld	de, #0x0804
-      001D71 D5                    9379 	push	de
-      001D72 C5                    9380 	push	bc
-      001D73 CDr6Br00              9381 	call	_setupHero
-      001D76 E8 04                 9382 	add	sp, #4
-                                   9383 ;game.c:41: setPositionGameCharacter(&protagonista,80,128);
-      001D78 F8 4A                 9384 	ldhl	sp,#74
-      001D7A 2A                    9385 	ld	a, (hl+)
-      001D7B 4F                    9386 	ld	c, a
-      001D7C 46                    9387 	ld	b, (hl)
-      001D7D 11 50 80              9388 	ld	de, #0x8050
-      001D80 D5                    9389 	push	de
-      001D81 C5                    9390 	push	bc
-      001D82 CDr8Dr10              9391 	call	_setPositionGameCharacter
-      001D85 E8 04                 9392 	add	sp, #4
-                                   9393 ;game.c:47: setupScore(&pontuacao,18,96,152);
-      001D87 F8 14                 9394 	ldhl	sp,	#20
-      001D89 7D                    9395 	ld	a, l
-      001D8A 54                    9396 	ld	d, h
-      001D8B F8 4C                 9397 	ldhl	sp,	#76
-      001D8D 22                    9398 	ld	(hl+), a
-      001D8E 7A                    9399 	ld	a, d
-      001D8F 32                    9400 	ld	(hl-), a
-      001D90 2A                    9401 	ld	a, (hl+)
-      001D91 4F                    9402 	ld	c, a
-      001D92 46                    9403 	ld	b, (hl)
-      001D93 11 60 98              9404 	ld	de, #0x9860
-      001D96 D5                    9405 	push	de
-      001D97 3E 12                 9406 	ld	a, #0x12
-      001D99 F5                    9407 	push	af
-      001D9A 33                    9408 	inc	sp
-      001D9B C5                    9409 	push	bc
-      001D9C CDr6Cr01              9410 	call	_setupScore
-      001D9F E8 05                 9411 	add	sp, #5
-                                   9412 ;game.c:55: setupBala(&projetil1,17);
-      001DA1 F8 2A                 9413 	ldhl	sp,	#42
-      001DA3 7D                    9414 	ld	a, l
-      001DA4 54                    9415 	ld	d, h
-      001DA5 F8 4E                 9416 	ldhl	sp,	#78
-      001DA7 22                    9417 	ld	(hl+), a
-      001DA8 7A                    9418 	ld	a, d
-      001DA9 32                    9419 	ld	(hl-), a
-      001DAA 2A                    9420 	ld	a, (hl+)
-      001DAB 4F                    9421 	ld	c, a
-      001DAC 46                    9422 	ld	b, (hl)
-      001DAD 3E 11                 9423 	ld	a, #0x11
-      001DAF F5                    9424 	push	af
-      001DB0 33                    9425 	inc	sp
-      001DB1 C5                    9426 	push	bc
-      001DB2 CDr35r01              9427 	call	_setupBala
-      001DB5 E8 03                 9428 	add	sp, #3
-                                   9429 ;game.c:56: setupBala(&projetil2,17);
-      001DB7 F8 30                 9430 	ldhl	sp,	#48
-      001DB9 7D                    9431 	ld	a, l
-      001DBA 54                    9432 	ld	d, h
-      001DBB F8 50                 9433 	ldhl	sp,	#80
-      001DBD 22                    9434 	ld	(hl+), a
-      001DBE 7A                    9435 	ld	a, d
-      001DBF 32                    9436 	ld	(hl-), a
-      001DC0 2A                    9437 	ld	a, (hl+)
-      001DC1 4F                    9438 	ld	c, a
-      001DC2 46                    9439 	ld	b, (hl)
-      001DC3 3E 11                 9440 	ld	a, #0x11
-      001DC5 F5                    9441 	push	af
-      001DC6 33                    9442 	inc	sp
-      001DC7 C5                    9443 	push	bc
-      001DC8 CDr35r01              9444 	call	_setupBala
-      001DCB E8 03                 9445 	add	sp, #3
-                                   9446 ;game.c:57: setupBala(&projetil3,17);
-      001DCD F8 36                 9447 	ldhl	sp,	#54
-      001DCF 7D                    9448 	ld	a, l
-      001DD0 54                    9449 	ld	d, h
-      001DD1 F8 52                 9450 	ldhl	sp,	#82
-      001DD3 22                    9451 	ld	(hl+), a
-      001DD4 7A                    9452 	ld	a, d
-      001DD5 32                    9453 	ld	(hl-), a
-      001DD6 2A                    9454 	ld	a, (hl+)
-      001DD7 4F                    9455 	ld	c, a
-      001DD8 46                    9456 	ld	b, (hl)
-      001DD9 3E 11                 9457 	ld	a, #0x11
-      001DDB F5                    9458 	push	af
-      001DDC 33                    9459 	inc	sp
-      001DDD C5                    9460 	push	bc
-      001DDE CDr35r01              9461 	call	_setupBala
-      001DE1 E8 03                 9462 	add	sp, #3
-                                   9463 ;game.c:58: setupBala(&projetil4,17);
-      001DE3 F8 3C                 9464 	ldhl	sp,	#60
-      001DE5 7D                    9465 	ld	a, l
-      001DE6 54                    9466 	ld	d, h
-      001DE7 F8 54                 9467 	ldhl	sp,	#84
-      001DE9 22                    9468 	ld	(hl+), a
-      001DEA 7A                    9469 	ld	a, d
-      001DEB 32                    9470 	ld	(hl-), a
-      001DEC 2A                    9471 	ld	a, (hl+)
-      001DED 4F                    9472 	ld	c, a
-      001DEE 46                    9473 	ld	b, (hl)
-      001DEF 3E 11                 9474 	ld	a, #0x11
-      001DF1 F5                    9475 	push	af
-      001DF2 33                    9476 	inc	sp
-      001DF3 C5                    9477 	push	bc
-      001DF4 CDr35r01              9478 	call	_setupBala
-      001DF7 E8 03                 9479 	add	sp, #3
-                                   9480 ;game.c:59: setupBala(&projetil5,17);
-      001DF9 F8 42                 9481 	ldhl	sp,	#66
-      001DFB 7D                    9482 	ld	a, l
-      001DFC 54                    9483 	ld	d, h
-      001DFD F8 56                 9484 	ldhl	sp,	#86
-      001DFF 22                    9485 	ld	(hl+), a
-      001E00 7A                    9486 	ld	a, d
-      001E01 32                    9487 	ld	(hl-), a
-      001E02 2A                    9488 	ld	a, (hl+)
-      001E03 4F                    9489 	ld	c, a
-      001E04 46                    9490 	ld	b, (hl)
-      001E05 3E 11                 9491 	ld	a, #0x11
-      001E07 F5                    9492 	push	af
-      001E08 33                    9493 	inc	sp
-      001E09 C5                    9494 	push	bc
-      001E0A CDr35r01              9495 	call	_setupBala
-      001E0D E8 03                 9496 	add	sp, #3
-                                   9497 ;game.c:63: SHOW_BKG;
-      001E0F F0r00                 9498 	ldh	a, (_LCDC_REG+0)
-      001E11 F6 01                 9499 	or	a, #0x01
-      001E13 E0r00                 9500 	ldh	(_LCDC_REG+0),a
-                                   9501 ;game.c:64: SHOW_SPRITES;
-      001E15 F0r00                 9502 	ldh	a, (_LCDC_REG+0)
-      001E17 F6 02                 9503 	or	a, #0x02
-      001E19 E0r00                 9504 	ldh	(_LCDC_REG+0),a
-                                   9505 ;game.c:66: DISPLAY_ON;
-      001E1B F0r00                 9506 	ldh	a, (_LCDC_REG+0)
-      001E1D F6 80                 9507 	or	a, #0x80
-      001E1F E0r00                 9508 	ldh	(_LCDC_REG+0),a
-                                   9509 ;game.c:70: waitpad(J_START);
-      001E21 3E 80                 9510 	ld	a, #0x80
-      001E23 F5                    9511 	push	af
-      001E24 33                    9512 	inc	sp
-      001E25 CDr00r00              9513 	call	_waitpad
-      001E28 33                    9514 	inc	sp
-                                   9515 ;game.c:72: while(1){
-      001E29                       9516 00130$:
-                                   9517 ;c:/gbdk/include/gb/gb.h:770: SCX_REG+=x, SCY_REG+=y;
-      001E29 F0r00                 9518 	ldh	a, (_SCY_REG+0)
-      001E2B 3C                    9519 	inc	a
-      001E2C E0r00                 9520 	ldh	(_SCY_REG+0),a
-                                   9521 ;game.c:74: moveBala(&projetil1);
-      001E2E F8 4E                 9522 	ldhl	sp,#78
-      001E30 2A                    9523 	ld	a, (hl+)
-      001E31 4F                    9524 	ld	c, a
-      001E32 46                    9525 	ld	b, (hl)
-      001E33 C5                    9526 	push	bc
-      001E34 CDr77r12              9527 	call	_moveBala
-      001E37 E8 02                 9528 	add	sp, #2
-                                   9529 ;game.c:75: moveBala(&projetil2);
-      001E39 F8 50                 9530 	ldhl	sp,#80
-      001E3B 2A                    9531 	ld	a, (hl+)
-      001E3C 4F                    9532 	ld	c, a
-      001E3D 46                    9533 	ld	b, (hl)
-      001E3E C5                    9534 	push	bc
-      001E3F CDr77r12              9535 	call	_moveBala
-      001E42 E8 02                 9536 	add	sp, #2
-                                   9537 ;game.c:76: moveBala(&projetil3);
-      001E44 F8 52                 9538 	ldhl	sp,#82
-      001E46 2A                    9539 	ld	a, (hl+)
-      001E47 4F                    9540 	ld	c, a
-      001E48 46                    9541 	ld	b, (hl)
-      001E49 C5                    9542 	push	bc
-      001E4A CDr77r12              9543 	call	_moveBala
-      001E4D E8 02                 9544 	add	sp, #2
-                                   9545 ;game.c:77: moveBala(&projetil4);
-      001E4F F8 54                 9546 	ldhl	sp,#84
-      001E51 2A                    9547 	ld	a, (hl+)
-      001E52 4F                    9548 	ld	c, a
-      001E53 46                    9549 	ld	b, (hl)
-      001E54 C5                    9550 	push	bc
-      001E55 CDr77r12              9551 	call	_moveBala
-      001E58 E8 02                 9552 	add	sp, #2
-                                   9553 ;game.c:78: moveBala(&projetil5);
-      001E5A F8 56                 9554 	ldhl	sp,#86
-      001E5C 2A                    9555 	ld	a, (hl+)
-      001E5D 4F                    9556 	ld	c, a
-      001E5E 46                    9557 	ld	b, (hl)
-      001E5F C5                    9558 	push	bc
-      001E60 CDr77r12              9559 	call	_moveBala
-      001E63 E8 02                 9560 	add	sp, #2
-                                   9561 ;game.c:80: moveInimigo1(&inimigo1,&protagonista);
-      001E65 F8 4A                 9562 	ldhl	sp,#74
-      001E67 2A                    9563 	ld	a, (hl+)
-      001E68 5F                    9564 	ld	e, a
-      001E69 3A                    9565 	ld	a, (hl-)
-      001E6A 57                    9566 	ld	d, a
-      001E6B 2B                    9567 	dec	hl
-      001E6C 2B                    9568 	dec	hl
-      001E6D 2A                    9569 	ld	a, (hl+)
-      001E6E 4F                    9570 	ld	c, a
-      001E6F 46                    9571 	ld	b, (hl)
-      001E70 D5                    9572 	push	de
-      001E71 C5                    9573 	push	bc
-      001E72 CDr26r13              9574 	call	_moveInimigo1
-      001E75 E8 04                 9575 	add	sp, #4
-                                   9576 ;game.c:82: hitMinnion(&inimigo1,&projetil1,50);
-      001E77 F8 4E                 9577 	ldhl	sp,#78
+                                   9284 ;game.c:23: NR52_REG = 0x80;
+      001CE2 3E 80                 9285 	ld	a, #0x80
+      001CE4 E0r00                 9286 	ldh	(_NR52_REG+0),a
+                                   9287 ;game.c:24: NR51_REG = 0x11;
+      001CE6 3E 11                 9288 	ld	a, #0x11
+      001CE8 E0r00                 9289 	ldh	(_NR51_REG+0),a
+                                   9290 ;game.c:25: NR50_REG = 0x77;
+      001CEA 3E 77                 9291 	ld	a, #0x77
+      001CEC E0r00                 9292 	ldh	(_NR50_REG+0),a
+                                   9293 ;game.c:27: set_bkg_data(0, 10, backTiles);
+      001CEE 21r40r01              9294 	ld	hl, #_backTiles
+      001CF1 E5                    9295 	push	hl
+      001CF2 3E 0A                 9296 	ld	a, #0x0a
+      001CF4 F5                    9297 	push	af
+      001CF5 33                    9298 	inc	sp
+      001CF6 AF                    9299 	xor	a, a
+      001CF7 F5                    9300 	push	af
+      001CF8 33                    9301 	inc	sp
+      001CF9 CDr00r00              9302 	call	_set_bkg_data
+      001CFC E8 04                 9303 	add	sp, #4
+                                   9304 ;game.c:28: set_bkg_tiles(0, 0, 20, 36, simpleMap);
+      001CFE 21rC0r01              9305 	ld	hl, #_simpleMap
+      001D01 E5                    9306 	push	hl
+      001D02 11 14 24              9307 	ld	de, #0x2414
+      001D05 D5                    9308 	push	de
+      001D06 AF                    9309 	xor	a, a
+      001D07 F5                    9310 	push	af
+      001D08 33                    9311 	inc	sp
+      001D09 AF                    9312 	xor	a, a
+      001D0A F5                    9313 	push	af
+      001D0B 33                    9314 	inc	sp
+      001D0C CDr00r00              9315 	call	_set_bkg_tiles
+      001D0F E8 06                 9316 	add	sp, #6
+                                   9317 ;game.c:30: set_sprite_data(0, 4, ghost);
+      001D11 21r50r00              9318 	ld	hl, #_ghost
+      001D14 E5                    9319 	push	hl
+      001D15 3E 04                 9320 	ld	a, #0x04
+      001D17 F5                    9321 	push	af
+      001D18 33                    9322 	inc	sp
+      001D19 AF                    9323 	xor	a, a
+      001D1A F5                    9324 	push	af
+      001D1B 33                    9325 	inc	sp
+      001D1C CDr00r00              9326 	call	_set_sprite_data
+      001D1F E8 04                 9327 	add	sp, #4
+                                   9328 ;game.c:31: set_sprite_data(4, 4, protagonista);
+      001D21 21r00r00              9329 	ld	hl, #_protagonista
+      001D24 E5                    9330 	push	hl
+      001D25 11 04 04              9331 	ld	de, #0x0404
+      001D28 D5                    9332 	push	de
+      001D29 CDr00r00              9333 	call	_set_sprite_data
+      001D2C E8 04                 9334 	add	sp, #4
+                                   9335 ;game.c:32: set_sprite_data(8, 9, MiniBossOgro);
+      001D2E 21r90r00              9336 	ld	hl, #_MiniBossOgro
+      001D31 E5                    9337 	push	hl
+      001D32 11 08 09              9338 	ld	de, #0x0908
+      001D35 D5                    9339 	push	de
+      001D36 CDr00r00              9340 	call	_set_sprite_data
+      001D39 E8 04                 9341 	add	sp, #4
+                                   9342 ;game.c:33: set_sprite_data(17, 1, projetil);
+      001D3B 21r20r01              9343 	ld	hl, #_projetil
+      001D3E E5                    9344 	push	hl
+      001D3F 11 11 01              9345 	ld	de, #0x0111
+      001D42 D5                    9346 	push	de
+      001D43 CDr00r00              9347 	call	_set_sprite_data
+      001D46 E8 04                 9348 	add	sp, #4
+                                   9349 ;game.c:34: set_sprite_data(18,16, score);
+      001D48 21r90r04              9350 	ld	hl, #_score
+      001D4B E5                    9351 	push	hl
+      001D4C 11 12 10              9352 	ld	de, #0x1012
+      001D4F D5                    9353 	push	de
+      001D50 CDr00r00              9354 	call	_set_sprite_data
+      001D53 E8 04                 9355 	add	sp, #4
+                                   9356 ;game.c:38: setupEnemy(&inimigo1,0,4);
+      001D55 F8 00                 9357 	ldhl	sp,	#0
+      001D57 7D                    9358 	ld	a, l
+      001D58 54                    9359 	ld	d, h
+      001D59 F8 48                 9360 	ldhl	sp,	#72
+      001D5B 22                    9361 	ld	(hl+), a
+      001D5C 7A                    9362 	ld	a, d
+      001D5D 32                    9363 	ld	(hl-), a
+      001D5E 2A                    9364 	ld	a, (hl+)
+      001D5F 4F                    9365 	ld	c, a
+      001D60 46                    9366 	ld	b, (hl)
+      001D61 3E 04                 9367 	ld	a, #0x04
+      001D63 F5                    9368 	push	af
+      001D64 33                    9369 	inc	sp
+      001D65 AF                    9370 	xor	a, a
+      001D66 F5                    9371 	push	af
+      001D67 33                    9372 	inc	sp
+      001D68 C5                    9373 	push	bc
+      001D69 CDr00r00              9374 	call	_setupEnemy
+      001D6C E8 04                 9375 	add	sp, #4
+                                   9376 ;game.c:42: setupHero(&protagonista,4,8);
+      001D6E F8 0A                 9377 	ldhl	sp,	#10
+      001D70 7D                    9378 	ld	a, l
+      001D71 54                    9379 	ld	d, h
+      001D72 F8 4A                 9380 	ldhl	sp,	#74
+      001D74 22                    9381 	ld	(hl+), a
+      001D75 7A                    9382 	ld	a, d
+      001D76 32                    9383 	ld	(hl-), a
+      001D77 2A                    9384 	ld	a, (hl+)
+      001D78 4F                    9385 	ld	c, a
+      001D79 46                    9386 	ld	b, (hl)
+      001D7A 11 04 08              9387 	ld	de, #0x0804
+      001D7D D5                    9388 	push	de
+      001D7E C5                    9389 	push	bc
+      001D7F CDr6Br00              9390 	call	_setupHero
+      001D82 E8 04                 9391 	add	sp, #4
+                                   9392 ;game.c:43: setPositionGameCharacter(&protagonista,80,128);
+      001D84 F8 4A                 9393 	ldhl	sp,#74
+      001D86 2A                    9394 	ld	a, (hl+)
+      001D87 4F                    9395 	ld	c, a
+      001D88 46                    9396 	ld	b, (hl)
+      001D89 11 50 80              9397 	ld	de, #0x8050
+      001D8C D5                    9398 	push	de
+      001D8D C5                    9399 	push	bc
+      001D8E CDr8Dr10              9400 	call	_setPositionGameCharacter
+      001D91 E8 04                 9401 	add	sp, #4
+                                   9402 ;game.c:49: setupScore(&pontuacao,18,96,152);
+      001D93 F8 14                 9403 	ldhl	sp,	#20
+      001D95 7D                    9404 	ld	a, l
+      001D96 54                    9405 	ld	d, h
+      001D97 F8 4C                 9406 	ldhl	sp,	#76
+      001D99 22                    9407 	ld	(hl+), a
+      001D9A 7A                    9408 	ld	a, d
+      001D9B 32                    9409 	ld	(hl-), a
+      001D9C 2A                    9410 	ld	a, (hl+)
+      001D9D 4F                    9411 	ld	c, a
+      001D9E 46                    9412 	ld	b, (hl)
+      001D9F 11 60 98              9413 	ld	de, #0x9860
+      001DA2 D5                    9414 	push	de
+      001DA3 3E 12                 9415 	ld	a, #0x12
+      001DA5 F5                    9416 	push	af
+      001DA6 33                    9417 	inc	sp
+      001DA7 C5                    9418 	push	bc
+      001DA8 CDr6Cr01              9419 	call	_setupScore
+      001DAB E8 05                 9420 	add	sp, #5
+                                   9421 ;game.c:57: setupBala(&projetil1,17);
+      001DAD F8 2A                 9422 	ldhl	sp,	#42
+      001DAF 7D                    9423 	ld	a, l
+      001DB0 54                    9424 	ld	d, h
+      001DB1 F8 4E                 9425 	ldhl	sp,	#78
+      001DB3 22                    9426 	ld	(hl+), a
+      001DB4 7A                    9427 	ld	a, d
+      001DB5 32                    9428 	ld	(hl-), a
+      001DB6 2A                    9429 	ld	a, (hl+)
+      001DB7 4F                    9430 	ld	c, a
+      001DB8 46                    9431 	ld	b, (hl)
+      001DB9 3E 11                 9432 	ld	a, #0x11
+      001DBB F5                    9433 	push	af
+      001DBC 33                    9434 	inc	sp
+      001DBD C5                    9435 	push	bc
+      001DBE CDr35r01              9436 	call	_setupBala
+      001DC1 E8 03                 9437 	add	sp, #3
+                                   9438 ;game.c:58: setupBala(&projetil2,17);
+      001DC3 F8 30                 9439 	ldhl	sp,	#48
+      001DC5 7D                    9440 	ld	a, l
+      001DC6 54                    9441 	ld	d, h
+      001DC7 F8 50                 9442 	ldhl	sp,	#80
+      001DC9 22                    9443 	ld	(hl+), a
+      001DCA 7A                    9444 	ld	a, d
+      001DCB 32                    9445 	ld	(hl-), a
+      001DCC 2A                    9446 	ld	a, (hl+)
+      001DCD 4F                    9447 	ld	c, a
+      001DCE 46                    9448 	ld	b, (hl)
+      001DCF 3E 11                 9449 	ld	a, #0x11
+      001DD1 F5                    9450 	push	af
+      001DD2 33                    9451 	inc	sp
+      001DD3 C5                    9452 	push	bc
+      001DD4 CDr35r01              9453 	call	_setupBala
+      001DD7 E8 03                 9454 	add	sp, #3
+                                   9455 ;game.c:59: setupBala(&projetil3,17);
+      001DD9 F8 36                 9456 	ldhl	sp,	#54
+      001DDB 7D                    9457 	ld	a, l
+      001DDC 54                    9458 	ld	d, h
+      001DDD F8 52                 9459 	ldhl	sp,	#82
+      001DDF 22                    9460 	ld	(hl+), a
+      001DE0 7A                    9461 	ld	a, d
+      001DE1 32                    9462 	ld	(hl-), a
+      001DE2 2A                    9463 	ld	a, (hl+)
+      001DE3 4F                    9464 	ld	c, a
+      001DE4 46                    9465 	ld	b, (hl)
+      001DE5 3E 11                 9466 	ld	a, #0x11
+      001DE7 F5                    9467 	push	af
+      001DE8 33                    9468 	inc	sp
+      001DE9 C5                    9469 	push	bc
+      001DEA CDr35r01              9470 	call	_setupBala
+      001DED E8 03                 9471 	add	sp, #3
+                                   9472 ;game.c:60: setupBala(&projetil4,17);
+      001DEF F8 3C                 9473 	ldhl	sp,	#60
+      001DF1 7D                    9474 	ld	a, l
+      001DF2 54                    9475 	ld	d, h
+      001DF3 F8 54                 9476 	ldhl	sp,	#84
+      001DF5 22                    9477 	ld	(hl+), a
+      001DF6 7A                    9478 	ld	a, d
+      001DF7 32                    9479 	ld	(hl-), a
+      001DF8 2A                    9480 	ld	a, (hl+)
+      001DF9 4F                    9481 	ld	c, a
+      001DFA 46                    9482 	ld	b, (hl)
+      001DFB 3E 11                 9483 	ld	a, #0x11
+      001DFD F5                    9484 	push	af
+      001DFE 33                    9485 	inc	sp
+      001DFF C5                    9486 	push	bc
+      001E00 CDr35r01              9487 	call	_setupBala
+      001E03 E8 03                 9488 	add	sp, #3
+                                   9489 ;game.c:61: setupBala(&projetil5,17);
+      001E05 F8 42                 9490 	ldhl	sp,	#66
+      001E07 7D                    9491 	ld	a, l
+      001E08 54                    9492 	ld	d, h
+      001E09 F8 56                 9493 	ldhl	sp,	#86
+      001E0B 22                    9494 	ld	(hl+), a
+      001E0C 7A                    9495 	ld	a, d
+      001E0D 32                    9496 	ld	(hl-), a
+      001E0E 2A                    9497 	ld	a, (hl+)
+      001E0F 4F                    9498 	ld	c, a
+      001E10 46                    9499 	ld	b, (hl)
+      001E11 3E 11                 9500 	ld	a, #0x11
+      001E13 F5                    9501 	push	af
+      001E14 33                    9502 	inc	sp
+      001E15 C5                    9503 	push	bc
+      001E16 CDr35r01              9504 	call	_setupBala
+      001E19 E8 03                 9505 	add	sp, #3
+                                   9506 ;game.c:65: SHOW_BKG;
+      001E1B F0r00                 9507 	ldh	a, (_LCDC_REG+0)
+      001E1D F6 01                 9508 	or	a, #0x01
+      001E1F E0r00                 9509 	ldh	(_LCDC_REG+0),a
+                                   9510 ;game.c:66: SHOW_SPRITES;
+      001E21 F0r00                 9511 	ldh	a, (_LCDC_REG+0)
+      001E23 F6 02                 9512 	or	a, #0x02
+      001E25 E0r00                 9513 	ldh	(_LCDC_REG+0),a
+                                   9514 ;game.c:68: DISPLAY_ON;
+      001E27 F0r00                 9515 	ldh	a, (_LCDC_REG+0)
+      001E29 F6 80                 9516 	or	a, #0x80
+      001E2B E0r00                 9517 	ldh	(_LCDC_REG+0),a
+                                   9518 ;game.c:72: waitpad(J_START);
+      001E2D 3E 80                 9519 	ld	a, #0x80
+      001E2F F5                    9520 	push	af
+      001E30 33                    9521 	inc	sp
+      001E31 CDr00r00              9522 	call	_waitpad
+      001E34 33                    9523 	inc	sp
+                                   9524 ;game.c:74: while(1){
+      001E35                       9525 00130$:
+                                   9526 ;c:/gbdk/include/gb/gb.h:775: SCX_REG+=x, SCY_REG+=y;
+      001E35 F0r00                 9527 	ldh	a, (_SCY_REG+0)
+      001E37 3C                    9528 	inc	a
+      001E38 E0r00                 9529 	ldh	(_SCY_REG+0),a
+                                   9530 ;game.c:76: moveBala(&projetil1);
+      001E3A F8 4E                 9531 	ldhl	sp,#78
+      001E3C 2A                    9532 	ld	a, (hl+)
+      001E3D 4F                    9533 	ld	c, a
+      001E3E 46                    9534 	ld	b, (hl)
+      001E3F C5                    9535 	push	bc
+      001E40 CDr77r12              9536 	call	_moveBala
+      001E43 E8 02                 9537 	add	sp, #2
+                                   9538 ;game.c:77: moveBala(&projetil2);
+      001E45 F8 50                 9539 	ldhl	sp,#80
+      001E47 2A                    9540 	ld	a, (hl+)
+      001E48 4F                    9541 	ld	c, a
+      001E49 46                    9542 	ld	b, (hl)
+      001E4A C5                    9543 	push	bc
+      001E4B CDr77r12              9544 	call	_moveBala
+      001E4E E8 02                 9545 	add	sp, #2
+                                   9546 ;game.c:78: moveBala(&projetil3);
+      001E50 F8 52                 9547 	ldhl	sp,#82
+      001E52 2A                    9548 	ld	a, (hl+)
+      001E53 4F                    9549 	ld	c, a
+      001E54 46                    9550 	ld	b, (hl)
+      001E55 C5                    9551 	push	bc
+      001E56 CDr77r12              9552 	call	_moveBala
+      001E59 E8 02                 9553 	add	sp, #2
+                                   9554 ;game.c:79: moveBala(&projetil4);
+      001E5B F8 54                 9555 	ldhl	sp,#84
+      001E5D 2A                    9556 	ld	a, (hl+)
+      001E5E 4F                    9557 	ld	c, a
+      001E5F 46                    9558 	ld	b, (hl)
+      001E60 C5                    9559 	push	bc
+      001E61 CDr77r12              9560 	call	_moveBala
+      001E64 E8 02                 9561 	add	sp, #2
+                                   9562 ;game.c:80: moveBala(&projetil5);
+      001E66 F8 56                 9563 	ldhl	sp,#86
+      001E68 2A                    9564 	ld	a, (hl+)
+      001E69 4F                    9565 	ld	c, a
+      001E6A 46                    9566 	ld	b, (hl)
+      001E6B C5                    9567 	push	bc
+      001E6C CDr77r12              9568 	call	_moveBala
+      001E6F E8 02                 9569 	add	sp, #2
+                                   9570 ;game.c:82: moveInimigo1(&inimigo1,&protagonista);
+      001E71 F8 4A                 9571 	ldhl	sp,#74
+      001E73 2A                    9572 	ld	a, (hl+)
+      001E74 5F                    9573 	ld	e, a
+      001E75 3A                    9574 	ld	a, (hl-)
+      001E76 57                    9575 	ld	d, a
+      001E77 2B                    9576 	dec	hl
+      001E78 2B                    9577 	dec	hl
       001E79 2A                    9578 	ld	a, (hl+)
-      001E7A 5F                    9579 	ld	e, a
-      001E7B 56                    9580 	ld	d, (hl)
-      001E7C F8 48                 9581 	ldhl	sp,#72
-      001E7E 2A                    9582 	ld	a, (hl+)
-      001E7F 4F                    9583 	ld	c, a
-      001E80 46                    9584 	ld	b, (hl)
-      001E81 3E 32                 9585 	ld	a, #0x32
-      001E83 F5                    9586 	push	af
-      001E84 33                    9587 	inc	sp
-      001E85 D5                    9588 	push	de
-      001E86 C5                    9589 	push	bc
-      001E87 CDr88r1C              9590 	call	_hitMinnion
-      001E8A E8 05                 9591 	add	sp, #5
-                                   9592 ;game.c:83: hitMinnion(&inimigo1,&projetil2,50);
-      001E8C F8 50                 9593 	ldhl	sp,#80
-      001E8E 2A                    9594 	ld	a, (hl+)
-      001E8F 5F                    9595 	ld	e, a
-      001E90 56                    9596 	ld	d, (hl)
-      001E91 F8 48                 9597 	ldhl	sp,#72
-      001E93 2A                    9598 	ld	a, (hl+)
-      001E94 4F                    9599 	ld	c, a
-      001E95 46                    9600 	ld	b, (hl)
-      001E96 3E 32                 9601 	ld	a, #0x32
-      001E98 F5                    9602 	push	af
-      001E99 33                    9603 	inc	sp
-      001E9A D5                    9604 	push	de
-      001E9B C5                    9605 	push	bc
-      001E9C CDr88r1C              9606 	call	_hitMinnion
-      001E9F E8 05                 9607 	add	sp, #5
-                                   9608 ;game.c:84: hitMinnion(&inimigo1,&projetil3,50);
-      001EA1 F8 52                 9609 	ldhl	sp,#82
-      001EA3 2A                    9610 	ld	a, (hl+)
-      001EA4 5F                    9611 	ld	e, a
-      001EA5 56                    9612 	ld	d, (hl)
-      001EA6 F8 48                 9613 	ldhl	sp,#72
-      001EA8 2A                    9614 	ld	a, (hl+)
-      001EA9 4F                    9615 	ld	c, a
-      001EAA 46                    9616 	ld	b, (hl)
-      001EAB 3E 32                 9617 	ld	a, #0x32
-      001EAD F5                    9618 	push	af
-      001EAE 33                    9619 	inc	sp
-      001EAF D5                    9620 	push	de
-      001EB0 C5                    9621 	push	bc
-      001EB1 CDr88r1C              9622 	call	_hitMinnion
-      001EB4 E8 05                 9623 	add	sp, #5
-                                   9624 ;game.c:85: hitMinnion(&inimigo1,&projetil4,50);
-      001EB6 F8 54                 9625 	ldhl	sp,#84
-      001EB8 2A                    9626 	ld	a, (hl+)
-      001EB9 5F                    9627 	ld	e, a
-      001EBA 56                    9628 	ld	d, (hl)
-      001EBB F8 48                 9629 	ldhl	sp,#72
-      001EBD 2A                    9630 	ld	a, (hl+)
-      001EBE 4F                    9631 	ld	c, a
-      001EBF 46                    9632 	ld	b, (hl)
-      001EC0 3E 32                 9633 	ld	a, #0x32
-      001EC2 F5                    9634 	push	af
-      001EC3 33                    9635 	inc	sp
-      001EC4 D5                    9636 	push	de
-      001EC5 C5                    9637 	push	bc
-      001EC6 CDr88r1C              9638 	call	_hitMinnion
-      001EC9 E8 05                 9639 	add	sp, #5
-                                   9640 ;game.c:86: hitMinnion(&inimigo1,&projetil5,50);
-      001ECB F8 56                 9641 	ldhl	sp,#86
-      001ECD 2A                    9642 	ld	a, (hl+)
-      001ECE 5F                    9643 	ld	e, a
-      001ECF 56                    9644 	ld	d, (hl)
-      001ED0 F8 48                 9645 	ldhl	sp,#72
-      001ED2 2A                    9646 	ld	a, (hl+)
-      001ED3 4F                    9647 	ld	c, a
-      001ED4 46                    9648 	ld	b, (hl)
-      001ED5 3E 32                 9649 	ld	a, #0x32
-      001ED7 F5                    9650 	push	af
-      001ED8 33                    9651 	inc	sp
-      001ED9 D5                    9652 	push	de
-      001EDA C5                    9653 	push	bc
-      001EDB CDr88r1C              9654 	call	_hitMinnion
-      001EDE E8 05                 9655 	add	sp, #5
-                                   9656 ;game.c:90: if(joypad() & J_LEFT){
-      001EE0 CDr00r00              9657 	call	_joypad
-      001EE3 4B                    9658 	ld	c, e
-                                   9659 ;game.c:91: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
-                                   9660 ;c
-      001EE4 F8 4A                 9661 	ldhl	sp,#74
-      001EE6 2A                    9662 	ld	a, (hl+)
-      001EE7 5F                    9663 	ld	e, a
-      001EE8 56                    9664 	ld	d, (hl)
-      001EE9 21 04 00              9665 	ld	hl, #0x0004
-      001EEC 19                    9666 	add	hl, de
-      001EED E5                    9667 	push	hl
-      001EEE 7D                    9668 	ld	a, l
-      001EEF F8 5A                 9669 	ldhl	sp,	#90
-      001EF1 77                    9670 	ld	(hl), a
-      001EF2 E1                    9671 	pop	hl
-      001EF3 7C                    9672 	ld	a, h
-      001EF4 F8 59                 9673 	ldhl	sp,	#89
-      001EF6 77                    9674 	ld	(hl), a
-                                   9675 ;game.c:93: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
-                                   9676 ;c
-      001EF7 F8 4A                 9677 	ldhl	sp,#74
-      001EF9 2A                    9678 	ld	a, (hl+)
-      001EFA 5F                    9679 	ld	e, a
-      001EFB 56                    9680 	ld	d, (hl)
-      001EFC 21 05 00              9681 	ld	hl, #0x0005
-      001EFF 19                    9682 	add	hl, de
-      001F00 E5                    9683 	push	hl
-      001F01 7D                    9684 	ld	a, l
-      001F02 F8 5C                 9685 	ldhl	sp,	#92
-      001F04 77                    9686 	ld	(hl), a
-      001F05 E1                    9687 	pop	hl
-      001F06 7C                    9688 	ld	a, h
-      001F07 F8 5B                 9689 	ldhl	sp,	#91
-      001F09 77                    9690 	ld	(hl), a
-                                   9691 ;game.c:90: if(joypad() & J_LEFT){
-      001F0A CB 49                 9692 	bit	1, c
-      001F0C 28 3F                 9693 	jr	Z, 00102$
-                                   9694 ;game.c:91: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
-      001F0E F8 58                 9695 	ldhl	sp,#88
-      001F10 2A                    9696 	ld	a, (hl+)
-      001F11 5F                    9697 	ld	e, a
-      001F12 56                    9698 	ld	d, (hl)
-      001F13 1A                    9699 	ld	a, (de)
-      001F14 4F                    9700 	ld	c, a
-      001F15 59                    9701 	ld	e, c
-      001F16 16 00                 9702 	ld	d, #0x00
-      001F18 7B                    9703 	ld	a, e
-      001F19 C6 F6                 9704 	add	a, #0xf6
-      001F1B 7A                    9705 	ld	a, d
-      001F1C CE FF                 9706 	adc	a, #0xff
-      001F1E CB 7F                 9707 	bit	7,a
-      001F20 28 08                 9708 	jr	Z, 00135$
-      001F22 F8 58                 9709 	ldhl	sp,	#88
-      001F24 2A                    9710 	ld	a, (hl+)
-      001F25 66                    9711 	ld	h, (hl)
-      001F26 6F                    9712 	ld	l, a
-      001F27 71                    9713 	ld	(hl), c
-      001F28 18 08                 9714 	jr	00136$
-      001F2A                       9715 00135$:
-      001F2A 0D                    9716 	dec	c
-      001F2B 0D                    9717 	dec	c
-      001F2C F8 58                 9718 	ldhl	sp,	#88
-      001F2E 2A                    9719 	ld	a, (hl+)
-      001F2F 66                    9720 	ld	h, (hl)
-      001F30 6F                    9721 	ld	l, a
-      001F31 71                    9722 	ld	(hl), c
-      001F32                       9723 00136$:
-                                   9724 ;game.c:93: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
-      001F32 F8 5A                 9725 	ldhl	sp,#90
-      001F34 2A                    9726 	ld	a, (hl+)
-      001F35 5F                    9727 	ld	e, a
-      001F36 56                    9728 	ld	d, (hl)
-      001F37 1A                    9729 	ld	a, (de)
-      001F38 47                    9730 	ld	b, a
-      001F39 2B                    9731 	dec	hl
-      001F3A 2B                    9732 	dec	hl
-      001F3B 2B                    9733 	dec	hl
-      001F3C 2A                    9734 	ld	a, (hl+)
-      001F3D 5F                    9735 	ld	e, a
-      001F3E 56                    9736 	ld	d, (hl)
-      001F3F 1A                    9737 	ld	a, (de)
-      001F40 4F                    9738 	ld	c, a
-      001F41 F8 4A                 9739 	ldhl	sp,#74
-      001F43 2A                    9740 	ld	a, (hl+)
-      001F44 5F                    9741 	ld	e, a
-      001F45 56                    9742 	ld	d, (hl)
-      001F46 C5                    9743 	push	bc
-      001F47 D5                    9744 	push	de
-      001F48 CDr8Dr10              9745 	call	_setPositionGameCharacter
-      001F4B E8 04                 9746 	add	sp, #4
-      001F4D                       9747 00102$:
-                                   9748 ;game.c:95: if(joypad() & J_RIGHT){
-      001F4D CDr00r00              9749 	call	_joypad
-      001F50 7B                    9750 	ld	a, e
-      001F51 0F                    9751 	rrca
-      001F52 30 4C                 9752 	jr	NC, 00104$
-                                   9753 ;game.c:96: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
-      001F54 F8 58                 9754 	ldhl	sp,#88
-      001F56 2A                    9755 	ld	a, (hl+)
-      001F57 5F                    9756 	ld	e, a
-      001F58 56                    9757 	ld	d, (hl)
-      001F59 1A                    9758 	ld	a, (de)
-      001F5A F8 5D                 9759 	ldhl	sp,	#93
-      001F5C 77                    9760 	ld	(hl), a
-      001F5D 4E                    9761 	ld	c, (hl)
-      001F5E 06 00                 9762 	ld	b, #0x00
-      001F60 21 08 00              9763 	ld	hl, #0x0008
-      001F63 09                    9764 	add	hl, bc
-      001F64 7D                    9765 	ld	a, l
-      001F65 D6 A0                 9766 	sub	a, #0xa0
-      001F67 7C                    9767 	ld	a, h
-      001F68 17                    9768 	rla
-      001F69 3F                    9769 	ccf
-      001F6A 1F                    9770 	rra
-      001F6B DE 80                 9771 	sbc	a, #0x80
-      001F6D 38 0B                 9772 	jr	C, 00137$
-      001F6F F8 58                 9773 	ldhl	sp,#88
-      001F71 2A                    9774 	ld	a, (hl+)
-      001F72 5F                    9775 	ld	e, a
-      001F73 56                    9776 	ld	d, (hl)
-      001F74 F8 5D                 9777 	ldhl	sp,	#93
-      001F76 7E                    9778 	ld	a, (hl)
-      001F77 12                    9779 	ld	(de), a
-      001F78 18 0B                 9780 	jr	00138$
-      001F7A                       9781 00137$:
-      001F7A F8 5D                 9782 	ldhl	sp,	#93
-      001F7C 4E                    9783 	ld	c, (hl)
-      001F7D 0C                    9784 	inc	c
-      001F7E 0C                    9785 	inc	c
-      001F7F F8 58                 9786 	ldhl	sp,	#88
-      001F81 2A                    9787 	ld	a, (hl+)
-      001F82 66                    9788 	ld	h, (hl)
-      001F83 6F                    9789 	ld	l, a
-      001F84 71                    9790 	ld	(hl), c
-      001F85                       9791 00138$:
-                                   9792 ;game.c:97: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-      001F85 F8 5A                 9793 	ldhl	sp,#90
-      001F87 2A                    9794 	ld	a, (hl+)
-      001F88 5F                    9795 	ld	e, a
-      001F89 56                    9796 	ld	d, (hl)
-      001F8A 1A                    9797 	ld	a, (de)
-      001F8B 47                    9798 	ld	b, a
-      001F8C 2B                    9799 	dec	hl
-      001F8D 2B                    9800 	dec	hl
-      001F8E 2B                    9801 	dec	hl
-      001F8F 2A                    9802 	ld	a, (hl+)
-      001F90 5F                    9803 	ld	e, a
-      001F91 56                    9804 	ld	d, (hl)
-      001F92 1A                    9805 	ld	a, (de)
-      001F93 4F                    9806 	ld	c, a
-      001F94 F8 4A                 9807 	ldhl	sp,#74
-      001F96 2A                    9808 	ld	a, (hl+)
-      001F97 5F                    9809 	ld	e, a
-      001F98 56                    9810 	ld	d, (hl)
-      001F99 C5                    9811 	push	bc
-      001F9A D5                    9812 	push	de
-      001F9B CDr8Dr10              9813 	call	_setPositionGameCharacter
-      001F9E E8 04                 9814 	add	sp, #4
-      001FA0                       9815 00104$:
-                                   9816 ;game.c:99: if(joypad() & J_UP){
-      001FA0 CDr00r00              9817 	call	_joypad
-      001FA3 CB 53                 9818 	bit	2, e
-      001FA5 28 58                 9819 	jr	Z, 00106$
-                                   9820 ;game.c:100: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
-      001FA7 F8 5A                 9821 	ldhl	sp,#90
-      001FA9 2A                    9822 	ld	a, (hl+)
-      001FAA 5F                    9823 	ld	e, a
-      001FAB 56                    9824 	ld	d, (hl)
-      001FAC 1A                    9825 	ld	a, (de)
-      001FAD 4F                    9826 	ld	c, a
-      001FAE 59                    9827 	ld	e, c
-      001FAF 16 00                 9828 	ld	d, #0x00
-      001FB1 7B                    9829 	ld	a, e
-      001FB2 C6 F0                 9830 	add	a, #0xf0
-      001FB4 47                    9831 	ld	b, a
-      001FB5 7A                    9832 	ld	a, d
-      001FB6 CE FF                 9833 	adc	a, #0xff
-      001FB8 6F                    9834 	ld	l, a
-      001FB9 5D                    9835 	ld	e, l
-      001FBA 16 00                 9836 	ld	d, #0x00
-      001FBC 3E 14                 9837 	ld	a, #0x14
-      001FBE B8                    9838 	cp	a, b
-      001FBF 3E 00                 9839 	ld	a, #0x00
-      001FC1 9D                    9840 	sbc	a, l
-      001FC2 CB 7B                 9841 	bit	7, e
-      001FC4 28 07                 9842 	jr	Z, 00231$
-      001FC6 CB 7A                 9843 	bit	7, d
-      001FC8 20 08                 9844 	jr	NZ, 00232$
-      001FCA BF                    9845 	cp	a, a
-      001FCB 18 05                 9846 	jr	00232$
-      001FCD                       9847 00231$:
-      001FCD CB 7A                 9848 	bit	7, d
-      001FCF 28 01                 9849 	jr	Z, 00232$
-      001FD1 37                    9850 	scf
-      001FD2                       9851 00232$:
-      001FD2 38 08                 9852 	jr	C, 00139$
-      001FD4 F8 5A                 9853 	ldhl	sp,	#90
-      001FD6 2A                    9854 	ld	a, (hl+)
-      001FD7 66                    9855 	ld	h, (hl)
-      001FD8 6F                    9856 	ld	l, a
-      001FD9 71                    9857 	ld	(hl), c
-      001FDA 18 08                 9858 	jr	00140$
-      001FDC                       9859 00139$:
-      001FDC 0D                    9860 	dec	c
-      001FDD 0D                    9861 	dec	c
-      001FDE F8 5A                 9862 	ldhl	sp,	#90
-      001FE0 2A                    9863 	ld	a, (hl+)
-      001FE1 66                    9864 	ld	h, (hl)
-      001FE2 6F                    9865 	ld	l, a
-      001FE3 71                    9866 	ld	(hl), c
-      001FE4                       9867 00140$:
-                                   9868 ;game.c:101: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-      001FE4 F8 5A                 9869 	ldhl	sp,#90
-      001FE6 2A                    9870 	ld	a, (hl+)
-      001FE7 5F                    9871 	ld	e, a
-      001FE8 56                    9872 	ld	d, (hl)
-      001FE9 1A                    9873 	ld	a, (de)
-      001FEA 47                    9874 	ld	b, a
-      001FEB 2B                    9875 	dec	hl
-      001FEC 2B                    9876 	dec	hl
-      001FED 2B                    9877 	dec	hl
-      001FEE 2A                    9878 	ld	a, (hl+)
-      001FEF 5F                    9879 	ld	e, a
-      001FF0 56                    9880 	ld	d, (hl)
-      001FF1 1A                    9881 	ld	a, (de)
-      001FF2 4F                    9882 	ld	c, a
-      001FF3 F8 4A                 9883 	ldhl	sp,#74
-      001FF5 2A                    9884 	ld	a, (hl+)
-      001FF6 5F                    9885 	ld	e, a
-      001FF7 56                    9886 	ld	d, (hl)
-      001FF8 C5                    9887 	push	bc
-      001FF9 D5                    9888 	push	de
-      001FFA CDr8Dr10              9889 	call	_setPositionGameCharacter
-      001FFD E8 04                 9890 	add	sp, #4
-      001FFF                       9891 00106$:
-                                   9892 ;game.c:103: if(joypad() & J_DOWN){
-      001FFF CDr00r00              9893 	call	_joypad
-      002002 CB 5B                 9894 	bit	3, e
-      002004 28 35                 9895 	jr	Z, 00108$
-                                   9896 ;game.c:104: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
-      002006 F8 5A                 9897 	ldhl	sp,#90
-      002008 2A                    9898 	ld	a, (hl+)
-      002009 5F                    9899 	ld	e, a
-      00200A 56                    9900 	ld	d, (hl)
-      00200B 1A                    9901 	ld	a, (de)
-      00200C 4F                    9902 	ld	c, a
-      00200D D6 80                 9903 	sub	a, #0x80
-      00200F 38 07                 9904 	jr	C, 00141$
-      002011 2B                    9905 	dec	hl
-      002012 2A                    9906 	ld	a, (hl+)
-      002013 66                    9907 	ld	h, (hl)
-      002014 6F                    9908 	ld	l, a
-      002015 71                    9909 	ld	(hl), c
-      002016 18 08                 9910 	jr	00142$
-      002018                       9911 00141$:
-      002018 0C                    9912 	inc	c
-      002019 0C                    9913 	inc	c
-      00201A F8 5A                 9914 	ldhl	sp,	#90
-      00201C 2A                    9915 	ld	a, (hl+)
-      00201D 66                    9916 	ld	h, (hl)
-      00201E 6F                    9917 	ld	l, a
-      00201F 71                    9918 	ld	(hl), c
-      002020                       9919 00142$:
-                                   9920 ;game.c:105: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-      002020 F8 5A                 9921 	ldhl	sp,#90
-      002022 2A                    9922 	ld	a, (hl+)
-      002023 5F                    9923 	ld	e, a
-      002024 56                    9924 	ld	d, (hl)
-      002025 1A                    9925 	ld	a, (de)
-      002026 47                    9926 	ld	b, a
-      002027 2B                    9927 	dec	hl
-      002028 2B                    9928 	dec	hl
-      002029 2B                    9929 	dec	hl
-      00202A 2A                    9930 	ld	a, (hl+)
-      00202B 5F                    9931 	ld	e, a
-      00202C 56                    9932 	ld	d, (hl)
-      00202D 1A                    9933 	ld	a, (de)
-      00202E 4F                    9934 	ld	c, a
-      00202F F8 4A                 9935 	ldhl	sp,#74
-      002031 2A                    9936 	ld	a, (hl+)
-      002032 5F                    9937 	ld	e, a
-      002033 56                    9938 	ld	d, (hl)
-      002034 C5                    9939 	push	bc
-      002035 D5                    9940 	push	de
-      002036 CDr8Dr10              9941 	call	_setPositionGameCharacter
-      002039 E8 04                 9942 	add	sp, #4
-      00203B                       9943 00108$:
-                                   9944 ;game.c:107: if(joypad() & J_A){   
-      00203B CDr00r00              9945 	call	_joypad
-      00203E CB 63                 9946 	bit	4, e
-      002040 CAr88r21              9947 	jp	Z,00124$
-                                   9948 ;game.c:108: if( projetil1.ativo==0){
-      002043 F8 4E                 9949 	ldhl	sp,#78
-      002045 2A                    9950 	ld	a, (hl+)
-      002046 4F                    9951 	ld	c, a
-      002047 46                    9952 	ld	b, (hl)
-      002048 03                    9953 	inc	bc
-      002049 03                    9954 	inc	bc
-      00204A 0A                    9955 	ld	a, (bc)
-      00204B B7                    9956 	or	a, a
-      00204C 20 37                 9957 	jr	NZ, 00121$
-                                   9958 ;game.c:109: projetil1.x=protagonista.x+4;
-      00204E F8 58                 9959 	ldhl	sp,#88
-      002050 2A                    9960 	ld	a, (hl+)
-      002051 5F                    9961 	ld	e, a
-      002052 56                    9962 	ld	d, (hl)
-      002053 1A                    9963 	ld	a, (de)
-      002054 C6 04                 9964 	add	a, #0x04
-      002056 F8 4E                 9965 	ldhl	sp,	#78
-      002058 F5                    9966 	push	af
-      002059 2A                    9967 	ld	a, (hl+)
-      00205A 66                    9968 	ld	h, (hl)
-      00205B 6F                    9969 	ld	l, a
-      00205C F1                    9970 	pop	af
-      00205D 77                    9971 	ld	(hl), a
-                                   9972 ;game.c:110: projetil1.y=protagonista.y-2;
-                                   9973 ;c
-      00205E F8 4E                 9974 	ldhl	sp,#78
-      002060 2A                    9975 	ld	a, (hl+)
-      002061 5F                    9976 	ld	e, a
-      002062 56                    9977 	ld	d, (hl)
-      002063 6B                    9978 	ld	l, e
-      002064 62                    9979 	ld	h, d
-      002065 23                    9980 	inc	hl
-      002066 E5                    9981 	push	hl
-      002067 7D                    9982 	ld	a, l
-      002068 F8 5E                 9983 	ldhl	sp,	#94
-      00206A 77                    9984 	ld	(hl), a
-      00206B E1                    9985 	pop	hl
-      00206C 7C                    9986 	ld	a, h
-      00206D F8 5D                 9987 	ldhl	sp,	#93
-      00206F 32                    9988 	ld	(hl-), a
-      002070 2B                    9989 	dec	hl
-      002071 2B                    9990 	dec	hl
-      002072 2A                    9991 	ld	a, (hl+)
-      002073 5F                    9992 	ld	e, a
-      002074 56                    9993 	ld	d, (hl)
-      002075 1A                    9994 	ld	a, (de)
-      002076 3D                    9995 	dec	a
-      002077 3D                    9996 	dec	a
-      002078 23                    9997 	inc	hl
-      002079 F5                    9998 	push	af
-      00207A 2A                    9999 	ld	a, (hl+)
-      00207B 66                   10000 	ld	h, (hl)
-      00207C 6F                   10001 	ld	l, a
-      00207D F1                   10002 	pop	af
-      00207E 77                   10003 	ld	(hl), a
-                                  10004 ;game.c:111: projetil1.ativo=1;
-      00207F 3E 01                10005 	ld	a, #0x01
-      002081 02                   10006 	ld	(bc), a
-      002082 C3r88r21             10007 	jp	00124$
-      002085                      10008 00121$:
-                                  10009 ;game.c:112: }else if(projetil2.ativo==0){
-      002085 F8 50                10010 	ldhl	sp,#80
-      002087 2A                   10011 	ld	a, (hl+)
-      002088 4F                   10012 	ld	c, a
-      002089 46                   10013 	ld	b, (hl)
-      00208A 03                   10014 	inc	bc
-      00208B 03                   10015 	inc	bc
-      00208C 0A                   10016 	ld	a, (bc)
-      00208D B7                   10017 	or	a, a
-      00208E 20 37                10018 	jr	NZ, 00118$
-                                  10019 ;game.c:113: projetil2.x=protagonista.x+4;
-      002090 F8 58                10020 	ldhl	sp,#88
-      002092 2A                   10021 	ld	a, (hl+)
-      002093 5F                   10022 	ld	e, a
-      002094 56                   10023 	ld	d, (hl)
-      002095 1A                   10024 	ld	a, (de)
-      002096 C6 04                10025 	add	a, #0x04
-      002098 F8 50                10026 	ldhl	sp,	#80
-      00209A F5                   10027 	push	af
-      00209B 2A                   10028 	ld	a, (hl+)
-      00209C 66                   10029 	ld	h, (hl)
-      00209D 6F                   10030 	ld	l, a
-      00209E F1                   10031 	pop	af
-      00209F 77                   10032 	ld	(hl), a
-                                  10033 ;game.c:114: projetil2.y=protagonista.y-2;
-                                  10034 ;c
-      0020A0 F8 50                10035 	ldhl	sp,#80
-      0020A2 2A                   10036 	ld	a, (hl+)
-      0020A3 5F                   10037 	ld	e, a
-      0020A4 56                   10038 	ld	d, (hl)
-      0020A5 6B                   10039 	ld	l, e
-      0020A6 62                   10040 	ld	h, d
-      0020A7 23                   10041 	inc	hl
-      0020A8 E5                   10042 	push	hl
-      0020A9 7D                   10043 	ld	a, l
-      0020AA F8 5E                10044 	ldhl	sp,	#94
-      0020AC 77                   10045 	ld	(hl), a
-      0020AD E1                   10046 	pop	hl
-      0020AE 7C                   10047 	ld	a, h
-      0020AF F8 5D                10048 	ldhl	sp,	#93
-      0020B1 32                   10049 	ld	(hl-), a
-      0020B2 2B                   10050 	dec	hl
-      0020B3 2B                   10051 	dec	hl
-      0020B4 2A                   10052 	ld	a, (hl+)
-      0020B5 5F                   10053 	ld	e, a
-      0020B6 56                   10054 	ld	d, (hl)
-      0020B7 1A                   10055 	ld	a, (de)
-      0020B8 3D                   10056 	dec	a
-      0020B9 3D                   10057 	dec	a
-      0020BA 23                   10058 	inc	hl
-      0020BB F5                   10059 	push	af
-      0020BC 2A                   10060 	ld	a, (hl+)
-      0020BD 66                   10061 	ld	h, (hl)
-      0020BE 6F                   10062 	ld	l, a
-      0020BF F1                   10063 	pop	af
-      0020C0 77                   10064 	ld	(hl), a
-                                  10065 ;game.c:115: projetil2.ativo=1;
-      0020C1 3E 01                10066 	ld	a, #0x01
-      0020C3 02                   10067 	ld	(bc), a
-      0020C4 C3r88r21             10068 	jp	00124$
-      0020C7                      10069 00118$:
-                                  10070 ;game.c:116: }else if(projetil3.ativo==0){
-      0020C7 F8 52                10071 	ldhl	sp,#82
-      0020C9 2A                   10072 	ld	a, (hl+)
-      0020CA 4F                   10073 	ld	c, a
-      0020CB 46                   10074 	ld	b, (hl)
-      0020CC 03                   10075 	inc	bc
-      0020CD 03                   10076 	inc	bc
-      0020CE 0A                   10077 	ld	a, (bc)
-      0020CF B7                   10078 	or	a, a
-      0020D0 20 37                10079 	jr	NZ, 00115$
-                                  10080 ;game.c:117: projetil3.x=protagonista.x+4;
-      0020D2 F8 58                10081 	ldhl	sp,#88
-      0020D4 2A                   10082 	ld	a, (hl+)
-      0020D5 5F                   10083 	ld	e, a
-      0020D6 56                   10084 	ld	d, (hl)
-      0020D7 1A                   10085 	ld	a, (de)
-      0020D8 C6 04                10086 	add	a, #0x04
-      0020DA F8 52                10087 	ldhl	sp,	#82
-      0020DC F5                   10088 	push	af
-      0020DD 2A                   10089 	ld	a, (hl+)
-      0020DE 66                   10090 	ld	h, (hl)
-      0020DF 6F                   10091 	ld	l, a
-      0020E0 F1                   10092 	pop	af
-      0020E1 77                   10093 	ld	(hl), a
-                                  10094 ;game.c:118: projetil3.y=protagonista.y-2;
-                                  10095 ;c
-      0020E2 F8 52                10096 	ldhl	sp,#82
-      0020E4 2A                   10097 	ld	a, (hl+)
-      0020E5 5F                   10098 	ld	e, a
-      0020E6 56                   10099 	ld	d, (hl)
-      0020E7 6B                   10100 	ld	l, e
-      0020E8 62                   10101 	ld	h, d
-      0020E9 23                   10102 	inc	hl
-      0020EA E5                   10103 	push	hl
-      0020EB 7D                   10104 	ld	a, l
-      0020EC F8 5E                10105 	ldhl	sp,	#94
-      0020EE 77                   10106 	ld	(hl), a
-      0020EF E1                   10107 	pop	hl
-      0020F0 7C                   10108 	ld	a, h
-      0020F1 F8 5D                10109 	ldhl	sp,	#93
-      0020F3 32                   10110 	ld	(hl-), a
-      0020F4 2B                   10111 	dec	hl
-      0020F5 2B                   10112 	dec	hl
-      0020F6 2A                   10113 	ld	a, (hl+)
-      0020F7 5F                   10114 	ld	e, a
-      0020F8 56                   10115 	ld	d, (hl)
-      0020F9 1A                   10116 	ld	a, (de)
-      0020FA 3D                   10117 	dec	a
-      0020FB 3D                   10118 	dec	a
-      0020FC 23                   10119 	inc	hl
-      0020FD F5                   10120 	push	af
-      0020FE 2A                   10121 	ld	a, (hl+)
-      0020FF 66                   10122 	ld	h, (hl)
-      002100 6F                   10123 	ld	l, a
-      002101 F1                   10124 	pop	af
-      002102 77                   10125 	ld	(hl), a
-                                  10126 ;game.c:119: projetil3.ativo=1;
-      002103 3E 01                10127 	ld	a, #0x01
-      002105 02                   10128 	ld	(bc), a
-      002106 C3r88r21             10129 	jp	00124$
-      002109                      10130 00115$:
-                                  10131 ;game.c:120: }else if(projetil4.ativo==0){
-      002109 F8 54                10132 	ldhl	sp,#84
-      00210B 2A                   10133 	ld	a, (hl+)
-      00210C 4F                   10134 	ld	c, a
-      00210D 46                   10135 	ld	b, (hl)
-      00210E 03                   10136 	inc	bc
-      00210F 03                   10137 	inc	bc
-      002110 0A                   10138 	ld	a, (bc)
-      002111 B7                   10139 	or	a, a
-      002112 20 36                10140 	jr	NZ, 00112$
-                                  10141 ;game.c:121: projetil4.x=protagonista.x+4;
-      002114 F8 58                10142 	ldhl	sp,#88
-      002116 2A                   10143 	ld	a, (hl+)
-      002117 5F                   10144 	ld	e, a
-      002118 56                   10145 	ld	d, (hl)
-      002119 1A                   10146 	ld	a, (de)
-      00211A C6 04                10147 	add	a, #0x04
-      00211C F8 54                10148 	ldhl	sp,	#84
-      00211E F5                   10149 	push	af
-      00211F 2A                   10150 	ld	a, (hl+)
-      002120 66                   10151 	ld	h, (hl)
-      002121 6F                   10152 	ld	l, a
-      002122 F1                   10153 	pop	af
-      002123 77                   10154 	ld	(hl), a
-                                  10155 ;game.c:122: projetil4.y=protagonista.y-2;
-                                  10156 ;c
-      002124 F8 54                10157 	ldhl	sp,#84
-      002126 2A                   10158 	ld	a, (hl+)
-      002127 5F                   10159 	ld	e, a
-      002128 56                   10160 	ld	d, (hl)
-      002129 6B                   10161 	ld	l, e
-      00212A 62                   10162 	ld	h, d
-      00212B 23                   10163 	inc	hl
-      00212C E5                   10164 	push	hl
-      00212D 7D                   10165 	ld	a, l
-      00212E F8 5E                10166 	ldhl	sp,	#94
-      002130 77                   10167 	ld	(hl), a
-      002131 E1                   10168 	pop	hl
-      002132 7C                   10169 	ld	a, h
-      002133 F8 5D                10170 	ldhl	sp,	#93
-      002135 32                   10171 	ld	(hl-), a
-      002136 2B                   10172 	dec	hl
-      002137 2B                   10173 	dec	hl
-      002138 2A                   10174 	ld	a, (hl+)
-      002139 5F                   10175 	ld	e, a
-      00213A 56                   10176 	ld	d, (hl)
-      00213B 1A                   10177 	ld	a, (de)
-      00213C 3D                   10178 	dec	a
-      00213D 3D                   10179 	dec	a
-      00213E 23                   10180 	inc	hl
-      00213F F5                   10181 	push	af
-      002140 2A                   10182 	ld	a, (hl+)
-      002141 66                   10183 	ld	h, (hl)
-      002142 6F                   10184 	ld	l, a
-      002143 F1                   10185 	pop	af
-      002144 77                   10186 	ld	(hl), a
-                                  10187 ;game.c:123: projetil4.ativo=1;
-      002145 3E 01                10188 	ld	a, #0x01
-      002147 02                   10189 	ld	(bc), a
-      002148 18 3E                10190 	jr	00124$
-      00214A                      10191 00112$:
-                                  10192 ;game.c:124: }else if(projetil5.ativo==0){
-      00214A F8 56                10193 	ldhl	sp,#86
-      00214C 2A                   10194 	ld	a, (hl+)
-      00214D 4F                   10195 	ld	c, a
-      00214E 46                   10196 	ld	b, (hl)
-      00214F 03                   10197 	inc	bc
-      002150 03                   10198 	inc	bc
-      002151 0A                   10199 	ld	a, (bc)
-      002152 B7                   10200 	or	a, a
-      002153 20 33                10201 	jr	NZ, 00124$
-                                  10202 ;game.c:125: projetil5.x=protagonista.x+4;
-      002155 23                   10203 	inc	hl
-      002156 2A                   10204 	ld	a, (hl+)
-      002157 5F                   10205 	ld	e, a
-      002158 56                   10206 	ld	d, (hl)
-      002159 1A                   10207 	ld	a, (de)
-      00215A C6 04                10208 	add	a, #0x04
-      00215C F8 56                10209 	ldhl	sp,	#86
-      00215E F5                   10210 	push	af
-      00215F 2A                   10211 	ld	a, (hl+)
-      002160 66                   10212 	ld	h, (hl)
-      002161 6F                   10213 	ld	l, a
-      002162 F1                   10214 	pop	af
-      002163 77                   10215 	ld	(hl), a
-                                  10216 ;game.c:126: projetil5.y=protagonista.y-2;
-                                  10217 ;c
-      002164 F8 56                10218 	ldhl	sp,#86
-      002166 2A                   10219 	ld	a, (hl+)
-      002167 5F                   10220 	ld	e, a
-      002168 56                   10221 	ld	d, (hl)
-      002169 6B                   10222 	ld	l, e
-      00216A 62                   10223 	ld	h, d
-      00216B 23                   10224 	inc	hl
-      00216C E5                   10225 	push	hl
-      00216D 7D                   10226 	ld	a, l
-      00216E F8 5E                10227 	ldhl	sp,	#94
-      002170 77                   10228 	ld	(hl), a
-      002171 E1                   10229 	pop	hl
-      002172 7C                   10230 	ld	a, h
-      002173 F8 5D                10231 	ldhl	sp,	#93
-      002175 32                   10232 	ld	(hl-), a
-      002176 2B                   10233 	dec	hl
-      002177 2B                   10234 	dec	hl
-      002178 2A                   10235 	ld	a, (hl+)
-      002179 5F                   10236 	ld	e, a
-      00217A 56                   10237 	ld	d, (hl)
-      00217B 1A                   10238 	ld	a, (de)
-      00217C 3D                   10239 	dec	a
-      00217D 3D                   10240 	dec	a
-      00217E 23                   10241 	inc	hl
-      00217F F5                   10242 	push	af
-      002180 2A                   10243 	ld	a, (hl+)
-      002181 66                   10244 	ld	h, (hl)
-      002182 6F                   10245 	ld	l, a
-      002183 F1                   10246 	pop	af
-      002184 77                   10247 	ld	(hl), a
-                                  10248 ;game.c:127: projetil5.ativo=1;
-      002185 3E 01                10249 	ld	a, #0x01
-      002187 02                   10250 	ld	(bc), a
-      002188                      10251 00124$:
-                                  10252 ;game.c:130: if(joypad() & J_B){
-      002188 CDr00r00             10253 	call	_joypad
-      00218B CB 6B                10254 	bit	5, e
-      00218D 28 0F                10255 	jr	Z, 00126$
-                                  10256 ;game.c:131: sumScore(&pontuacao,1111);
-      00218F F8 4C                10257 	ldhl	sp,#76
-      002191 2A                   10258 	ld	a, (hl+)
-      002192 4F                   10259 	ld	c, a
-      002193 46                   10260 	ld	b, (hl)
-      002194 21 57 04             10261 	ld	hl, #0x0457
-      002197 E5                   10262 	push	hl
-      002198 C5                   10263 	push	bc
-      002199 CDr6Br04             10264 	call	_sumScore
-      00219C E8 04                10265 	add	sp, #4
-      00219E                      10266 00126$:
-                                  10267 ;game.c:133: if(joypad() & J_SELECT){
-      00219E CDr00r00             10268 	call	_joypad
-      0021A1 CB 73                10269 	bit	6, e
-      0021A3 28 2A                10270 	jr	Z, 00128$
-                                  10271 ;game.c:134: inimigo1.ativo=1;
-                                  10272 ;c
-      0021A5 F8 48                10273 	ldhl	sp,#72
-      0021A7 2A                   10274 	ld	a, (hl+)
-      0021A8 5F                   10275 	ld	e, a
-      0021A9 56                   10276 	ld	d, (hl)
-      0021AA 21 06 00             10277 	ld	hl, #0x0006
-      0021AD 19                   10278 	add	hl, de
-      0021AE 36 01                10279 	ld	(hl), #0x01
-                                  10280 ;game.c:135: inimigo1.x=protagonista.x;
-                                  10281 ;c
-      0021B0 F8 48                10282 	ldhl	sp,#72
-      0021B2 2A                   10283 	ld	a, (hl+)
-      0021B3 5F                   10284 	ld	e, a
-      0021B4 56                   10285 	ld	d, (hl)
-      0021B5 21 04 00             10286 	ld	hl, #0x0004
-      0021B8 19                   10287 	add	hl, de
-      0021B9 4D                   10288 	ld	c, l
-      0021BA 44                   10289 	ld	b, h
-      0021BB F8 58                10290 	ldhl	sp,#88
-      0021BD 2A                   10291 	ld	a, (hl+)
-      0021BE 5F                   10292 	ld	e, a
-      0021BF 56                   10293 	ld	d, (hl)
-      0021C0 1A                   10294 	ld	a, (de)
-      0021C1 02                   10295 	ld	(bc), a
-                                  10296 ;game.c:136: inimigo1.y=0;
-                                  10297 ;c
-      0021C2 F8 48                10298 	ldhl	sp,#72
-      0021C4 2A                   10299 	ld	a, (hl+)
-      0021C5 5F                   10300 	ld	e, a
-      0021C6 56                   10301 	ld	d, (hl)
-      0021C7 21 05 00             10302 	ld	hl, #0x0005
-      0021CA 19                   10303 	add	hl, de
-      0021CB 4D                   10304 	ld	c, l
-      0021CC 44                   10305 	ld	b, h
-      0021CD AF                   10306 	xor	a, a
-      0021CE 02                   10307 	ld	(bc), a
-      0021CF                      10308 00128$:
-                                  10309 ;game.c:138: performantdelay(5);  
-      0021CF 3E 05                10310 	ld	a, #0x05
-      0021D1 F5                   10311 	push	af
-      0021D2 33                   10312 	inc	sp
-      0021D3 CDrDDr21             10313 	call	_performantdelay
-      0021D6 33                   10314 	inc	sp
-      0021D7 C3r29r1E             10315 	jp	00130$
-                                  10316 ;game.c:141: }
-      0021DA E8 5E                10317 	add	sp, #94
-      0021DC C9                   10318 	ret
-                                  10319 ;game.c:143: void performantdelay(UINT8 numloops){ // nova funcao delay
-                                  10320 ;	---------------------------------
-                                  10321 ; Function performantdelay
-                                  10322 ; ---------------------------------
-      0021DD                      10323 _performantdelay::
-                                  10324 ;game.c:145: for(i = 0; i < numloops; i++){
-      0021DD 0E 00                10325 	ld	c, #0x00
-      0021DF                      10326 00103$:
-      0021DF 79                   10327 	ld	a, c
-      0021E0 F8 02                10328 	ldhl	sp,	#2
-      0021E2 96                   10329 	sub	a, (hl)
-      0021E3 D0                   10330 	ret	NC
-                                  10331 ;game.c:146: wait_vbl_done();
-      0021E4 CDr00r00             10332 	call	_wait_vbl_done
-                                  10333 ;game.c:145: for(i = 0; i < numloops; i++){
-      0021E7 0C                   10334 	inc	c
-                                  10335 ;game.c:148: }
-      0021E8 18 F5                10336 	jr	00103$
-                                  10337 	.area _CODE
-                                  10338 	.area _CABS (ABS)
+      001E7A 4F                    9579 	ld	c, a
+      001E7B 46                    9580 	ld	b, (hl)
+      001E7C D5                    9581 	push	de
+      001E7D C5                    9582 	push	bc
+      001E7E CDr26r13              9583 	call	_moveInimigo1
+      001E81 E8 04                 9584 	add	sp, #4
+                                   9585 ;game.c:84: hitMinnion(&inimigo1,&projetil1,50);
+      001E83 F8 4E                 9586 	ldhl	sp,#78
+      001E85 2A                    9587 	ld	a, (hl+)
+      001E86 5F                    9588 	ld	e, a
+      001E87 56                    9589 	ld	d, (hl)
+      001E88 F8 48                 9590 	ldhl	sp,#72
+      001E8A 2A                    9591 	ld	a, (hl+)
+      001E8B 4F                    9592 	ld	c, a
+      001E8C 46                    9593 	ld	b, (hl)
+      001E8D 3E 32                 9594 	ld	a, #0x32
+      001E8F F5                    9595 	push	af
+      001E90 33                    9596 	inc	sp
+      001E91 D5                    9597 	push	de
+      001E92 C5                    9598 	push	bc
+      001E93 CDr88r1C              9599 	call	_hitMinnion
+      001E96 E8 05                 9600 	add	sp, #5
+                                   9601 ;game.c:85: hitMinnion(&inimigo1,&projetil2,50);
+      001E98 F8 50                 9602 	ldhl	sp,#80
+      001E9A 2A                    9603 	ld	a, (hl+)
+      001E9B 5F                    9604 	ld	e, a
+      001E9C 56                    9605 	ld	d, (hl)
+      001E9D F8 48                 9606 	ldhl	sp,#72
+      001E9F 2A                    9607 	ld	a, (hl+)
+      001EA0 4F                    9608 	ld	c, a
+      001EA1 46                    9609 	ld	b, (hl)
+      001EA2 3E 32                 9610 	ld	a, #0x32
+      001EA4 F5                    9611 	push	af
+      001EA5 33                    9612 	inc	sp
+      001EA6 D5                    9613 	push	de
+      001EA7 C5                    9614 	push	bc
+      001EA8 CDr88r1C              9615 	call	_hitMinnion
+      001EAB E8 05                 9616 	add	sp, #5
+                                   9617 ;game.c:86: hitMinnion(&inimigo1,&projetil3,50);
+      001EAD F8 52                 9618 	ldhl	sp,#82
+      001EAF 2A                    9619 	ld	a, (hl+)
+      001EB0 5F                    9620 	ld	e, a
+      001EB1 56                    9621 	ld	d, (hl)
+      001EB2 F8 48                 9622 	ldhl	sp,#72
+      001EB4 2A                    9623 	ld	a, (hl+)
+      001EB5 4F                    9624 	ld	c, a
+      001EB6 46                    9625 	ld	b, (hl)
+      001EB7 3E 32                 9626 	ld	a, #0x32
+      001EB9 F5                    9627 	push	af
+      001EBA 33                    9628 	inc	sp
+      001EBB D5                    9629 	push	de
+      001EBC C5                    9630 	push	bc
+      001EBD CDr88r1C              9631 	call	_hitMinnion
+      001EC0 E8 05                 9632 	add	sp, #5
+                                   9633 ;game.c:87: hitMinnion(&inimigo1,&projetil4,50);
+      001EC2 F8 54                 9634 	ldhl	sp,#84
+      001EC4 2A                    9635 	ld	a, (hl+)
+      001EC5 5F                    9636 	ld	e, a
+      001EC6 56                    9637 	ld	d, (hl)
+      001EC7 F8 48                 9638 	ldhl	sp,#72
+      001EC9 2A                    9639 	ld	a, (hl+)
+      001ECA 4F                    9640 	ld	c, a
+      001ECB 46                    9641 	ld	b, (hl)
+      001ECC 3E 32                 9642 	ld	a, #0x32
+      001ECE F5                    9643 	push	af
+      001ECF 33                    9644 	inc	sp
+      001ED0 D5                    9645 	push	de
+      001ED1 C5                    9646 	push	bc
+      001ED2 CDr88r1C              9647 	call	_hitMinnion
+      001ED5 E8 05                 9648 	add	sp, #5
+                                   9649 ;game.c:88: hitMinnion(&inimigo1,&projetil5,50);
+      001ED7 F8 56                 9650 	ldhl	sp,#86
+      001ED9 2A                    9651 	ld	a, (hl+)
+      001EDA 5F                    9652 	ld	e, a
+      001EDB 56                    9653 	ld	d, (hl)
+      001EDC F8 48                 9654 	ldhl	sp,#72
+      001EDE 2A                    9655 	ld	a, (hl+)
+      001EDF 4F                    9656 	ld	c, a
+      001EE0 46                    9657 	ld	b, (hl)
+      001EE1 3E 32                 9658 	ld	a, #0x32
+      001EE3 F5                    9659 	push	af
+      001EE4 33                    9660 	inc	sp
+      001EE5 D5                    9661 	push	de
+      001EE6 C5                    9662 	push	bc
+      001EE7 CDr88r1C              9663 	call	_hitMinnion
+      001EEA E8 05                 9664 	add	sp, #5
+                                   9665 ;game.c:92: if(joypad() & J_LEFT){
+      001EEC CDr00r00              9666 	call	_joypad
+      001EEF 4B                    9667 	ld	c, e
+                                   9668 ;game.c:93: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+                                   9669 ;c
+      001EF0 F8 4A                 9670 	ldhl	sp,#74
+      001EF2 2A                    9671 	ld	a, (hl+)
+      001EF3 5F                    9672 	ld	e, a
+      001EF4 56                    9673 	ld	d, (hl)
+      001EF5 21 04 00              9674 	ld	hl, #0x0004
+      001EF8 19                    9675 	add	hl, de
+      001EF9 E5                    9676 	push	hl
+      001EFA 7D                    9677 	ld	a, l
+      001EFB F8 5A                 9678 	ldhl	sp,	#90
+      001EFD 77                    9679 	ld	(hl), a
+      001EFE E1                    9680 	pop	hl
+      001EFF 7C                    9681 	ld	a, h
+      001F00 F8 59                 9682 	ldhl	sp,	#89
+      001F02 77                    9683 	ld	(hl), a
+                                   9684 ;game.c:95: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+                                   9685 ;c
+      001F03 F8 4A                 9686 	ldhl	sp,#74
+      001F05 2A                    9687 	ld	a, (hl+)
+      001F06 5F                    9688 	ld	e, a
+      001F07 56                    9689 	ld	d, (hl)
+      001F08 21 05 00              9690 	ld	hl, #0x0005
+      001F0B 19                    9691 	add	hl, de
+      001F0C E5                    9692 	push	hl
+      001F0D 7D                    9693 	ld	a, l
+      001F0E F8 5C                 9694 	ldhl	sp,	#92
+      001F10 77                    9695 	ld	(hl), a
+      001F11 E1                    9696 	pop	hl
+      001F12 7C                    9697 	ld	a, h
+      001F13 F8 5B                 9698 	ldhl	sp,	#91
+      001F15 77                    9699 	ld	(hl), a
+                                   9700 ;game.c:92: if(joypad() & J_LEFT){
+      001F16 CB 49                 9701 	bit	1, c
+      001F18 28 3F                 9702 	jr	Z, 00102$
+                                   9703 ;game.c:93: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+      001F1A F8 58                 9704 	ldhl	sp,#88
+      001F1C 2A                    9705 	ld	a, (hl+)
+      001F1D 5F                    9706 	ld	e, a
+      001F1E 56                    9707 	ld	d, (hl)
+      001F1F 1A                    9708 	ld	a, (de)
+      001F20 4F                    9709 	ld	c, a
+      001F21 59                    9710 	ld	e, c
+      001F22 16 00                 9711 	ld	d, #0x00
+      001F24 7B                    9712 	ld	a, e
+      001F25 C6 F6                 9713 	add	a, #0xf6
+      001F27 7A                    9714 	ld	a, d
+      001F28 CE FF                 9715 	adc	a, #0xff
+      001F2A CB 7F                 9716 	bit	7,a
+      001F2C 28 08                 9717 	jr	Z, 00135$
+      001F2E F8 58                 9718 	ldhl	sp,	#88
+      001F30 2A                    9719 	ld	a, (hl+)
+      001F31 66                    9720 	ld	h, (hl)
+      001F32 6F                    9721 	ld	l, a
+      001F33 71                    9722 	ld	(hl), c
+      001F34 18 08                 9723 	jr	00136$
+      001F36                       9724 00135$:
+      001F36 0D                    9725 	dec	c
+      001F37 0D                    9726 	dec	c
+      001F38 F8 58                 9727 	ldhl	sp,	#88
+      001F3A 2A                    9728 	ld	a, (hl+)
+      001F3B 66                    9729 	ld	h, (hl)
+      001F3C 6F                    9730 	ld	l, a
+      001F3D 71                    9731 	ld	(hl), c
+      001F3E                       9732 00136$:
+                                   9733 ;game.c:95: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+      001F3E F8 5A                 9734 	ldhl	sp,#90
+      001F40 2A                    9735 	ld	a, (hl+)
+      001F41 5F                    9736 	ld	e, a
+      001F42 56                    9737 	ld	d, (hl)
+      001F43 1A                    9738 	ld	a, (de)
+      001F44 47                    9739 	ld	b, a
+      001F45 2B                    9740 	dec	hl
+      001F46 2B                    9741 	dec	hl
+      001F47 2B                    9742 	dec	hl
+      001F48 2A                    9743 	ld	a, (hl+)
+      001F49 5F                    9744 	ld	e, a
+      001F4A 56                    9745 	ld	d, (hl)
+      001F4B 1A                    9746 	ld	a, (de)
+      001F4C 4F                    9747 	ld	c, a
+      001F4D F8 4A                 9748 	ldhl	sp,#74
+      001F4F 2A                    9749 	ld	a, (hl+)
+      001F50 5F                    9750 	ld	e, a
+      001F51 56                    9751 	ld	d, (hl)
+      001F52 C5                    9752 	push	bc
+      001F53 D5                    9753 	push	de
+      001F54 CDr8Dr10              9754 	call	_setPositionGameCharacter
+      001F57 E8 04                 9755 	add	sp, #4
+      001F59                       9756 00102$:
+                                   9757 ;game.c:97: if(joypad() & J_RIGHT){
+      001F59 CDr00r00              9758 	call	_joypad
+      001F5C 7B                    9759 	ld	a, e
+      001F5D 0F                    9760 	rrca
+      001F5E 30 4C                 9761 	jr	NC, 00104$
+                                   9762 ;game.c:98: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+      001F60 F8 58                 9763 	ldhl	sp,#88
+      001F62 2A                    9764 	ld	a, (hl+)
+      001F63 5F                    9765 	ld	e, a
+      001F64 56                    9766 	ld	d, (hl)
+      001F65 1A                    9767 	ld	a, (de)
+      001F66 F8 5D                 9768 	ldhl	sp,	#93
+      001F68 77                    9769 	ld	(hl), a
+      001F69 4E                    9770 	ld	c, (hl)
+      001F6A 06 00                 9771 	ld	b, #0x00
+      001F6C 21 08 00              9772 	ld	hl, #0x0008
+      001F6F 09                    9773 	add	hl, bc
+      001F70 7D                    9774 	ld	a, l
+      001F71 D6 A0                 9775 	sub	a, #0xa0
+      001F73 7C                    9776 	ld	a, h
+      001F74 17                    9777 	rla
+      001F75 3F                    9778 	ccf
+      001F76 1F                    9779 	rra
+      001F77 DE 80                 9780 	sbc	a, #0x80
+      001F79 38 0B                 9781 	jr	C, 00137$
+      001F7B F8 58                 9782 	ldhl	sp,#88
+      001F7D 2A                    9783 	ld	a, (hl+)
+      001F7E 5F                    9784 	ld	e, a
+      001F7F 56                    9785 	ld	d, (hl)
+      001F80 F8 5D                 9786 	ldhl	sp,	#93
+      001F82 7E                    9787 	ld	a, (hl)
+      001F83 12                    9788 	ld	(de), a
+      001F84 18 0B                 9789 	jr	00138$
+      001F86                       9790 00137$:
+      001F86 F8 5D                 9791 	ldhl	sp,	#93
+      001F88 4E                    9792 	ld	c, (hl)
+      001F89 0C                    9793 	inc	c
+      001F8A 0C                    9794 	inc	c
+      001F8B F8 58                 9795 	ldhl	sp,	#88
+      001F8D 2A                    9796 	ld	a, (hl+)
+      001F8E 66                    9797 	ld	h, (hl)
+      001F8F 6F                    9798 	ld	l, a
+      001F90 71                    9799 	ld	(hl), c
+      001F91                       9800 00138$:
+                                   9801 ;game.c:99: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+      001F91 F8 5A                 9802 	ldhl	sp,#90
+      001F93 2A                    9803 	ld	a, (hl+)
+      001F94 5F                    9804 	ld	e, a
+      001F95 56                    9805 	ld	d, (hl)
+      001F96 1A                    9806 	ld	a, (de)
+      001F97 47                    9807 	ld	b, a
+      001F98 2B                    9808 	dec	hl
+      001F99 2B                    9809 	dec	hl
+      001F9A 2B                    9810 	dec	hl
+      001F9B 2A                    9811 	ld	a, (hl+)
+      001F9C 5F                    9812 	ld	e, a
+      001F9D 56                    9813 	ld	d, (hl)
+      001F9E 1A                    9814 	ld	a, (de)
+      001F9F 4F                    9815 	ld	c, a
+      001FA0 F8 4A                 9816 	ldhl	sp,#74
+      001FA2 2A                    9817 	ld	a, (hl+)
+      001FA3 5F                    9818 	ld	e, a
+      001FA4 56                    9819 	ld	d, (hl)
+      001FA5 C5                    9820 	push	bc
+      001FA6 D5                    9821 	push	de
+      001FA7 CDr8Dr10              9822 	call	_setPositionGameCharacter
+      001FAA E8 04                 9823 	add	sp, #4
+      001FAC                       9824 00104$:
+                                   9825 ;game.c:101: if(joypad() & J_UP){
+      001FAC CDr00r00              9826 	call	_joypad
+      001FAF CB 53                 9827 	bit	2, e
+      001FB1 28 58                 9828 	jr	Z, 00106$
+                                   9829 ;game.c:102: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+      001FB3 F8 5A                 9830 	ldhl	sp,#90
+      001FB5 2A                    9831 	ld	a, (hl+)
+      001FB6 5F                    9832 	ld	e, a
+      001FB7 56                    9833 	ld	d, (hl)
+      001FB8 1A                    9834 	ld	a, (de)
+      001FB9 4F                    9835 	ld	c, a
+      001FBA 59                    9836 	ld	e, c
+      001FBB 16 00                 9837 	ld	d, #0x00
+      001FBD 7B                    9838 	ld	a, e
+      001FBE C6 F0                 9839 	add	a, #0xf0
+      001FC0 47                    9840 	ld	b, a
+      001FC1 7A                    9841 	ld	a, d
+      001FC2 CE FF                 9842 	adc	a, #0xff
+      001FC4 6F                    9843 	ld	l, a
+      001FC5 5D                    9844 	ld	e, l
+      001FC6 16 00                 9845 	ld	d, #0x00
+      001FC8 3E 14                 9846 	ld	a, #0x14
+      001FCA B8                    9847 	cp	a, b
+      001FCB 3E 00                 9848 	ld	a, #0x00
+      001FCD 9D                    9849 	sbc	a, l
+      001FCE CB 7B                 9850 	bit	7, e
+      001FD0 28 07                 9851 	jr	Z, 00231$
+      001FD2 CB 7A                 9852 	bit	7, d
+      001FD4 20 08                 9853 	jr	NZ, 00232$
+      001FD6 BF                    9854 	cp	a, a
+      001FD7 18 05                 9855 	jr	00232$
+      001FD9                       9856 00231$:
+      001FD9 CB 7A                 9857 	bit	7, d
+      001FDB 28 01                 9858 	jr	Z, 00232$
+      001FDD 37                    9859 	scf
+      001FDE                       9860 00232$:
+      001FDE 38 08                 9861 	jr	C, 00139$
+      001FE0 F8 5A                 9862 	ldhl	sp,	#90
+      001FE2 2A                    9863 	ld	a, (hl+)
+      001FE3 66                    9864 	ld	h, (hl)
+      001FE4 6F                    9865 	ld	l, a
+      001FE5 71                    9866 	ld	(hl), c
+      001FE6 18 08                 9867 	jr	00140$
+      001FE8                       9868 00139$:
+      001FE8 0D                    9869 	dec	c
+      001FE9 0D                    9870 	dec	c
+      001FEA F8 5A                 9871 	ldhl	sp,	#90
+      001FEC 2A                    9872 	ld	a, (hl+)
+      001FED 66                    9873 	ld	h, (hl)
+      001FEE 6F                    9874 	ld	l, a
+      001FEF 71                    9875 	ld	(hl), c
+      001FF0                       9876 00140$:
+                                   9877 ;game.c:103: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+      001FF0 F8 5A                 9878 	ldhl	sp,#90
+      001FF2 2A                    9879 	ld	a, (hl+)
+      001FF3 5F                    9880 	ld	e, a
+      001FF4 56                    9881 	ld	d, (hl)
+      001FF5 1A                    9882 	ld	a, (de)
+      001FF6 47                    9883 	ld	b, a
+      001FF7 2B                    9884 	dec	hl
+      001FF8 2B                    9885 	dec	hl
+      001FF9 2B                    9886 	dec	hl
+      001FFA 2A                    9887 	ld	a, (hl+)
+      001FFB 5F                    9888 	ld	e, a
+      001FFC 56                    9889 	ld	d, (hl)
+      001FFD 1A                    9890 	ld	a, (de)
+      001FFE 4F                    9891 	ld	c, a
+      001FFF F8 4A                 9892 	ldhl	sp,#74
+      002001 2A                    9893 	ld	a, (hl+)
+      002002 5F                    9894 	ld	e, a
+      002003 56                    9895 	ld	d, (hl)
+      002004 C5                    9896 	push	bc
+      002005 D5                    9897 	push	de
+      002006 CDr8Dr10              9898 	call	_setPositionGameCharacter
+      002009 E8 04                 9899 	add	sp, #4
+      00200B                       9900 00106$:
+                                   9901 ;game.c:105: if(joypad() & J_DOWN){
+      00200B CDr00r00              9902 	call	_joypad
+      00200E CB 5B                 9903 	bit	3, e
+      002010 28 35                 9904 	jr	Z, 00108$
+                                   9905 ;game.c:106: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+      002012 F8 5A                 9906 	ldhl	sp,#90
+      002014 2A                    9907 	ld	a, (hl+)
+      002015 5F                    9908 	ld	e, a
+      002016 56                    9909 	ld	d, (hl)
+      002017 1A                    9910 	ld	a, (de)
+      002018 4F                    9911 	ld	c, a
+      002019 D6 80                 9912 	sub	a, #0x80
+      00201B 38 07                 9913 	jr	C, 00141$
+      00201D 2B                    9914 	dec	hl
+      00201E 2A                    9915 	ld	a, (hl+)
+      00201F 66                    9916 	ld	h, (hl)
+      002020 6F                    9917 	ld	l, a
+      002021 71                    9918 	ld	(hl), c
+      002022 18 08                 9919 	jr	00142$
+      002024                       9920 00141$:
+      002024 0C                    9921 	inc	c
+      002025 0C                    9922 	inc	c
+      002026 F8 5A                 9923 	ldhl	sp,	#90
+      002028 2A                    9924 	ld	a, (hl+)
+      002029 66                    9925 	ld	h, (hl)
+      00202A 6F                    9926 	ld	l, a
+      00202B 71                    9927 	ld	(hl), c
+      00202C                       9928 00142$:
+                                   9929 ;game.c:107: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+      00202C F8 5A                 9930 	ldhl	sp,#90
+      00202E 2A                    9931 	ld	a, (hl+)
+      00202F 5F                    9932 	ld	e, a
+      002030 56                    9933 	ld	d, (hl)
+      002031 1A                    9934 	ld	a, (de)
+      002032 47                    9935 	ld	b, a
+      002033 2B                    9936 	dec	hl
+      002034 2B                    9937 	dec	hl
+      002035 2B                    9938 	dec	hl
+      002036 2A                    9939 	ld	a, (hl+)
+      002037 5F                    9940 	ld	e, a
+      002038 56                    9941 	ld	d, (hl)
+      002039 1A                    9942 	ld	a, (de)
+      00203A 4F                    9943 	ld	c, a
+      00203B F8 4A                 9944 	ldhl	sp,#74
+      00203D 2A                    9945 	ld	a, (hl+)
+      00203E 5F                    9946 	ld	e, a
+      00203F 56                    9947 	ld	d, (hl)
+      002040 C5                    9948 	push	bc
+      002041 D5                    9949 	push	de
+      002042 CDr8Dr10              9950 	call	_setPositionGameCharacter
+      002045 E8 04                 9951 	add	sp, #4
+      002047                       9952 00108$:
+                                   9953 ;game.c:109: if(joypad() & J_A){   
+      002047 CDr00r00              9954 	call	_joypad
+      00204A CB 63                 9955 	bit	4, e
+      00204C CArA7r21              9956 	jp	Z,00124$
+                                   9957 ;game.c:110: if( projetil1.ativo==0){
+                                   9958 ;c
+      00204F F8 4E                 9959 	ldhl	sp,#78
+      002051 2A                    9960 	ld	a, (hl+)
+      002052 5F                    9961 	ld	e, a
+      002053 56                    9962 	ld	d, (hl)
+      002054 21 02 00              9963 	ld	hl, #0x0002
+      002057 19                    9964 	add	hl, de
+      002058 E5                    9965 	push	hl
+      002059 7D                    9966 	ld	a, l
+      00205A F8 5E                 9967 	ldhl	sp,	#94
+      00205C 77                    9968 	ld	(hl), a
+      00205D E1                    9969 	pop	hl
+      00205E 7C                    9970 	ld	a, h
+      00205F F8 5D                 9971 	ldhl	sp,	#93
+      002061 32                    9972 	ld	(hl-), a
+      002062 2A                    9973 	ld	a, (hl+)
+      002063 5F                    9974 	ld	e, a
+      002064 56                    9975 	ld	d, (hl)
+      002065 1A                    9976 	ld	a, (de)
+      002066 B7                    9977 	or	a, a
+      002067 20 27                 9978 	jr	NZ, 00121$
+                                   9979 ;game.c:111: projetil1.x=protagonista.x+4;
+      002069 F8 58                 9980 	ldhl	sp,#88
+      00206B 2A                    9981 	ld	a, (hl+)
+      00206C 5F                    9982 	ld	e, a
+      00206D 56                    9983 	ld	d, (hl)
+      00206E 1A                    9984 	ld	a, (de)
+      00206F C6 04                 9985 	add	a, #0x04
+      002071 4F                    9986 	ld	c, a
+      002072 F8 4E                 9987 	ldhl	sp,	#78
+      002074 2A                    9988 	ld	a, (hl+)
+      002075 66                    9989 	ld	h, (hl)
+      002076 6F                    9990 	ld	l, a
+      002077 71                    9991 	ld	(hl), c
+                                   9992 ;game.c:112: projetil1.y=protagonista.y-2;
+      002078 F8 4E                 9993 	ldhl	sp,#78
+      00207A 2A                    9994 	ld	a, (hl+)
+      00207B 4F                    9995 	ld	c, a
+      00207C 46                    9996 	ld	b, (hl)
+      00207D 03                    9997 	inc	bc
+      00207E F8 5A                 9998 	ldhl	sp,#90
+      002080 2A                    9999 	ld	a, (hl+)
+      002081 5F                   10000 	ld	e, a
+      002082 56                   10001 	ld	d, (hl)
+      002083 1A                   10002 	ld	a, (de)
+      002084 3D                   10003 	dec	a
+      002085 3D                   10004 	dec	a
+      002086 02                   10005 	ld	(bc), a
+                                  10006 ;game.c:113: projetil1.ativo=1;
+      002087 23                   10007 	inc	hl
+      002088 2A                   10008 	ld	a, (hl+)
+      002089 66                   10009 	ld	h, (hl)
+      00208A 6F                   10010 	ld	l, a
+      00208B 36 01                10011 	ld	(hl), #0x01
+      00208D C3r93r21             10012 	jp	00122$
+      002090                      10013 00121$:
+                                  10014 ;game.c:114: }else if(projetil2.ativo==0){
+      002090 F8 50                10015 	ldhl	sp,#80
+      002092 2A                   10016 	ld	a, (hl+)
+      002093 4F                   10017 	ld	c, a
+      002094 46                   10018 	ld	b, (hl)
+      002095 03                   10019 	inc	bc
+      002096 03                   10020 	inc	bc
+      002097 0A                   10021 	ld	a, (bc)
+      002098 B7                   10022 	or	a, a
+      002099 20 37                10023 	jr	NZ, 00118$
+                                  10024 ;game.c:115: projetil2.x=protagonista.x+4;
+      00209B F8 58                10025 	ldhl	sp,#88
+      00209D 2A                   10026 	ld	a, (hl+)
+      00209E 5F                   10027 	ld	e, a
+      00209F 56                   10028 	ld	d, (hl)
+      0020A0 1A                   10029 	ld	a, (de)
+      0020A1 C6 04                10030 	add	a, #0x04
+      0020A3 F8 50                10031 	ldhl	sp,	#80
+      0020A5 F5                   10032 	push	af
+      0020A6 2A                   10033 	ld	a, (hl+)
+      0020A7 66                   10034 	ld	h, (hl)
+      0020A8 6F                   10035 	ld	l, a
+      0020A9 F1                   10036 	pop	af
+      0020AA 77                   10037 	ld	(hl), a
+                                  10038 ;game.c:116: projetil2.y=protagonista.y-2;
+                                  10039 ;c
+      0020AB F8 50                10040 	ldhl	sp,#80
+      0020AD 2A                   10041 	ld	a, (hl+)
+      0020AE 5F                   10042 	ld	e, a
+      0020AF 56                   10043 	ld	d, (hl)
+      0020B0 6B                   10044 	ld	l, e
+      0020B1 62                   10045 	ld	h, d
+      0020B2 23                   10046 	inc	hl
+      0020B3 E5                   10047 	push	hl
+      0020B4 7D                   10048 	ld	a, l
+      0020B5 F8 5E                10049 	ldhl	sp,	#94
+      0020B7 77                   10050 	ld	(hl), a
+      0020B8 E1                   10051 	pop	hl
+      0020B9 7C                   10052 	ld	a, h
+      0020BA F8 5D                10053 	ldhl	sp,	#93
+      0020BC 32                   10054 	ld	(hl-), a
+      0020BD 2B                   10055 	dec	hl
+      0020BE 2B                   10056 	dec	hl
+      0020BF 2A                   10057 	ld	a, (hl+)
+      0020C0 5F                   10058 	ld	e, a
+      0020C1 56                   10059 	ld	d, (hl)
+      0020C2 1A                   10060 	ld	a, (de)
+      0020C3 3D                   10061 	dec	a
+      0020C4 3D                   10062 	dec	a
+      0020C5 23                   10063 	inc	hl
+      0020C6 F5                   10064 	push	af
+      0020C7 2A                   10065 	ld	a, (hl+)
+      0020C8 66                   10066 	ld	h, (hl)
+      0020C9 6F                   10067 	ld	l, a
+      0020CA F1                   10068 	pop	af
+      0020CB 77                   10069 	ld	(hl), a
+                                  10070 ;game.c:117: projetil2.ativo=1;
+      0020CC 3E 01                10071 	ld	a, #0x01
+      0020CE 02                   10072 	ld	(bc), a
+      0020CF C3r93r21             10073 	jp	00122$
+      0020D2                      10074 00118$:
+                                  10075 ;game.c:118: }else if(projetil3.ativo==0){
+      0020D2 F8 52                10076 	ldhl	sp,#82
+      0020D4 2A                   10077 	ld	a, (hl+)
+      0020D5 4F                   10078 	ld	c, a
+      0020D6 46                   10079 	ld	b, (hl)
+      0020D7 03                   10080 	inc	bc
+      0020D8 03                   10081 	inc	bc
+      0020D9 0A                   10082 	ld	a, (bc)
+      0020DA B7                   10083 	or	a, a
+      0020DB 20 37                10084 	jr	NZ, 00115$
+                                  10085 ;game.c:119: projetil3.x=protagonista.x+4;
+      0020DD F8 58                10086 	ldhl	sp,#88
+      0020DF 2A                   10087 	ld	a, (hl+)
+      0020E0 5F                   10088 	ld	e, a
+      0020E1 56                   10089 	ld	d, (hl)
+      0020E2 1A                   10090 	ld	a, (de)
+      0020E3 C6 04                10091 	add	a, #0x04
+      0020E5 F8 52                10092 	ldhl	sp,	#82
+      0020E7 F5                   10093 	push	af
+      0020E8 2A                   10094 	ld	a, (hl+)
+      0020E9 66                   10095 	ld	h, (hl)
+      0020EA 6F                   10096 	ld	l, a
+      0020EB F1                   10097 	pop	af
+      0020EC 77                   10098 	ld	(hl), a
+                                  10099 ;game.c:120: projetil3.y=protagonista.y-2;
+                                  10100 ;c
+      0020ED F8 52                10101 	ldhl	sp,#82
+      0020EF 2A                   10102 	ld	a, (hl+)
+      0020F0 5F                   10103 	ld	e, a
+      0020F1 56                   10104 	ld	d, (hl)
+      0020F2 6B                   10105 	ld	l, e
+      0020F3 62                   10106 	ld	h, d
+      0020F4 23                   10107 	inc	hl
+      0020F5 E5                   10108 	push	hl
+      0020F6 7D                   10109 	ld	a, l
+      0020F7 F8 5E                10110 	ldhl	sp,	#94
+      0020F9 77                   10111 	ld	(hl), a
+      0020FA E1                   10112 	pop	hl
+      0020FB 7C                   10113 	ld	a, h
+      0020FC F8 5D                10114 	ldhl	sp,	#93
+      0020FE 32                   10115 	ld	(hl-), a
+      0020FF 2B                   10116 	dec	hl
+      002100 2B                   10117 	dec	hl
+      002101 2A                   10118 	ld	a, (hl+)
+      002102 5F                   10119 	ld	e, a
+      002103 56                   10120 	ld	d, (hl)
+      002104 1A                   10121 	ld	a, (de)
+      002105 3D                   10122 	dec	a
+      002106 3D                   10123 	dec	a
+      002107 23                   10124 	inc	hl
+      002108 F5                   10125 	push	af
+      002109 2A                   10126 	ld	a, (hl+)
+      00210A 66                   10127 	ld	h, (hl)
+      00210B 6F                   10128 	ld	l, a
+      00210C F1                   10129 	pop	af
+      00210D 77                   10130 	ld	(hl), a
+                                  10131 ;game.c:121: projetil3.ativo=1;
+      00210E 3E 01                10132 	ld	a, #0x01
+      002110 02                   10133 	ld	(bc), a
+      002111 C3r93r21             10134 	jp	00122$
+      002114                      10135 00115$:
+                                  10136 ;game.c:122: }else if(projetil4.ativo==0){
+      002114 F8 54                10137 	ldhl	sp,#84
+      002116 2A                   10138 	ld	a, (hl+)
+      002117 4F                   10139 	ld	c, a
+      002118 46                   10140 	ld	b, (hl)
+      002119 03                   10141 	inc	bc
+      00211A 03                   10142 	inc	bc
+      00211B 0A                   10143 	ld	a, (bc)
+      00211C B7                   10144 	or	a, a
+      00211D 20 36                10145 	jr	NZ, 00112$
+                                  10146 ;game.c:123: projetil4.x=protagonista.x+4;
+      00211F F8 58                10147 	ldhl	sp,#88
+      002121 2A                   10148 	ld	a, (hl+)
+      002122 5F                   10149 	ld	e, a
+      002123 56                   10150 	ld	d, (hl)
+      002124 1A                   10151 	ld	a, (de)
+      002125 C6 04                10152 	add	a, #0x04
+      002127 F8 54                10153 	ldhl	sp,	#84
+      002129 F5                   10154 	push	af
+      00212A 2A                   10155 	ld	a, (hl+)
+      00212B 66                   10156 	ld	h, (hl)
+      00212C 6F                   10157 	ld	l, a
+      00212D F1                   10158 	pop	af
+      00212E 77                   10159 	ld	(hl), a
+                                  10160 ;game.c:124: projetil4.y=protagonista.y-2;
+                                  10161 ;c
+      00212F F8 54                10162 	ldhl	sp,#84
+      002131 2A                   10163 	ld	a, (hl+)
+      002132 5F                   10164 	ld	e, a
+      002133 56                   10165 	ld	d, (hl)
+      002134 6B                   10166 	ld	l, e
+      002135 62                   10167 	ld	h, d
+      002136 23                   10168 	inc	hl
+      002137 E5                   10169 	push	hl
+      002138 7D                   10170 	ld	a, l
+      002139 F8 5E                10171 	ldhl	sp,	#94
+      00213B 77                   10172 	ld	(hl), a
+      00213C E1                   10173 	pop	hl
+      00213D 7C                   10174 	ld	a, h
+      00213E F8 5D                10175 	ldhl	sp,	#93
+      002140 32                   10176 	ld	(hl-), a
+      002141 2B                   10177 	dec	hl
+      002142 2B                   10178 	dec	hl
+      002143 2A                   10179 	ld	a, (hl+)
+      002144 5F                   10180 	ld	e, a
+      002145 56                   10181 	ld	d, (hl)
+      002146 1A                   10182 	ld	a, (de)
+      002147 3D                   10183 	dec	a
+      002148 3D                   10184 	dec	a
+      002149 23                   10185 	inc	hl
+      00214A F5                   10186 	push	af
+      00214B 2A                   10187 	ld	a, (hl+)
+      00214C 66                   10188 	ld	h, (hl)
+      00214D 6F                   10189 	ld	l, a
+      00214E F1                   10190 	pop	af
+      00214F 77                   10191 	ld	(hl), a
+                                  10192 ;game.c:125: projetil4.ativo=1;
+      002150 3E 01                10193 	ld	a, #0x01
+      002152 02                   10194 	ld	(bc), a
+      002153 18 3E                10195 	jr	00122$
+      002155                      10196 00112$:
+                                  10197 ;game.c:126: }else if(projetil5.ativo==0){
+      002155 F8 56                10198 	ldhl	sp,#86
+      002157 2A                   10199 	ld	a, (hl+)
+      002158 4F                   10200 	ld	c, a
+      002159 46                   10201 	ld	b, (hl)
+      00215A 03                   10202 	inc	bc
+      00215B 03                   10203 	inc	bc
+      00215C 0A                   10204 	ld	a, (bc)
+      00215D B7                   10205 	or	a, a
+      00215E 20 33                10206 	jr	NZ, 00122$
+                                  10207 ;game.c:127: projetil5.x=protagonista.x+4;
+      002160 23                   10208 	inc	hl
+      002161 2A                   10209 	ld	a, (hl+)
+      002162 5F                   10210 	ld	e, a
+      002163 56                   10211 	ld	d, (hl)
+      002164 1A                   10212 	ld	a, (de)
+      002165 C6 04                10213 	add	a, #0x04
+      002167 F8 56                10214 	ldhl	sp,	#86
+      002169 F5                   10215 	push	af
+      00216A 2A                   10216 	ld	a, (hl+)
+      00216B 66                   10217 	ld	h, (hl)
+      00216C 6F                   10218 	ld	l, a
+      00216D F1                   10219 	pop	af
+      00216E 77                   10220 	ld	(hl), a
+                                  10221 ;game.c:128: projetil5.y=protagonista.y-2;
+                                  10222 ;c
+      00216F F8 56                10223 	ldhl	sp,#86
+      002171 2A                   10224 	ld	a, (hl+)
+      002172 5F                   10225 	ld	e, a
+      002173 56                   10226 	ld	d, (hl)
+      002174 6B                   10227 	ld	l, e
+      002175 62                   10228 	ld	h, d
+      002176 23                   10229 	inc	hl
+      002177 E5                   10230 	push	hl
+      002178 7D                   10231 	ld	a, l
+      002179 F8 5E                10232 	ldhl	sp,	#94
+      00217B 77                   10233 	ld	(hl), a
+      00217C E1                   10234 	pop	hl
+      00217D 7C                   10235 	ld	a, h
+      00217E F8 5D                10236 	ldhl	sp,	#93
+      002180 32                   10237 	ld	(hl-), a
+      002181 2B                   10238 	dec	hl
+      002182 2B                   10239 	dec	hl
+      002183 2A                   10240 	ld	a, (hl+)
+      002184 5F                   10241 	ld	e, a
+      002185 56                   10242 	ld	d, (hl)
+      002186 1A                   10243 	ld	a, (de)
+      002187 3D                   10244 	dec	a
+      002188 3D                   10245 	dec	a
+      002189 23                   10246 	inc	hl
+      00218A F5                   10247 	push	af
+      00218B 2A                   10248 	ld	a, (hl+)
+      00218C 66                   10249 	ld	h, (hl)
+      00218D 6F                   10250 	ld	l, a
+      00218E F1                   10251 	pop	af
+      00218F 77                   10252 	ld	(hl), a
+                                  10253 ;game.c:129: projetil5.ativo=1;
+      002190 3E 01                10254 	ld	a, #0x01
+      002192 02                   10255 	ld	(bc), a
+      002193                      10256 00122$:
+                                  10257 ;game.c:131: NR10_REG = 0x2C;
+      002193 3E 2C                10258 	ld	a, #0x2c
+      002195 E0r00                10259 	ldh	(_NR10_REG+0),a
+                                  10260 ;game.c:132: NR11_REG = 0x81;
+      002197 3E 81                10261 	ld	a, #0x81
+      002199 E0r00                10262 	ldh	(_NR11_REG+0),a
+                                  10263 ;game.c:133: NR12_REG = 0x92;
+      00219B 3E 92                10264 	ld	a, #0x92
+      00219D E0r00                10265 	ldh	(_NR12_REG+0),a
+                                  10266 ;game.c:134: NR13_REG = 0x2A;
+      00219F 3E 2A                10267 	ld	a, #0x2a
+      0021A1 E0r00                10268 	ldh	(_NR13_REG+0),a
+                                  10269 ;game.c:135: NR14_REG = 0x84;
+      0021A3 3E 84                10270 	ld	a, #0x84
+      0021A5 E0r00                10271 	ldh	(_NR14_REG+0),a
+      0021A7                      10272 00124$:
+                                  10273 ;game.c:137: if(joypad() & J_B){
+      0021A7 CDr00r00             10274 	call	_joypad
+      0021AA CB 6B                10275 	bit	5, e
+      0021AC 28 0F                10276 	jr	Z, 00126$
+                                  10277 ;game.c:138: sumScore(&pontuacao,1111);
+      0021AE F8 4C                10278 	ldhl	sp,#76
+      0021B0 2A                   10279 	ld	a, (hl+)
+      0021B1 4F                   10280 	ld	c, a
+      0021B2 46                   10281 	ld	b, (hl)
+      0021B3 21 57 04             10282 	ld	hl, #0x0457
+      0021B6 E5                   10283 	push	hl
+      0021B7 C5                   10284 	push	bc
+      0021B8 CDr6Br04             10285 	call	_sumScore
+      0021BB E8 04                10286 	add	sp, #4
+      0021BD                      10287 00126$:
+                                  10288 ;game.c:140: if(joypad() & J_SELECT){
+      0021BD CDr00r00             10289 	call	_joypad
+      0021C0 CB 73                10290 	bit	6, e
+      0021C2 28 2A                10291 	jr	Z, 00128$
+                                  10292 ;game.c:141: inimigo1.ativo=1;
+                                  10293 ;c
+      0021C4 F8 48                10294 	ldhl	sp,#72
+      0021C6 2A                   10295 	ld	a, (hl+)
+      0021C7 5F                   10296 	ld	e, a
+      0021C8 56                   10297 	ld	d, (hl)
+      0021C9 21 06 00             10298 	ld	hl, #0x0006
+      0021CC 19                   10299 	add	hl, de
+      0021CD 36 01                10300 	ld	(hl), #0x01
+                                  10301 ;game.c:142: inimigo1.x=protagonista.x;
+                                  10302 ;c
+      0021CF F8 48                10303 	ldhl	sp,#72
+      0021D1 2A                   10304 	ld	a, (hl+)
+      0021D2 5F                   10305 	ld	e, a
+      0021D3 56                   10306 	ld	d, (hl)
+      0021D4 21 04 00             10307 	ld	hl, #0x0004
+      0021D7 19                   10308 	add	hl, de
+      0021D8 4D                   10309 	ld	c, l
+      0021D9 44                   10310 	ld	b, h
+      0021DA F8 58                10311 	ldhl	sp,#88
+      0021DC 2A                   10312 	ld	a, (hl+)
+      0021DD 5F                   10313 	ld	e, a
+      0021DE 56                   10314 	ld	d, (hl)
+      0021DF 1A                   10315 	ld	a, (de)
+      0021E0 02                   10316 	ld	(bc), a
+                                  10317 ;game.c:143: inimigo1.y=0;
+                                  10318 ;c
+      0021E1 F8 48                10319 	ldhl	sp,#72
+      0021E3 2A                   10320 	ld	a, (hl+)
+      0021E4 5F                   10321 	ld	e, a
+      0021E5 56                   10322 	ld	d, (hl)
+      0021E6 21 05 00             10323 	ld	hl, #0x0005
+      0021E9 19                   10324 	add	hl, de
+      0021EA 4D                   10325 	ld	c, l
+      0021EB 44                   10326 	ld	b, h
+      0021EC AF                   10327 	xor	a, a
+      0021ED 02                   10328 	ld	(bc), a
+      0021EE                      10329 00128$:
+                                  10330 ;game.c:145: performantdelay(5);  
+      0021EE 3E 05                10331 	ld	a, #0x05
+      0021F0 F5                   10332 	push	af
+      0021F1 33                   10333 	inc	sp
+      0021F2 CDrFCr21             10334 	call	_performantdelay
+      0021F5 33                   10335 	inc	sp
+      0021F6 C3r35r1E             10336 	jp	00130$
+                                  10337 ;game.c:148: }
+      0021F9 E8 5E                10338 	add	sp, #94
+      0021FB C9                   10339 	ret
+                                  10340 ;game.c:150: void performantdelay(UINT8 numloops){ // nova funcao delay
+                                  10341 ;	---------------------------------
+                                  10342 ; Function performantdelay
+                                  10343 ; ---------------------------------
+      0021FC                      10344 _performantdelay::
+                                  10345 ;game.c:152: for(i = 0; i < numloops; i++){
+      0021FC 0E 00                10346 	ld	c, #0x00
+      0021FE                      10347 00103$:
+      0021FE 79                   10348 	ld	a, c
+      0021FF F8 02                10349 	ldhl	sp,	#2
+      002201 96                   10350 	sub	a, (hl)
+      002202 D0                   10351 	ret	NC
+                                  10352 ;game.c:153: wait_vbl_done();
+      002203 CDr00r00             10353 	call	_wait_vbl_done
+                                  10354 ;game.c:152: for(i = 0; i < numloops; i++){
+      002206 0C                   10355 	inc	c
+                                  10356 ;game.c:155: }
+      002207 18 F5                10357 	jr	00103$
+                                  10358 	.area _CODE
+                                  10359 	.area _CABS (ABS)

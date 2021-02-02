@@ -3002,7 +3002,7 @@ _setupEnemy::
 ;personagem.c:53: set_sprite_tile(spriteId, i);
 	ld	hl, #_spriteId
 	ld	e, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	h, #0x00
 	ld	l, e
 	add	hl, hl
@@ -3086,7 +3086,7 @@ _setupHero::
 ;personagem.c:68: set_sprite_tile(spriteId, i);
 	ld	hl, #_spriteId
 	ld	e, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	h, #0x00
 	ld	l, e
 	add	hl, hl
@@ -3170,7 +3170,7 @@ _setupSubBoss::
 ;personagem.c:83: set_sprite_tile(spriteId, i);
 	ld	hl, #_spriteId
 	ld	e, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	h, #0x00
 	ld	l, e
 	add	hl, hl
@@ -3229,7 +3229,7 @@ _setupBala::
 	ld	c, (hl)
 	ld	hl, #_spriteId
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	xor	a, a
 	ld	l, b
 	ld	h, a
@@ -3288,7 +3288,7 @@ _setupScore::
 	ldhl	sp,	#23
 	ld	c, (hl)
 	ld	hl, #_spriteId
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	l, (hl)
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
@@ -3314,7 +3314,7 @@ _setupScore::
 	ldhl	sp,	#23
 	ld	c, (hl)
 	ld	hl, #_spriteId
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	l, (hl)
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
@@ -3356,7 +3356,7 @@ _setupScore::
 	ld	c, (hl)
 	ld	hl, #_spriteId
 	ld	e, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	d, #0x00
 	ld	l, e
 	ld	h, d
@@ -3398,7 +3398,7 @@ _setupScore::
 	ld	c, (hl)
 	ld	hl, #_spriteId
 	ld	e, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	d, #0x00
 	ld	l, e
 	ld	h, d
@@ -3440,7 +3440,7 @@ _setupScore::
 	ld	c, (hl)
 	ld	hl, #_spriteId
 	ld	e, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	d, #0x00
 	ld	l, e
 	ld	h, d
@@ -3481,7 +3481,7 @@ _setupScore::
 	ldhl	sp,	#23
 	ld	c, (hl)
 	ld	hl, #_spriteId
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	l, (hl)
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
@@ -3542,7 +3542,7 @@ _setupScore::
 	ld	c, (hl)
 	ld	hl, #_spriteId
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	h, #0x00
 	ld	l, b
 	add	hl, hl
@@ -3576,7 +3576,7 @@ _setupScore::
 	inc	(hl)
 ;personagem.c:138: set_sprite_tile(spriteId, start);
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	h, #0x00
 	ld	l, b
 	add	hl, hl
@@ -3616,7 +3616,7 @@ _setupScore::
 	ld	c, (hl)
 	ld	hl, #_spriteId
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -3658,7 +3658,7 @@ _setupScore::
 	pop	de
 	push	de
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	l, a
 	ld	h, #0x00
 	add	hl, hl
@@ -3667,7 +3667,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3687,7 +3687,7 @@ _setupScore::
 	ld	b, a
 	pop	af
 	ld	(hl), a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	l, b
 	ld	h, #0x00
 	add	hl, hl
@@ -3696,7 +3696,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3719,7 +3719,7 @@ _setupScore::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, c
@@ -3728,7 +3728,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3749,7 +3749,7 @@ _setupScore::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, c
@@ -3758,7 +3758,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3777,7 +3777,7 @@ _setupScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	l, a
 	ld	h, #0x00
 	add	hl, hl
@@ -3786,7 +3786,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3807,7 +3807,7 @@ _setupScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	l, a
 	ld	h, #0x00
 	add	hl, hl
@@ -3816,7 +3816,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3837,7 +3837,7 @@ _setupScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	l, a
 	ld	h, #0x00
 	add	hl, hl
@@ -3846,7 +3846,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3868,7 +3868,7 @@ _setupScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	l, a
 	ld	h, #0x00
 	add	hl, hl
@@ -3877,7 +3877,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -3897,7 +3897,7 @@ _setupScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	l, a
 	ld	h, #0x00
 	add	hl, hl
@@ -3906,7 +3906,7 @@ _setupScore::
 	add	hl, de
 	ld	e, l
 	ld	d, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#18
 	ld	a, (hl)
 	ld	(de), a
@@ -4109,7 +4109,7 @@ _sumScore::
 	add	hl, de
 	ld	c, (hl)
 	ldhl	sp,	#12
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	l, (hl)
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
@@ -4138,7 +4138,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4167,7 +4167,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4196,7 +4196,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4225,7 +4225,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4254,7 +4254,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4283,7 +4283,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4312,7 +4312,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4341,7 +4341,7 @@ _sumScore::
 	ld	c, (hl)
 	ldhl	sp,	#12
 	ld	b, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	de, #_shadow_OAM+0
 	ld	h, #0x00
 	ld	l, b
@@ -4367,7 +4367,7 @@ _sumScore::
 	ld	(hl), a
 	ldhl	sp,	#12
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	xor	a, a
 	sla	c
 	adc	a, a
@@ -4444,7 +4444,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -4521,7 +4521,7 @@ _sumScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	(hl+), a
 	ld	a, (hl)
 	ldhl	sp,	#9
@@ -4594,7 +4594,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -4665,7 +4665,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -4736,7 +4736,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -4807,7 +4807,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -4878,7 +4878,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -4949,7 +4949,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5020,7 +5020,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5084,7 +5084,7 @@ _sumScore::
 	ldhl	sp,	#8
 	ld	(hl), a
 	ldhl	sp,	#12
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	a, (hl-)
 	ld	(hl), a
 	xor	a, a
@@ -5165,7 +5165,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5242,7 +5242,7 @@ _sumScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	(hl+), a
 	ld	a, (hl)
 	ldhl	sp,	#9
@@ -5315,7 +5315,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5386,7 +5386,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5457,7 +5457,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5528,7 +5528,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5599,7 +5599,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5670,7 +5670,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5741,7 +5741,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5805,7 +5805,7 @@ _sumScore::
 	ldhl	sp,	#8
 	ld	(hl), a
 	ldhl	sp,	#12
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	a, (hl-)
 	ld	(hl), a
 	xor	a, a
@@ -5886,7 +5886,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -5963,7 +5963,7 @@ _sumScore::
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ld	(hl+), a
 	ld	a, (hl)
 	ldhl	sp,	#9
@@ -6036,7 +6036,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6107,7 +6107,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6178,7 +6178,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6249,7 +6249,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6320,7 +6320,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6391,7 +6391,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6462,7 +6462,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6526,7 +6526,7 @@ _sumScore::
 	ldhl	sp,	#11
 	ld	(hl+), a
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:999: shadow_OAM[nb].tile=tile;
+;c:/gbdk/include/gb/gb.h:1004: shadow_OAM[nb].tile=tile;
 	ldhl	sp,	#9
 	ld	(hl), c
 	xor	a, a
@@ -6601,7 +6601,7 @@ _setPositionGameCharacter::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6611,7 +6611,7 @@ _setPositionGameCharacter::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#0
 	ld	a, (hl+)
 	ld	(bc), a
@@ -6628,7 +6628,7 @@ _setPositionGameCharacter::
 	ld	c, (hl)
 	ldhl	sp,	#2
 	ld	(hl), a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6638,7 +6638,7 @@ _setPositionGameCharacter::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#0
 	ld	a, (hl+)
 	ld	(bc), a
@@ -6659,7 +6659,7 @@ _setPositionGameCharacter::
 	inc	hl
 	inc	hl
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6669,7 +6669,7 @@ _setPositionGameCharacter::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#2
 	ld	a, (hl)
 	ld	(bc), a
@@ -6693,7 +6693,7 @@ _setPositionGameCharacter::
 	inc	de
 	ld	a, (de)
 	ld	e, a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	d, #0x00
 	ld	l, e
 	ld	h, d
@@ -6701,7 +6701,7 @@ _setPositionGameCharacter::
 	add	hl, hl
 	ld	de, #_shadow_OAM
 	add	hl, de
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
@@ -6730,7 +6730,7 @@ _setPositionGameCharacter2::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6740,7 +6740,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#0
 	ld	a, (hl+)
 	ld	(bc), a
@@ -6757,7 +6757,7 @@ _setPositionGameCharacter2::
 	ld	c, (hl)
 	ldhl	sp,	#4
 	ld	(hl), a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6767,7 +6767,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#0
 	ld	a, (hl)
 	ld	(bc), a
@@ -6790,7 +6790,7 @@ _setPositionGameCharacter2::
 	ld	c, (hl)
 	ldhl	sp,	#4
 	ld	(hl), a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6800,7 +6800,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#0
 	ld	a, (hl)
 	ld	(bc), a
@@ -6821,7 +6821,7 @@ _setPositionGameCharacter2::
 	inc	hl
 	inc	hl
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	h, #0x00
 	ld	l, c
 	add	hl, hl
@@ -6830,7 +6830,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#4
 	ld	a, (hl)
 	ld	(bc), a
@@ -6855,7 +6855,7 @@ _setPositionGameCharacter2::
 	ld	c, (hl)
 	ldhl	sp,	#4
 	ld	(hl), b
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6865,7 +6865,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#3
 	ld	a, (hl+)
 	ld	(bc), a
@@ -6889,7 +6889,7 @@ _setPositionGameCharacter2::
 	ld	c, (hl)
 	ldhl	sp,	#4
 	ld	(hl), b
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6899,7 +6899,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#3
 	ld	a, (hl+)
 	ld	(bc), a
@@ -6920,7 +6920,7 @@ _setPositionGameCharacter2::
 	ld	hl, #0x0006
 	add	hl, de
 	ld	c, (hl)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6930,7 +6930,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#3
 	ld	a, (hl)
 	ld	(bc), a
@@ -6956,7 +6956,7 @@ _setPositionGameCharacter2::
 	ld	c, (hl)
 	ldhl	sp,	#1
 	ld	(hl), b
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	xor	a, a
 	ld	l, c
 	ld	h, a
@@ -6966,7 +6966,7 @@ _setPositionGameCharacter2::
 	add	hl, bc
 	ld	c, l
 	ld	b, h
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ldhl	sp,	#3
 	ld	a, (hl)
 	ld	(bc), a
@@ -6991,7 +6991,7 @@ _setPositionGameCharacter2::
 	ld	hl, #0x0008
 	add	hl, de
 	ld	e, (hl)
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	d, #0x00
 	ld	l, e
 	ld	h, d
@@ -6999,7 +6999,7 @@ _setPositionGameCharacter2::
 	add	hl, hl
 	ld	de, #_shadow_OAM
 	add	hl, de
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
@@ -7126,7 +7126,7 @@ _moveBala::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	(hl), a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	e, (hl)
 	ld	d, #0x00
 	ld	l, e
@@ -7135,7 +7135,7 @@ _moveBala::
 	add	hl, hl
 	ld	de, #_shadow_OAM
 	add	hl, de
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ld	a, b
 	ld	(hl+), a
 	ld	(hl), c
@@ -7155,7 +7155,7 @@ _moveBala::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-;c:/gbdk/include/gb/gb.h:1072: OAM_item_t * itm = &shadow_OAM[nb];
+;c:/gbdk/include/gb/gb.h:1077: OAM_item_t * itm = &shadow_OAM[nb];
 	ld	de, #_shadow_OAM+0
 	xor	a, a
 	ld	l, c
@@ -7163,7 +7163,7 @@ _moveBala::
 	add	hl, hl
 	add	hl, hl
 	add	hl, de
-;c:/gbdk/include/gb/gb.h:1073: itm->y=y, itm->x=x;
+;c:/gbdk/include/gb/gb.h:1078: itm->y=y, itm->x=x;
 	ld	a, #0x00
 	ld	(hl+), a
 	ld	(hl), #0x96
@@ -9281,7 +9281,16 @@ _hitMinnion::
 ; ---------------------------------
 _main::
 	add	sp, #-94
-;game.c:25: set_bkg_data(0, 10, backTiles);
+;game.c:23: NR52_REG = 0x80;
+	ld	a, #0x80
+	ldh	(_NR52_REG+0),a
+;game.c:24: NR51_REG = 0x11;
+	ld	a, #0x11
+	ldh	(_NR51_REG+0),a
+;game.c:25: NR50_REG = 0x77;
+	ld	a, #0x77
+	ldh	(_NR50_REG+0),a
+;game.c:27: set_bkg_data(0, 10, backTiles);
 	ld	hl, #_backTiles
 	push	hl
 	ld	a, #0x0a
@@ -9292,7 +9301,7 @@ _main::
 	inc	sp
 	call	_set_bkg_data
 	add	sp, #4
-;game.c:26: set_bkg_tiles(0, 0, 20, 36, simpleMap);
+;game.c:28: set_bkg_tiles(0, 0, 20, 36, simpleMap);
 	ld	hl, #_simpleMap
 	push	hl
 	ld	de, #0x2414
@@ -9305,7 +9314,7 @@ _main::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;game.c:28: set_sprite_data(0, 4, ghost);
+;game.c:30: set_sprite_data(0, 4, ghost);
 	ld	hl, #_ghost
 	push	hl
 	ld	a, #0x04
@@ -9316,35 +9325,35 @@ _main::
 	inc	sp
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:29: set_sprite_data(4, 4, protagonista);
+;game.c:31: set_sprite_data(4, 4, protagonista);
 	ld	hl, #_protagonista
 	push	hl
 	ld	de, #0x0404
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:30: set_sprite_data(8, 9, MiniBossOgro);
+;game.c:32: set_sprite_data(8, 9, MiniBossOgro);
 	ld	hl, #_MiniBossOgro
 	push	hl
 	ld	de, #0x0908
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:31: set_sprite_data(17, 1, projetil);
+;game.c:33: set_sprite_data(17, 1, projetil);
 	ld	hl, #_projetil
 	push	hl
 	ld	de, #0x0111
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:32: set_sprite_data(18,16, score);
+;game.c:34: set_sprite_data(18,16, score);
 	ld	hl, #_score
 	push	hl
 	ld	de, #0x1012
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:36: setupEnemy(&inimigo1,0,4);
+;game.c:38: setupEnemy(&inimigo1,0,4);
 	ldhl	sp,	#0
 	ld	a, l
 	ld	d, h
@@ -9364,7 +9373,7 @@ _main::
 	push	bc
 	call	_setupEnemy
 	add	sp, #4
-;game.c:40: setupHero(&protagonista,4,8);
+;game.c:42: setupHero(&protagonista,4,8);
 	ldhl	sp,	#10
 	ld	a, l
 	ld	d, h
@@ -9380,7 +9389,7 @@ _main::
 	push	bc
 	call	_setupHero
 	add	sp, #4
-;game.c:41: setPositionGameCharacter(&protagonista,80,128);
+;game.c:43: setPositionGameCharacter(&protagonista,80,128);
 	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	c, a
@@ -9390,7 +9399,7 @@ _main::
 	push	bc
 	call	_setPositionGameCharacter
 	add	sp, #4
-;game.c:47: setupScore(&pontuacao,18,96,152);
+;game.c:49: setupScore(&pontuacao,18,96,152);
 	ldhl	sp,	#20
 	ld	a, l
 	ld	d, h
@@ -9409,7 +9418,7 @@ _main::
 	push	bc
 	call	_setupScore
 	add	sp, #5
-;game.c:55: setupBala(&projetil1,17);
+;game.c:57: setupBala(&projetil1,17);
 	ldhl	sp,	#42
 	ld	a, l
 	ld	d, h
@@ -9426,7 +9435,7 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:56: setupBala(&projetil2,17);
+;game.c:58: setupBala(&projetil2,17);
 	ldhl	sp,	#48
 	ld	a, l
 	ld	d, h
@@ -9443,7 +9452,7 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:57: setupBala(&projetil3,17);
+;game.c:59: setupBala(&projetil3,17);
 	ldhl	sp,	#54
 	ld	a, l
 	ld	d, h
@@ -9460,7 +9469,7 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:58: setupBala(&projetil4,17);
+;game.c:60: setupBala(&projetil4,17);
 	ldhl	sp,	#60
 	ld	a, l
 	ld	d, h
@@ -9477,7 +9486,7 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:59: setupBala(&projetil5,17);
+;game.c:61: setupBala(&projetil5,17);
 	ldhl	sp,	#66
 	ld	a, l
 	ld	d, h
@@ -9494,31 +9503,31 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:63: SHOW_BKG;
+;game.c:65: SHOW_BKG;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x01
 	ldh	(_LCDC_REG+0),a
-;game.c:64: SHOW_SPRITES;
+;game.c:66: SHOW_SPRITES;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x02
 	ldh	(_LCDC_REG+0),a
-;game.c:66: DISPLAY_ON;
+;game.c:68: DISPLAY_ON;
 	ldh	a, (_LCDC_REG+0)
 	or	a, #0x80
 	ldh	(_LCDC_REG+0),a
-;game.c:70: waitpad(J_START);
+;game.c:72: waitpad(J_START);
 	ld	a, #0x80
 	push	af
 	inc	sp
 	call	_waitpad
 	inc	sp
-;game.c:72: while(1){
+;game.c:74: while(1){
 00130$:
-;c:/gbdk/include/gb/gb.h:770: SCX_REG+=x, SCY_REG+=y;
+;c:/gbdk/include/gb/gb.h:775: SCX_REG+=x, SCY_REG+=y;
 	ldh	a, (_SCY_REG+0)
 	inc	a
 	ldh	(_SCY_REG+0),a
-;game.c:74: moveBala(&projetil1);
+;game.c:76: moveBala(&projetil1);
 	ldhl	sp,#78
 	ld	a, (hl+)
 	ld	c, a
@@ -9526,7 +9535,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:75: moveBala(&projetil2);
+;game.c:77: moveBala(&projetil2);
 	ldhl	sp,#80
 	ld	a, (hl+)
 	ld	c, a
@@ -9534,7 +9543,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:76: moveBala(&projetil3);
+;game.c:78: moveBala(&projetil3);
 	ldhl	sp,#82
 	ld	a, (hl+)
 	ld	c, a
@@ -9542,7 +9551,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:77: moveBala(&projetil4);
+;game.c:79: moveBala(&projetil4);
 	ldhl	sp,#84
 	ld	a, (hl+)
 	ld	c, a
@@ -9550,7 +9559,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:78: moveBala(&projetil5);
+;game.c:80: moveBala(&projetil5);
 	ldhl	sp,#86
 	ld	a, (hl+)
 	ld	c, a
@@ -9558,7 +9567,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:80: moveInimigo1(&inimigo1,&protagonista);
+;game.c:82: moveInimigo1(&inimigo1,&protagonista);
 	ldhl	sp,#74
 	ld	a, (hl+)
 	ld	e, a
@@ -9573,7 +9582,7 @@ _main::
 	push	bc
 	call	_moveInimigo1
 	add	sp, #4
-;game.c:82: hitMinnion(&inimigo1,&projetil1,50);
+;game.c:84: hitMinnion(&inimigo1,&projetil1,50);
 	ldhl	sp,#78
 	ld	a, (hl+)
 	ld	e, a
@@ -9589,7 +9598,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:83: hitMinnion(&inimigo1,&projetil2,50);
+;game.c:85: hitMinnion(&inimigo1,&projetil2,50);
 	ldhl	sp,#80
 	ld	a, (hl+)
 	ld	e, a
@@ -9605,7 +9614,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:84: hitMinnion(&inimigo1,&projetil3,50);
+;game.c:86: hitMinnion(&inimigo1,&projetil3,50);
 	ldhl	sp,#82
 	ld	a, (hl+)
 	ld	e, a
@@ -9621,7 +9630,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:85: hitMinnion(&inimigo1,&projetil4,50);
+;game.c:87: hitMinnion(&inimigo1,&projetil4,50);
 	ldhl	sp,#84
 	ld	a, (hl+)
 	ld	e, a
@@ -9637,7 +9646,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:86: hitMinnion(&inimigo1,&projetil5,50);
+;game.c:88: hitMinnion(&inimigo1,&projetil5,50);
 	ldhl	sp,#86
 	ld	a, (hl+)
 	ld	e, a
@@ -9653,10 +9662,10 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:90: if(joypad() & J_LEFT){
+;game.c:92: if(joypad() & J_LEFT){
 	call	_joypad
 	ld	c, e
-;game.c:91: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+;game.c:93: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
 ;c
 	ldhl	sp,#74
 	ld	a, (hl+)
@@ -9672,7 +9681,7 @@ _main::
 	ld	a, h
 	ldhl	sp,	#89
 	ld	(hl), a
-;game.c:93: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+;game.c:95: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
 ;c
 	ldhl	sp,#74
 	ld	a, (hl+)
@@ -9688,10 +9697,10 @@ _main::
 	ld	a, h
 	ldhl	sp,	#91
 	ld	(hl), a
-;game.c:90: if(joypad() & J_LEFT){
+;game.c:92: if(joypad() & J_LEFT){
 	bit	1, c
 	jr	Z, 00102$
-;game.c:91: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+;game.c:93: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
 	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
@@ -9721,7 +9730,7 @@ _main::
 	ld	l, a
 	ld	(hl), c
 00136$:
-;game.c:93: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+;game.c:95: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
 	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
@@ -9745,12 +9754,12 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00102$:
-;game.c:95: if(joypad() & J_RIGHT){
+;game.c:97: if(joypad() & J_RIGHT){
 	call	_joypad
 	ld	a, e
 	rrca
 	jr	NC, 00104$
-;game.c:96: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+;game.c:98: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
 	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
@@ -9789,7 +9798,7 @@ _main::
 	ld	l, a
 	ld	(hl), c
 00138$:
-;game.c:97: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:99: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
@@ -9813,11 +9822,11 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00104$:
-;game.c:99: if(joypad() & J_UP){
+;game.c:101: if(joypad() & J_UP){
 	call	_joypad
 	bit	2, e
 	jr	Z, 00106$
-;game.c:100: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+;game.c:102: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
 	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
@@ -9865,7 +9874,7 @@ _main::
 	ld	l, a
 	ld	(hl), c
 00140$:
-;game.c:101: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:103: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
@@ -9889,11 +9898,11 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00106$:
-;game.c:103: if(joypad() & J_DOWN){
+;game.c:105: if(joypad() & J_DOWN){
 	call	_joypad
 	bit	3, e
 	jr	Z, 00108$
-;game.c:104: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+;game.c:106: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
 	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
@@ -9917,7 +9926,7 @@ _main::
 	ld	l, a
 	ld	(hl), c
 00142$:
-;game.c:105: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:107: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
@@ -9941,43 +9950,18 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00108$:
-;game.c:107: if(joypad() & J_A){   
+;game.c:109: if(joypad() & J_A){   
 	call	_joypad
 	bit	4, e
 	jp	Z,00124$
-;game.c:108: if( projetil1.ativo==0){
-	ldhl	sp,#78
-	ld	a, (hl+)
-	ld	c, a
-	ld	b, (hl)
-	inc	bc
-	inc	bc
-	ld	a, (bc)
-	or	a, a
-	jr	NZ, 00121$
-;game.c:109: projetil1.x=protagonista.x+4;
-	ldhl	sp,#88
-	ld	a, (hl+)
-	ld	e, a
-	ld	d, (hl)
-	ld	a, (de)
-	add	a, #0x04
-	ldhl	sp,	#78
-	push	af
-	ld	a, (hl+)
-	ld	h, (hl)
-	ld	l, a
-	pop	af
-	ld	(hl), a
-;game.c:110: projetil1.y=protagonista.y-2;
+;game.c:110: if( projetil1.ativo==0){
 ;c
 	ldhl	sp,#78
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
-	ld	l, e
-	ld	h, d
-	inc	hl
+	ld	hl, #0x0002
+	add	hl, de
 	push	hl
 	ld	a, l
 	ldhl	sp,	#94
@@ -9986,27 +9970,48 @@ _main::
 	ld	a, h
 	ldhl	sp,	#93
 	ld	(hl-), a
-	dec	hl
-	dec	hl
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	or	a, a
+	jr	NZ, 00121$
+;game.c:111: projetil1.x=protagonista.x+4;
+	ldhl	sp,#88
+	ld	a, (hl+)
+	ld	e, a
+	ld	d, (hl)
+	ld	a, (de)
+	add	a, #0x04
+	ld	c, a
+	ldhl	sp,	#78
+	ld	a, (hl+)
+	ld	h, (hl)
+	ld	l, a
+	ld	(hl), c
+;game.c:112: projetil1.y=protagonista.y-2;
+	ldhl	sp,#78
+	ld	a, (hl+)
+	ld	c, a
+	ld	b, (hl)
+	inc	bc
+	ldhl	sp,#90
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
 	dec	a
 	dec	a
+	ld	(bc), a
+;game.c:113: projetil1.ativo=1;
 	inc	hl
-	push	af
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
-	pop	af
-	ld	(hl), a
-;game.c:111: projetil1.ativo=1;
-	ld	a, #0x01
-	ld	(bc), a
-	jp	00124$
+	ld	(hl), #0x01
+	jp	00122$
 00121$:
-;game.c:112: }else if(projetil2.ativo==0){
+;game.c:114: }else if(projetil2.ativo==0){
 	ldhl	sp,#80
 	ld	a, (hl+)
 	ld	c, a
@@ -10016,7 +10021,7 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00118$
-;game.c:113: projetil2.x=protagonista.x+4;
+;game.c:115: projetil2.x=protagonista.x+4;
 	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
@@ -10030,7 +10035,7 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:114: projetil2.y=protagonista.y-2;
+;game.c:116: projetil2.y=protagonista.y-2;
 ;c
 	ldhl	sp,#80
 	ld	a, (hl+)
@@ -10062,12 +10067,12 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:115: projetil2.ativo=1;
+;game.c:117: projetil2.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
-	jp	00124$
+	jp	00122$
 00118$:
-;game.c:116: }else if(projetil3.ativo==0){
+;game.c:118: }else if(projetil3.ativo==0){
 	ldhl	sp,#82
 	ld	a, (hl+)
 	ld	c, a
@@ -10077,7 +10082,7 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00115$
-;game.c:117: projetil3.x=protagonista.x+4;
+;game.c:119: projetil3.x=protagonista.x+4;
 	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
@@ -10091,7 +10096,7 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:118: projetil3.y=protagonista.y-2;
+;game.c:120: projetil3.y=protagonista.y-2;
 ;c
 	ldhl	sp,#82
 	ld	a, (hl+)
@@ -10123,12 +10128,12 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:119: projetil3.ativo=1;
+;game.c:121: projetil3.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
-	jp	00124$
+	jp	00122$
 00115$:
-;game.c:120: }else if(projetil4.ativo==0){
+;game.c:122: }else if(projetil4.ativo==0){
 	ldhl	sp,#84
 	ld	a, (hl+)
 	ld	c, a
@@ -10138,7 +10143,7 @@ _main::
 	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00112$
-;game.c:121: projetil4.x=protagonista.x+4;
+;game.c:123: projetil4.x=protagonista.x+4;
 	ldhl	sp,#88
 	ld	a, (hl+)
 	ld	e, a
@@ -10152,7 +10157,7 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:122: projetil4.y=protagonista.y-2;
+;game.c:124: projetil4.y=protagonista.y-2;
 ;c
 	ldhl	sp,#84
 	ld	a, (hl+)
@@ -10184,12 +10189,12 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:123: projetil4.ativo=1;
+;game.c:125: projetil4.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
-	jr	00124$
+	jr	00122$
 00112$:
-;game.c:124: }else if(projetil5.ativo==0){
+;game.c:126: }else if(projetil5.ativo==0){
 	ldhl	sp,#86
 	ld	a, (hl+)
 	ld	c, a
@@ -10198,8 +10203,8 @@ _main::
 	inc	bc
 	ld	a, (bc)
 	or	a, a
-	jr	NZ, 00124$
-;game.c:125: projetil5.x=protagonista.x+4;
+	jr	NZ, 00122$
+;game.c:127: projetil5.x=protagonista.x+4;
 	inc	hl
 	ld	a, (hl+)
 	ld	e, a
@@ -10213,7 +10218,7 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:126: projetil5.y=protagonista.y-2;
+;game.c:128: projetil5.y=protagonista.y-2;
 ;c
 	ldhl	sp,#86
 	ld	a, (hl+)
@@ -10245,15 +10250,31 @@ _main::
 	ld	l, a
 	pop	af
 	ld	(hl), a
-;game.c:127: projetil5.ativo=1;
+;game.c:129: projetil5.ativo=1;
 	ld	a, #0x01
 	ld	(bc), a
+00122$:
+;game.c:131: NR10_REG = 0x2C;
+	ld	a, #0x2c
+	ldh	(_NR10_REG+0),a
+;game.c:132: NR11_REG = 0x81;
+	ld	a, #0x81
+	ldh	(_NR11_REG+0),a
+;game.c:133: NR12_REG = 0x92;
+	ld	a, #0x92
+	ldh	(_NR12_REG+0),a
+;game.c:134: NR13_REG = 0x2A;
+	ld	a, #0x2a
+	ldh	(_NR13_REG+0),a
+;game.c:135: NR14_REG = 0x84;
+	ld	a, #0x84
+	ldh	(_NR14_REG+0),a
 00124$:
-;game.c:130: if(joypad() & J_B){
+;game.c:137: if(joypad() & J_B){
 	call	_joypad
 	bit	5, e
 	jr	Z, 00126$
-;game.c:131: sumScore(&pontuacao,1111);
+;game.c:138: sumScore(&pontuacao,1111);
 	ldhl	sp,#76
 	ld	a, (hl+)
 	ld	c, a
@@ -10264,11 +10285,11 @@ _main::
 	call	_sumScore
 	add	sp, #4
 00126$:
-;game.c:133: if(joypad() & J_SELECT){
+;game.c:140: if(joypad() & J_SELECT){
 	call	_joypad
 	bit	6, e
 	jr	Z, 00128$
-;game.c:134: inimigo1.ativo=1;
+;game.c:141: inimigo1.ativo=1;
 ;c
 	ldhl	sp,#72
 	ld	a, (hl+)
@@ -10277,7 +10298,7 @@ _main::
 	ld	hl, #0x0006
 	add	hl, de
 	ld	(hl), #0x01
-;game.c:135: inimigo1.x=protagonista.x;
+;game.c:142: inimigo1.x=protagonista.x;
 ;c
 	ldhl	sp,#72
 	ld	a, (hl+)
@@ -10293,7 +10314,7 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	(bc), a
-;game.c:136: inimigo1.y=0;
+;game.c:143: inimigo1.y=0;
 ;c
 	ldhl	sp,#72
 	ld	a, (hl+)
@@ -10306,33 +10327,33 @@ _main::
 	xor	a, a
 	ld	(bc), a
 00128$:
-;game.c:138: performantdelay(5);  
+;game.c:145: performantdelay(5);  
 	ld	a, #0x05
 	push	af
 	inc	sp
 	call	_performantdelay
 	inc	sp
 	jp	00130$
-;game.c:141: }
+;game.c:148: }
 	add	sp, #94
 	ret
-;game.c:143: void performantdelay(UINT8 numloops){ // nova funcao delay
+;game.c:150: void performantdelay(UINT8 numloops){ // nova funcao delay
 ;	---------------------------------
 ; Function performantdelay
 ; ---------------------------------
 _performantdelay::
-;game.c:145: for(i = 0; i < numloops; i++){
+;game.c:152: for(i = 0; i < numloops; i++){
 	ld	c, #0x00
 00103$:
 	ld	a, c
 	ldhl	sp,	#2
 	sub	a, (hl)
 	ret	NC
-;game.c:146: wait_vbl_done();
+;game.c:153: wait_vbl_done();
 	call	_wait_vbl_done
-;game.c:145: for(i = 0; i < numloops; i++){
+;game.c:152: for(i = 0; i < numloops; i++){
 	inc	c
-;game.c:148: }
+;game.c:155: }
 	jr	00103$
 	.area _CODE
 	.area _CABS (ABS)

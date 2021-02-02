@@ -20,7 +20,9 @@ void performantdelay(UINT8 numloops);
 
 
 void main(){
-
+    NR52_REG = 0x80;
+    NR51_REG = 0x11;
+    NR50_REG = 0x77;
     //setup game
     set_bkg_data(0, 10, backTiles);
     set_bkg_tiles(0, 0, 20, 36, simpleMap);
@@ -126,6 +128,11 @@ void main(){
                 projetil5.y=protagonista.y-2;
                 projetil5.ativo=1;
             }
+            NR10_REG = 0x2C;
+            NR11_REG = 0x81;
+            NR12_REG = 0x92;
+            NR13_REG = 0x2A;
+            NR14_REG = 0x84;
         }
         if(joypad() & J_B){
            sumScore(&pontuacao,1111);
