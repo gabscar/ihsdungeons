@@ -1,9 +1,11 @@
 #include<gb/gb.h>
+#include<rand.h>
 #include <stdio.h>
 #include "../design/protagonista.c"
 #include "../design/ghost.c"
 #include "../design/MiniBossOgro.c"
 #include "../design/projetil.c"
+#include "../design/projetilMiniboss.c"
 #include "../design/backTiles.c"
 #include "../design/simpleMap.c"
 #include "../design/score.c"
@@ -20,6 +22,7 @@ void performantdelay(UINT8 numloops);
 
 
 void main(){
+    //set music on
     NR52_REG = 0x80;
     NR51_REG = 0x11;
     NR50_REG = 0x77;
@@ -32,6 +35,7 @@ void main(){
     set_sprite_data(8, 9, MiniBossOgro);
     set_sprite_data(17, 1, projetil);
     set_sprite_data(18,16, score);
+    set_sprite_data(34,1, projetilMiniboss);
     
    
     //setup personagens
@@ -62,6 +66,9 @@ void main(){
     setupBala(&projetil3,17);
     setupBala(&projetil4,17);
     setupBala(&projetil5,17);
+
+    struct balaEnemy projetil6;
+    setupBalaEnemy(&projetil6,34);
 
     //move_sprite(projetil.spriteIds,85,110);
 
@@ -118,51 +125,57 @@ void main(){
                 setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
             }
             if(joypad() & J_A){
-                NR10_REG = 0x2C;
-                NR11_REG = 0x81;
-                NR12_REG = 0x92;
-                NR13_REG = 0x2A;
-                NR14_REG = 0x84;   
+                 
                 if( projetil1.ativo==0){
+                    somTiro();
                     projetil1.x=protagonista.x+4;
                     projetil1.y=protagonista.y-2;
                     projetil1.ativo=1;
                 }else if(projetil2.ativo==0){
+                    somTiro();
                     projetil2.x=protagonista.x+4;
                     projetil2.y=protagonista.y-2;
                     projetil2.ativo=1;
                 }else if(projetil3.ativo==0){
+                    somTiro();
                     projetil3.x=protagonista.x+4;
                     projetil3.y=protagonista.y-2;
                     projetil3.ativo=1;
                 }else if(projetil4.ativo==0){
+                    somTiro();
                     projetil4.x=protagonista.x+4;
                     projetil4.y=protagonista.y-2;
                     projetil4.ativo=1;
                 }else if(projetil5.ativo==0){
+                    somTiro();
                     projetil5.x=protagonista.x+4;
                     projetil5.y=protagonista.y-2;
                     projetil5.ativo=1;
                 }
             }
-            if(joypad() & J_B){
-                
-            }
+
             
             performantdelay(5);  
         }//fim 1-while
-
-       
-        miniboss1.ativo=1;
-        miniboss1.x=protagonista.x;
-        miniboss1.y=20;
-        setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);
+        
+        if(gameOver!=1){
+            miniboss1.ativo=1;
+            miniboss1.x=protagonista.x;
+            miniboss1.y=20;
+            setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);  
+        }
+        
         
         while(gameOver!=1){
             scroll_bkg(0,1);
             moveSubBoss(&miniboss1);
             moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
 
+            if(projetil6.ativo==0){
+                setPositionBullet(&miniboss1,&projetil6); 
+            }
+            
+            moveBalaEnemy(&projetil6);
             if(joypad() & J_LEFT){
                 (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
                 // (condição) ? (caso true) : (caso false)
@@ -182,27 +195,38 @@ void main(){
             }
             if(joypad() & J_A){   
                 if( projetil1.ativo==0){
+                    somTiro();
                     projetil1.x=protagonista.x+4;
                     projetil1.y=protagonista.y-2;
                     projetil1.ativo=1;
                 }else if(projetil2.ativo==0){
+                    somTiro();
                     projetil2.x=protagonista.x+4;
                     projetil2.y=protagonista.y-2;
                     projetil2.ativo=1;
                 }else if(projetil3.ativo==0){
+                    somTiro();
                     projetil3.x=protagonista.x+4;
                     projetil3.y=protagonista.y-2;
                     projetil3.ativo=1;
                 }else if(projetil4.ativo==0){
+                    somTiro();
                     projetil4.x=protagonista.x+4;
                     projetil4.y=protagonista.y-2;
                     projetil4.ativo=1;
                 }else if(projetil5.ativo==0){
+                    somTiro();
                     projetil5.x=protagonista.x+4;
                     projetil5.y=protagonista.y-2;
                     projetil5.ativo=1;
                 }
             }
+            
+            if(joypad() & J_B){
+               setPositionBullet(&miniboss1,&projetil6); 
+            }
+                
+            
             performantdelay(2);  
         }
         

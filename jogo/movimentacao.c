@@ -1,4 +1,5 @@
 #include <gb/gb.h>
+//#include <gbdk-lib.h>
 
 
 
@@ -34,6 +35,10 @@ void moveOutBullet(struct bala* bullet){
     bullet->ativo=0;
     move_sprite(bullet->spriteIds,150,0);
 }
+void moveOutBulletEnemy(struct balaEnemy* bullet){
+    bullet->ativo=0;
+    move_sprite(bullet->spriteIds,170,0);
+}
 
 void moveBala(struct bala* bullet){
     if(bullet->ativo==1){
@@ -45,6 +50,18 @@ void moveBala(struct bala* bullet){
             moveOutBullet(bullet);
         }
     }
+}
+void moveBalaEnemy(struct balaEnemy* bullet){
+    if(bullet->ativo==1){
+        bullet->y=bullet->y+4;
+        
+        if(bullet->x>144 || bullet->x==0 || bullet->y>160){
+            moveOutBulletEnemy(bullet);
+        }else{
+            move_sprite(bullet->spriteIds,bullet->x,bullet->y);
+        }
+    }
+
 }
 
 void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
@@ -81,10 +98,10 @@ void moveInimigo1(struct personagem* enemy,struct personagem* astronaut){
 
 void moveSubBoss(struct subBoss* miniBoss){
     if(miniBoss->orientacao==1){
-        (miniBoss->x<=142)?(miniBoss->x=miniBoss->x+2) :( miniBoss->orientacao=-1);
+        (miniBoss->x<=142)?(miniBoss->x=miniBoss->x+1) :( miniBoss->orientacao=-1);
        
     }else{
-        (miniBoss->x>=10)?(miniBoss->x=miniBoss->x-2) :( miniBoss->orientacao=1);
+        (miniBoss->x>=10)?(miniBoss->x=miniBoss->x-1) :( miniBoss->orientacao=1);
     }  
     setPositionGameCharacter2(miniBoss, miniBoss->x,miniBoss->y);
     performantdelay(3);

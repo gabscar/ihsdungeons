@@ -1,7 +1,6 @@
 
 #include <gb/gb.h>
 
-
 UINT8 spriteId=0;
 UBYTE spritesizes = 8;
 //generical character structure: id, position, graphics
@@ -34,6 +33,17 @@ struct bala{
 	UINT8 width;
 	UINT8 height;
 };
+
+struct balaEnemy{
+	UINT8 x;
+    UINT8 xEnemy;
+    UINT8 y;
+	UINT8 ativo;
+	UINT8 spriteIds;
+	UINT8 width;
+	UINT8 height;
+};
+
 
 struct scorePoint {
 	UBYTE spriteIds[9];
@@ -98,6 +108,23 @@ void setupBala(struct bala* bullet,UINT8 spriteBala){
     bullet->height=3;
     bullet->ativo=0;
 }
+
+void setupBalaEnemy(struct balaEnemy* bullet,UINT8 spriteBala){
+    bullet->spriteIds=spriteId;
+    set_sprite_tile(spriteId, spriteBala);
+    spriteId++;
+    bullet->width=3;
+    bullet->height=3;
+    bullet->ativo=0;
+}
+
+void setPositionBullet(struct subBoss* miniBoss,struct balaEnemy* bullet){
+    bullet->ativo=1;
+    bullet->x=miniBoss->x+12;
+    bullet->xEnemy=miniBoss->x;
+    bullet->y=miniBoss->y+22;
+}
+
 
 
 void setupScore(struct scorePoint *score, UINT8 start,UINT8 x, UINT8 y){   

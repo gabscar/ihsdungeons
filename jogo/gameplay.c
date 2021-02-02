@@ -13,3 +13,10 @@ void hitMinnion(struct personagem* enemy1,struct bala* bullet,UINT8 hit){
     }
 
 }
+void somTiro(){
+    NR10_REG = 0x2C;
+    NR11_REG = 0x81;
+    NR12_REG = 0x92;
+    NR13_REG = 0x2A;
+    NR14_REG = 0x84; 
+}
