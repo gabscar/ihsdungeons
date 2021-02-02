@@ -10,7 +10,7 @@ struct personagem {
 	UINT8 x;
 	UINT8 y;
 	UINT8 ativo;
-	INT8 vida;
+	UINT8 vida;
 	UINT8 width;
 	UINT8 height;
 };
@@ -20,7 +20,7 @@ struct subBoss {
 	UINT8 x;
 	UINT8 y;
 	UINT8 ativo;
-	INT8 vida;
+	UINT8 vida;
 	UINT8 width;
 	UINT8 height;
 };
@@ -41,13 +41,13 @@ struct scorePoint {
 };
 
 
-void setupEnemy(struct personagem *enemy,UINT8 start,UINT8 end){
+void setupEnemy(struct personagem *enemy,UINT8 start,UINT8 end,UINT8 vida){
     enemy->x = 0;
     enemy->y = 0;
     enemy->width = 16;
     enemy->height = 16;
     enemy->ativo = 0;
-    enemy->vida = 100;
+    enemy->vida = vida;
     UINT8 aux=0;
     for(UINT8 i=start; i<end ; i++){
         set_sprite_tile(spriteId, i);
@@ -78,6 +78,7 @@ void setupSubBoss(struct subBoss *miniBoss,UINT8 start,UINT8 end){
     miniBoss->width = 24;
     miniBoss->height = 24;
     miniBoss->ativo = 0;
+    miniBoss->vida = 900;
     UINT8 aux=0;
     for(UINT8 i=start; i<end ; i++){
         set_sprite_tile(spriteId, i);

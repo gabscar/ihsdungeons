@@ -20,9 +20,14 @@ void performantdelay(UINT8 numloops);
 
 
 void main(){
+<<<<<<< HEAD
     NR52_REG = 0x80;
     NR51_REG = 0x11;
     NR50_REG = 0x77;
+=======
+    
+
+>>>>>>> 097fe88bb7ac5c7b85eb658d867b9cdaab488a64
     //setup game
     set_bkg_data(0, 10, backTiles);
     set_bkg_tiles(0, 0, 20, 36, simpleMap);
@@ -32,19 +37,22 @@ void main(){
     set_sprite_data(8, 9, MiniBossOgro);
     set_sprite_data(17, 1, projetil);
     set_sprite_data(18,16, score);
-
+    
+   
     //setup personagens
     struct personagem inimigo1;
-    setupEnemy(&inimigo1,0,4);
+    UINT8 minnionLife=150;
+    setupEnemy(&inimigo1,0,4,minnionLife);
     
 
     struct personagem protagonista;
     setupHero(&protagonista,4,8);
     setPositionGameCharacter(&protagonista,80,128);
 
-    // struct subBoss miniboss1;
-    // setupSubBoss(&miniboss1,8,17);
-    // setPositionGameCharacter2(&miniboss1,40,80);
+    struct subBoss miniboss1;
+    setupSubBoss(&miniboss1,8,17);
+    //setPositionGameCharacter2(&miniboss1,40,80);
+
     struct scorePoint pontuacao;
     setupScore(&pontuacao,18,96,152);
 
@@ -70,79 +78,95 @@ void main(){
 
 
     waitpad(J_START);
-
     while(1){
-        scroll_bkg(0,1);
-        moveBala(&projetil1);
-        moveBala(&projetil2);
-        moveBala(&projetil3);
-        moveBala(&projetil4);
-        moveBala(&projetil5);
-
-        moveInimigo1(&inimigo1,&protagonista);
-
-        hitMinnion(&inimigo1,&projetil1,50);
-        hitMinnion(&inimigo1,&projetil2,50);
-        hitMinnion(&inimigo1,&projetil3,50);
-        hitMinnion(&inimigo1,&projetil4,50);
-        hitMinnion(&inimigo1,&projetil5,50);
         
+        UINT8 qtdeMinnions=10;
+        inimigo1.ativo=1;
+        inimigo1.x=protagonista.x;
+        inimigo1.y=0;
 
+        while(qtdeMinnions!=0){
+            scroll_bkg(0,1);
+            moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
 
-        if(joypad() & J_LEFT){
-            (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
-            // (condição) ? (caso true) : (caso false)
-            setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
-        }
-        if(joypad() & J_RIGHT){
-            (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
-            setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-        }
-        if(joypad() & J_UP){
-            (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
-            setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-        }
-        if(joypad() & J_DOWN){
-            (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
-            setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-        }
-        if(joypad() & J_A){   
-            if( projetil1.ativo==0){
-                projetil1.x=protagonista.x+4;
-                projetil1.y=protagonista.y-2;
-                projetil1.ativo=1;
-            }else if(projetil2.ativo==0){
-                projetil2.x=protagonista.x+4;
-                projetil2.y=protagonista.y-2;
-                projetil2.ativo=1;
-            }else if(projetil3.ativo==0){
-                projetil3.x=protagonista.x+4;
-                projetil3.y=protagonista.y-2;
-                projetil3.ativo=1;
-            }else if(projetil4.ativo==0){
-                projetil4.x=protagonista.x+4;
-                projetil4.y=protagonista.y-2;
-                projetil4.ativo=1;
-            }else if(projetil5.ativo==0){
-                projetil5.x=protagonista.x+4;
-                projetil5.y=protagonista.y-2;
-                projetil5.ativo=1;
+            moveInimigo1(&inimigo1,&protagonista);
+
+            hitMinnion(&inimigo1,&projetil1,50); hitMinnion(&inimigo1,&projetil2,50); hitMinnion(&inimigo1,&projetil3,50);
+            hitMinnion(&inimigo1,&projetil4,50);   hitMinnion(&inimigo1,&projetil5,50);
+            if(inimigo1.ativo==0){
+                sumScore(&pontuacao,10);
+                qtdeMinnions--;
+                inimigo1.ativo=1;
+                inimigo1.vida=minnionLife;
+                inimigo1.x=protagonista.x;
+                inimigo1.y=0;
             }
+
+            if(joypad() & J_LEFT){
+                (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+                // (condição) ? (caso true) : (caso false)
+                setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+            }
+<<<<<<< HEAD
             NR10_REG = 0x2C;
             NR11_REG = 0x81;
             NR12_REG = 0x92;
             NR13_REG = 0x2A;
             NR14_REG = 0x84;
+=======
+            if(joypad() & J_RIGHT){
+                (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+                setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+            }
+            if(joypad() & J_UP){
+                (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+                setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+            }
+            if(joypad() & J_DOWN){
+                (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+                setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+            }
+            if(joypad() & J_A){   
+                if( projetil1.ativo==0){
+                    projetil1.x=protagonista.x+4;
+                    projetil1.y=protagonista.y-2;
+                    projetil1.ativo=1;
+                }else if(projetil2.ativo==0){
+                    projetil2.x=protagonista.x+4;
+                    projetil2.y=protagonista.y-2;
+                    projetil2.ativo=1;
+                }else if(projetil3.ativo==0){
+                    projetil3.x=protagonista.x+4;
+                    projetil3.y=protagonista.y-2;
+                    projetil3.ativo=1;
+                }else if(projetil4.ativo==0){
+                    projetil4.x=protagonista.x+4;
+                    projetil4.y=protagonista.y-2;
+                    projetil4.ativo=1;
+                }else if(projetil5.ativo==0){
+                    projetil5.x=protagonista.x+4;
+                    projetil5.y=protagonista.y-2;
+                    projetil5.ativo=1;
+                }
+            }
+            if(joypad() & J_B){
+                
+            }
+            
+            performantdelay(5);  
+        }//fim 1-while
+
+       
+        miniboss1.ativo=1;
+        miniboss1.x=protagonista.x;
+        miniboss1.y=20;
+        setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);
+        while(1){
+            scroll_bkg(0,1);
+            performantdelay(2);  
+>>>>>>> 097fe88bb7ac5c7b85eb658d867b9cdaab488a64
         }
-        if(joypad() & J_B){
-           sumScore(&pontuacao,1111);
-        }
-        if(joypad() & J_SELECT){
-            inimigo1.ativo=1;
-            inimigo1.x=protagonista.x;
-            inimigo1.y=0;
-        }
-        performantdelay(5);  
+        
     }
 
 }
