@@ -9,6 +9,7 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
+	.globl _hUGE_mute_channel
 	.globl _hUGE_dosound
 	.globl _hUGE_init
 	.globl _somTiro
@@ -9570,15 +9571,31 @@ _hitMinnion::
 	ldhl	sp,	#6
 	sub	a, (hl)
 	ld	(bc), a
-;gameplay.c:8: if(enemy1->vida<=0){
+;gameplay.c:7: NR10_REG = 0x0B;
+	ld	a, #0x0b
+	ldh	(_NR10_REG+0),a
+;gameplay.c:8: NR11_REG = 0x8A;
+	ld	a, #0x8a
+	ldh	(_NR11_REG+0),a
+;gameplay.c:9: NR12_REG = 0x45;
+	ld	a, #0x45
+	ldh	(_NR12_REG+0),a
+;gameplay.c:10: NR13_REG = 0xF6;
+	ld	a, #0xf6
+	ldh	(_NR13_REG+0),a
+;gameplay.c:11: NR14_REG = 0xC4;
+	ld	a, #0xc4
+	ldh	(_NR14_REG+0),a
+;gameplay.c:12: if(enemy1->vida<=0){
+	ld	a, (bc)
 	or	a, a
 	jr	NZ, 00102$
-;gameplay.c:9: moveOutMinnion(enemy1);
+;gameplay.c:13: moveOutMinnion(enemy1);
 	push	de
 	call	_moveOutMinnion
 	add	sp, #2
 00102$:
-;gameplay.c:11: moveOutBullet(bullet);
+;gameplay.c:15: moveOutBullet(bullet);
 	ldhl	sp,	#4
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -9586,29 +9603,29 @@ _hitMinnion::
 	push	hl
 	call	_moveOutBullet
 	add	sp, #2
-;gameplay.c:15: }
+;gameplay.c:19: }
 	ret
-;gameplay.c:16: void somTiro(){
+;gameplay.c:20: void somTiro(){
 ;	---------------------------------
 ; Function somTiro
 ; ---------------------------------
 _somTiro::
-;gameplay.c:17: NR10_REG = 0x2C;
+;gameplay.c:21: NR10_REG = 0x2C;
 	ld	a, #0x2c
 	ldh	(_NR10_REG+0),a
-;gameplay.c:18: NR11_REG = 0x81;
+;gameplay.c:22: NR11_REG = 0x81;
 	ld	a, #0x81
 	ldh	(_NR11_REG+0),a
-;gameplay.c:19: NR12_REG = 0x92;
+;gameplay.c:23: NR12_REG = 0x92;
 	ld	a, #0x92
 	ldh	(_NR12_REG+0),a
-;gameplay.c:20: NR13_REG = 0x2A;
+;gameplay.c:24: NR13_REG = 0x2A;
 	ld	a, #0x2a
 	ldh	(_NR13_REG+0),a
-;gameplay.c:21: NR14_REG = 0x84; 
+;gameplay.c:25: NR14_REG = 0x84; 
 	ld	a, #0x84
 	ldh	(_NR14_REG+0),a
-;gameplay.c:22: }
+;gameplay.c:26: }
 	ret
 ;game.c:28: void main(){
 ;	---------------------------------
@@ -9623,8 +9640,8 @@ _main::
 ;game.c:31: NR52_REG = 0x80;
 	ld	a, #0x80
 	ldh	(_NR52_REG+0),a
-;game.c:32: NR51_REG = 0x11;
-	ld	a, #0x11
+;game.c:32: NR51_REG = 0xFF;
+	ld	a, #0xff
 	ldh	(_NR51_REG+0),a
 ;game.c:33: NR50_REG = 0x77;
 	ld	a, #0x77
@@ -10504,11 +10521,50 @@ _main::
 	ld	a, e
 	or	a, a
 	jr	Z, 00102$
-;game.c:110: gameOver=1;
+;game.c:110: hUGE_mute_channel(HT_CH1, 1);
+	ld	a, #0x01
+	push	af
+	inc	sp
+	xor	a, a
+	push	af
+	inc	sp
+	call	_hUGE_mute_channel
+	add	sp, #2
+;game.c:111: hUGE_mute_channel(HT_CH2, 1);
+	ld	de, #0x0101
+	push	de
+	call	_hUGE_mute_channel
+	add	sp, #2
+;game.c:112: hUGE_mute_channel(HT_CH3, 1);
+	ld	de, #0x0102
+	push	de
+	call	_hUGE_mute_channel
+	add	sp, #2
+;game.c:113: hUGE_mute_channel(HT_CH4, 1);
+	ld	de, #0x0103
+	push	de
+	call	_hUGE_mute_channel
+	add	sp, #2
+;game.c:114: NR10_REG = 0x7B;
+	ld	a, #0x7b
+	ldh	(_NR10_REG+0),a
+;game.c:115: NR11_REG = 0x8F;
+	ld	a, #0x8f
+	ldh	(_NR11_REG+0),a
+;game.c:116: NR12_REG = 0x93;
+	ld	a, #0x93
+	ldh	(_NR12_REG+0),a
+;game.c:117: NR13_REG = 0x73;
+	ld	a, #0x73
+	ldh	(_NR13_REG+0),a
+;game.c:118: NR14_REG = 0x86;
+	ld	a, #0x86
+	ldh	(_NR14_REG+0),a
+;game.c:119: gameOver=1;
 	ldhl	sp,	#111
 	ld	(hl), #0x01
 00102$:
-;game.c:112: moveInimigo1(&inimigo1,&protagonista);
+;game.c:122: moveInimigo1(&inimigo1,&protagonista);
 	ld	hl, #129
 	add	hl, sp
 	dec	hl
@@ -10523,7 +10579,7 @@ _main::
 	push	bc
 	call	_moveInimigo1
 	add	sp, #4
-;game.c:114: hitMinnion(&inimigo1,&projetil1,50); hitMinnion(&inimigo1,&projetil2,50); hitMinnion(&inimigo1,&projetil3,50);
+;game.c:124: hitMinnion(&inimigo1,&projetil1,50); hitMinnion(&inimigo1,&projetil2,50); hitMinnion(&inimigo1,&projetil3,50);
 	ld	hl, #133
 	add	hl, sp
 	dec	hl
@@ -10575,7 +10631,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:115: hitMinnion(&inimigo1,&projetil4,50);   hitMinnion(&inimigo1,&projetil5,50);
+;game.c:125: hitMinnion(&inimigo1,&projetil4,50);   hitMinnion(&inimigo1,&projetil5,50);
 	ld	hl, #145
 	add	hl, sp
 	dec	hl
@@ -10610,7 +10666,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:116: if(inimigo1.ativo==0){
+;game.c:126: if(inimigo1.ativo==0){
 	ld	hl, #223
 	add	hl, sp
 	dec	hl
@@ -10620,7 +10676,7 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00104$
-;game.c:117: sumScore(&pontuacao,10);
+;game.c:127: sumScore(&pontuacao,10);
 	ldhl	sp,#126
 	ld	a, (hl+)
 	ld	c, a
@@ -10630,18 +10686,18 @@ _main::
 	push	bc
 	call	_sumScore
 	add	sp, #4
-;game.c:118: qtdeMinnions--;
+;game.c:128: qtdeMinnions--;
 	ld	hl, #232
 	add	hl, sp
 	dec	(hl)
-;game.c:119: inimigo1.ativo=1;
+;game.c:129: inimigo1.ativo=1;
 	ld	hl, #222
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x01
-;game.c:120: inimigo1.vida=minnionLife;
+;game.c:130: inimigo1.vida=minnionLife;
 ;c
 	ldhl	sp,#95
 	ld	a, (hl+)
@@ -10650,7 +10706,7 @@ _main::
 	ld	hl, #0x0007
 	add	hl, de
 	ld	(hl), #0x96
-;game.c:121: inimigo1.x=protagonista.x;
+;game.c:131: inimigo1.x=protagonista.x;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -10665,7 +10721,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:122: inimigo1.y=0;
+;game.c:132: inimigo1.y=0;
 	ld	hl, #228
 	add	hl, sp
 	ld	a, (hl+)
@@ -10673,11 +10729,11 @@ _main::
 	ld	l, a
 	ld	(hl), #0x00
 00104$:
-;game.c:125: if(joypad() & J_LEFT){
+;game.c:135: if(joypad() & J_LEFT){
 	call	_joypad
 	bit	1, e
 	jr	Z, 00106$
-;game.c:126: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+;game.c:136: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -10720,7 +10776,7 @@ _main::
 	ld	l, a
 	ld	(hl), c
 00174$:
-;game.c:128: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+;game.c:138: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
 	ld	hl, #153
 	add	hl, sp
 	dec	hl
@@ -10750,12 +10806,12 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00106$:
-;game.c:131: if(joypad() & J_RIGHT){
+;game.c:141: if(joypad() & J_RIGHT){
 	call	_joypad
 	ld	a, e
 	rrca
 	jr	NC, 00108$
-;game.c:132: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+;game.c:142: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -10793,7 +10849,7 @@ _main::
 	ld	l, a
 	ld	(hl), c
 00176$:
-;game.c:133: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:143: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ld	hl, #157
 	add	hl, sp
 	dec	hl
@@ -10823,11 +10879,11 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00108$:
-;game.c:135: if(joypad() & J_UP){
+;game.c:145: if(joypad() & J_UP){
 	call	_joypad
 	bit	2, e
 	jr	Z, 00110$
-;game.c:136: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+;game.c:146: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
 	ld	hl, #152
 	add	hl, sp
 	ld	a, (hl+)
@@ -10885,7 +10941,7 @@ _main::
 	ld	l, a
 	ld	(hl), c
 00178$:
-;game.c:137: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:147: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ld	hl, #231
 	add	hl, sp
 	dec	hl
@@ -10915,11 +10971,11 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00110$:
-;game.c:139: if(joypad() & J_DOWN){
+;game.c:149: if(joypad() & J_DOWN){
 	call	_joypad
 	bit	3, e
 	jr	Z, 00112$
-;game.c:140: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+;game.c:150: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
 	ld	hl, #153
 	add	hl, sp
 	dec	hl
@@ -10952,7 +11008,7 @@ _main::
 	pop	af
 	ld	(hl), a
 00180$:
-;game.c:141: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:151: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ld	a, (bc)
 	ld	b, a
 	ld	hl, #227
@@ -10976,11 +11032,11 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00112$:
-;game.c:143: if(joypad() & J_A){
+;game.c:153: if(joypad() & J_A){
 	call	_joypad
 	bit	4, e
 	jp	Z,00128$
-;game.c:145: if( projetil1.ativo==0){
+;game.c:155: if( projetil1.ativo==0){
 ;c
 	ldhl	sp,#101
 	ld	a, (hl+)
@@ -11004,9 +11060,9 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00125$
-;game.c:146: somTiro();
+;game.c:156: somTiro();
 	call	_somTiro
-;game.c:147: projetil1.x=protagonista.x+4;
+;game.c:157: projetil1.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11021,7 +11077,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:148: projetil1.y=protagonista.y-2;
+;game.c:158: projetil1.y=protagonista.y-2;
 	ldhl	sp,#101
 	ld	a, (hl+)
 	ld	c, a
@@ -11037,7 +11093,7 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:149: projetil1.ativo=1;
+;game.c:159: projetil1.ativo=1;
 	ld	hl, #230
 	add	hl, sp
 	ld	a, (hl+)
@@ -11046,7 +11102,7 @@ _main::
 	ld	(hl), #0x01
 	jp	00128$
 00125$:
-;game.c:150: }else if(projetil2.ativo==0){
+;game.c:160: }else if(projetil2.ativo==0){
 ;c
 	ldhl	sp,#103
 	ld	a, (hl+)
@@ -11070,9 +11126,9 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00122$
-;game.c:151: somTiro();
+;game.c:161: somTiro();
 	call	_somTiro
-;game.c:152: projetil2.x=protagonista.x+4;
+;game.c:162: projetil2.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11087,7 +11143,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:153: projetil2.y=protagonista.y-2;
+;game.c:163: projetil2.y=protagonista.y-2;
 	ldhl	sp,#103
 	ld	a, (hl+)
 	ld	c, a
@@ -11103,7 +11159,7 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:154: projetil2.ativo=1;
+;game.c:164: projetil2.ativo=1;
 	ld	hl, #230
 	add	hl, sp
 	ld	a, (hl+)
@@ -11112,7 +11168,7 @@ _main::
 	ld	(hl), #0x01
 	jp	00128$
 00122$:
-;game.c:155: }else if(projetil3.ativo==0){
+;game.c:165: }else if(projetil3.ativo==0){
 ;c
 	ldhl	sp,#105
 	ld	a, (hl+)
@@ -11136,9 +11192,9 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00119$
-;game.c:156: somTiro();
+;game.c:166: somTiro();
 	call	_somTiro
-;game.c:157: projetil3.x=protagonista.x+4;
+;game.c:167: projetil3.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11153,7 +11209,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:158: projetil3.y=protagonista.y-2;
+;game.c:168: projetil3.y=protagonista.y-2;
 	ldhl	sp,#105
 	ld	a, (hl+)
 	ld	c, a
@@ -11169,7 +11225,7 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:159: projetil3.ativo=1;
+;game.c:169: projetil3.ativo=1;
 	ld	hl, #230
 	add	hl, sp
 	ld	a, (hl+)
@@ -11178,7 +11234,7 @@ _main::
 	ld	(hl), #0x01
 	jp	00128$
 00119$:
-;game.c:160: }else if(projetil4.ativo==0){
+;game.c:170: }else if(projetil4.ativo==0){
 ;c
 	ldhl	sp,#107
 	ld	a, (hl+)
@@ -11202,9 +11258,9 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00116$
-;game.c:161: somTiro();
+;game.c:171: somTiro();
 	call	_somTiro
-;game.c:162: projetil4.x=protagonista.x+4;
+;game.c:172: projetil4.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11219,7 +11275,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:163: projetil4.y=protagonista.y-2;
+;game.c:173: projetil4.y=protagonista.y-2;
 	ldhl	sp,#107
 	ld	a, (hl+)
 	ld	c, a
@@ -11235,7 +11291,7 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:164: projetil4.ativo=1;
+;game.c:174: projetil4.ativo=1;
 	ld	hl, #230
 	add	hl, sp
 	ld	a, (hl+)
@@ -11244,7 +11300,7 @@ _main::
 	ld	(hl), #0x01
 	jr	00128$
 00116$:
-;game.c:165: }else if(projetil5.ativo==0){
+;game.c:175: }else if(projetil5.ativo==0){
 ;c
 	ldhl	sp,#109
 	ld	a, (hl+)
@@ -11268,9 +11324,9 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00128$
-;game.c:166: somTiro();
+;game.c:176: somTiro();
 	call	_somTiro
-;game.c:167: projetil5.x=protagonista.x+4;
+;game.c:177: projetil5.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11285,7 +11341,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:168: projetil5.y=protagonista.y-2;
+;game.c:178: projetil5.y=protagonista.y-2;
 	ldhl	sp,#109
 	ld	a, (hl+)
 	ld	c, a
@@ -11301,7 +11357,7 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:169: projetil5.ativo=1;
+;game.c:179: projetil5.ativo=1;
 	ld	hl, #230
 	add	hl, sp
 	ld	a, (hl+)
@@ -11309,7 +11365,7 @@ _main::
 	ld	l, a
 	ld	(hl), #0x01
 00128$:
-;game.c:174: performantdelay(5);  
+;game.c:184: performantdelay(5);  
 	ld	a, #0x05
 	push	af
 	inc	sp
@@ -11317,13 +11373,13 @@ _main::
 	inc	sp
 	jp	00130$
 00132$:
-;game.c:177: if(gameOver!=1){
+;game.c:187: if(gameOver!=1){
 	ld	hl, #231
 	add	hl, sp
 	ld	c, (hl)
 	bit	0, (hl)
 	jr	NZ, 00163$
-;game.c:178: miniboss1.ativo=1;
+;game.c:188: miniboss1.ativo=1;
 ;c
 	ldhl	sp,#99
 	ld	a, (hl+)
@@ -11332,7 +11388,7 @@ _main::
 	ld	hl, #0x000c
 	add	hl, de
 	ld	(hl), #0x01
-;game.c:179: miniboss1.x=protagonista.x;
+;game.c:189: miniboss1.x=protagonista.x;
 ;c
 	ldhl	sp,#99
 	ld	a, (hl+)
@@ -11364,7 +11420,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:180: miniboss1.y=20;
+;game.c:190: miniboss1.y=20;
 ;c
 	ldhl	sp,#99
 	ld	a, (hl+)
@@ -11375,7 +11431,7 @@ _main::
 	ld	e, l
 	ld	d, h
 	ld	(hl), #0x14
-;game.c:181: setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);  
+;game.c:191: setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);  
 	ld	a, (de)
 	ld	hl, #175
 	add	hl, sp
@@ -11392,7 +11448,7 @@ _main::
 	call	_setPositionGameCharacter2
 	add	sp, #4
 	pop	bc
-;game.c:185: while(gameOver!=1){
+;game.c:195: while(gameOver!=1){
 00163$:
 	bit	0, c
 	jp	NZ, 00166$
@@ -11400,7 +11456,7 @@ _main::
 	ldh	a, (_SCY_REG+0)
 	inc	a
 	ldh	(_SCY_REG+0),a
-;game.c:187: moveSubBoss(&miniboss1);
+;game.c:197: moveSubBoss(&miniboss1);
 	ld	hl, #181
 	add	hl, sp
 	dec	hl
@@ -11412,7 +11468,7 @@ _main::
 	call	_moveSubBoss
 	add	sp, #2
 	pop	bc
-;game.c:188: moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
+;game.c:198: moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
 	ld	hl, #183
 	add	hl, sp
 	dec	hl
@@ -11468,7 +11524,7 @@ _main::
 	call	_moveBala
 	add	sp, #2
 	pop	bc
-;game.c:190: if(projetil6.ativo==0){
+;game.c:200: if(projetil6.ativo==0){
 	ld	hl, #193
 	add	hl, sp
 	dec	hl
@@ -11478,7 +11534,7 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00136$
-;game.c:191: setPositionBullet(&miniboss1,&projetil6); 
+;game.c:201: setPositionBullet(&miniboss1,&projetil6); 
 	ld	hl, #176
 	add	hl, sp
 	ld	a, (hl+)
@@ -11505,7 +11561,7 @@ _main::
 	add	sp, #4
 	pop	bc
 00136$:
-;game.c:194: moveBalaEnemy(&projetil6);
+;game.c:204: moveBalaEnemy(&projetil6);
 	ld	hl, #199
 	add	hl, sp
 	dec	hl
@@ -11517,11 +11573,11 @@ _main::
 	call	_moveBalaEnemy
 	add	sp, #2
 	pop	bc
-;game.c:195: if(joypad() & J_LEFT){
+;game.c:205: if(joypad() & J_LEFT){
 	call	_joypad
 	bit	1, e
 	jr	Z, 00138$
-;game.c:196: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+;game.c:206: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11553,7 +11609,7 @@ _main::
 	ld	l, a
 	ld	(hl), b
 00182$:
-;game.c:198: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+;game.c:208: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
 	ld	hl, #195
 	add	hl, sp
 	dec	hl
@@ -11585,12 +11641,12 @@ _main::
 	add	sp, #4
 	pop	bc
 00138$:
-;game.c:200: if(joypad() & J_RIGHT){
+;game.c:210: if(joypad() & J_RIGHT){
 	call	_joypad
 	ld	a, e
 	rrca
 	jr	NC, 00140$
-;game.c:201: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+;game.c:211: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11628,7 +11684,7 @@ _main::
 	ld	l, a
 	ld	(hl), b
 00184$:
-;game.c:202: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:212: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ld	hl, #201
 	add	hl, sp
 	dec	hl
@@ -11660,11 +11716,11 @@ _main::
 	add	sp, #4
 	pop	bc
 00140$:
-;game.c:204: if(joypad() & J_UP){
+;game.c:214: if(joypad() & J_UP){
 	call	_joypad
 	bit	2, e
 	jr	Z, 00142$
-;game.c:205: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+;game.c:215: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
 	ld	hl, #152
 	add	hl, sp
 	ld	a, (hl+)
@@ -11722,7 +11778,7 @@ _main::
 	ld	l, a
 	ld	(hl), b
 00186$:
-;game.c:206: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:216: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ld	hl, #232
 	add	hl, sp
 	dec	hl
@@ -11754,11 +11810,11 @@ _main::
 	add	sp, #4
 	pop	bc
 00142$:
-;game.c:208: if(joypad() & J_DOWN){
+;game.c:218: if(joypad() & J_DOWN){
 	call	_joypad
 	bit	3, e
 	jr	Z, 00144$
-;game.c:209: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+;game.c:219: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
 	ld	hl, #152
 	add	hl, sp
 	ld	a, (hl+)
@@ -11793,7 +11849,7 @@ _main::
 	ld	l, a
 	ld	(hl), b
 00188$:
-;game.c:210: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:220: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ld	hl, #232
 	add	hl, sp
 	dec	hl
@@ -11825,11 +11881,11 @@ _main::
 	add	sp, #4
 	pop	bc
 00144$:
-;game.c:212: if(joypad() & J_A){   
+;game.c:222: if(joypad() & J_A){   
 	call	_joypad
 	bit	4, e
 	jp	Z,00160$
-;game.c:213: if( projetil1.ativo==0){
+;game.c:223: if( projetil1.ativo==0){
 ;c
 	ldhl	sp,#101
 	ld	a, (hl+)
@@ -11853,11 +11909,11 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00157$
-;game.c:214: somTiro();
+;game.c:224: somTiro();
 	push	bc
 	call	_somTiro
 	pop	bc
-;game.c:215: projetil1.x=protagonista.x+4;
+;game.c:225: projetil1.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11872,7 +11928,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:216: projetil1.y=protagonista.y-2;
+;game.c:226: projetil1.y=protagonista.y-2;
 ;c
 	ldhl	sp,#101
 	ld	a, (hl+)
@@ -11907,7 +11963,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:217: projetil1.ativo=1;
+;game.c:227: projetil1.ativo=1;
 	ld	hl, #229
 	add	hl, sp
 	ld	a, (hl+)
@@ -11916,7 +11972,7 @@ _main::
 	ld	(hl), #0x01
 	jp	00160$
 00157$:
-;game.c:218: }else if(projetil2.ativo==0){
+;game.c:228: }else if(projetil2.ativo==0){
 ;c
 	ldhl	sp,#103
 	ld	a, (hl+)
@@ -11940,11 +11996,11 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00154$
-;game.c:219: somTiro();
+;game.c:229: somTiro();
 	push	bc
 	call	_somTiro
 	pop	bc
-;game.c:220: projetil2.x=protagonista.x+4;
+;game.c:230: projetil2.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -11959,7 +12015,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:221: projetil2.y=protagonista.y-2;
+;game.c:231: projetil2.y=protagonista.y-2;
 ;c
 	ldhl	sp,#103
 	ld	a, (hl+)
@@ -11994,7 +12050,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:222: projetil2.ativo=1;
+;game.c:232: projetil2.ativo=1;
 	ld	hl, #229
 	add	hl, sp
 	ld	a, (hl+)
@@ -12003,7 +12059,7 @@ _main::
 	ld	(hl), #0x01
 	jp	00160$
 00154$:
-;game.c:223: }else if(projetil3.ativo==0){
+;game.c:233: }else if(projetil3.ativo==0){
 ;c
 	ldhl	sp,#105
 	ld	a, (hl+)
@@ -12027,11 +12083,11 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00151$
-;game.c:224: somTiro();
+;game.c:234: somTiro();
 	push	bc
 	call	_somTiro
 	pop	bc
-;game.c:225: projetil3.x=protagonista.x+4;
+;game.c:235: projetil3.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -12046,7 +12102,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:226: projetil3.y=protagonista.y-2;
+;game.c:236: projetil3.y=protagonista.y-2;
 ;c
 	ldhl	sp,#105
 	ld	a, (hl+)
@@ -12081,7 +12137,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:227: projetil3.ativo=1;
+;game.c:237: projetil3.ativo=1;
 	ld	hl, #229
 	add	hl, sp
 	ld	a, (hl+)
@@ -12090,7 +12146,7 @@ _main::
 	ld	(hl), #0x01
 	jp	00160$
 00151$:
-;game.c:228: }else if(projetil4.ativo==0){
+;game.c:238: }else if(projetil4.ativo==0){
 ;c
 	ldhl	sp,#107
 	ld	a, (hl+)
@@ -12114,11 +12170,11 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00148$
-;game.c:229: somTiro();
+;game.c:239: somTiro();
 	push	bc
 	call	_somTiro
 	pop	bc
-;game.c:230: projetil4.x=protagonista.x+4;
+;game.c:240: projetil4.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -12133,7 +12189,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:231: projetil4.y=protagonista.y-2;
+;game.c:241: projetil4.y=protagonista.y-2;
 ;c
 	ldhl	sp,#107
 	ld	a, (hl+)
@@ -12168,7 +12224,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:232: projetil4.ativo=1;
+;game.c:242: projetil4.ativo=1;
 	ld	hl, #229
 	add	hl, sp
 	ld	a, (hl+)
@@ -12177,7 +12233,7 @@ _main::
 	ld	(hl), #0x01
 	jr	00160$
 00148$:
-;game.c:233: }else if(projetil5.ativo==0){
+;game.c:243: }else if(projetil5.ativo==0){
 ;c
 	ldhl	sp,#109
 	ld	a, (hl+)
@@ -12201,11 +12257,11 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00160$
-;game.c:234: somTiro();
+;game.c:244: somTiro();
 	push	bc
 	call	_somTiro
 	pop	bc
-;game.c:235: projetil5.x=protagonista.x+4;
+;game.c:245: projetil5.x=protagonista.x+4;
 	ld	hl, #227
 	add	hl, sp
 	dec	hl
@@ -12220,7 +12276,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:236: projetil5.y=protagonista.y-2;
+;game.c:246: projetil5.y=protagonista.y-2;
 ;c
 	ldhl	sp,#109
 	ld	a, (hl+)
@@ -12255,7 +12311,7 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), b
-;game.c:237: projetil5.ativo=1;
+;game.c:247: projetil5.ativo=1;
 	ld	hl, #229
 	add	hl, sp
 	ld	a, (hl+)
@@ -12263,11 +12319,11 @@ _main::
 	ld	l, a
 	ld	(hl), #0x01
 00160$:
-;game.c:241: if(joypad() & J_B){
+;game.c:251: if(joypad() & J_B){
 	call	_joypad
 	bit	5, e
 	jr	Z, 00162$
-;game.c:242: setPositionBullet(&miniboss1,&projetil6); 
+;game.c:252: setPositionBullet(&miniboss1,&projetil6); 
 	ld	hl, #218
 	add	hl, sp
 	ld	a, (hl+)
@@ -12294,7 +12350,7 @@ _main::
 	add	sp, #4
 	pop	bc
 00162$:
-;game.c:246: performantdelay(2);  
+;game.c:256: performantdelay(2);  
 	push	bc
 	ld	a, #0x02
 	push	af
@@ -12304,7 +12360,7 @@ _main::
 	pop	bc
 	jp	00163$
 00171$:
-;game.c:251: }
+;game.c:261: }
 	add	sp, #127
 	add	sp, #106
 	ret
@@ -12342,23 +12398,23 @@ _pattern2:
 	.db #0x40	; 64
 	.db #0x00	; 0
 	.db #0x00	; 0
-;game.c:253: void performantdelay(UINT8 numloops){ // nova funcao delay
+;game.c:263: void performantdelay(UINT8 numloops){ // nova funcao delay
 ;	---------------------------------
 ; Function performantdelay
 ; ---------------------------------
 _performantdelay::
-;game.c:255: for(i = 0; i < numloops; i++){
+;game.c:265: for(i = 0; i < numloops; i++){
 	ld	c, #0x00
 00103$:
 	ld	a, c
 	ldhl	sp,	#2
 	sub	a, (hl)
 	ret	NC
-;game.c:256: wait_vbl_done();
+;game.c:266: wait_vbl_done();
 	call	_wait_vbl_done
-;game.c:255: for(i = 0; i < numloops; i++){
+;game.c:265: for(i = 0; i < numloops; i++){
 	inc	c
-;game.c:258: }
+;game.c:268: }
 	jr	00103$
 	.area _CODE
 	.area _CABS (ABS)

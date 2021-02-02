@@ -29,7 +29,7 @@ void main(){
     //set music on
     BGP_REG  = 0b11100100;
     NR52_REG = 0x80;
-    NR51_REG = 0x77;
+    NR51_REG = 0xFF;
     NR50_REG = 0x77;
     //setup game
     //music
@@ -107,7 +107,17 @@ void main(){
             scroll_bkg(0,1);
             moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
             if(checarColisaoPersonagem(&protagonista,&inimigo1)){
+                hUGE_mute_channel(HT_CH1, 1);
+                hUGE_mute_channel(HT_CH2, 1);
+                hUGE_mute_channel(HT_CH3, 1);
+                hUGE_mute_channel(HT_CH4, 1);
+                NR10_REG = 0x7B;
+                NR11_REG = 0x8F;
+                NR12_REG = 0x93;
+                NR13_REG = 0x73;
+                NR14_REG = 0x86;
                 gameOver=1;
+                
             }
             moveInimigo1(&inimigo1,&protagonista);
 

@@ -7,6 +7,6 @@ C:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -o game.gb game.o hUGEDriver.obj.o ihsMusic.c
 
 
 
-del *.ihx,*.map,*.noi,*.o,*.sym,*.lst
+del *.ihx,*.noi,*.o,*.sym,*.lst
 
 
