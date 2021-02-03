@@ -1,5 +1,5 @@
 # IhsDungeons
-Jogo emulado em gabehoy desenvolvido como projeto final da matéria de Interface Hardware/Software
+Jogo emulado em gameboy desenvolvido como projeto final da matéria de Interface Hardware/Software
 
 
 ## História 
