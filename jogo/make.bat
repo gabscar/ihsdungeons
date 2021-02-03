@@ -1,4 +1,12 @@
-C:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -c -o game.o game.c
-C:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -DUSE_SFR_FOR_REG -o game.gb game.o
+rgbasm -o hUGEDriver.obj hUGEDriver.asm
+rgb2sdas hUGEDriver.obj
 
-del *.asm,*.ihx,*.map,*.noi,*.o,*.sym,*.lst
+C:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -c -o game.o game.c
+
+C:\gbdk\bin\lcc -Wa-l -Wl-m -Wl-j -o game.gb game.o hUGEDriver.obj.o ihsMusic.c 
+
+
+
+del *.ihx,*.noi,*.o,*.sym,*.lst
+
+
