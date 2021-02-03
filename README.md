@@ -2,7 +2,7 @@
 Jogo emulado em gabehoy desenvolvido como projeto final da matéria de Interface Hardware/Software
 
 
-##História 
+## História 
 
 
 O cenário principal do game se passa no planeta terra no ano 3000, a terra foi invadida e os inimigos estabeleceram a primeira grande base no base no grand canyon, depois de anos de batalha os invasores foram reprimidos ao ponto de onde partiram, Mark é o capitão mais forte da humanidade, e por isso arcou com a missão de expulsar os invasores.
