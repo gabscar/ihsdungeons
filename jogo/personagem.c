@@ -15,7 +15,7 @@ struct personagem {
 };
 
 struct subBoss {
-	UBYTE spriteIds[9]; // all characters use 4 sprites
+	UBYTE spriteIds[9]; 
 	UINT8 x;
 	UINT8 y;
     INT8 orientacao;
@@ -73,7 +73,8 @@ void setupHero(struct personagem *hero,UINT8 start,UINT8 end){
     hero->y = 128;
     hero->width = 16;
     hero->height = 16;
-    hero->ativo = 0;
+    hero->ativo = 1;
+    hero->vida = 150;
     UINT8 aux=0;
     for(UINT8 i=start; i<end ; i++){
         set_sprite_tile(spriteId, i);
@@ -88,8 +89,8 @@ void setupSubBoss(struct subBoss *miniBoss,UINT8 start,UINT8 end){
     miniBoss->y = 0;
     miniBoss->width = 24;
     miniBoss->height = 24;
-    miniBoss->ativo = 0;
-    miniBoss->vida = 900;
+    miniBoss->ativo = 1;
+    miniBoss->vida = 500;
     miniBoss->orientacao = 1;
     UINT8 aux=0;
     for(UINT8 i=start; i<end ; i++){
@@ -184,8 +185,7 @@ void setupScore(struct scorePoint *score, UINT8 start,UINT8 x, UINT8 y){
         move_sprite(score->spriteIds[8], x + 8*spritesizes, y);
     }
    
-
-    void sumScore(struct scorePoint *score,UINT16 value){
+void sumScore(struct scorePoint *score,UINT16 value){
 
         score->valor= score->valor+value ;
        if(score->valor>9999){

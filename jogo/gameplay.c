@@ -4,13 +4,44 @@ void hitMinnion(struct personagem* enemy1,struct bala* bullet,UINT8 hit){
 
     if(checarColisaoBala(enemy1,bullet)){
         enemy1->vida=enemy1->vida - hit;
-
         if(enemy1->vida<=0){
             moveOutMinnion(enemy1);
         }
         moveOutBullet(bullet);
-       
     }
+}
+
+
+UINT8 hitPersonagem(struct personagem* protag,struct balaEnemy* bullet,UINT8 hit){
+
+    if(checarColisaoBalaEnemy(protag,bullet)==1){
+        protag->vida=protag->vida - hit;
+        moveOutBulletEnemy(bullet);
+        
+        if( protag->vida==0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    return 0;
+}
+
+UINT8 hitSubBoss(struct subBoss* miniBoss,struct bala* bullet,UINT8 hit){
+    
+    if(checarColisaoBalaSubBoss(miniBoss,bullet)){
+
+        miniBoss->vida=miniBoss->vida - hit;
+        
+        moveOutBullet(bullet);
+        
+        if( miniBoss->vida<=0){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+    return 0;
 
 }
 void somTiro(){

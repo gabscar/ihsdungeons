@@ -77,10 +77,10 @@ void main(){
    
     DISPLAY_ON;
 
-
+    UINT8 gameWin=0;
     UINT8 gameOver=0;
     waitpad(J_START);
-    while(gameOver!=1){
+    while(gameOver==0 && gameWin==0){
         
         UINT8 qtdeMinnions=10;
         inimigo1.ativo=1;
@@ -166,7 +166,8 @@ void main(){
         }
         
         
-        while(gameOver!=1){
+
+        while(gameOver==0 && gameWin==0){
             scroll_bkg(0,1);
             moveSubBoss(&miniboss1);
             moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
@@ -174,7 +175,14 @@ void main(){
             if(projetil6.ativo==0){
                 setPositionBullet(&miniboss1,&projetil6); 
             }
+            gameOver=hitPersonagem(&protagonista,&projetil6,50);
+
+            if(hitSubBoss(&miniboss1,&projetil1,50)==1 || hitSubBoss(&miniboss1,&projetil2,50) || hitSubBoss(&miniboss1,&projetil3,50) || hitSubBoss(&miniboss1,&projetil4,50) || hitSubBoss(&miniboss1,&projetil5,50)){
+                gameWin=1;
+            }
             
+            
+           
             moveBalaEnemy(&projetil6);
             if(joypad() & J_LEFT){
                 (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
@@ -231,6 +239,19 @@ void main(){
         }
         
     }
+    if(gameOver==1){
+        puts("=====GAME OVER=====");
+    }else{
+
+         puts("=====GAME WIN =====");
+    }
+    
+    move_bkg(0,0);
+    HIDE_SPRITES;
+    
+   
+
+   
 
 }
 
