@@ -1,8 +1,8 @@
 #include<gb/gb.h>
-#include<rand.h>
 #include <stdio.h>
 #include "../design/protagonista.c"
 #include "../design/ghost.c"
+#include "../design/ghostHit.c"
 #include "../design/MiniBossOgro.c"
 #include "../design/projetil.c"
 #include "../design/projetilMiniboss.c"
@@ -36,10 +36,7 @@ void main(){
     
     set_bkg_data(0, 1, pattern1);
     set_bkg_data(0x20, 1, pattern2);
-    __critical {
-        hUGE_init(&Intro);
-        add_VBL(hUGE_dosound);
-    }
+   
     //others
     set_bkg_data(0, 10, backTiles);
     set_bkg_tiles(0, 0, 20, 36, simpleMap);
@@ -50,6 +47,7 @@ void main(){
     set_sprite_data(17, 1, projetil);
     set_sprite_data(18,16, score);
     set_sprite_data(34,1, projetilMiniboss);
+    set_sprite_data(35,4, ghostHit);
     
    
     //setup personagens
@@ -90,17 +88,14 @@ void main(){
     SHOW_SPRITES;
    
     DISPLAY_ON;
-<<<<<<< HEAD
 
     UINT8 gameWin=0;
-=======
-    
-    
-    
-
->>>>>>> 03656b48132e6203f97ff81f0295142114b7a33f
     UINT8 gameOver=0;
     waitpad(J_START);
+     __critical {
+        hUGE_init(&Intro);
+        add_VBL(hUGE_dosound);
+    }
     while(gameOver==0 && gameWin==0){
         
         UINT8 qtdeMinnions=10;
@@ -112,15 +107,16 @@ void main(){
             scroll_bkg(0,1);
             moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
             if(checarColisaoPersonagem(&protagonista,&inimigo1)){
-                hUGE_mute_channel(HT_CH1, 1);
-                hUGE_mute_channel(HT_CH2, 1);
-                hUGE_mute_channel(HT_CH3, 1);
-                hUGE_mute_channel(HT_CH4, 1);
-                NR10_REG = 0x7B;
-                NR11_REG = 0x8F;
-                NR12_REG = 0x93;
-                NR13_REG = 0x73;
-                NR14_REG = 0x86;
+                // hUGE_mute_channel(HT_CH1, 1);
+                // hUGE_mute_channel(HT_CH2, 1);
+                // hUGE_mute_channel(HT_CH3, 1);
+                // hUGE_mute_channel(HT_CH4, 1);
+
+                // NR10_REG = 0x7B;
+                // NR11_REG = 0x8F;
+                // NR12_REG = 0x93;
+                // NR13_REG = 0x73;
+                // NR14_REG = 0x86;
                 gameOver=1;
                 
             }
@@ -195,9 +191,9 @@ void main(){
             miniboss1.y=20;
             setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);  
         }
-        
-        
 
+        performantdelay(100);
+        
         while(gameOver==0 && gameWin==0){
             scroll_bkg(0,1);
             moveSubBoss(&miniboss1);
@@ -208,9 +204,10 @@ void main(){
             }
             gameOver=hitPersonagem(&protagonista,&projetil6,50);
 
-            if(hitSubBoss(&miniboss1,&projetil1,50)==1 || hitSubBoss(&miniboss1,&projetil2,50) || hitSubBoss(&miniboss1,&projetil3,50) || hitSubBoss(&miniboss1,&projetil4,50) || hitSubBoss(&miniboss1,&projetil5,50)){
+            if(hitSubBoss(&miniboss1,&projetil1,50,&pontuacao)==1 || hitSubBoss(&miniboss1,&projetil2,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil3,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil4,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil5,50,&pontuacao)==1 ){
                 gameWin=1;
             }
+                
             
             
            
@@ -270,15 +267,41 @@ void main(){
         }
         
     }
-    if(gameOver==1){
-        puts("=====GAME OVER=====");
-    }else{
-
-         puts("=====GAME WIN =====");
-    }
-    
     move_bkg(0,0);
     HIDE_SPRITES;
+    char str[80];
+
+    hUGE_mute_channel(HT_CH1, 1);
+    hUGE_mute_channel(HT_CH2, 1);
+    hUGE_mute_channel(HT_CH3, 1);
+    hUGE_mute_channel(HT_CH4, 1);
+    NR10_REG = 0x7B;
+    NR11_REG = 0x8F;
+    NR12_REG = 0x93;
+    NR13_REG = 0x73;
+    NR14_REG = 0x86;
+    
+    if(gameOver==1){
+        sprintf(str,"\n  \n  \n \n \n");
+        puts(str);
+        
+        printf("     SCORE: %d",pontuacao.valor);
+        sprintf(str,"\n \n ");
+        puts(str);
+        printf("===== GAME OVER ====");
+        
+    }else{
+       
+        sprintf(str,"\n  \n  \n \n \n");
+        puts(str);
+        
+        printf("     SCORE: %d",pontuacao.valor);
+        sprintf(str,"\n \n ");
+        puts(str);
+        printf("===== GAME WIN =====");
+    }
+    
+   
     
    
 
