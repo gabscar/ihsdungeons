@@ -39,16 +39,24 @@ void main(){
     //set_bkg_data(0, 27, SplashTiles);
    // set_bkg_tiles(0, 0, 20, 18, SplashScreen);
     
-     set_bkg_data(0, 34, desertoTiles);
-     set_bkg_tiles(0, 0, 20, 36, desertoMato);
+    char strs[80];
+     sprintf(strs,"\n  \n  \n \n \n ");
+     puts(strs);
+     printf("\n    IHS-DUNGEONS   ");
+     puts(strs);
+     sprintf(strs,"\n \n ");
+     puts(strs);
+     printf(">>> Press Enter <<<");
+  
     SHOW_BKG;
     SHOW_SPRITES;
-   
+    
     DISPLAY_ON;
 
     waitpad(J_START);
-   
-
+    
+    set_bkg_data(0, 34, desertoTiles);
+    set_bkg_tiles(0, 0, 20, 36, desertoMato);
     //music
     
     set_bkg_data(0, 1, pattern1);
