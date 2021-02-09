@@ -52,8 +52,8 @@
 	.globl _spritesizes
 	.globl _spriteId
 	.globl _score
-	.globl _desertoMato
 	.globl _desertoTiles
+	.globl _desertoMato
 	.globl _projetilMiniboss
 	.globl _projetil
 	.globl _MiniBossOgro
@@ -82,10 +82,10 @@ _projetil::
 	.ds 32
 _projetilMiniboss::
 	.ds 16
-_desertoTiles::
-	.ds 400
 _desertoMato::
 	.ds 720
+_desertoTiles::
+	.ds 400
 _score::
 	.ds 256
 _spriteId::
@@ -911,807 +911,6 @@ _spritesize::
 	ld	(hl), #0x00
 	ld	hl, #(_projetilMiniboss + 0x000f)
 	ld	(hl), #0x00
-;../design/New_Background/desertoTiles.c:26: unsigned char desertoTiles[] =
-	ld	hl, #_desertoTiles
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0001)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0002)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0003)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0004)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0005)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0006)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0007)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0008)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0009)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x000a)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x000b)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x000c)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x000d)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x000e)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x000f)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0010)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0011)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0012)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0013)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0014)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0015)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0016)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0017)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0018)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0019)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x001a)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x001b)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x001c)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x001d)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x001e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x001f)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0020)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0021)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0022)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0023)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0024)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0025)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0026)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0027)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0028)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0029)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x002a)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x002b)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x002c)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x002d)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x002e)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x002f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0030)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0031)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0032)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0033)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0034)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0035)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0036)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0037)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0038)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0039)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x003a)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x003b)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x003c)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x003d)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x003e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x003f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0040)
-	ld	(hl), #0xcf
-	ld	hl, #(_desertoTiles + 0x0041)
-	ld	(hl), #0x30
-	ld	hl, #(_desertoTiles + 0x0042)
-	ld	(hl), #0xfc
-	ld	hl, #(_desertoTiles + 0x0043)
-	ld	(hl), #0x03
-	ld	hl, #(_desertoTiles + 0x0044)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x0045)
-	ld	(hl), #0xe0
-	ld	hl, #(_desertoTiles + 0x0046)
-	ld	(hl), #0xf9
-	ld	hl, #(_desertoTiles + 0x0047)
-	ld	(hl), #0x06
-	ld	hl, #(_desertoTiles + 0x0048)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0049)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x004a)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x004b)
-	ld	(hl), #0xe0
-	ld	hl, #(_desertoTiles + 0x004c)
-	ld	(hl), #0xf3
-	ld	hl, #(_desertoTiles + 0x004d)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x004e)
-	ld	(hl), #0xfc
-	ld	hl, #(_desertoTiles + 0x004f)
-	ld	(hl), #0x03
-	ld	hl, #(_desertoTiles + 0x0050)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0051)
-	ld	(hl), #0x01
-	ld	hl, #(_desertoTiles + 0x0052)
-	ld	(hl), #0x9f
-	ld	hl, #(_desertoTiles + 0x0053)
-	ld	(hl), #0x63
-	ld	hl, #(_desertoTiles + 0x0054)
-	ld	(hl), #0xfd
-	ld	hl, #(_desertoTiles + 0x0055)
-	ld	(hl), #0x04
-	ld	hl, #(_desertoTiles + 0x0056)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0057)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x0058)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x0059)
-	ld	(hl), #0xc4
-	ld	hl, #(_desertoTiles + 0x005a)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x005b)
-	ld	(hl), #0x24
-	ld	hl, #(_desertoTiles + 0x005c)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x005d)
-	ld	(hl), #0x78
-	ld	hl, #(_desertoTiles + 0x005e)
-	ld	(hl), #0x8f
-	ld	hl, #(_desertoTiles + 0x005f)
-	ld	(hl), #0xf0
-	ld	hl, #(_desertoTiles + 0x0060)
-	ld	(hl), #0xf8
-	ld	hl, #(_desertoTiles + 0x0061)
-	ld	(hl), #0x07
-	ld	hl, #(_desertoTiles + 0x0062)
-	ld	(hl), #0xcf
-	ld	hl, #(_desertoTiles + 0x0063)
-	ld	(hl), #0xb0
-	ld	hl, #(_desertoTiles + 0x0064)
-	ld	(hl), #0x7f
-	ld	hl, #(_desertoTiles + 0x0065)
-	ld	(hl), #0xc0
-	ld	hl, #(_desertoTiles + 0x0066)
-	ld	(hl), #0x7c
-	ld	hl, #(_desertoTiles + 0x0067)
-	ld	(hl), #0xc7
-	ld	hl, #(_desertoTiles + 0x0068)
-	ld	(hl), #0x7b
-	ld	hl, #(_desertoTiles + 0x0069)
-	ld	(hl), #0xea
-	ld	hl, #(_desertoTiles + 0x006a)
-	ld	(hl), #0x7f
-	ld	hl, #(_desertoTiles + 0x006b)
-	ld	(hl), #0xcb
-	ld	hl, #(_desertoTiles + 0x006c)
-	ld	(hl), #0xbb
-	ld	hl, #(_desertoTiles + 0x006d)
-	ld	(hl), #0x76
-	ld	hl, #(_desertoTiles + 0x006e)
-	ld	(hl), #0xf7
-	ld	hl, #(_desertoTiles + 0x006f)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x0070)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0071)
-	ld	(hl), #0x70
-	ld	hl, #(_desertoTiles + 0x0072)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0073)
-	ld	(hl), #0x28
-	ld	hl, #(_desertoTiles + 0x0074)
-	ld	(hl), #0xfb
-	ld	hl, #(_desertoTiles + 0x0075)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x0076)
-	ld	(hl), #0xfb
-	ld	hl, #(_desertoTiles + 0x0077)
-	ld	(hl), #0x1c
-	ld	hl, #(_desertoTiles + 0x0078)
-	ld	(hl), #0xfa
-	ld	hl, #(_desertoTiles + 0x0079)
-	ld	(hl), #0x0d
-	ld	hl, #(_desertoTiles + 0x007a)
-	ld	(hl), #0xf8
-	ld	hl, #(_desertoTiles + 0x007b)
-	ld	(hl), #0x0b
-	ld	hl, #(_desertoTiles + 0x007c)
-	ld	(hl), #0xf8
-	ld	hl, #(_desertoTiles + 0x007d)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x007e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x007f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0080)
-	ld	(hl), #0x7f
-	ld	hl, #(_desertoTiles + 0x0081)
-	ld	(hl), #0x38
-	ld	hl, #(_desertoTiles + 0x0082)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0083)
-	ld	(hl), #0x40
-	ld	hl, #(_desertoTiles + 0x0084)
-	ld	(hl), #0xf1
-	ld	hl, #(_desertoTiles + 0x0085)
-	ld	(hl), #0x4e
-	ld	hl, #(_desertoTiles + 0x0086)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0087)
-	ld	(hl), #0x40
-	ld	hl, #(_desertoTiles + 0x0088)
-	ld	(hl), #0xfc
-	ld	hl, #(_desertoTiles + 0x0089)
-	ld	(hl), #0x43
-	ld	hl, #(_desertoTiles + 0x008a)
-	ld	(hl), #0x7f
-	ld	hl, #(_desertoTiles + 0x008b)
-	ld	(hl), #0xe0
-	ld	hl, #(_desertoTiles + 0x008c)
-	ld	(hl), #0x63
-	ld	hl, #(_desertoTiles + 0x008d)
-	ld	(hl), #0xdc
-	ld	hl, #(_desertoTiles + 0x008e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x008f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0090)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x0091)
-	ld	(hl), #0xe0
-	ld	hl, #(_desertoTiles + 0x0092)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0093)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0094)
-	ld	(hl), #0xe3
-	ld	hl, #(_desertoTiles + 0x0095)
-	ld	(hl), #0x1c
-	ld	hl, #(_desertoTiles + 0x0096)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0097)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0098)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x0099)
-	ld	(hl), #0xf3
-	ld	hl, #(_desertoTiles + 0x009a)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x009b)
-	ld	(hl), #0x01
-	ld	hl, #(_desertoTiles + 0x009c)
-	ld	(hl), #0xfe
-	ld	hl, #(_desertoTiles + 0x009d)
-	ld	(hl), #0x03
-	ld	hl, #(_desertoTiles + 0x009e)
-	ld	(hl), #0xc7
-	ld	hl, #(_desertoTiles + 0x009f)
-	ld	(hl), #0x3a
-	ld	hl, #(_desertoTiles + 0x00a0)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x00a1)
-	ld	(hl), #0xc0
-	ld	hl, #(_desertoTiles + 0x00a2)
-	ld	(hl), #0xf3
-	ld	hl, #(_desertoTiles + 0x00a3)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x00a4)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00a5)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x00a6)
-	ld	(hl), #0x9c
-	ld	hl, #(_desertoTiles + 0x00a7)
-	ld	(hl), #0x63
-	ld	hl, #(_desertoTiles + 0x00a8)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00a9)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x00aa)
-	ld	(hl), #0xc4
-	ld	hl, #(_desertoTiles + 0x00ab)
-	ld	(hl), #0x3b
-	ld	hl, #(_desertoTiles + 0x00ac)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00ad)
-	ld	(hl), #0x80
-	ld	hl, #(_desertoTiles + 0x00ae)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00af)
-	ld	(hl), #0x98
-	ld	hl, #(_desertoTiles + 0x00b0)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00b1)
-	ld	(hl), #0x02
-	ld	hl, #(_desertoTiles + 0x00b2)
-	ld	(hl), #0xfe
-	ld	hl, #(_desertoTiles + 0x00b3)
-	ld	(hl), #0x33
-	ld	hl, #(_desertoTiles + 0x00b4)
-	ld	(hl), #0xee
-	ld	hl, #(_desertoTiles + 0x00b5)
-	ld	(hl), #0x3b
-	ld	hl, #(_desertoTiles + 0x00b6)
-	ld	(hl), #0x2e
-	ld	hl, #(_desertoTiles + 0x00b7)
-	ld	(hl), #0xfb
-	ld	hl, #(_desertoTiles + 0x00b8)
-	ld	(hl), #0xfe
-	ld	hl, #(_desertoTiles + 0x00b9)
-	ld	(hl), #0x2b
-	ld	hl, #(_desertoTiles + 0x00ba)
-	ld	(hl), #0xfd
-	ld	hl, #(_desertoTiles + 0x00bb)
-	ld	(hl), #0x2e
-	ld	hl, #(_desertoTiles + 0x00bc)
-	ld	(hl), #0xe1
-	ld	hl, #(_desertoTiles + 0x00bd)
-	ld	(hl), #0x3e
-	ld	hl, #(_desertoTiles + 0x00be)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00bf)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00c0)
-	ld	(hl), #0xf7
-	ld	hl, #(_desertoTiles + 0x00c1)
-	ld	(hl), #0x9c
-	ld	hl, #(_desertoTiles + 0x00c2)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x00c3)
-	ld	(hl), #0xfc
-	ld	hl, #(_desertoTiles + 0x00c4)
-	ld	(hl), #0x0f
-	ld	hl, #(_desertoTiles + 0x00c5)
-	ld	(hl), #0xf4
-	ld	hl, #(_desertoTiles + 0x00c6)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x00c7)
-	ld	(hl), #0xc4
-	ld	hl, #(_desertoTiles + 0x00c8)
-	ld	(hl), #0x6f
-	ld	hl, #(_desertoTiles + 0x00c9)
-	ld	(hl), #0x98
-	ld	hl, #(_desertoTiles + 0x00ca)
-	ld	(hl), #0x8c
-	ld	hl, #(_desertoTiles + 0x00cb)
-	ld	(hl), #0x7b
-	ld	hl, #(_desertoTiles + 0x00cc)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x00cd)
-	ld	(hl), #0xe8
-	ld	hl, #(_desertoTiles + 0x00ce)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00cf)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00d0)
-	ld	(hl), #0x8f
-	ld	hl, #(_desertoTiles + 0x00d1)
-	ld	(hl), #0x70
-	ld	hl, #(_desertoTiles + 0x00d2)
-	ld	(hl), #0xf9
-	ld	hl, #(_desertoTiles + 0x00d3)
-	ld	(hl), #0x06
-	ld	hl, #(_desertoTiles + 0x00d4)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00d5)
-	ld	(hl), #0x60
-	ld	hl, #(_desertoTiles + 0x00d6)
-	ld	(hl), #0xd3
-	ld	hl, #(_desertoTiles + 0x00d7)
-	ld	(hl), #0x7d
-	ld	hl, #(_desertoTiles + 0x00d8)
-	ld	(hl), #0xaf
-	ld	hl, #(_desertoTiles + 0x00d9)
-	ld	(hl), #0xd9
-	ld	hl, #(_desertoTiles + 0x00da)
-	ld	(hl), #0xdf
-	ld	hl, #(_desertoTiles + 0x00db)
-	ld	(hl), #0x67
-	ld	hl, #(_desertoTiles + 0x00dc)
-	ld	(hl), #0xee
-	ld	hl, #(_desertoTiles + 0x00dd)
-	ld	(hl), #0x33
-	ld	hl, #(_desertoTiles + 0x00de)
-	ld	(hl), #0x36
-	ld	hl, #(_desertoTiles + 0x00df)
-	ld	(hl), #0xd9
-	ld	hl, #(_desertoTiles + 0x00e0)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x00e1)
-	ld	(hl), #0x58
-	ld	hl, #(_desertoTiles + 0x00e2)
-	ld	(hl), #0xb8
-	ld	hl, #(_desertoTiles + 0x00e3)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x00e4)
-	ld	(hl), #0x9f
-	ld	hl, #(_desertoTiles + 0x00e5)
-	ld	(hl), #0xf0
-	ld	hl, #(_desertoTiles + 0x00e6)
-	ld	(hl), #0x19
-	ld	hl, #(_desertoTiles + 0x00e7)
-	ld	(hl), #0xf6
-	ld	hl, #(_desertoTiles + 0x00e8)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x00e9)
-	ld	(hl), #0xe8
-	ld	hl, #(_desertoTiles + 0x00ea)
-	ld	(hl), #0x17
-	ld	hl, #(_desertoTiles + 0x00eb)
-	ld	(hl), #0xee
-	ld	hl, #(_desertoTiles + 0x00ec)
-	ld	(hl), #0x71
-	ld	hl, #(_desertoTiles + 0x00ed)
-	ld	(hl), #0x8f
-	ld	hl, #(_desertoTiles + 0x00ee)
-	ld	(hl), #0xe3
-	ld	hl, #(_desertoTiles + 0x00ef)
-	ld	(hl), #0x1e
-	ld	hl, #(_desertoTiles + 0x00f0)
-	ld	(hl), #0xfb
-	ld	hl, #(_desertoTiles + 0x00f1)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x00f2)
-	ld	(hl), #0x3d
-	ld	hl, #(_desertoTiles + 0x00f3)
-	ld	(hl), #0xc6
-	ld	hl, #(_desertoTiles + 0x00f4)
-	ld	(hl), #0xfc
-	ld	hl, #(_desertoTiles + 0x00f5)
-	ld	(hl), #0x07
-	ld	hl, #(_desertoTiles + 0x00f6)
-	ld	(hl), #0xc6
-	ld	hl, #(_desertoTiles + 0x00f7)
-	ld	(hl), #0x3b
-	ld	hl, #(_desertoTiles + 0x00f8)
-	ld	(hl), #0xfe
-	ld	hl, #(_desertoTiles + 0x00f9)
-	ld	(hl), #0x07
-	ld	hl, #(_desertoTiles + 0x00fa)
-	ld	(hl), #0x3e
-	ld	hl, #(_desertoTiles + 0x00fb)
-	ld	(hl), #0xc3
-	ld	hl, #(_desertoTiles + 0x00fc)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x00fd)
-	ld	(hl), #0x19
-	ld	hl, #(_desertoTiles + 0x00fe)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x00ff)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0100)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x0101)
-	ld	(hl), #0x1c
-	ld	hl, #(_desertoTiles + 0x0102)
-	ld	(hl), #0xef
-	ld	hl, #(_desertoTiles + 0x0103)
-	ld	(hl), #0x18
-	ld	hl, #(_desertoTiles + 0x0104)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x0105)
-	ld	(hl), #0x1c
-	ld	hl, #(_desertoTiles + 0x0106)
-	ld	(hl), #0x67
-	ld	hl, #(_desertoTiles + 0x0107)
-	ld	(hl), #0x9e
-	ld	hl, #(_desertoTiles + 0x0108)
-	ld	(hl), #0x07
-	ld	hl, #(_desertoTiles + 0x0109)
-	ld	(hl), #0xfc
-	ld	hl, #(_desertoTiles + 0x010a)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x010b)
-	ld	(hl), #0xfb
-	ld	hl, #(_desertoTiles + 0x010c)
-	ld	(hl), #0x0f
-	ld	hl, #(_desertoTiles + 0x010d)
-	ld	(hl), #0xf8
-	ld	hl, #(_desertoTiles + 0x010e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x010f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0110)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x0111)
-	ld	(hl), #0xc0
-	ld	hl, #(_desertoTiles + 0x0112)
-	ld	(hl), #0xf9
-	ld	hl, #(_desertoTiles + 0x0113)
-	ld	(hl), #0x06
-	ld	hl, #(_desertoTiles + 0x0114)
-	ld	(hl), #0xcf
-	ld	hl, #(_desertoTiles + 0x0115)
-	ld	(hl), #0x30
-	ld	hl, #(_desertoTiles + 0x0116)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0117)
-	ld	(hl), #0x01
-	ld	hl, #(_desertoTiles + 0x0118)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x0119)
-	ld	(hl), #0xc9
-	ld	hl, #(_desertoTiles + 0x011a)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x011b)
-	ld	(hl), #0x15
-	ld	hl, #(_desertoTiles + 0x011c)
-	ld	(hl), #0x97
-	ld	hl, #(_desertoTiles + 0x011d)
-	ld	(hl), #0x7d
-	ld	hl, #(_desertoTiles + 0x011e)
-	ld	(hl), #0xf7
-	ld	hl, #(_desertoTiles + 0x011f)
-	ld	(hl), #0x1c
-	ld	hl, #(_desertoTiles + 0x0120)
-	ld	(hl), #0xc7
-	ld	hl, #(_desertoTiles + 0x0121)
-	ld	(hl), #0x38
-	ld	hl, #(_desertoTiles + 0x0122)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0123)
-	ld	(hl), #0x40
-	ld	hl, #(_desertoTiles + 0x0124)
-	ld	(hl), #0xf9
-	ld	hl, #(_desertoTiles + 0x0125)
-	ld	(hl), #0xa6
-	ld	hl, #(_desertoTiles + 0x0126)
-	ld	(hl), #0xbf
-	ld	hl, #(_desertoTiles + 0x0127)
-	ld	(hl), #0x60
-	ld	hl, #(_desertoTiles + 0x0128)
-	ld	(hl), #0x27
-	ld	hl, #(_desertoTiles + 0x0129)
-	ld	(hl), #0xf8
-	ld	hl, #(_desertoTiles + 0x012a)
-	ld	(hl), #0x7c
-	ld	hl, #(_desertoTiles + 0x012b)
-	ld	(hl), #0xa3
-	ld	hl, #(_desertoTiles + 0x012c)
-	ld	(hl), #0x7f
-	ld	hl, #(_desertoTiles + 0x012d)
-	ld	(hl), #0xa0
-	ld	hl, #(_desertoTiles + 0x012e)
-	ld	(hl), #0xbf
-	ld	hl, #(_desertoTiles + 0x012f)
-	ld	(hl), #0xe4
-	ld	hl, #(_desertoTiles + 0x0130)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0131)
-	ld	(hl), #0x14
-	ld	hl, #(_desertoTiles + 0x0132)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x0133)
-	ld	(hl), #0xd5
-	ld	hl, #(_desertoTiles + 0x0134)
-	ld	(hl), #0xf7
-	ld	hl, #(_desertoTiles + 0x0135)
-	ld	(hl), #0x3d
-	ld	hl, #(_desertoTiles + 0x0136)
-	ld	(hl), #0x27
-	ld	hl, #(_desertoTiles + 0x0137)
-	ld	(hl), #0xfd
-	ld	hl, #(_desertoTiles + 0x0138)
-	ld	(hl), #0xef
-	ld	hl, #(_desertoTiles + 0x0139)
-	ld	(hl), #0x3d
-	ld	hl, #(_desertoTiles + 0x013a)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x013b)
-	ld	(hl), #0x29
-	ld	hl, #(_desertoTiles + 0x013c)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x013d)
-	ld	(hl), #0x29
-	ld	hl, #(_desertoTiles + 0x013e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x013f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0140)
-	ld	(hl), #0xbf
-	ld	hl, #(_desertoTiles + 0x0141)
-	ld	(hl), #0xea
-	ld	hl, #(_desertoTiles + 0x0142)
-	ld	(hl), #0xbf
-	ld	hl, #(_desertoTiles + 0x0143)
-	ld	(hl), #0x6a
-	ld	hl, #(_desertoTiles + 0x0144)
-	ld	(hl), #0xbb
-	ld	hl, #(_desertoTiles + 0x0145)
-	ld	(hl), #0x6e
-	ld	hl, #(_desertoTiles + 0x0146)
-	ld	(hl), #0x3b
-	ld	hl, #(_desertoTiles + 0x0147)
-	ld	(hl), #0xee
-	ld	hl, #(_desertoTiles + 0x0148)
-	ld	(hl), #0x7f
-	ld	hl, #(_desertoTiles + 0x0149)
-	ld	(hl), #0xca
-	ld	hl, #(_desertoTiles + 0x014a)
-	ld	(hl), #0x7b
-	ld	hl, #(_desertoTiles + 0x014b)
-	ld	(hl), #0xae
-	ld	hl, #(_desertoTiles + 0x014c)
-	ld	(hl), #0x7b
-	ld	hl, #(_desertoTiles + 0x014d)
-	ld	(hl), #0xae
-	ld	hl, #(_desertoTiles + 0x014e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x014f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0150)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x0151)
-	ld	(hl), #0xc0
-	ld	hl, #(_desertoTiles + 0x0152)
-	ld	(hl), #0xf8
-	ld	hl, #(_desertoTiles + 0x0153)
-	ld	(hl), #0x07
-	ld	hl, #(_desertoTiles + 0x0154)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0155)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0156)
-	ld	(hl), #0xe3
-	ld	hl, #(_desertoTiles + 0x0157)
-	ld	(hl), #0x1c
-	ld	hl, #(_desertoTiles + 0x0158)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0159)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x015a)
-	ld	(hl), #0x9c
-	ld	hl, #(_desertoTiles + 0x015b)
-	ld	(hl), #0x63
-	ld	hl, #(_desertoTiles + 0x015c)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x015d)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x015e)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x015f)
-	ld	(hl), #0xe3
-	ld	hl, #(_desertoTiles + 0x0160)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x0161)
-	ld	(hl), #0xc0
-	ld	hl, #(_desertoTiles + 0x0162)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0163)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0164)
-	ld	(hl), #0xc7
-	ld	hl, #(_desertoTiles + 0x0165)
-	ld	(hl), #0x38
-	ld	hl, #(_desertoTiles + 0x0166)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0167)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x0168)
-	ld	(hl), #0x9c
-	ld	hl, #(_desertoTiles + 0x0169)
-	ld	(hl), #0x63
-	ld	hl, #(_desertoTiles + 0x016a)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x016b)
-	ld	(hl), #0x00
-	ld	hl, #(_desertoTiles + 0x016c)
-	ld	(hl), #0xf3
-	ld	hl, #(_desertoTiles + 0x016d)
-	ld	(hl), #0x0c
-	ld	hl, #(_desertoTiles + 0x016e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x016f)
-	ld	(hl), #0xe0
-	ld	hl, #(_desertoTiles + 0x0170)
-	ld	(hl), #0xfc
-	ld	hl, #(_desertoTiles + 0x0171)
-	ld	(hl), #0x1f
-	ld	hl, #(_desertoTiles + 0x0172)
-	ld	(hl), #0xe0
-	ld	hl, #(_desertoTiles + 0x0173)
-	ld	(hl), #0x3b
-	ld	hl, #(_desertoTiles + 0x0174)
-	ld	(hl), #0xe1
-	ld	hl, #(_desertoTiles + 0x0175)
-	ld	(hl), #0x3e
-	ld	hl, #(_desertoTiles + 0x0176)
-	ld	(hl), #0xef
-	ld	hl, #(_desertoTiles + 0x0177)
-	ld	(hl), #0x30
-	ld	hl, #(_desertoTiles + 0x0178)
-	ld	(hl), #0xcf
-	ld	hl, #(_desertoTiles + 0x0179)
-	ld	(hl), #0x70
-	ld	hl, #(_desertoTiles + 0x017a)
-	ld	(hl), #0x9e
-	ld	hl, #(_desertoTiles + 0x017b)
-	ld	(hl), #0xe1
-	ld	hl, #(_desertoTiles + 0x017c)
-	ld	(hl), #0x98
-	ld	hl, #(_desertoTiles + 0x017d)
-	ld	(hl), #0xa7
-	ld	hl, #(_desertoTiles + 0x017e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x017f)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x0180)
-	ld	(hl), #0x3f
-	ld	hl, #(_desertoTiles + 0x0181)
-	ld	(hl), #0xf0
-	ld	hl, #(_desertoTiles + 0x0182)
-	ld	(hl), #0x0f
-	ld	hl, #(_desertoTiles + 0x0183)
-	ld	(hl), #0xf8
-	ld	hl, #(_desertoTiles + 0x0184)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x0185)
-	ld	(hl), #0x1c
-	ld	hl, #(_desertoTiles + 0x0186)
-	ld	(hl), #0xe7
-	ld	hl, #(_desertoTiles + 0x0187)
-	ld	(hl), #0x1e
-	ld	hl, #(_desertoTiles + 0x0188)
-	ld	(hl), #0xe3
-	ld	hl, #(_desertoTiles + 0x0189)
-	ld	(hl), #0x1e
-	ld	hl, #(_desertoTiles + 0x018a)
-	ld	(hl), #0x01
-	ld	hl, #(_desertoTiles + 0x018b)
-	ld	(hl), #0xf7
-	ld	hl, #(_desertoTiles + 0x018c)
-	ld	(hl), #0x01
-	ld	hl, #(_desertoTiles + 0x018d)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x018e)
-	ld	(hl), #0xff
-	ld	hl, #(_desertoTiles + 0x018f)
-	ld	(hl), #0xff
 ;../design/New_Background/desertoMato.c:25: unsigned char desertoMato[] =
 	ld	hl, #_desertoMato
 	ld	(hl), #0x04
@@ -3153,6 +2352,807 @@ _spritesize::
 	ld	(hl), #0x04
 	ld	hl, #(_desertoMato + 0x02cf)
 	ld	(hl), #0x04
+;../design/New_Background/desertoTiles.c:26: unsigned char desertoTiles[] =
+	ld	hl, #_desertoTiles
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0001)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0002)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0003)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0004)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0005)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0006)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0007)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0008)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0009)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x000a)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x000b)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x000c)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x000d)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x000e)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x000f)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0010)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0011)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0012)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0013)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0014)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0015)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0016)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0017)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0018)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0019)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x001a)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x001b)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x001c)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x001d)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x001e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x001f)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0020)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0021)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0022)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0023)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0024)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0025)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0026)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0027)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0028)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0029)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x002a)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x002b)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x002c)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x002d)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x002e)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x002f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0030)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0031)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0032)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0033)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0034)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0035)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0036)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0037)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0038)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0039)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x003a)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x003b)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x003c)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x003d)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x003e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x003f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0040)
+	ld	(hl), #0xcf
+	ld	hl, #(_desertoTiles + 0x0041)
+	ld	(hl), #0x30
+	ld	hl, #(_desertoTiles + 0x0042)
+	ld	(hl), #0xfc
+	ld	hl, #(_desertoTiles + 0x0043)
+	ld	(hl), #0x03
+	ld	hl, #(_desertoTiles + 0x0044)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x0045)
+	ld	(hl), #0xe0
+	ld	hl, #(_desertoTiles + 0x0046)
+	ld	(hl), #0xf9
+	ld	hl, #(_desertoTiles + 0x0047)
+	ld	(hl), #0x06
+	ld	hl, #(_desertoTiles + 0x0048)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0049)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x004a)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x004b)
+	ld	(hl), #0xe0
+	ld	hl, #(_desertoTiles + 0x004c)
+	ld	(hl), #0xf3
+	ld	hl, #(_desertoTiles + 0x004d)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x004e)
+	ld	(hl), #0xfc
+	ld	hl, #(_desertoTiles + 0x004f)
+	ld	(hl), #0x03
+	ld	hl, #(_desertoTiles + 0x0050)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0051)
+	ld	(hl), #0x01
+	ld	hl, #(_desertoTiles + 0x0052)
+	ld	(hl), #0x9f
+	ld	hl, #(_desertoTiles + 0x0053)
+	ld	(hl), #0x63
+	ld	hl, #(_desertoTiles + 0x0054)
+	ld	(hl), #0xfd
+	ld	hl, #(_desertoTiles + 0x0055)
+	ld	(hl), #0x04
+	ld	hl, #(_desertoTiles + 0x0056)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0057)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x0058)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x0059)
+	ld	(hl), #0xc4
+	ld	hl, #(_desertoTiles + 0x005a)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x005b)
+	ld	(hl), #0x24
+	ld	hl, #(_desertoTiles + 0x005c)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x005d)
+	ld	(hl), #0x78
+	ld	hl, #(_desertoTiles + 0x005e)
+	ld	(hl), #0x8f
+	ld	hl, #(_desertoTiles + 0x005f)
+	ld	(hl), #0xf0
+	ld	hl, #(_desertoTiles + 0x0060)
+	ld	(hl), #0xf8
+	ld	hl, #(_desertoTiles + 0x0061)
+	ld	(hl), #0x07
+	ld	hl, #(_desertoTiles + 0x0062)
+	ld	(hl), #0xcf
+	ld	hl, #(_desertoTiles + 0x0063)
+	ld	(hl), #0xb0
+	ld	hl, #(_desertoTiles + 0x0064)
+	ld	(hl), #0x7f
+	ld	hl, #(_desertoTiles + 0x0065)
+	ld	(hl), #0xc0
+	ld	hl, #(_desertoTiles + 0x0066)
+	ld	(hl), #0x7c
+	ld	hl, #(_desertoTiles + 0x0067)
+	ld	(hl), #0xc7
+	ld	hl, #(_desertoTiles + 0x0068)
+	ld	(hl), #0x7b
+	ld	hl, #(_desertoTiles + 0x0069)
+	ld	(hl), #0xea
+	ld	hl, #(_desertoTiles + 0x006a)
+	ld	(hl), #0x7f
+	ld	hl, #(_desertoTiles + 0x006b)
+	ld	(hl), #0xcb
+	ld	hl, #(_desertoTiles + 0x006c)
+	ld	(hl), #0xbb
+	ld	hl, #(_desertoTiles + 0x006d)
+	ld	(hl), #0x76
+	ld	hl, #(_desertoTiles + 0x006e)
+	ld	(hl), #0xf7
+	ld	hl, #(_desertoTiles + 0x006f)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x0070)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0071)
+	ld	(hl), #0x70
+	ld	hl, #(_desertoTiles + 0x0072)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0073)
+	ld	(hl), #0x28
+	ld	hl, #(_desertoTiles + 0x0074)
+	ld	(hl), #0xfb
+	ld	hl, #(_desertoTiles + 0x0075)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x0076)
+	ld	(hl), #0xfb
+	ld	hl, #(_desertoTiles + 0x0077)
+	ld	(hl), #0x1c
+	ld	hl, #(_desertoTiles + 0x0078)
+	ld	(hl), #0xfa
+	ld	hl, #(_desertoTiles + 0x0079)
+	ld	(hl), #0x0d
+	ld	hl, #(_desertoTiles + 0x007a)
+	ld	(hl), #0xf8
+	ld	hl, #(_desertoTiles + 0x007b)
+	ld	(hl), #0x0b
+	ld	hl, #(_desertoTiles + 0x007c)
+	ld	(hl), #0xf8
+	ld	hl, #(_desertoTiles + 0x007d)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x007e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x007f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0080)
+	ld	(hl), #0x7f
+	ld	hl, #(_desertoTiles + 0x0081)
+	ld	(hl), #0x38
+	ld	hl, #(_desertoTiles + 0x0082)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0083)
+	ld	(hl), #0x40
+	ld	hl, #(_desertoTiles + 0x0084)
+	ld	(hl), #0xf1
+	ld	hl, #(_desertoTiles + 0x0085)
+	ld	(hl), #0x4e
+	ld	hl, #(_desertoTiles + 0x0086)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0087)
+	ld	(hl), #0x40
+	ld	hl, #(_desertoTiles + 0x0088)
+	ld	(hl), #0xfc
+	ld	hl, #(_desertoTiles + 0x0089)
+	ld	(hl), #0x43
+	ld	hl, #(_desertoTiles + 0x008a)
+	ld	(hl), #0x7f
+	ld	hl, #(_desertoTiles + 0x008b)
+	ld	(hl), #0xe0
+	ld	hl, #(_desertoTiles + 0x008c)
+	ld	(hl), #0x63
+	ld	hl, #(_desertoTiles + 0x008d)
+	ld	(hl), #0xdc
+	ld	hl, #(_desertoTiles + 0x008e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x008f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0090)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x0091)
+	ld	(hl), #0xe0
+	ld	hl, #(_desertoTiles + 0x0092)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0093)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0094)
+	ld	(hl), #0xe3
+	ld	hl, #(_desertoTiles + 0x0095)
+	ld	(hl), #0x1c
+	ld	hl, #(_desertoTiles + 0x0096)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0097)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0098)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x0099)
+	ld	(hl), #0xf3
+	ld	hl, #(_desertoTiles + 0x009a)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x009b)
+	ld	(hl), #0x01
+	ld	hl, #(_desertoTiles + 0x009c)
+	ld	(hl), #0xfe
+	ld	hl, #(_desertoTiles + 0x009d)
+	ld	(hl), #0x03
+	ld	hl, #(_desertoTiles + 0x009e)
+	ld	(hl), #0xc7
+	ld	hl, #(_desertoTiles + 0x009f)
+	ld	(hl), #0x3a
+	ld	hl, #(_desertoTiles + 0x00a0)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x00a1)
+	ld	(hl), #0xc0
+	ld	hl, #(_desertoTiles + 0x00a2)
+	ld	(hl), #0xf3
+	ld	hl, #(_desertoTiles + 0x00a3)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x00a4)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00a5)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x00a6)
+	ld	(hl), #0x9c
+	ld	hl, #(_desertoTiles + 0x00a7)
+	ld	(hl), #0x63
+	ld	hl, #(_desertoTiles + 0x00a8)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00a9)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x00aa)
+	ld	(hl), #0xc4
+	ld	hl, #(_desertoTiles + 0x00ab)
+	ld	(hl), #0x3b
+	ld	hl, #(_desertoTiles + 0x00ac)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00ad)
+	ld	(hl), #0x80
+	ld	hl, #(_desertoTiles + 0x00ae)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00af)
+	ld	(hl), #0x98
+	ld	hl, #(_desertoTiles + 0x00b0)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00b1)
+	ld	(hl), #0x02
+	ld	hl, #(_desertoTiles + 0x00b2)
+	ld	(hl), #0xfe
+	ld	hl, #(_desertoTiles + 0x00b3)
+	ld	(hl), #0x33
+	ld	hl, #(_desertoTiles + 0x00b4)
+	ld	(hl), #0xee
+	ld	hl, #(_desertoTiles + 0x00b5)
+	ld	(hl), #0x3b
+	ld	hl, #(_desertoTiles + 0x00b6)
+	ld	(hl), #0x2e
+	ld	hl, #(_desertoTiles + 0x00b7)
+	ld	(hl), #0xfb
+	ld	hl, #(_desertoTiles + 0x00b8)
+	ld	(hl), #0xfe
+	ld	hl, #(_desertoTiles + 0x00b9)
+	ld	(hl), #0x2b
+	ld	hl, #(_desertoTiles + 0x00ba)
+	ld	(hl), #0xfd
+	ld	hl, #(_desertoTiles + 0x00bb)
+	ld	(hl), #0x2e
+	ld	hl, #(_desertoTiles + 0x00bc)
+	ld	(hl), #0xe1
+	ld	hl, #(_desertoTiles + 0x00bd)
+	ld	(hl), #0x3e
+	ld	hl, #(_desertoTiles + 0x00be)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00bf)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00c0)
+	ld	(hl), #0xf7
+	ld	hl, #(_desertoTiles + 0x00c1)
+	ld	(hl), #0x9c
+	ld	hl, #(_desertoTiles + 0x00c2)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x00c3)
+	ld	(hl), #0xfc
+	ld	hl, #(_desertoTiles + 0x00c4)
+	ld	(hl), #0x0f
+	ld	hl, #(_desertoTiles + 0x00c5)
+	ld	(hl), #0xf4
+	ld	hl, #(_desertoTiles + 0x00c6)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x00c7)
+	ld	(hl), #0xc4
+	ld	hl, #(_desertoTiles + 0x00c8)
+	ld	(hl), #0x6f
+	ld	hl, #(_desertoTiles + 0x00c9)
+	ld	(hl), #0x98
+	ld	hl, #(_desertoTiles + 0x00ca)
+	ld	(hl), #0x8c
+	ld	hl, #(_desertoTiles + 0x00cb)
+	ld	(hl), #0x7b
+	ld	hl, #(_desertoTiles + 0x00cc)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x00cd)
+	ld	(hl), #0xe8
+	ld	hl, #(_desertoTiles + 0x00ce)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00cf)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00d0)
+	ld	(hl), #0x8f
+	ld	hl, #(_desertoTiles + 0x00d1)
+	ld	(hl), #0x70
+	ld	hl, #(_desertoTiles + 0x00d2)
+	ld	(hl), #0xf9
+	ld	hl, #(_desertoTiles + 0x00d3)
+	ld	(hl), #0x06
+	ld	hl, #(_desertoTiles + 0x00d4)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00d5)
+	ld	(hl), #0x60
+	ld	hl, #(_desertoTiles + 0x00d6)
+	ld	(hl), #0xd3
+	ld	hl, #(_desertoTiles + 0x00d7)
+	ld	(hl), #0x7d
+	ld	hl, #(_desertoTiles + 0x00d8)
+	ld	(hl), #0xaf
+	ld	hl, #(_desertoTiles + 0x00d9)
+	ld	(hl), #0xd9
+	ld	hl, #(_desertoTiles + 0x00da)
+	ld	(hl), #0xdf
+	ld	hl, #(_desertoTiles + 0x00db)
+	ld	(hl), #0x67
+	ld	hl, #(_desertoTiles + 0x00dc)
+	ld	(hl), #0xee
+	ld	hl, #(_desertoTiles + 0x00dd)
+	ld	(hl), #0x33
+	ld	hl, #(_desertoTiles + 0x00de)
+	ld	(hl), #0x36
+	ld	hl, #(_desertoTiles + 0x00df)
+	ld	(hl), #0xd9
+	ld	hl, #(_desertoTiles + 0x00e0)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x00e1)
+	ld	(hl), #0x58
+	ld	hl, #(_desertoTiles + 0x00e2)
+	ld	(hl), #0xb8
+	ld	hl, #(_desertoTiles + 0x00e3)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x00e4)
+	ld	(hl), #0x9f
+	ld	hl, #(_desertoTiles + 0x00e5)
+	ld	(hl), #0xf0
+	ld	hl, #(_desertoTiles + 0x00e6)
+	ld	(hl), #0x19
+	ld	hl, #(_desertoTiles + 0x00e7)
+	ld	(hl), #0xf6
+	ld	hl, #(_desertoTiles + 0x00e8)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x00e9)
+	ld	(hl), #0xe8
+	ld	hl, #(_desertoTiles + 0x00ea)
+	ld	(hl), #0x17
+	ld	hl, #(_desertoTiles + 0x00eb)
+	ld	(hl), #0xee
+	ld	hl, #(_desertoTiles + 0x00ec)
+	ld	(hl), #0x71
+	ld	hl, #(_desertoTiles + 0x00ed)
+	ld	(hl), #0x8f
+	ld	hl, #(_desertoTiles + 0x00ee)
+	ld	(hl), #0xe3
+	ld	hl, #(_desertoTiles + 0x00ef)
+	ld	(hl), #0x1e
+	ld	hl, #(_desertoTiles + 0x00f0)
+	ld	(hl), #0xfb
+	ld	hl, #(_desertoTiles + 0x00f1)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x00f2)
+	ld	(hl), #0x3d
+	ld	hl, #(_desertoTiles + 0x00f3)
+	ld	(hl), #0xc6
+	ld	hl, #(_desertoTiles + 0x00f4)
+	ld	(hl), #0xfc
+	ld	hl, #(_desertoTiles + 0x00f5)
+	ld	(hl), #0x07
+	ld	hl, #(_desertoTiles + 0x00f6)
+	ld	(hl), #0xc6
+	ld	hl, #(_desertoTiles + 0x00f7)
+	ld	(hl), #0x3b
+	ld	hl, #(_desertoTiles + 0x00f8)
+	ld	(hl), #0xfe
+	ld	hl, #(_desertoTiles + 0x00f9)
+	ld	(hl), #0x07
+	ld	hl, #(_desertoTiles + 0x00fa)
+	ld	(hl), #0x3e
+	ld	hl, #(_desertoTiles + 0x00fb)
+	ld	(hl), #0xc3
+	ld	hl, #(_desertoTiles + 0x00fc)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x00fd)
+	ld	(hl), #0x19
+	ld	hl, #(_desertoTiles + 0x00fe)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x00ff)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0100)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x0101)
+	ld	(hl), #0x1c
+	ld	hl, #(_desertoTiles + 0x0102)
+	ld	(hl), #0xef
+	ld	hl, #(_desertoTiles + 0x0103)
+	ld	(hl), #0x18
+	ld	hl, #(_desertoTiles + 0x0104)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x0105)
+	ld	(hl), #0x1c
+	ld	hl, #(_desertoTiles + 0x0106)
+	ld	(hl), #0x67
+	ld	hl, #(_desertoTiles + 0x0107)
+	ld	(hl), #0x9e
+	ld	hl, #(_desertoTiles + 0x0108)
+	ld	(hl), #0x07
+	ld	hl, #(_desertoTiles + 0x0109)
+	ld	(hl), #0xfc
+	ld	hl, #(_desertoTiles + 0x010a)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x010b)
+	ld	(hl), #0xfb
+	ld	hl, #(_desertoTiles + 0x010c)
+	ld	(hl), #0x0f
+	ld	hl, #(_desertoTiles + 0x010d)
+	ld	(hl), #0xf8
+	ld	hl, #(_desertoTiles + 0x010e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x010f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0110)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x0111)
+	ld	(hl), #0xc0
+	ld	hl, #(_desertoTiles + 0x0112)
+	ld	(hl), #0xf9
+	ld	hl, #(_desertoTiles + 0x0113)
+	ld	(hl), #0x06
+	ld	hl, #(_desertoTiles + 0x0114)
+	ld	(hl), #0xcf
+	ld	hl, #(_desertoTiles + 0x0115)
+	ld	(hl), #0x30
+	ld	hl, #(_desertoTiles + 0x0116)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0117)
+	ld	(hl), #0x01
+	ld	hl, #(_desertoTiles + 0x0118)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x0119)
+	ld	(hl), #0xc9
+	ld	hl, #(_desertoTiles + 0x011a)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x011b)
+	ld	(hl), #0x15
+	ld	hl, #(_desertoTiles + 0x011c)
+	ld	(hl), #0x97
+	ld	hl, #(_desertoTiles + 0x011d)
+	ld	(hl), #0x7d
+	ld	hl, #(_desertoTiles + 0x011e)
+	ld	(hl), #0xf7
+	ld	hl, #(_desertoTiles + 0x011f)
+	ld	(hl), #0x1c
+	ld	hl, #(_desertoTiles + 0x0120)
+	ld	(hl), #0xc7
+	ld	hl, #(_desertoTiles + 0x0121)
+	ld	(hl), #0x38
+	ld	hl, #(_desertoTiles + 0x0122)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0123)
+	ld	(hl), #0x40
+	ld	hl, #(_desertoTiles + 0x0124)
+	ld	(hl), #0xf9
+	ld	hl, #(_desertoTiles + 0x0125)
+	ld	(hl), #0xa6
+	ld	hl, #(_desertoTiles + 0x0126)
+	ld	(hl), #0xbf
+	ld	hl, #(_desertoTiles + 0x0127)
+	ld	(hl), #0x60
+	ld	hl, #(_desertoTiles + 0x0128)
+	ld	(hl), #0x27
+	ld	hl, #(_desertoTiles + 0x0129)
+	ld	(hl), #0xf8
+	ld	hl, #(_desertoTiles + 0x012a)
+	ld	(hl), #0x7c
+	ld	hl, #(_desertoTiles + 0x012b)
+	ld	(hl), #0xa3
+	ld	hl, #(_desertoTiles + 0x012c)
+	ld	(hl), #0x7f
+	ld	hl, #(_desertoTiles + 0x012d)
+	ld	(hl), #0xa0
+	ld	hl, #(_desertoTiles + 0x012e)
+	ld	(hl), #0xbf
+	ld	hl, #(_desertoTiles + 0x012f)
+	ld	(hl), #0xe4
+	ld	hl, #(_desertoTiles + 0x0130)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0131)
+	ld	(hl), #0x14
+	ld	hl, #(_desertoTiles + 0x0132)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x0133)
+	ld	(hl), #0xd5
+	ld	hl, #(_desertoTiles + 0x0134)
+	ld	(hl), #0xf7
+	ld	hl, #(_desertoTiles + 0x0135)
+	ld	(hl), #0x3d
+	ld	hl, #(_desertoTiles + 0x0136)
+	ld	(hl), #0x27
+	ld	hl, #(_desertoTiles + 0x0137)
+	ld	(hl), #0xfd
+	ld	hl, #(_desertoTiles + 0x0138)
+	ld	(hl), #0xef
+	ld	hl, #(_desertoTiles + 0x0139)
+	ld	(hl), #0x3d
+	ld	hl, #(_desertoTiles + 0x013a)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x013b)
+	ld	(hl), #0x29
+	ld	hl, #(_desertoTiles + 0x013c)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x013d)
+	ld	(hl), #0x29
+	ld	hl, #(_desertoTiles + 0x013e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x013f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0140)
+	ld	(hl), #0xbf
+	ld	hl, #(_desertoTiles + 0x0141)
+	ld	(hl), #0xea
+	ld	hl, #(_desertoTiles + 0x0142)
+	ld	(hl), #0xbf
+	ld	hl, #(_desertoTiles + 0x0143)
+	ld	(hl), #0x6a
+	ld	hl, #(_desertoTiles + 0x0144)
+	ld	(hl), #0xbb
+	ld	hl, #(_desertoTiles + 0x0145)
+	ld	(hl), #0x6e
+	ld	hl, #(_desertoTiles + 0x0146)
+	ld	(hl), #0x3b
+	ld	hl, #(_desertoTiles + 0x0147)
+	ld	(hl), #0xee
+	ld	hl, #(_desertoTiles + 0x0148)
+	ld	(hl), #0x7f
+	ld	hl, #(_desertoTiles + 0x0149)
+	ld	(hl), #0xca
+	ld	hl, #(_desertoTiles + 0x014a)
+	ld	(hl), #0x7b
+	ld	hl, #(_desertoTiles + 0x014b)
+	ld	(hl), #0xae
+	ld	hl, #(_desertoTiles + 0x014c)
+	ld	(hl), #0x7b
+	ld	hl, #(_desertoTiles + 0x014d)
+	ld	(hl), #0xae
+	ld	hl, #(_desertoTiles + 0x014e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x014f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0150)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x0151)
+	ld	(hl), #0xc0
+	ld	hl, #(_desertoTiles + 0x0152)
+	ld	(hl), #0xf8
+	ld	hl, #(_desertoTiles + 0x0153)
+	ld	(hl), #0x07
+	ld	hl, #(_desertoTiles + 0x0154)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0155)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0156)
+	ld	(hl), #0xe3
+	ld	hl, #(_desertoTiles + 0x0157)
+	ld	(hl), #0x1c
+	ld	hl, #(_desertoTiles + 0x0158)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0159)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x015a)
+	ld	(hl), #0x9c
+	ld	hl, #(_desertoTiles + 0x015b)
+	ld	(hl), #0x63
+	ld	hl, #(_desertoTiles + 0x015c)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x015d)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x015e)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x015f)
+	ld	(hl), #0xe3
+	ld	hl, #(_desertoTiles + 0x0160)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x0161)
+	ld	(hl), #0xc0
+	ld	hl, #(_desertoTiles + 0x0162)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0163)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0164)
+	ld	(hl), #0xc7
+	ld	hl, #(_desertoTiles + 0x0165)
+	ld	(hl), #0x38
+	ld	hl, #(_desertoTiles + 0x0166)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0167)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x0168)
+	ld	(hl), #0x9c
+	ld	hl, #(_desertoTiles + 0x0169)
+	ld	(hl), #0x63
+	ld	hl, #(_desertoTiles + 0x016a)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x016b)
+	ld	(hl), #0x00
+	ld	hl, #(_desertoTiles + 0x016c)
+	ld	(hl), #0xf3
+	ld	hl, #(_desertoTiles + 0x016d)
+	ld	(hl), #0x0c
+	ld	hl, #(_desertoTiles + 0x016e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x016f)
+	ld	(hl), #0xe0
+	ld	hl, #(_desertoTiles + 0x0170)
+	ld	(hl), #0xfc
+	ld	hl, #(_desertoTiles + 0x0171)
+	ld	(hl), #0x1f
+	ld	hl, #(_desertoTiles + 0x0172)
+	ld	(hl), #0xe0
+	ld	hl, #(_desertoTiles + 0x0173)
+	ld	(hl), #0x3b
+	ld	hl, #(_desertoTiles + 0x0174)
+	ld	(hl), #0xe1
+	ld	hl, #(_desertoTiles + 0x0175)
+	ld	(hl), #0x3e
+	ld	hl, #(_desertoTiles + 0x0176)
+	ld	(hl), #0xef
+	ld	hl, #(_desertoTiles + 0x0177)
+	ld	(hl), #0x30
+	ld	hl, #(_desertoTiles + 0x0178)
+	ld	(hl), #0xcf
+	ld	hl, #(_desertoTiles + 0x0179)
+	ld	(hl), #0x70
+	ld	hl, #(_desertoTiles + 0x017a)
+	ld	(hl), #0x9e
+	ld	hl, #(_desertoTiles + 0x017b)
+	ld	(hl), #0xe1
+	ld	hl, #(_desertoTiles + 0x017c)
+	ld	(hl), #0x98
+	ld	hl, #(_desertoTiles + 0x017d)
+	ld	(hl), #0xa7
+	ld	hl, #(_desertoTiles + 0x017e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x017f)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x0180)
+	ld	(hl), #0x3f
+	ld	hl, #(_desertoTiles + 0x0181)
+	ld	(hl), #0xf0
+	ld	hl, #(_desertoTiles + 0x0182)
+	ld	(hl), #0x0f
+	ld	hl, #(_desertoTiles + 0x0183)
+	ld	(hl), #0xf8
+	ld	hl, #(_desertoTiles + 0x0184)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x0185)
+	ld	(hl), #0x1c
+	ld	hl, #(_desertoTiles + 0x0186)
+	ld	(hl), #0xe7
+	ld	hl, #(_desertoTiles + 0x0187)
+	ld	(hl), #0x1e
+	ld	hl, #(_desertoTiles + 0x0188)
+	ld	(hl), #0xe3
+	ld	hl, #(_desertoTiles + 0x0189)
+	ld	(hl), #0x1e
+	ld	hl, #(_desertoTiles + 0x018a)
+	ld	(hl), #0x01
+	ld	hl, #(_desertoTiles + 0x018b)
+	ld	(hl), #0xf7
+	ld	hl, #(_desertoTiles + 0x018c)
+	ld	(hl), #0x01
+	ld	hl, #(_desertoTiles + 0x018d)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x018e)
+	ld	(hl), #0xff
+	ld	hl, #(_desertoTiles + 0x018f)
+	ld	(hl), #0xff
 ;../design/score.c:26: unsigned char score[] =
 	ld	hl, #_score
 	ld	(hl), #0xff
@@ -11318,98 +11318,30 @@ _somTiro::
 	ldh	(_NR14_REG+0),a
 ;gameplay.c:80: }
 	ret
-;game.c:32: void main(){
+;game.c:30: void main(){
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
 	add	sp, #-128
 	add	sp, #-128
-	add	sp, #-128
-	add	sp, #-46
-;game.c:34: BGP_REG  = 0b11100100;
+	add	sp, #-94
+;game.c:32: BGP_REG  = 0b11100100;
 	ld	a, #0xe4
 	ldh	(_BGP_REG+0),a
-;game.c:35: NR52_REG = 0x80;
+;game.c:33: NR52_REG = 0x80;
 	ld	a, #0x80
 	ldh	(_NR52_REG+0),a
-;game.c:36: NR51_REG = 0xFF;
+;game.c:34: NR51_REG = 0xFF;
 	ld	a, #0xff
 	ldh	(_NR51_REG+0),a
-;game.c:37: NR50_REG = 0x77;
+;game.c:35: NR50_REG = 0x77;
 	ld	a, #0x77
 	ldh	(_NR50_REG+0),a
-;game.c:43: sprintf(strs,"\n  \n  \n \n \n ");
-	ldhl	sp,	#0
-	ld	c, l
-	ld	b, h
-	ld	e, c
-	ld	d, b
-	push	bc
-	ld	hl, #___str_0
+;game.c:41: set_bkg_data(0, 1, pattern1);
+	ld	hl, #_pattern1
 	push	hl
-	push	de
-	call	_sprintf
-	add	sp, #4
-	pop	bc
-;game.c:44: puts(strs);
-	ld	e, c
-	ld	d, b
-	push	bc
-	push	de
-	call	_puts
-	add	sp, #2
-	ld	hl, #___str_1
-	push	hl
-	call	_printf
-	add	sp, #2
-	pop	bc
-;game.c:46: puts(strs);
-	ld	e, c
-	ld	d, b
-	push	bc
-	push	de
-	call	_puts
-	add	sp, #2
-	pop	bc
-;game.c:47: sprintf(strs,"\n \n ");
-	ld	hl, #___str_2
-	ld	e, c
-	ld	d, b
-	push	bc
-	push	hl
-	push	de
-	call	_sprintf
-	add	sp, #4
-	call	_puts
-	add	sp, #2
-;game.c:49: printf(">>> Press Enter <<<");
-	ld	hl, #___str_3
-	push	hl
-	call	_printf
-	add	sp, #2
-;game.c:51: SHOW_BKG;
-	ldh	a, (_LCDC_REG+0)
-	or	a, #0x01
-	ldh	(_LCDC_REG+0),a
-;game.c:52: SHOW_SPRITES;
-	ldh	a, (_LCDC_REG+0)
-	or	a, #0x02
-	ldh	(_LCDC_REG+0),a
-;game.c:54: DISPLAY_ON;
-	ldh	a, (_LCDC_REG+0)
-	or	a, #0x80
-	ldh	(_LCDC_REG+0),a
-;game.c:56: waitpad(J_START);
-	ld	a, #0x80
-	push	af
-	inc	sp
-	call	_waitpad
-	inc	sp
-;game.c:58: set_bkg_data(0, 34, desertoTiles);
-	ld	hl, #_desertoTiles
-	push	hl
-	ld	a, #0x22
+	ld	a, #0x01
 	push	af
 	inc	sp
 	xor	a, a
@@ -11417,7 +11349,25 @@ _main::
 	inc	sp
 	call	_set_bkg_data
 	add	sp, #4
-;game.c:59: set_bkg_tiles(0, 0, 20, 36, desertoMato);
+;game.c:42: set_bkg_data(0x20, 1, pattern2);
+	ld	hl, #_pattern2
+	push	hl
+	ld	de, #0x0120
+	push	de
+	call	_set_bkg_data
+	add	sp, #4
+;game.c:45: set_bkg_data(0, 35, desertoTiles);
+	ld	hl, #_desertoTiles
+	push	hl
+	ld	a, #0x23
+	push	af
+	inc	sp
+	xor	a, a
+	push	af
+	inc	sp
+	call	_set_bkg_data
+	add	sp, #4
+;game.c:46: set_bkg_tiles(0, 0, 20, 36, desertoMato);
 	ld	hl, #_desertoMato
 	push	hl
 	ld	de, #0x2414
@@ -11430,38 +11380,7 @@ _main::
 	inc	sp
 	call	_set_bkg_tiles
 	add	sp, #6
-;game.c:62: set_bkg_data(0, 1, pattern1);
-	ld	hl, #_pattern1
-	push	hl
-	ld	a, #0x01
-	push	af
-	inc	sp
-	xor	a, a
-	push	af
-	inc	sp
-	call	_set_bkg_data
-	add	sp, #4
-;game.c:63: set_bkg_data(0x20, 1, pattern2);
-	ld	hl, #_pattern2
-	push	hl
-	ld	de, #0x0120
-	push	de
-	call	_set_bkg_data
-	add	sp, #4
-;game.c:67: }
-	di
-;game.c:65: hUGE_init(&Intro);
-	ld	hl, #_Intro
-	push	hl
-	call	_hUGE_init
-	add	sp, #2
-;game.c:66: add_VBL(hUGE_dosound);
-	ld	hl, #_hUGE_dosound
-	push	hl
-	call	_add_VBL
-	add	sp, #2
-	ei
-;game.c:72: set_sprite_data(0, 4, ghost);
+;game.c:49: set_sprite_data(0, 4, ghost);
 	ld	hl, #_ghost
 	push	hl
 	ld	a, #0x04
@@ -11472,53 +11391,53 @@ _main::
 	inc	sp
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:73: set_sprite_data(4, 4, protagonista);
+;game.c:50: set_sprite_data(4, 4, protagonista);
 	ld	hl, #_protagonista
 	push	hl
 	ld	de, #0x0404
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:74: set_sprite_data(8, 9, MiniBossOgro);
+;game.c:51: set_sprite_data(8, 9, MiniBossOgro);
 	ld	hl, #_MiniBossOgro
 	push	hl
 	ld	de, #0x0908
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:75: set_sprite_data(17, 1, projetil);
+;game.c:52: set_sprite_data(17, 1, projetil);
 	ld	hl, #_projetil
 	push	hl
 	ld	de, #0x0111
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:76: set_sprite_data(18,16, score);
+;game.c:53: set_sprite_data(18,16, score);
 	ld	hl, #_score
 	push	hl
 	ld	de, #0x1012
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:77: set_sprite_data(34,1, projetilMiniboss);
+;game.c:54: set_sprite_data(34,1, projetilMiniboss);
 	ld	hl, #_projetilMiniboss
 	push	hl
 	ld	de, #0x0122
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:78: set_sprite_data(35,4, ghostHit);
+;game.c:55: set_sprite_data(35,4, ghostHit);
 	ld	hl, #_ghostHit
 	push	hl
 	ld	de, #0x0423
 	push	de
 	call	_set_sprite_data
 	add	sp, #4
-;game.c:84: setupEnemy(&inimigo1,0,4,minnionLife);
-	ldhl	sp,	#80
+;game.c:61: setupEnemy(&inimigo1,0,4,minnionLife);
+	ldhl	sp,	#0
 	ld	a, l
 	ld	d, h
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11534,11 +11453,11 @@ _main::
 	push	bc
 	call	_setupEnemy
 	add	sp, #5
-;game.c:88: setupHero(&protagonista,4,8);
-	ldhl	sp,	#90
+;game.c:65: setupHero(&protagonista,4,8);
+	ldhl	sp,	#10
 	ld	a, l
 	ld	d, h
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11551,8 +11470,8 @@ _main::
 	push	bc
 	call	_setupHero
 	add	sp, #4
-;game.c:89: setPositionGameCharacter(&protagonista,80,128);
-	ld	hl, #258
+;game.c:66: setPositionGameCharacter(&protagonista,80,128);
+	ld	hl, #178
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -11563,11 +11482,11 @@ _main::
 	push	bc
 	call	_setPositionGameCharacter
 	add	sp, #4
-;game.c:92: setupSubBoss(&miniboss1,8,17);
-	ldhl	sp,	#100
+;game.c:69: setupSubBoss(&miniboss1,8,17);
+	ldhl	sp,	#20
 	ld	a, l
 	ld	d, h
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11580,11 +11499,11 @@ _main::
 	push	bc
 	call	_setupSubBoss
 	add	sp, #4
-;game.c:96: setupScore(&pontuacao,18,96,152);
-	ldhl	sp,	#116
+;game.c:73: setupScore(&pontuacao,18,96,152);
+	ldhl	sp,	#36
 	ld	a, l
 	ld	d, h
-	ld	hl, #261
+	ld	hl, #181
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11600,12 +11519,11 @@ _main::
 	push	bc
 	call	_setupScore
 	add	sp, #5
-;game.c:104: setupBala(&projetil1,17);
-	ld	hl, #138
-	add	hl, sp
+;game.c:81: setupBala(&projetil1,17);
+	ldhl	sp,	#58
 	ld	a, l
 	ld	d, h
-	ld	hl, #263
+	ld	hl, #183
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11619,12 +11537,11 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:105: setupBala(&projetil2,17);
-	ld	hl, #144
-	add	hl, sp
+;game.c:82: setupBala(&projetil2,17);
+	ldhl	sp,	#64
 	ld	a, l
 	ld	d, h
-	ld	hl, #265
+	ld	hl, #185
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11638,12 +11555,11 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:106: setupBala(&projetil3,17);
-	ld	hl, #150
-	add	hl, sp
+;game.c:83: setupBala(&projetil3,17);
+	ldhl	sp,	#70
 	ld	a, l
 	ld	d, h
-	ld	hl, #267
+	ld	hl, #187
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11657,12 +11573,11 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:107: setupBala(&projetil4,17);
-	ld	hl, #156
-	add	hl, sp
+;game.c:84: setupBala(&projetil4,17);
+	ldhl	sp,	#76
 	ld	a, l
 	ld	d, h
-	ld	hl, #269
+	ld	hl, #189
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11676,12 +11591,11 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:108: setupBala(&projetil5,17);
-	ld	hl, #162
-	add	hl, sp
+;game.c:85: setupBala(&projetil5,17);
+	ldhl	sp,	#82
 	ld	a, l
 	ld	d, h
-	ld	hl, #271
+	ld	hl, #191
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, d
@@ -11695,9 +11609,8 @@ _main::
 	push	bc
 	call	_setupBala
 	add	sp, #3
-;game.c:111: setupBalaEnemy(&projetil6,34);
-	ld	hl, #168
-	add	hl, sp
+;game.c:88: setupBalaEnemy(&projetil6,34);
+	ldhl	sp,	#88
 	ld	c, l
 	ld	b, h
 	ld	e, c
@@ -11710,178 +11623,210 @@ _main::
 	call	_setupBalaEnemy
 	add	sp, #3
 	pop	bc
-;game.c:117: UINT8 gameWin=0;
+;game.c:93: SHOW_SPRITES;
+	ldh	a, (_LCDC_REG+0)
+	or	a, #0x02
+	ldh	(_LCDC_REG+0),a
+;game.c:94: SHOW_BKG;
+	ldh	a, (_LCDC_REG+0)
+	or	a, #0x01
+	ldh	(_LCDC_REG+0),a
+;game.c:96: DISPLAY_ON;
+	ldh	a, (_LCDC_REG+0)
+	or	a, #0x80
+	ldh	(_LCDC_REG+0),a
+;game.c:98: UINT8 gameWin=0;
 	xor	a, a
-	ld	hl, #273
+	ld	hl, #193
 	add	hl, sp
 	ld	(hl), a
-;game.c:118: UINT8 gameOver=0;
+;game.c:99: UINT8 gameOver=0;
 	xor	a, a
 	inc	hl
 	ld	(hl), a
-;game.c:121: while(gameOver==0 && gameWin==0){
-	ld	hl, #263
+;game.c:100: waitpad(J_START);
+	ld	a, #0x80
+	push	af
+	inc	sp
+	call	_waitpad
+	inc	sp
+;game.c:106: }
+	di
+;game.c:104: hUGE_init(&Intro);
+	push	bc
+	ld	hl, #_Intro
+	push	hl
+	call	_hUGE_init
+	add	sp, #2
+	ld	hl, #_hUGE_dosound
+	push	hl
+	call	_add_VBL
+	add	sp, #2
+	pop	bc
+	ei
+;game.c:107: while(gameOver==0 && gameWin==0){
+	ld	hl, #183
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #275
+	ld	hl, #195
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #265
+	ld	hl, #185
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #277
+	ld	hl, #197
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #267
+	ld	hl, #187
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #279
+	ld	hl, #199
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #269
+	ld	hl, #189
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #281
+	ld	hl, #201
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #271
+	ld	hl, #191
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #283
+	ld	hl, #203
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #285
+	ld	hl, #205
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #287
+	ld	hl, #207
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #261
+	ld	hl, #181
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #289
+	ld	hl, #209
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #291
+	ld	hl, #211
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #293
+	ld	hl, #213
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #263
+	ld	hl, #183
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #295
+	ld	hl, #215
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #297
+	ld	hl, #217
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #265
+	ld	hl, #185
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #299
+	ld	hl, #219
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #301
+	ld	hl, #221
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #267
+	ld	hl, #187
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #303
+	ld	hl, #223
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #305
+	ld	hl, #225
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #269
+	ld	hl, #189
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #307
+	ld	hl, #227
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #309
+	ld	hl, #229
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #271
+	ld	hl, #191
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #311
+	ld	hl, #231
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #255
+	ld	hl, #175
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #313
+	ld	hl, #233
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
 ;c
-	ld	hl, #258
+	ld	hl, #178
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -11891,99 +11836,99 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #317
+	ld	hl, #237
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #316
+	ld	hl, #236
 	add	hl, sp
 	ld	(hl), a
+	ld	hl, #177
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #237
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #235
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #239
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #177
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #241
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #177
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #243
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #177
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #245
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #235
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #247
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #235
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #249
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #235
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #251
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #235
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #253
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #235
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
+	ld	hl, #255
+	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #179
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
 	ld	hl, #257
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #317
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #315
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #319
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #257
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #321
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #257
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #323
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #257
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #325
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #315
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #327
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #315
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #329
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #315
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #331
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #315
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #333
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #315
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #335
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
-	ld	hl, #259
-	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #337
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, e
@@ -11991,59 +11936,59 @@ _main::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #341
+	ld	hl, #261
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #343
-	add	hl, sp
-	ld	(hl+), a
-	ld	(hl), e
 	ld	hl, #263
 	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #345
-	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
+	ld	hl, #183
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
 	ld	hl, #265
 	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #347
-	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
+	ld	hl, #185
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
 	ld	hl, #267
 	add	hl, sp
-	ld	a, (hl+)
-	ld	e, (hl)
-	ld	hl, #349
-	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
+	ld	hl, #187
+	add	hl, sp
+	ld	a, (hl+)
+	ld	e, (hl)
 	ld	hl, #269
 	add	hl, sp
+	ld	(hl+), a
+	ld	(hl), e
+	ld	hl, #189
+	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #351
+	ld	hl, #271
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #271
+	ld	hl, #191
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #353
+	ld	hl, #273
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
@@ -12051,83 +11996,83 @@ _main::
 	add	hl, bc
 	push	hl
 	ld	a, l
-	ld	hl, #357
+	ld	hl, #277
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #356
+	ld	hl, #276
 	add	hl, sp
 	ld	(hl), a
-	ld	hl, #261
+	ld	hl, #181
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #357
+	ld	hl, #277
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #269
+	ld	hl, #189
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #359
+	ld	hl, #279
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #361
+	ld	hl, #281
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #261
+	ld	hl, #181
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #363
+	ld	hl, #283
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #267
+	ld	hl, #187
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #365
+	ld	hl, #285
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #367
+	ld	hl, #287
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #261
+	ld	hl, #181
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #369
+	ld	hl, #289
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #265
+	ld	hl, #185
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #371
+	ld	hl, #291
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #373
+	ld	hl, #293
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, e
@@ -12135,75 +12080,75 @@ _main::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #377
+	ld	hl, #297
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #261
+	ld	hl, #181
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #379
+	ld	hl, #299
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #263
+	ld	hl, #183
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #381
+	ld	hl, #301
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #383
+	ld	hl, #303
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #261
+	ld	hl, #181
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #385
+	ld	hl, #305
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #271
+	ld	hl, #191
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #387
+	ld	hl, #307
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #389
+	ld	hl, #309
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #391
+	ld	hl, #311
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #393
+	ld	hl, #313
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, e
@@ -12211,75 +12156,75 @@ _main::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #397
+	ld	hl, #317
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #399
+	ld	hl, #319
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #401
+	ld	hl, #321
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #257
+	ld	hl, #177
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #403
+	ld	hl, #323
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #405
+	ld	hl, #325
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #407
+	ld	hl, #327
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #409
+	ld	hl, #329
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #411
+	ld	hl, #331
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #413
+	ld	hl, #333
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, e
@@ -12287,16 +12232,16 @@ _main::
 	ld	a, c
 	ld	(hl+), a
 	ld	(hl), b
-	ld	hl, #259
+	ld	hl, #179
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #417
+	ld	hl, #337
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
 00174$:
-	ld	hl, #274
+	ld	hl, #194
 	add	hl, sp
 	ld	a, (hl)
 	or	a, a
@@ -12305,9 +12250,9 @@ _main::
 	ld	a, (hl)
 	or	a, a
 	jp	NZ, 00176$
-;game.c:124: inimigo1.ativo=1;
+;game.c:110: inimigo1.ativo=1;
 ;c
-	ld	hl, #256
+	ld	hl, #176
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12317,21 +12262,21 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #421
+	ld	hl, #341
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #420
+	ld	hl, #340
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x01
-;game.c:125: inimigo1.x=protagonista.x;
+;game.c:111: inimigo1.x=protagonista.x;
 ;c
-	ld	hl, #256
+	ld	hl, #176
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12341,16 +12286,16 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #422
+	ld	hl, #342
 	add	hl, sp
 	ld	(hl), a
 ;c
-	ld	hl, #258
+	ld	hl, #178
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12360,12 +12305,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #425
+	ld	hl, #345
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -12373,15 +12318,15 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-	ld	hl, #421
+	ld	hl, #341
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:126: inimigo1.y=0;
+;game.c:112: inimigo1.y=0;
 ;c
-	ld	hl, #256
+	ld	hl, #176
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12391,24 +12336,24 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #427
+	ld	hl, #347
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #426
+	ld	hl, #346
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x00
-;game.c:128: while(qtdeMinnions!=0 && gameOver!=1){
-	ld	hl, #429
+;game.c:114: while(qtdeMinnions!=0 && gameOver!=1){
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl), #0x0a
 00130$:
-	ld	hl, #274
+	ld	hl, #194
 	add	hl, sp
 	ld	a, (hl)
 	dec	a
@@ -12416,7 +12361,7 @@ _main::
 	jr	Z, 00440$
 	xor	a, a
 00440$:
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, (hl)
@@ -12429,8 +12374,8 @@ _main::
 	ldh	a, (_SCY_REG+0)
 	inc	a
 	ldh	(_SCY_REG+0),a
-;game.c:130: moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
-	ld	hl, #276
+;game.c:116: moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
+	ld	hl, #196
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12439,7 +12384,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #278
+	ld	hl, #198
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12448,7 +12393,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #280
+	ld	hl, #200
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12457,7 +12402,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #282
+	ld	hl, #202
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12466,7 +12411,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #284
+	ld	hl, #204
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12475,8 +12420,8 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:131: if(checarColisaoPersonagem(&protagonista,&inimigo1)){
-	ld	hl, #286
+;game.c:117: if(checarColisaoPersonagem(&protagonista,&inimigo1)){
+	ld	hl, #206
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12493,13 +12438,13 @@ _main::
 	ld	a, e
 	or	a, a
 	jr	Z, 00102$
-;game.c:142: gameOver=1;
-	ld	hl, #274
+;game.c:128: gameOver=1;
+	ld	hl, #194
 	add	hl, sp
 	ld	(hl), #0x01
 00102$:
-;game.c:145: moveInimigo1(&inimigo1,&protagonista);
-	ld	hl, #292
+;game.c:131: moveInimigo1(&inimigo1,&protagonista);
+	ld	hl, #212
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12513,8 +12458,8 @@ _main::
 	push	bc
 	call	_moveInimigo1
 	add	sp, #4
-;game.c:147: hitMinnion(&inimigo1,&projetil1,50); hitMinnion(&inimigo1,&projetil2,50); hitMinnion(&inimigo1,&projetil3,50);
-	ld	hl, #296
+;game.c:133: hitMinnion(&inimigo1,&projetil1,50); hitMinnion(&inimigo1,&projetil2,50); hitMinnion(&inimigo1,&projetil3,50);
+	ld	hl, #216
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12531,7 +12476,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-	ld	hl, #300
+	ld	hl, #220
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12548,7 +12493,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-	ld	hl, #304
+	ld	hl, #224
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12565,8 +12510,8 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:148: hitMinnion(&inimigo1,&projetil4,50);   hitMinnion(&inimigo1,&projetil5,50);
-	ld	hl, #308
+;game.c:134: hitMinnion(&inimigo1,&projetil4,50);   hitMinnion(&inimigo1,&projetil5,50);
+	ld	hl, #228
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12583,7 +12528,7 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-	ld	hl, #312
+	ld	hl, #232
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12600,8 +12545,8 @@ _main::
 	push	bc
 	call	_hitMinnion
 	add	sp, #5
-;game.c:149: if(inimigo1.ativo==0){
-	ld	hl, #420
+;game.c:135: if(inimigo1.ativo==0){
+	ld	hl, #340
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12610,8 +12555,8 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00104$
-;game.c:150: sumScore(&pontuacao,10);
-	ld	hl, #290
+;game.c:136: sumScore(&pontuacao,10);
+	ld	hl, #210
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12622,20 +12567,20 @@ _main::
 	push	bc
 	call	_sumScore
 	add	sp, #4
-;game.c:151: qtdeMinnions--;
-	ld	hl, #429
+;game.c:137: qtdeMinnions--;
+	ld	hl, #349
 	add	hl, sp
 	dec	(hl)
-;game.c:152: inimigo1.ativo=1;
-	ld	hl, #419
+;game.c:138: inimigo1.ativo=1;
+	ld	hl, #339
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x01
-;game.c:153: inimigo1.vida=minnionLife;
+;game.c:139: inimigo1.vida=minnionLife;
 ;c
-	ld	hl, #256
+	ld	hl, #176
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12644,8 +12589,8 @@ _main::
 	ld	hl, #0x0007
 	add	hl, de
 	ld	(hl), #0x96
-;game.c:154: inimigo1.x=protagonista.x;
-	ld	hl, #424
+;game.c:140: inimigo1.x=protagonista.x;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12653,33 +12598,33 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	c, a
-	ld	hl, #421
+	ld	hl, #341
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:155: inimigo1.y=0;
-	ld	hl, #425
+;game.c:141: inimigo1.y=0;
+	ld	hl, #345
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x00
 00104$:
-;game.c:158: if(joypad() & J_LEFT){
+;game.c:144: if(joypad() & J_LEFT){
 	call	_joypad
 	bit	1, e
 	jr	Z, 00106$
-;game.c:159: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
-	ld	hl, #424
+;game.c:145: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl), a
 	ld	a, (hl)
@@ -12690,32 +12635,32 @@ _main::
 	adc	a, #0xff
 	bit	7,a
 	jr	Z, 00185$
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl)
 	ld	(de), a
 	jr	00186$
 00185$:
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	c, (hl)
 	dec	c
 	dec	c
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
 00186$:
-;game.c:161: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
-	ld	hl, #316
+;game.c:147: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+	ld	hl, #236
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12723,14 +12668,14 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #318
+	ld	hl, #238
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -12744,13 +12689,13 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00106$:
-;game.c:164: if(joypad() & J_RIGHT){
+;game.c:150: if(joypad() & J_RIGHT){
 	call	_joypad
 	ld	a, e
 	rrca
 	jr	NC, 00108$
-;game.c:165: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
-	ld	hl, #424
+;game.c:151: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12770,7 +12715,7 @@ _main::
 	rra
 	sbc	a, #0x80
 	jr	C, 00187$
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -12780,15 +12725,15 @@ _main::
 00187$:
 	inc	c
 	inc	c
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
 00188$:
-;game.c:166: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ld	hl, #320
+;game.c:152: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ld	hl, #240
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12796,14 +12741,14 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #322
+	ld	hl, #242
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -12817,20 +12762,20 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00108$:
-;game.c:168: if(joypad() & J_UP){
+;game.c:154: if(joypad() & J_UP){
 	call	_joypad
 	bit	2, e
 	jr	Z, 00110$
-;game.c:169: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
-	ld	hl, #315
+;game.c:155: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #427
+	ld	hl, #347
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #316
+	ld	hl, #236
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12862,7 +12807,7 @@ _main::
 	scf
 00445$:
 	jr	C, 00189$
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -12872,15 +12817,15 @@ _main::
 00189$:
 	dec	c
 	dec	c
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
 00190$:
-;game.c:170: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ld	hl, #428
+;game.c:156: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ld	hl, #348
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12888,14 +12833,14 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #324
+	ld	hl, #244
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -12909,12 +12854,12 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00110$:
-;game.c:172: if(joypad() & J_DOWN){
+;game.c:158: if(joypad() & J_DOWN){
 	call	_joypad
 	bit	3, e
 	jr	Z, 00112$
-;game.c:173: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
-	ld	hl, #316
+;game.c:159: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+	ld	hl, #236
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12937,7 +12882,7 @@ _main::
 	jr	00192$
 00191$:
 	add	a, #0x02
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	push	af
 	ld	a, (hl+)
@@ -12946,17 +12891,17 @@ _main::
 	pop	af
 	ld	(hl), a
 00192$:
-;game.c:174: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+;game.c:160: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
 	ld	a, (bc)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #326
+	ld	hl, #246
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -12970,13 +12915,13 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00112$:
-;game.c:176: if(joypad() & J_A){
+;game.c:162: if(joypad() & J_A){
 	call	_joypad
 	bit	4, e
 	jp	Z,00128$
-;game.c:178: if( projetil1.ativo==0){
+;game.c:164: if( projetil1.ativo==0){
 ;c
-	ld	hl, #264
+	ld	hl, #184
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -12986,12 +12931,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -13000,10 +12945,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00125$
-;game.c:179: somTiro();
+;game.c:165: somTiro();
 	call	_somTiro
-;game.c:180: projetil1.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:166: projetil1.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13012,21 +12957,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #263
+	ld	hl, #183
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:181: projetil1.y=protagonista.y-2;
-	ld	hl, #264
+;game.c:167: projetil1.y=protagonista.y-2;
+	ld	hl, #184
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #336
+	ld	hl, #256
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13036,8 +12981,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:182: projetil1.ativo=1;
-	ld	hl, #427
+;game.c:168: projetil1.ativo=1;
+	ld	hl, #347
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13045,9 +12990,9 @@ _main::
 	ld	(hl), #0x01
 	jp	00128$
 00125$:
-;game.c:183: }else if(projetil2.ativo==0){
+;game.c:169: }else if(projetil2.ativo==0){
 ;c
-	ld	hl, #266
+	ld	hl, #186
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13057,12 +13002,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -13071,10 +13016,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00122$
-;game.c:184: somTiro();
+;game.c:170: somTiro();
 	call	_somTiro
-;game.c:185: projetil2.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:171: projetil2.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13083,21 +13028,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #265
+	ld	hl, #185
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:186: projetil2.y=protagonista.y-2;
-	ld	hl, #266
+;game.c:172: projetil2.y=protagonista.y-2;
+	ld	hl, #186
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #334
+	ld	hl, #254
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13107,8 +13052,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:187: projetil2.ativo=1;
-	ld	hl, #427
+;game.c:173: projetil2.ativo=1;
+	ld	hl, #347
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13116,9 +13061,9 @@ _main::
 	ld	(hl), #0x01
 	jp	00128$
 00122$:
-;game.c:188: }else if(projetil3.ativo==0){
+;game.c:174: }else if(projetil3.ativo==0){
 ;c
-	ld	hl, #268
+	ld	hl, #188
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13128,12 +13073,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -13142,10 +13087,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00119$
-;game.c:189: somTiro();
+;game.c:175: somTiro();
 	call	_somTiro
-;game.c:190: projetil3.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:176: projetil3.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13154,21 +13099,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #267
+	ld	hl, #187
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:191: projetil3.y=protagonista.y-2;
-	ld	hl, #268
+;game.c:177: projetil3.y=protagonista.y-2;
+	ld	hl, #188
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #332
+	ld	hl, #252
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13178,8 +13123,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:192: projetil3.ativo=1;
-	ld	hl, #427
+;game.c:178: projetil3.ativo=1;
+	ld	hl, #347
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13187,9 +13132,9 @@ _main::
 	ld	(hl), #0x01
 	jp	00128$
 00119$:
-;game.c:193: }else if(projetil4.ativo==0){
+;game.c:179: }else if(projetil4.ativo==0){
 ;c
-	ld	hl, #270
+	ld	hl, #190
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13199,12 +13144,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -13213,10 +13158,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00116$
-;game.c:194: somTiro();
+;game.c:180: somTiro();
 	call	_somTiro
-;game.c:195: projetil4.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:181: projetil4.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13225,21 +13170,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #269
+	ld	hl, #189
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:196: projetil4.y=protagonista.y-2;
-	ld	hl, #270
+;game.c:182: projetil4.y=protagonista.y-2;
+	ld	hl, #190
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #330
+	ld	hl, #250
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13249,8 +13194,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:197: projetil4.ativo=1;
-	ld	hl, #427
+;game.c:183: projetil4.ativo=1;
+	ld	hl, #347
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13258,9 +13203,9 @@ _main::
 	ld	(hl), #0x01
 	jr	00128$
 00116$:
-;game.c:198: }else if(projetil5.ativo==0){
+;game.c:184: }else if(projetil5.ativo==0){
 ;c
-	ld	hl, #272
+	ld	hl, #192
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13270,12 +13215,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -13284,10 +13229,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00128$
-;game.c:199: somTiro();
+;game.c:185: somTiro();
 	call	_somTiro
-;game.c:200: projetil5.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:186: projetil5.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13296,21 +13241,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #271
+	ld	hl, #191
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:201: projetil5.y=protagonista.y-2;
-	ld	hl, #272
+;game.c:187: projetil5.y=protagonista.y-2;
+	ld	hl, #192
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #328
+	ld	hl, #248
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13320,15 +13265,15 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:202: projetil5.ativo=1;
-	ld	hl, #427
+;game.c:188: projetil5.ativo=1;
+	ld	hl, #347
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x01
 00128$:
-;game.c:207: performantdelay(5);  
+;game.c:193: performantdelay(5);  
 	ld	a, #0x05
 	push	af
 	inc	sp
@@ -13336,14 +13281,14 @@ _main::
 	inc	sp
 	jp	00130$
 00132$:
-;game.c:210: if(gameOver!=1){
-	ld	hl, #428
+;game.c:196: if(gameOver!=1){
+	ld	hl, #348
 	add	hl, sp
 	bit	0, (hl)
 	jr	NZ, 00134$
-;game.c:211: miniboss1.ativo=1;
+;game.c:197: miniboss1.ativo=1;
 ;c
-	ld	hl, #260
+	ld	hl, #180
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13352,9 +13297,9 @@ _main::
 	ld	hl, #0x000c
 	add	hl, de
 	ld	(hl), #0x01
-;game.c:212: miniboss1.x=protagonista.x;
+;game.c:198: miniboss1.x=protagonista.x;
 ;c
-	ld	hl, #260
+	ld	hl, #180
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13364,7 +13309,7 @@ _main::
 	add	hl, de
 	ld	c, l
 	ld	b, h
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13376,9 +13321,9 @@ _main::
 	ld	(hl), a
 	ld	a, (hl)
 	ld	(bc), a
-;game.c:213: miniboss1.y=20;
+;game.c:199: miniboss1.y=20;
 ;c
-	ld	hl, #260
+	ld	hl, #180
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13388,20 +13333,20 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #430
+	ld	hl, #350
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x14
-;game.c:214: setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);  
-	ld	hl, #429
+;game.c:200: setPositionGameCharacter2(&miniboss1, miniboss1.x,miniboss1.y);  
+	ld	hl, #349
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13411,11 +13356,11 @@ _main::
 	dec	hl
 	dec	hl
 	ld	(hl), a
-	ld	hl, #337
+	ld	hl, #257
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	a, e
@@ -13437,15 +13382,15 @@ _main::
 	call	_setPositionGameCharacter2
 	add	sp, #4
 00134$:
-;game.c:217: performantdelay(100);
+;game.c:203: performantdelay(100);
 	ld	a, #0x64
 	push	af
 	inc	sp
 	call	_performantdelay
 	inc	sp
-;game.c:219: while(gameOver==0 && gameWin==0){
+;game.c:205: while(gameOver==0 && gameWin==0){
 00170$:
-	ld	hl, #274
+	ld	hl, #194
 	add	hl, sp
 	ld	a, (hl)
 	or	a, a
@@ -13458,8 +13403,8 @@ _main::
 	ldh	a, (_SCY_REG+0)
 	inc	a
 	ldh	(_SCY_REG+0),a
-;game.c:221: moveSubBoss(&miniboss1);
-	ld	hl, #344
+;game.c:207: moveSubBoss(&miniboss1);
+	ld	hl, #264
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13468,8 +13413,8 @@ _main::
 	push	bc
 	call	_moveSubBoss
 	add	sp, #2
-;game.c:222: moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
-	ld	hl, #346
+;game.c:208: moveBala(&projetil1);moveBala(&projetil2); moveBala(&projetil3);moveBala(&projetil4); moveBala(&projetil5);
+	ld	hl, #266
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13478,7 +13423,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #348
+	ld	hl, #268
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13487,7 +13432,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #350
+	ld	hl, #270
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13496,7 +13441,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #352
+	ld	hl, #272
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13505,7 +13450,7 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-	ld	hl, #354
+	ld	hl, #274
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13514,8 +13459,8 @@ _main::
 	push	bc
 	call	_moveBala
 	add	sp, #2
-;game.c:224: if(projetil6.ativo==0){
-	ld	hl, #356
+;game.c:210: if(projetil6.ativo==0){
+	ld	hl, #276
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13524,8 +13469,8 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00136$
-;game.c:225: setPositionBullet(&miniboss1,&projetil6); 
-	ld	hl, #340
+;game.c:211: setPositionBullet(&miniboss1,&projetil6); 
+	ld	hl, #260
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13540,8 +13485,8 @@ _main::
 	call	_setPositionBullet
 	add	sp, #4
 00136$:
-;game.c:227: gameOver=hitPersonagem(&protagonista,&projetil6,50);
-	ld	hl, #376
+;game.c:213: gameOver=hitPersonagem(&protagonista,&projetil6,50);
+	ld	hl, #296
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13558,19 +13503,19 @@ _main::
 	push	bc
 	call	_hitPersonagem
 	add	sp, #5
-	ld	hl, #274
+	ld	hl, #194
 	add	hl, sp
 	ld	(hl), e
-;game.c:229: if(hitSubBoss(&miniboss1,&projetil1,50,&pontuacao)==1 || hitSubBoss(&miniboss1,&projetil2,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil3,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil4,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil5,50,&pontuacao)==1 ){
-	ld	hl, #379
+;game.c:215: if(hitSubBoss(&miniboss1,&projetil1,50,&pontuacao)==1 || hitSubBoss(&miniboss1,&projetil2,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil3,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil4,50,&pontuacao)==1  || hitSubBoss(&miniboss1,&projetil5,50,&pontuacao)==1 ){
+	ld	hl, #299
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #382
+	ld	hl, #302
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13580,7 +13525,7 @@ _main::
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13595,15 +13540,15 @@ _main::
 	add	sp, #7
 	dec	e
 	jp	Z,00137$
-	ld	hl, #369
+	ld	hl, #289
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #372
+	ld	hl, #292
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13613,7 +13558,7 @@ _main::
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13628,15 +13573,15 @@ _main::
 	add	sp, #7
 	dec	e
 	jp	Z,00137$
-	ld	hl, #363
+	ld	hl, #283
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #366
+	ld	hl, #286
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13646,7 +13591,7 @@ _main::
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13661,15 +13606,15 @@ _main::
 	add	sp, #7
 	dec	e
 	jr	Z, 00137$
-	ld	hl, #357
+	ld	hl, #277
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #360
+	ld	hl, #280
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13679,7 +13624,7 @@ _main::
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13694,15 +13639,15 @@ _main::
 	add	sp, #7
 	dec	e
 	jr	Z, 00137$
-	ld	hl, #385
+	ld	hl, #305
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #388
+	ld	hl, #308
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13712,7 +13657,7 @@ _main::
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13728,13 +13673,13 @@ _main::
 	dec	e
 	jr	NZ, 00138$
 00137$:
-;game.c:230: gameWin=1;
-	ld	hl, #273
+;game.c:216: gameWin=1;
+	ld	hl, #193
 	add	hl, sp
 	ld	(hl), #0x01
 00138$:
-;game.c:236: moveBalaEnemy(&projetil6);
-	ld	hl, #396
+;game.c:222: moveBalaEnemy(&projetil6);
+	ld	hl, #316
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13743,12 +13688,12 @@ _main::
 	push	bc
 	call	_moveBalaEnemy
 	add	sp, #2
-;game.c:237: if(joypad() & J_LEFT){
+;game.c:223: if(joypad() & J_LEFT){
 	call	_joypad
 	bit	1, e
 	jr	Z, 00144$
-;game.c:238: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
-	ld	hl, #424
+;game.c:224: (protagonista.x-8-2) < 0 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x-2);
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13762,7 +13707,7 @@ _main::
 	adc	a, #0xff
 	bit	7,a
 	jr	Z, 00193$
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13772,15 +13717,15 @@ _main::
 00193$:
 	dec	c
 	dec	c
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
 00194$:
-;game.c:240: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
-	ld	hl, #392
+;game.c:226: setPositionGameCharacter(&protagonista, protagonista.x,protagonista.y);
+	ld	hl, #312
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13788,14 +13733,14 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #394
+	ld	hl, #314
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -13809,13 +13754,13 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00144$:
-;game.c:242: if(joypad() & J_RIGHT){
+;game.c:228: if(joypad() & J_RIGHT){
 	call	_joypad
 	ld	a, e
 	rrca
 	jr	NC, 00146$
-;game.c:243: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
-	ld	hl, #424
+;game.c:229: (protagonista.x+8) >= 160 ? (protagonista.x=protagonista.x) : (protagonista.x=protagonista.x+2);
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13835,7 +13780,7 @@ _main::
 	rra
 	sbc	a, #0x80
 	jr	C, 00195$
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13845,15 +13790,15 @@ _main::
 00195$:
 	inc	c
 	inc	c
-	ld	hl, #423
+	ld	hl, #343
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
 00196$:
-;game.c:244: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ld	hl, #398
+;game.c:230: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ld	hl, #318
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13861,14 +13806,14 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #400
+	ld	hl, #320
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -13882,20 +13827,20 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00146$:
-;game.c:246: if(joypad() & J_UP){
+;game.c:232: if(joypad() & J_UP){
 	call	_joypad
 	bit	2, e
 	jr	Z, 00148$
-;game.c:247: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
-	ld	hl, #315
+;game.c:233: (protagonista.y-16) <= 20 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y-2);
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #316
+	ld	hl, #236
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13927,7 +13872,7 @@ _main::
 	scf
 00458$:
 	jr	C, 00197$
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -13937,15 +13882,15 @@ _main::
 00197$:
 	dec	c
 	dec	c
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
 00198$:
-;game.c:248: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ld	hl, #429
+;game.c:234: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ld	hl, #349
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -13953,14 +13898,14 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #402
+	ld	hl, #322
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -13974,20 +13919,20 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00148$:
-;game.c:250: if(joypad() & J_DOWN){
+;game.c:236: if(joypad() & J_DOWN){
 	call	_joypad
 	bit	3, e
 	jr	Z, 00150$
-;game.c:251: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
-	ld	hl, #315
+;game.c:237: (protagonista.y) >= 128 ? (protagonista.y=protagonista.y) : (protagonista.y=protagonista.y+2);
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	e, (hl)
-	ld	hl, #428
+	ld	hl, #348
 	add	hl, sp
 	ld	(hl+), a
 	ld	(hl), e
-	ld	hl, #316
+	ld	hl, #236
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14006,15 +13951,15 @@ _main::
 00199$:
 	inc	c
 	inc	c
-	ld	hl, #315
+	ld	hl, #235
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
 00200$:
-;game.c:252: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
-	ld	hl, #429
+;game.c:238: setPositionGameCharacter(&protagonista,protagonista.x,protagonista.y);
+	ld	hl, #349
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14022,14 +13967,14 @@ _main::
 	ld	d, (hl)
 	ld	a, (de)
 	ld	b, a
-	ld	hl, #424
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	e, a
 	ld	d, (hl)
 	ld	a, (de)
-	ld	hl, #404
+	ld	hl, #324
 	add	hl, sp
 	dec	hl
 	ld	e, (hl)
@@ -14043,13 +13988,13 @@ _main::
 	call	_setPositionGameCharacter
 	add	sp, #4
 00150$:
-;game.c:254: if(joypad() & J_A){   
+;game.c:240: if(joypad() & J_A){   
 	call	_joypad
 	bit	4, e
 	jp	Z,00166$
-;game.c:255: if( projetil1.ativo==0){
+;game.c:241: if( projetil1.ativo==0){
 ;c
-	ld	hl, #264
+	ld	hl, #184
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14059,12 +14004,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #430
+	ld	hl, #350
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -14073,10 +14018,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00163$
-;game.c:256: somTiro();
+;game.c:242: somTiro();
 	call	_somTiro
-;game.c:257: projetil1.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:243: projetil1.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14085,21 +14030,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #263
+	ld	hl, #183
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:258: projetil1.y=protagonista.y-2;
-	ld	hl, #264
+;game.c:244: projetil1.y=protagonista.y-2;
+	ld	hl, #184
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #414
+	ld	hl, #334
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14109,8 +14054,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:259: projetil1.ativo=1;
-	ld	hl, #428
+;game.c:245: projetil1.ativo=1;
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -14118,9 +14063,9 @@ _main::
 	ld	(hl), #0x01
 	jp	00166$
 00163$:
-;game.c:260: }else if(projetil2.ativo==0){
+;game.c:246: }else if(projetil2.ativo==0){
 ;c
-	ld	hl, #266
+	ld	hl, #186
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14130,12 +14075,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #430
+	ld	hl, #350
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -14144,10 +14089,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00160$
-;game.c:261: somTiro();
+;game.c:247: somTiro();
 	call	_somTiro
-;game.c:262: projetil2.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:248: projetil2.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14156,21 +14101,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #265
+	ld	hl, #185
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:263: projetil2.y=protagonista.y-2;
-	ld	hl, #266
+;game.c:249: projetil2.y=protagonista.y-2;
+	ld	hl, #186
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #412
+	ld	hl, #332
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14180,8 +14125,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:264: projetil2.ativo=1;
-	ld	hl, #428
+;game.c:250: projetil2.ativo=1;
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -14189,9 +14134,9 @@ _main::
 	ld	(hl), #0x01
 	jp	00166$
 00160$:
-;game.c:265: }else if(projetil3.ativo==0){
+;game.c:251: }else if(projetil3.ativo==0){
 ;c
-	ld	hl, #268
+	ld	hl, #188
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14201,12 +14146,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #430
+	ld	hl, #350
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -14215,10 +14160,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00157$
-;game.c:266: somTiro();
+;game.c:252: somTiro();
 	call	_somTiro
-;game.c:267: projetil3.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:253: projetil3.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14227,21 +14172,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #267
+	ld	hl, #187
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:268: projetil3.y=protagonista.y-2;
-	ld	hl, #268
+;game.c:254: projetil3.y=protagonista.y-2;
+	ld	hl, #188
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #410
+	ld	hl, #330
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14251,8 +14196,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:269: projetil3.ativo=1;
-	ld	hl, #428
+;game.c:255: projetil3.ativo=1;
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -14260,9 +14205,9 @@ _main::
 	ld	(hl), #0x01
 	jp	00166$
 00157$:
-;game.c:270: }else if(projetil4.ativo==0){
+;game.c:256: }else if(projetil4.ativo==0){
 ;c
-	ld	hl, #270
+	ld	hl, #190
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14272,12 +14217,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #430
+	ld	hl, #350
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -14286,10 +14231,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00154$
-;game.c:271: somTiro();
+;game.c:257: somTiro();
 	call	_somTiro
-;game.c:272: projetil4.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:258: projetil4.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14298,21 +14243,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #269
+	ld	hl, #189
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:273: projetil4.y=protagonista.y-2;
-	ld	hl, #270
+;game.c:259: projetil4.y=protagonista.y-2;
+	ld	hl, #190
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #408
+	ld	hl, #328
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14322,8 +14267,8 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:274: projetil4.ativo=1;
-	ld	hl, #428
+;game.c:260: projetil4.ativo=1;
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
@@ -14331,9 +14276,9 @@ _main::
 	ld	(hl), #0x01
 	jr	00166$
 00154$:
-;game.c:275: }else if(projetil5.ativo==0){
+;game.c:261: }else if(projetil5.ativo==0){
 ;c
-	ld	hl, #272
+	ld	hl, #192
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14343,12 +14288,12 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #430
+	ld	hl, #350
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl-), a
 	ld	a, (hl+)
@@ -14357,10 +14302,10 @@ _main::
 	ld	a, (de)
 	or	a, a
 	jr	NZ, 00166$
-;game.c:276: somTiro();
+;game.c:262: somTiro();
 	call	_somTiro
-;game.c:277: projetil5.x=protagonista.x+4;
-	ld	hl, #424
+;game.c:263: projetil5.x=protagonista.x+4;
+	ld	hl, #344
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14369,21 +14314,21 @@ _main::
 	ld	a, (de)
 	add	a, #0x04
 	ld	c, a
-	ld	hl, #271
+	ld	hl, #191
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), c
-;game.c:278: projetil5.y=protagonista.y-2;
-	ld	hl, #272
+;game.c:264: projetil5.y=protagonista.y-2;
+	ld	hl, #192
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
 	ld	c, a
 	ld	b, (hl)
 	inc	bc
-	ld	hl, #406
+	ld	hl, #326
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14393,20 +14338,20 @@ _main::
 	dec	a
 	dec	a
 	ld	(bc), a
-;game.c:279: projetil5.ativo=1;
-	ld	hl, #428
+;game.c:265: projetil5.ativo=1;
+	ld	hl, #348
 	add	hl, sp
 	ld	a, (hl+)
 	ld	h, (hl)
 	ld	l, a
 	ld	(hl), #0x01
 00166$:
-;game.c:283: if(joypad() & J_B){
+;game.c:269: if(joypad() & J_B){
 	call	_joypad
 	bit	5, e
 	jr	Z, 00168$
-;game.c:284: setPositionBullet(&miniboss1,&projetil6); 
-	ld	hl, #416
+;game.c:270: setPositionBullet(&miniboss1,&projetil6); 
+	ld	hl, #336
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14421,7 +14366,7 @@ _main::
 	call	_setPositionBullet
 	add	sp, #4
 00168$:
-;game.c:288: performantdelay(2);  
+;game.c:274: performantdelay(2);  
 	ld	a, #0x02
 	push	af
 	inc	sp
@@ -14434,11 +14379,11 @@ _main::
 	ldh	(_SCX_REG+0),a
 	ld	a, #0x00
 	ldh	(_SCY_REG+0),a
-;game.c:293: HIDE_SPRITES;
+;game.c:279: HIDE_SPRITES;
 	ldh	a, (_LCDC_REG+0)
 	and	a, #0xfd
 	ldh	(_LCDC_REG+0),a
-;game.c:296: hUGE_mute_channel(HT_CH1, 1);
+;game.c:282: hUGE_mute_channel(HT_CH1, 1);
 	ld	a, #0x01
 	push	af
 	inc	sp
@@ -14447,39 +14392,39 @@ _main::
 	inc	sp
 	call	_hUGE_mute_channel
 	add	sp, #2
-;game.c:297: hUGE_mute_channel(HT_CH2, 1);
+;game.c:283: hUGE_mute_channel(HT_CH2, 1);
 	ld	de, #0x0101
 	push	de
 	call	_hUGE_mute_channel
 	add	sp, #2
-;game.c:298: hUGE_mute_channel(HT_CH3, 1);
+;game.c:284: hUGE_mute_channel(HT_CH3, 1);
 	ld	de, #0x0102
 	push	de
 	call	_hUGE_mute_channel
 	add	sp, #2
-;game.c:299: hUGE_mute_channel(HT_CH4, 1);
+;game.c:285: hUGE_mute_channel(HT_CH4, 1);
 	ld	de, #0x0103
 	push	de
 	call	_hUGE_mute_channel
 	add	sp, #2
-;game.c:300: NR10_REG = 0x7B;
+;game.c:286: NR10_REG = 0x7B;
 	ld	a, #0x7b
 	ldh	(_NR10_REG+0),a
-;game.c:301: NR11_REG = 0x8F;
+;game.c:287: NR11_REG = 0x8F;
 	ld	a, #0x8f
 	ldh	(_NR11_REG+0),a
-;game.c:302: NR12_REG = 0x93;
+;game.c:288: NR12_REG = 0x93;
 	ld	a, #0x93
 	ldh	(_NR12_REG+0),a
-;game.c:303: NR13_REG = 0x73;
+;game.c:289: NR13_REG = 0x73;
 	ld	a, #0x73
 	ldh	(_NR13_REG+0),a
-;game.c:304: NR14_REG = 0x86;
+;game.c:290: NR14_REG = 0x86;
 	ld	a, #0x86
 	ldh	(_NR14_REG+0),a
-;game.c:310: printf("     SCORE: %d",pontuacao.valor);
+;game.c:296: printf("     SCORE: %d",pontuacao.valor);
 ;c
-	ld	hl, #262
+	ld	hl, #182
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14489,35 +14434,34 @@ _main::
 	add	hl, de
 	push	hl
 	ld	a, l
-	ld	hl, #430
+	ld	hl, #350
 	add	hl, sp
 	ld	(hl), a
 	pop	hl
 	ld	a, h
-	ld	hl, #429
+	ld	hl, #349
 	add	hl, sp
 	ld	(hl), a
-;game.c:306: if(gameOver==1){
-	ld	hl, #274
+;game.c:292: if(gameOver==1){
+	ld	hl, #194
 	add	hl, sp
 	ld	a, (hl)
 	dec	a
 	jr	NZ, 00178$
-;game.c:307: sprintf(str,"\n  \n  \n \n \n");
-	ld	hl, #175
-	add	hl, sp
+;game.c:293: sprintf(str,"\n  \n  \n \n \n");
+	ldhl	sp,	#95
 	ld	c, l
 	ld	b, h
 	ld	e, c
 	ld	d, b
 	push	bc
-	ld	hl, #___str_4
+	ld	hl, #___str_0
 	push	hl
 	push	de
 	call	_sprintf
 	add	sp, #4
 	pop	bc
-;game.c:308: puts(str);
+;game.c:294: puts(str);
 	ld	e, c
 	ld	d, b
 	push	bc
@@ -14525,8 +14469,8 @@ _main::
 	call	_puts
 	add	sp, #2
 	pop	bc
-;game.c:310: printf("     SCORE: %d",pontuacao.valor);
-	ld	hl, #429
+;game.c:296: printf("     SCORE: %d",pontuacao.valor);
+	ld	hl, #349
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14544,12 +14488,12 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	push	hl
-	ld	hl, #___str_5
+	ld	hl, #___str_1
 	push	hl
 	call	_printf
 	add	sp, #4
 	pop	bc
-;game.c:311: sprintf(str,"\n \n ");
+;game.c:297: sprintf(str,"\n \n ");
 	ld	e, c
 	ld	d, b
 	push	bc
@@ -14560,28 +14504,27 @@ _main::
 	add	sp, #4
 	call	_puts
 	add	sp, #2
-;game.c:313: printf("===== GAME OVER ====");
-	ld	hl, #___str_6
+;game.c:299: printf("===== GAME OVER ====");
+	ld	hl, #___str_3
 	push	hl
 	call	_printf
 	add	sp, #2
 	jr	00183$
 00178$:
-;game.c:317: sprintf(str,"\n  \n  \n \n \n");
-	ld	hl, #175
-	add	hl, sp
+;game.c:303: sprintf(str,"\n  \n  \n \n \n");
+	ldhl	sp,	#95
 	ld	c, l
 	ld	b, h
 	ld	e, c
 	ld	d, b
 	push	bc
-	ld	hl, #___str_4
+	ld	hl, #___str_0
 	push	hl
 	push	de
 	call	_sprintf
 	add	sp, #4
 	pop	bc
-;game.c:318: puts(str);
+;game.c:304: puts(str);
 	ld	e, c
 	ld	d, b
 	push	bc
@@ -14589,8 +14532,8 @@ _main::
 	call	_puts
 	add	sp, #2
 	pop	bc
-;game.c:320: printf("     SCORE: %d",pontuacao.valor);
-	ld	hl, #429
+;game.c:306: printf("     SCORE: %d",pontuacao.valor);
+	ld	hl, #349
 	add	hl, sp
 	dec	hl
 	ld	a, (hl+)
@@ -14608,12 +14551,12 @@ _main::
 	ld	h, (hl)
 	ld	l, a
 	push	hl
-	ld	hl, #___str_5
+	ld	hl, #___str_1
 	push	hl
 	call	_printf
 	add	sp, #4
 	pop	bc
-;game.c:321: sprintf(str,"\n \n ");
+;game.c:307: sprintf(str,"\n \n ");
 	ld	hl, #___str_2
 	ld	e, c
 	ld	d, b
@@ -14624,17 +14567,16 @@ _main::
 	add	sp, #4
 	call	_puts
 	add	sp, #2
-;game.c:323: printf("===== GAME WIN =====");
-	ld	hl, #___str_7
+;game.c:309: printf("===== GAME WIN =====");
+	ld	hl, #___str_4
 	push	hl
 	call	_printf
 	add	sp, #2
 00183$:
-;game.c:332: }
+;game.c:318: }
 	add	sp, #127
 	add	sp, #127
-	add	sp, #127
-	add	sp, #49
+	add	sp, #96
 	ret
 _pattern1:
 	.db #0x80	; 128
@@ -14680,11 +14622,9 @@ ___str_0:
 	.db 0x0a
 	.ascii " "
 	.db 0x0a
-	.ascii " "
 	.db 0x00
 ___str_1:
-	.db 0x0a
-	.ascii "    IHS-DUNGEONS   "
+	.ascii "     SCORE: %d"
 	.db 0x00
 ___str_2:
 	.db 0x0a
@@ -14693,45 +14633,28 @@ ___str_2:
 	.ascii " "
 	.db 0x00
 ___str_3:
-	.ascii ">>> Press Enter <<<"
-	.db 0x00
-___str_4:
-	.db 0x0a
-	.ascii "  "
-	.db 0x0a
-	.ascii "  "
-	.db 0x0a
-	.ascii " "
-	.db 0x0a
-	.ascii " "
-	.db 0x0a
-	.db 0x00
-___str_5:
-	.ascii "     SCORE: %d"
-	.db 0x00
-___str_6:
 	.ascii "===== GAME OVER ===="
 	.db 0x00
-___str_7:
+___str_4:
 	.ascii "===== GAME WIN ====="
 	.db 0x00
-;game.c:334: void performantdelay(UINT8 numloops){ // nova funcao delay
+;game.c:320: void performantdelay(UINT8 numloops){ // nova funcao delay
 ;	---------------------------------
 ; Function performantdelay
 ; ---------------------------------
 _performantdelay::
-;game.c:336: for(i = 0; i < numloops; i++){
+;game.c:322: for(i = 0; i < numloops; i++){
 	ld	c, #0x00
 00103$:
 	ld	a, c
 	ldhl	sp,	#2
 	sub	a, (hl)
 	ret	NC
-;game.c:337: wait_vbl_done();
+;game.c:323: wait_vbl_done();
 	call	_wait_vbl_done
-;game.c:336: for(i = 0; i < numloops; i++){
+;game.c:322: for(i = 0; i < numloops; i++){
 	inc	c
-;game.c:339: }
+;game.c:325: }
 	jr	00103$
 	.area _CODE
 	.area _CABS (ABS)

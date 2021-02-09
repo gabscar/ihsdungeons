@@ -6,15 +6,14 @@
 #include "../design/MiniBossOgro.c"
 #include "../design/projetil.c"
 #include "../design/projetilMiniboss.c"
-#include "../design/New_Background/desertoTiles.c"
+//#include "../design/backTiles.c"
+//#include "../design/simpleMap.c"
 #include "../design/New_Background/desertoMato.c"
-//#include "../design/SplashScreen/SplashScreen.c"
-//#include "../design/SplashScreen/SplashTiles.c"
-//#include "testeBack.h"
+#include "../design/New_Background/desertoTiles.c"
 #include "../design/score.c"
 #include "personagem.c"
 #include "movimentacao.c"
-#include "changeScore.c"
+
 #include "colisoes.c"
 #include "gameplay.c"
 #include "hUGEDriver.h"
@@ -23,7 +22,6 @@
 void performantdelay(UINT8 numloops);
 
 extern const hUGESong_t Intro;
-
 
 const unsigned char pattern1[] = {0x80,0x80,0x40,0x40,0x20,0x20,0x10,0x10,0x08,0x08,0x04,0x04,0x02,0x02,0x01,0x01};
 const unsigned char pattern2[] = {0x00,0x00,0x7E,0x7E,0x40,0x40,0x54,0x54,0x48,0x48,0x54,0x54,0x40,0x40,0x00,0x00};
@@ -36,38 +34,17 @@ void main(){
     NR51_REG = 0xFF;
     NR50_REG = 0x77;
     //setup game
-    //set_bkg_data(0, 27, SplashTiles);
-   // set_bkg_tiles(0, 0, 20, 18, SplashScreen);
-    
-    char strs[80];
-     sprintf(strs,"\n  \n  \n \n \n ");
-     puts(strs);
-     printf("\n    IHS-DUNGEONS   ");
-     puts(strs);
-     sprintf(strs,"\n \n ");
-     puts(strs);
-     printf(">>> Press Enter <<<");
-  
-    SHOW_BKG;
-    SHOW_SPRITES;
-    
-    DISPLAY_ON;
+    //splash
 
-    waitpad(J_START);
-    
-    set_bkg_data(0, 34, desertoTiles);
-    set_bkg_tiles(0, 0, 20, 36, desertoMato);
     //music
     
     set_bkg_data(0, 1, pattern1);
     set_bkg_data(0x20, 1, pattern2);
-     __critical {
-        hUGE_init(&Intro);
-        add_VBL(hUGE_dosound);
-    }
    
     //others
-   
+    set_bkg_data(0, 35, desertoTiles);
+    set_bkg_tiles(0, 0, 20, 36, desertoMato);
+
 
     set_sprite_data(0, 4, ghost);
     set_sprite_data(4, 4, protagonista);
@@ -113,11 +90,20 @@ void main(){
     //move_sprite(projetil.spriteIds,85,110);
 
    
+    SHOW_SPRITES;
+    SHOW_BKG;
+
+     DISPLAY_ON;
 
     UINT8 gameWin=0;
     UINT8 gameOver=0;
- 
+    waitpad(J_START);
+     
     
+     __critical {
+        hUGE_init(&Intro);
+        add_VBL(hUGE_dosound);
+    }
     while(gameOver==0 && gameWin==0){
         
         UINT8 qtdeMinnions=10;
