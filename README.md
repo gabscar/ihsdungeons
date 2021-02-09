@@ -17,4 +17,4 @@ O jogo foi desenvolvido fazendo uso da GDBK-2020
 
 ## Autores
 * **Gabriel Santana** - [Rede de Contato](https://www.linkedin.com/in/gabriel-carvalho-1821741b1)
-* **João Pedro** - [Rede de Contato](https:linkedin.com/in/joão-pedro-souza-rolemberg-9744511ba)
+* **João Pedro** - [Rede de Contato](https://www.linkedin.com/in/joão-pedro-souza-rolemberg-9744511ba)
