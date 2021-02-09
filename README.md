@@ -12,7 +12,7 @@ Ao fim da cena Mark irá enfrentar o imperador dos invasores que deve ser derrot
 ## Desenvolvimento
 O jogo foi desenvolvido fazendo uso da GDBK-2020
 
-##Demo:
+## Demo:
 [Youtube](https://youtu.be/vLVNTfEam90)
 
 ## Autores
